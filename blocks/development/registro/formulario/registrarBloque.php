@@ -39,9 +39,10 @@ class RegistradorBloque {
          * Si se utiliza esta técnica es necesario realizar un mezcla entre este arreglo y el específico en cada control:
          * $atributos= array_merge($atributos,$atributosGlobales);
          */
-        $atributosGlobales ['tiempo'] = time();
-        $_REQUEST ['campoSeguro'] = 'true';
         
+        $atributosGlobales ['campoSeguro'] = 'true';
+        $_REQUEST ['tiempo'] = time();        
+        $atributosGlobales['tiempo']=$_REQUEST['tiempo'];
         // -------------------------------------------------------------------------------------------------
         
         // ---------------- SECCION: Parámetros Generales del Formulario ----------------------------------

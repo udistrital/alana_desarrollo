@@ -29,7 +29,7 @@ class FormProcessor {
 
     function procesarFormulario() {
 
-    	var_dump($_REQUEST);exit;
+    	
         /**
          *
          * @todo lógica de procesamiento
@@ -49,14 +49,23 @@ class FormProcessor {
          */
         $variable ['usuario'] = $_REQUEST ["usuario"];
         $variable ['clave'] = $this->miConfigurador->fabricaConexiones->crypto->codificarClave($_REQUEST ["clave"]);
+        var_dump($variable);	
+        
+        
+        
         // Verificar que el tiempo registrado en los controles no sea superior al tiempo actual + el tiempo de expiración
         if ($_REQUEST ['tiempo'] <= time() + $this->miConfigurador->getVariableConfiguracion('expiracion')) {
             // Verificar que el usuario esté registrado en el sistema
             $cadena_sql = $this->miSql->getCadenaSql("buscarUsuario", $variable);
+            
             $registro = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+            
             if ($registro) {
                 if ($registro [0] ['clave'] == $variable ["clave"]) {
                 // 1. Crear una sesión de trabajo
+                
+                	
+                	
                     $estaSesion = $this->miSesion->crearSesion($registro [0] ["id_usuario"]);
                     
                     $arregloLogin = array(

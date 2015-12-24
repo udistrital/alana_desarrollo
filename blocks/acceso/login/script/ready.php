@@ -1,15 +1,16 @@
-<?php 
-
-$_REQUEST['tiempo']=time();
-
+<?php
+$_REQUEST ['tiempo'] = time ();
 
 ?>            
             
-// Asociar el widget de validación al formulario
-$("#<?php echo $this->campoSeguro('login')?>").validationEngine({
-	promptPosition : "centerLeft",
-	scroll : false
-});
+            
+  // Asociar el widget de validación al formulario
+            $("#<?php echo $this->campoSeguro('login')?>").validationEngine({
+            promptPosition : "centerLeft", 
+            scroll: false,
+            autoHidePrompt: true,
+            autoHideDelay: 2000
+	         });
 
 
      $(function() {

@@ -56,7 +56,7 @@ class Formulario {
 		 * Nuevo a partir de la versión 1.0.0.2, se utiliza para crear de manera rápida el js asociado a
 		 * validationEngine.
 		 */
-		$atributos ['validar'] = true;
+		$atributos ['validar'] = false;
 		
 		// Si no se coloca, entonces toma el valor predeterminado 'application/x-www-form-urlencoded'
 		$atributos ['tipoFormulario'] = '';
@@ -183,6 +183,7 @@ class Formulario {
 		$valorCodificado .= "&bloque=" . $esteBloque ['nombre'];
 		$valorCodificado .= "&bloqueGrupo=" . $esteBloque ["grupo"];
 		$valorCodificado .= "&opcion=validarLogin";
+		$valorCodificado .= "&tiempo=".$_REQUEST['tiempo'];
 		/**
 		 * SARA permite que los nombres de los campos sean dinámicos.
 		 * Para ello utiliza la hora en que es creado el formulario para
@@ -225,8 +226,8 @@ class Formulario {
 <section>
 	<div id="fondo_texto">
 		<div id="texto">
-			<h3>SISTEMA GESTIÓN</h3>
-			<h3>CONTRACTUAL</h3>
+			<h3>SISTEMA  DE GESTIÓN</h3>
+			<h3>CONTRACTUAL Y CONTRATISTAS</h3>
 			<BR>
 			<h2>ALANA</h2>
 		</div>

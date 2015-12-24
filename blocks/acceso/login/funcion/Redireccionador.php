@@ -1,6 +1,6 @@
 <?php
 
-namespace registro\loginArka\funcion;
+namespace acceso\login\funcion;
 
 if (!isset($GLOBALS ["autorizado"])) {
     include ("index.php");

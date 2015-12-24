@@ -18,6 +18,17 @@ body {
 	background-position: center 5%;
 }
 
+#divMensaje {
+	position: absolute;
+	width: 11%;
+	left: 75%;
+	height: 3%;
+	z-index: 1;
+	opacity: 0.75;
+	font-size: xx-small;
+	background-position: 25px 8px;
+}
+
 #fondo_base {
 	position: absolute;
 	margin: 0;
@@ -53,7 +64,7 @@ body {
 	-moz-opacity: 0.9;
 	-webkit-opacity: 0.8;
 	font-size: 12px;
-	display:none;
+	display: none;
 }
 
 #form_login {
@@ -95,32 +106,24 @@ input[type=submit] {
 	font-family: Tahoma, Arial, Geneva, sans-serif;
 }
 
-
-
 #botonRegistro {
-    position: fixed;
-    z-index: 2;
-    width: 0%;
-    max-width: 300px;
-    height: 0%;
-    max-height: 140px;
-    background-color: #ffffff;
-    top: 5%;
-    left: 91%;
-    /* border-radius: 8px; */
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    -moz-opacity: 0.9;
-    /* -webkit-opacity: 0.9; */
-    text-align: center;
-    font-size: x-small;
-    
-
-}	
-
-
-
-
+	position: fixed;
+	z-index: 2;
+	width: 0%;
+	max-width: 300px;
+	height: 0%;
+	max-height: 140px;
+	background-color: #ffffff;
+	top: 5%;
+	left: 91%;
+	/* border-radius: 8px; */
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-moz-opacity: 0.9;
+	/* -webkit-opacity: 0.9; */
+	text-align: center;
+	font-size: x-small;
+}
 
 #logo_u {
 	position: absolute;
@@ -148,8 +151,6 @@ input[type=submit] {
 	opacity: 0.6;
 	border-radius: 0px 10px 10px 0px;
 }
-
-
 
 #texto {
 	width: 85%;
@@ -211,7 +212,7 @@ footer {
 #footerLeft p {
 	margin-left: 12%;
 	font-family: Tahoma, Arial, Geneva, sans-serif;
-	color: rgb(255,255,255);
+	color: rgb(255, 255, 255);
 	font-family: Tahoma, Arial, Geneva, sans-serif;
 	font-size: 11px;
 	left: 8%;

@@ -1,8 +1,6 @@
 <?php
 $indice=0;
-$estilo[$indice++]="estiloBloque.css";
 $estilo[$indice++]="validationEngine.jquery.css";
-
 $estilo[$indice++]="grande.css";
 
 $rutaBloque=$this->miConfigurador->getVariableConfiguracion("host");

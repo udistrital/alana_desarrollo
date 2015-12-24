@@ -34,8 +34,8 @@ $_REQUEST ['tiempo'] = time ();
     });
     
 setTimeout(function() {
-    $('#divMensaje').hide( "drop", { direction: "up" }, "slow" );
-}, 10000); // <-- time in milliseconds
+    $('#divMensaje').hide( "drop", { direction: "rigth" }, "slow" );
+}, 3000); // <-- time in milliseconds
 
 
    $("#abrir").click(function(event) {

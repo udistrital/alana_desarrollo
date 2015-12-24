@@ -1,6 +1,6 @@
 <?php
 
-namespace registro\loginArka;
+namespace acceso\login;
 
 // Evitar un acceso directo a este archivo
 if (! isset ( $GLOBALS ["autorizado"] )) {

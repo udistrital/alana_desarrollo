@@ -1,9 +1,9 @@
 <?php
-namespace registro\loginArka;
+namespace registro\login;
 
-use registro\loginArka\funcion\Redireccionador;
+use registro\login\funcion\Redireccionador;
 // Se incluye la clase para log de usuarios
-include_once ("core/log/logger.class.php");
+// include_once ("core/log/logger.class.php");
 include_once ('Redireccionador.php');
 
 // var_dump($_REQUEST);exit;
@@ -24,11 +24,12 @@ class FormProcessor {
         $this->miSql = $sql;
         $this->miSesion = \Sesion::singleton();
         //Objeto de la clase Loger
-        $this->miLogger = \logger::singleton();
+//         $this->miLogger = \logger::singleton();
     }
 
     function procesarFormulario() {
 
+    	var_dump($_REQUEST);exit;
         /**
          *
          * @todo lógica de procesamiento

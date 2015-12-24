@@ -6,22 +6,26 @@ $_REQUEST['tiempo']=time();
 ?>            
             
 // Asociar el widget de validación al formulario
-$("#<?php echo sha1('login'.$_REQUEST['tiempo']);?>").validationEngine({
-	promptPosition : "centerRight",
+$("#<?php echo $this->campoSeguro('login')?>").validationEngine({
+	promptPosition : "centerLeft",
 	scroll : false
 });
 
-$('#<?php echo sha1('usuario'.$_REQUEST['tiempo']);?>').keydown(function(e) {
-    if (e.keyCode == 13) {
-        $('#login').submit();
-    }
-});
 
-$('#<?php echo sha1('clave'.$_REQUEST['tiempo']);?>').keydown(function(e) {
-    if (e.keyCode == 13) {
-        $('#<?php echo sha1('login'.$_REQUEST['tiempo']);?>').submit();
-    }
-});
+     $(function() {
+            $("#<?php echo $this->campoSeguro('login')?>").submit(function() {
+                $resultado=$("#<?php echo $this->campoSeguro('login')?>").validationEngine("validate");
+           
+                if ($resultado) {
+                
+                    return true;
+                }
+                return false;
+            });
+        });
+
+
+
 
  $( "button" ).button().click(function( event ) 
  {
@@ -31,5 +35,14 @@ $('#<?php echo sha1('clave'.$_REQUEST['tiempo']);?>').keydown(function(e) {
 setTimeout(function() {
     $('#divMensaje').hide( "drop", { direction: "up" }, "slow" );
 }, 10000); // <-- time in milliseconds
+
+
+   $("#abrir").click(function(event) {
+
+             event.preventDefault();
+
+             $("#fondo_login").slideToggle();
+
+         });
 
 

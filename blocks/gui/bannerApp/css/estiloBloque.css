@@ -1,42 +1,23 @@
-.banner{
-    clear:both;
-    max-width: 100%;
-    border-style:none;
-    height:150px;
-    background-color: rgba(143, 188, 143, 0.55);
-    
+.bannerAplicativo {
+	clear: both;
+	max-width: 100%;
+	height: 200px;
+	border-style: double;
+	border-color: rgba(143, 188, 143, 1);
+	background-color: rgba(143, 188, 143, 0.55);
 }
 
-.divLogoArka{
-    position: absolute;
-    width: 350px;
-    border-style:none;
-    height:50px;
-    top:5px;
-    float:right;
-    left:-1px;
-    opacity: 0.2;
-    z-index:3001;
+.texto {
+	text-align: right;
+	font-size: xx-large;
+	font-family: fantasy;
+	color: green;
+	width: 97%;
 }
 
-.divCalendario{
-    position: relative;
-    width: 50px;
-    border-style:solid;
-    height:50px;
-    top:5px;
-    float:right;
-    left:-30px;
-    z-index:3001;
-}
-
-.divLogo{
-    position: relative;
-    width: 100px;
-    border-style:solid;
-    height:50px;
-    top:5px;
-    float:right;
-    left:-10px;
-    z-index:3001;
+.texto2 {
+	text-align: right;
+	font-size: small;
+	color: green;
+	width: 97%;
 }

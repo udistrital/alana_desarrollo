@@ -87,9 +87,9 @@ class pie {
                     $atributos ['enlace'] = $this->lenguaje->getCadena($esteCampo);
                     $atributos ['tabIndex'] = $tab;
                     $atributos ['estilo'] = 'escudo';
-                    $atributos ['enlaceImagen'] = $this->miConfigurador->getVariableConfiguracion('rutaUrlBloque') . 'imagen/escudo.png';
-                    $atributos ['ancho'] = '60px';
-                    $atributos ['alto'] = '80px';
+                    $atributos ['enlaceImagen'] = $this->miConfigurador->getVariableConfiguracion('rutaUrlBloque') . 'css/imagen/escudo.png';
+                    $atributos ['ancho'] = '100px';
+                    $atributos ['alto'] = '100px';
                     $tab++;
                     echo $this->miFormulario->enlace($atributos);
                     unset($atributos);
@@ -146,7 +146,7 @@ class pie {
                     $atributos ['enlace'] = $this->lenguaje->getCadena($esteCampo);
                     $atributos ['columnas'] = 1;
                     // $atributos ['estilo'] = 'jquery';
-                    $atributos ['enlaceImagen'] = $this->miConfigurador->getVariableConfiguracion('rutaUrlBloque') . 'imagen/google+.png';
+                    $atributos ['enlaceImagen'] = $this->miConfigurador->getVariableConfiguracion('rutaUrlBloque') . 'css/imagen/plusgoogle.png';
                     $atributos ['ancho'] = '30px';
                     $atributos ['alto'] = '30px';
                     $tab ++;
@@ -158,7 +158,7 @@ class pie {
                     $atributos ['enlace'] = $this->lenguaje->getCadena($esteCampo);
                     $atributos ['columnas'] = 1;
                     // $atributos ['estilo'] = 'jquery';
-                    $atributos ['enlaceImagen'] = $this->miConfigurador->getVariableConfiguracion('rutaUrlBloque') . 'imagen/facebook.png';
+                    $atributos ['enlaceImagen'] = $this->miConfigurador->getVariableConfiguracion('rutaUrlBloque') . 'css/imagen/facebook.png';
                     $atributos ['ancho'] = '30px';
                     $atributos ['alto'] = '30px';
                     $tab ++;
@@ -170,7 +170,7 @@ class pie {
                     $atributos ['enlace'] = $this->lenguaje->getCadena($esteCampo);
                     $atributos ['columnas'] = 1;
                     // $atributos ['estilo'] = 'jquery';
-                    $atributos ['enlaceImagen'] = $this->miConfigurador->getVariableConfiguracion('rutaUrlBloque') . 'imagen/twitter.png';
+                    $atributos ['enlaceImagen'] = $this->miConfigurador->getVariableConfiguracion('rutaUrlBloque') . 'css/imagen/twitter.png';
                     $atributos ['ancho'] = '30px';
                     $atributos ['alto'] = '30px';
                     $tab ++;

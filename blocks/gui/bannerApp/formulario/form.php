@@ -24,9 +24,9 @@ class Formulario {
 	}
 	function estructura() {
 		// ------------------- Inicio División -------------------------------
-		$esteCampo = 'banner';
+		$esteCampo = 'bannerAplicativo';
 		$atributos ['id'] = $esteCampo;
-		$atributos ['estilo'] = 'banner';
+		$atributos ['estilo'] = 'bannerAplicativo';
 		$atributos ['estiloEnLinea'] = '';
 		$atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
 		echo $this->miFormulario->division ( "inicio", $atributos );
@@ -41,11 +41,40 @@ class Formulario {
 			echo $this->miFormulario->division ( "inicio", $atributos );
 			{
 				
+				
+				echo "<h2>ALANA</h2>
+						";
+				
+				
 				// ------------------- Inicio División -------------------------------
 			}
 			
 			// ---------------------Fin Division -----------------------------------
 			echo $this->miFormulario->division ( "fin" );
+			
+			
+			
+			// ------------------- Inicio División -------------------------------
+			$esteCampo = 'texto2';
+			$atributos ['id'] = $esteCampo;
+			$atributos ['estilo'] = 'texto2';
+			$atributos ['estiloEnLinea'] = '';
+			$atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
+			echo $this->miFormulario->division ( "inicio", $atributos );
+			{
+			
+			
+				echo "<h3>Sistema de Gestión</h3>
+					 <h3>Contractual y Contratistas</h3>";;
+			
+			
+				// ------------------- Inicio División -------------------------------
+			}
+				
+			// ---------------------Fin Division -----------------------------------
+			echo $this->miFormulario->division ( "fin" );
+			
+			
 		}
 		
 		// ---------------------Fin Division -----------------------------------

@@ -1,6 +1,7 @@
 .bannerAplicativo {
 	clear: both;
-	max-width: 100%;
+	position: fixed;
+    width: 94%;
 	height: 200px;
 	border-style: double;
 	border-color: rgba(143, 188, 143, 1);

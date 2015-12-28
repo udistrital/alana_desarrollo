@@ -13,10 +13,11 @@ class Redireccionador {
 		$miPaginaActual = $miConfigurador->getVariableConfiguracion ( "pagina" );
 		
 		switch ($opcion) {
-			case "index" :
+			case "indexAplicativo" :
 				
 				$variable = 'pagina=indexAlana';
 				$variable .= '&registro=' . $valor [0];
+			
 				break;
 			
 			case "claves" :
@@ -30,7 +31,7 @@ class Redireccionador {
 			 */
 			case "paginaPrincipal" :
 				$variable = "pagina=" . $miPaginaActual;
-				if (isset ( $valor ) && $valor != '') {
+				if (isset ( $valor ) && $valor != '' ) {
 					$variable .= "&error=" . $valor;
 				}
 				break;
@@ -42,6 +43,7 @@ class Redireccionador {
 		foreach ( $_REQUEST as $clave => $valor ) {
 			unset ( $_REQUEST [$clave] );
 		}
+		
 		
 		$url = $miConfigurador->configuracion ["host"] . $miConfigurador->configuracion ["site"] . "/index.php?";
 		$enlace = $miConfigurador->configuracion ['enlace'];

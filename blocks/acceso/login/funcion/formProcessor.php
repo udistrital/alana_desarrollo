@@ -46,7 +46,7 @@ class FormProcessor {
 		 */
 		$variable ['usuario'] = $_REQUEST ["usuario"];
 		$variable ['clave'] = $this->miConfigurador->fabricaConexiones->crypto->codificarClave ( $_REQUEST ["clave"] );
-		var_dump ( $variable );
+		
 		
 		// Verificar que el tiempo registrado en los controles no sea superior al tiempo actual + el tiempo de expiración
 		if ($_REQUEST ['tiempo'] <= time () + $this->miConfigurador->getVariableConfiguracion ( 'expiracion' )) {
@@ -91,12 +91,12 @@ class FormProcessor {
 						$this->miLogger->log_usuario ( $log );	
 						// Si estado dif Activo redirecciona a pagina decambio contraseña
 						
-						var_dump($registro);exit;
+						
 						
 						if ($registro [0] ['estado'] == 2) {
 							Redireccionador::redireccionar ( 'claves', $registro );
 						} else {
-							Redireccionador::redireccionar ( 'index', $registro [0] );
+							Redireccionador::redireccionar ( 'indexAplicativo', $registro [0] );
 						}
 					}
 					// Redirigir a la página principal del usuario, en el arreglo $registro se encuentran los datos de la sesion:
@@ -135,7 +135,7 @@ class FormProcessor {
 			);
 		}
 		
-		var_dump ( $arregloLogin );
+		
 		
 		$argumento = json_encode ( $arregloLogin );
 		$arreglo = array (

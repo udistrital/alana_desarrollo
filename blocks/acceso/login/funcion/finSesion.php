@@ -1,8 +1,8 @@
 <?php
 
-namespace registro\loginArka;
+namespace acceso\login;
 
-use registro\loginArka\funcion\Redireccionador;
+use acceso\login\funcion\Redireccionador;
 
 include_once ('Redireccionador.php');
 

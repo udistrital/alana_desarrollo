@@ -32,10 +32,10 @@ $enlaceCambiarClave ['nombre'] = "Cambiar Contraseña";
 
 // Fin de la sesión
 
-$enlaceFinSesion ['enlace'] = "action=loginArka";
+$enlaceFinSesion ['enlace'] = "action=login";
 $enlaceFinSesion ['enlace'] .= "&pagina=index";
 $enlaceFinSesion ['enlace'] .= "&bloque=loginArka";
-$enlaceFinSesion ['enlace'] .= "&bloqueGrupo=registro";
+$enlaceFinSesion ['enlace'] .= "&bloqueGrupo=acceso";
 $enlaceFinSesion ['enlace'] .= "&opcion=finSesion";
 $enlaceFinSesion ['enlace'] .= "&campoSeguro=" . $_REQUEST ['tiempo'];
 $enlaceFinSesion ['enlace'] .= "&sesion=" . $miSesion->getSesionId ();
@@ -47,13 +47,12 @@ $enlaceFinSesion ['nombre'] = "Cerrar Sesión";
 ?>
 <nav id="cbp-hrmenu" class="cbp-hrmenu">
 	<ul>
-        <li><a href="#">GESTIÓN CONTRATOS</a>
+        <li><a href="#">GESTIÓN CONTRACTUAL</a>
 			<div class="cbp-hrsub">
 				<div class="cbp-hrsub-inner">
 					<div>
 						<h4>Contratos</h4>
 						<ul>
-							<li><a href="<?php echo $enlaceCambiarClave['urlCodificada'] ?>"><?php echo ($enlaceCambiarClave['nombre']) ?></a></li>
 							<li><a href="<?php echo $enlaceFinSesion['urlCodificada'] ?>"><?php echo ($enlaceFinSesion['nombre']) ?></a></li>
 						</ul>
 					</div>
@@ -61,6 +60,20 @@ $enlaceFinSesion ['nombre'] = "Cerrar Sesión";
 				
 			</div>
 		</li>
+		<li><a href="#">MI SESIÓN</a>
+			<div class="cbp-hrsub">
+				<div class="cbp-hrsub-inner">
+					<div>
+						<h4>Sesión</h4>
+						<ul>
+							<li><a href="<?php echo $enlaceFinSesion['urlCodificada'] ?>"><?php echo ($enlaceFinSesion['nombre']) ?></a></li>
+						</ul>
+					</div>
+            	</div>
+				
+			</div>
+		</li>
+		
 	</ul>
 </nav>
 

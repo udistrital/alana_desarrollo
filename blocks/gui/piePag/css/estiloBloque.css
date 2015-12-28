@@ -1,11 +1,13 @@
 
 #pie{
     border: 0;
-    height: 150px;
+    height: 159px;
     display: block;
-    background-image: url(../imagen/pie_arka.png);
     background-size: 100% ;
-    width: 95%
+    width: 100%;
+    background-color: rgba(143, 188, 143, 0.55);
+    
+    
 }
 
 #marcoDatosBasicosPie{

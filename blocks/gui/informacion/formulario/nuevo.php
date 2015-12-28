@@ -9,8 +9,8 @@ $directorio = $this->miConfigurador->getVariableConfiguracion("host");
 $directorio .= $this->miConfigurador->getVariableConfiguracion("site") . "/index.php?";
 $directorio .= $this->miConfigurador->getVariableConfiguracion("enlace");
 ?>
-
-
+<div id="espacio_trabajo"></div>
+<!--  
 <div id="slider1_container" >
     <div u="slides" style="cursor: move; position: absolute; overflow: hidden; left: 0px; top: 0px; width: 1800px; height: 500px; overflow: hidden;">
         <div><img u="image" src="<?php echo $rutaBloque ?>/images/slide_9.jpg" /></div>
@@ -28,3 +28,5 @@ $directorio .= $this->miConfigurador->getVariableConfiguracion("enlace");
         <div><img u="image" src="<?php echo $rutaBloque ?>/images/slide_17.jpg" /></div>
     </div>
 </div>
+
+-->

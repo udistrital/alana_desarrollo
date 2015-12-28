@@ -38,9 +38,9 @@ body {
     font-family: 'Lato', Calibri, Arial, sans-serif;
     color: #000000;
     background-image: url(images/wallpaper1.jpg);
-    background-color: none;
-    min-height: 800px;
-    opacity: 0.95;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.80;
 }
 
 a {

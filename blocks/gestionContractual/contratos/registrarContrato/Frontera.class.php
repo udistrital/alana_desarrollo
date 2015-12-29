@@ -1,6 +1,6 @@
 <?
 
-namespace inventarios\gestionActa\registrarElementoActa;
+namespace contratos\registrarContrato;
 
 if (! isset ( $GLOBALS ["autorizado"] )) {
 	include ("../index.php");
@@ -60,6 +60,10 @@ class Frontera {
 				
 				case "cargarElemento" :
 					include_once ($this->ruta . "/formulario/registro.php");
+					break;
+				
+				default :
+					include_once ($this->ruta . "/formulario/consulta.php");
 					break;
 			}
 		} else {

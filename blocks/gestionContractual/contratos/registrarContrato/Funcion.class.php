@@ -1,6 +1,6 @@
 <?php
 
-namespace inventarios\gestionActa\registrarElementoActa;
+namespace contratos\registrarContrato;
 
 
 use inventarios\gestionActa\registrarElementoActa\funcion\redireccion;

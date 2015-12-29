@@ -1,6 +1,6 @@
 <?php
 
-namespace inventarios\gestionActa\registrarElementoActa;
+namespace contratos\registrarContrato;
 
 // Evitar un acceso directo a este archivo
 if (! isset ( $GLOBALS ["autorizado"] )) {
@@ -70,7 +70,7 @@ class Bloque implements \Bloque {
 		$this->miLenguaje = new Lenguaje ();
 	}
 	public function bloque() {
-// 		var_dump($_REQUEST);exit;
+
 		
 		
 		if (isset ( $_REQUEST ['botonCancelar'] ) && $_REQUEST ['botonCancelar'] == "true") {

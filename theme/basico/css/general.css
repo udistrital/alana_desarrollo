@@ -8,10 +8,11 @@ body {
 	width: 95%;
 	margin: 0 auto;
 	border: 0px solid #EEEEEE;
-	background-color: #FFFFFF;
-	padding: 0px 10px;
+	background-color: rgba(255, 255, 255, 0.81);
+	padding: 0px 6px;
 	display: table;
 }
+
 
 .seccionAmplia {
 	width: 100%;
@@ -58,18 +59,10 @@ body {
 	box-shadow: 3px 3px 5px 6px #ccc;
 }
 
-
-.listaMenu{
-	
-	list-style-type:none;
-	
+.listaMenu {
+	list-style-type: none;
 }
 
-a.enlaceMenu{
-    
-     text-decoration:none; 
-    
+a.enlaceMenu {
+	text-decoration: none;
 }
-
-
-

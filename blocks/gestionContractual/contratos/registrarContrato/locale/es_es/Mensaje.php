@@ -1,33 +1,18 @@
 
 <?php
 
-// --Consulta Acta Recibido .----------------------------------------
+$this->idioma ["registrarContrato"] = "Registrar Contrato";
+
+$this->idioma ["vigencia"] = "Vigencia : ";
+$this->idioma ["vigenciaTitulo"] = "Seleccione Vigencia Socilitud Necesidad";
 
 
-$this->idioma ["dependenciaConsulta"] ="Dependencia : ";
-$this->idioma ["dependenciaConsultaTitulo"] = "Ingrese Nombre Dependencia";
+$this->idioma ["num_solicitud"] = "Número de Solicitud : ";
+$this->idioma ["num_solicitudTitulo"] = "Ingrese Número de Solicitud Necesidad";
 
-
-$this->idioma ["sedeConsulta"] = "Sede : ";
-$this->idioma ["sedeConsultaTitulo"] = "Seleccione Sede";
-
-
-
-
-
-$this->idioma ["numero_acta"] = "Número Acta Recibido : ";
-$this->idioma ["numero_actaTitulo"] = "Ingrese Número Acta Recibido";
-
-$this->idioma ["fecha_recibido"] = "Fecha Recibido : ";
-$this->idioma ["fecha_recibidoTitulo"] = "Fecha Recibido";
-
-$this->idioma ["nitproveedor"] = " NIT y/o Nombre :<br>Razón Social";
-$this->idioma ["nitproveedorTitulo"] = "Ingrese NIT Proveedor";
-
-// ------------------------------
 
 $this->idioma ["noDefinido"] = "Etiqueta no esta definida en locale/es_es/Mensaje.php";
-
+// /---------------------------------------------------------------
 $this->idioma ["informacion_numero"] = " # Número de Entrada : ";
 
 $this->idioma ["informacion_fecha"] = "Fecha de Entrada : ";

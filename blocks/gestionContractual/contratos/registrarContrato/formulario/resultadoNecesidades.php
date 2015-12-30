@@ -21,8 +21,6 @@ class registrarForm {
 	}
 	function miForm() {
 		
-		// var_dump ( $_REQUEST );
-		// exit ();
 		// Rescatar los datos de este bloque
 		$esteBloque = $this->miConfigurador->getVariableConfiguracion ( "esteBloque" );
 		$miPaginaActual = $this->miConfigurador->getVariableConfiguracion ( 'pagina' );
@@ -46,70 +44,6 @@ class registrarForm {
 		 */
 		$atributosGlobales ['campoSeguro'] = 'true';
 		
-		$conexion = "inventarios";
-		$esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB ( $conexion );
-		
-		if (isset ( $_REQUEST ['fecha_recibido'] ) && $_REQUEST ['fecha_recibido'] != '') {
-			$fechaRecibido = $_REQUEST ['fecha_recibido'];
-		} else {
-			$fechaRecibido = '';
-		}
-		
-		if (isset ( $_REQUEST ['numero_acta'] ) && $_REQUEST ['numero_acta'] != '') {
-			$numeroActa = $_REQUEST ['numero_acta'];
-		} else {
-			$numeroActa = '';
-		}
-		
-		if (isset ( $_REQUEST ['id_proveedor'] ) && $_REQUEST ['id_proveedor'] != '') {
-			$nit = $_REQUEST ['id_proveedor'];
-		} else {
-			$nit = '';
-		}
-		
-		if (isset ( $_REQUEST ['sedeConsulta'] ) && $_REQUEST ['sedeConsulta'] != '') {
-			$sede = $_REQUEST ['sedeConsulta'];
-		} else {
-			$sede = '';
-		}
-		
-		if (isset ( $_REQUEST ['dependenciaConsulta'] ) && $_REQUEST ['dependenciaConsulta'] != '') {
-			$dependencia = $_REQUEST ['dependenciaConsulta'];
-		} else {
-			$dependencia = '';
-		}
-		
-		if (isset ( $_REQUEST ['fecha_inicio'] ) && $_REQUEST ['fecha_inicio'] != '') {
-			$fecha_inicio = $_REQUEST ['fecha_inicio'];
-		} else {
-			$fecha_inicio = '';
-		}
-		
-		if (isset ( $_REQUEST ['fecha_final'] ) && $_REQUEST ['fecha_final'] != '') {
-			$fecha_final = $_REQUEST ['fecha_final'];
-		} else {
-			$fecha_final = '';
-		}
-		
-		
-		
-		
-		
-		
-		$arreglo = array (
-				'numero_acta' => $numeroActa,
-				'fecha' => $fechaRecibido,
-				'nit' => $nit,
-				'sede'=>$sede,
-				'dependencia'=>$dependencia,
-				'fecha_inicial'=>$fecha_inicio,
-				'fecha_final'=>$fecha_final
-		);
-		
-		$cadenaSql = $this->miSql->getCadenaSql ( 'consultarActa', $arreglo );
-		
-		$Acta = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
-		
 		// ---------------- SECCION: Parámetros Generales del Formulario ----------------------------------
 		$esteCampo = $esteBloque ['nombre'];
 		$atributos ['id'] = $esteCampo;
@@ -130,6 +64,71 @@ class registrarForm {
 		$atributos ['tipoEtiqueta'] = 'inicio';
 		echo $this->miFormulario->formulario ( $atributos );
 		
+		/*
+		 * PROCESAR VARIABLES
+		 */
+		{
+			
+			$conexion = "contractual";
+			$esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB ( $conexion );
+			
+			if (isset ( $_REQUEST ['fecha_recibido'] ) && $_REQUEST ['fecha_recibido'] != '') {
+				$fechaRecibido = $_REQUEST ['fecha_recibido'];
+			} else {
+				$fechaRecibido = '';
+			}
+			
+			if (isset ( $_REQUEST ['numero_acta'] ) && $_REQUEST ['numero_acta'] != '') {
+				$numeroActa = $_REQUEST ['numero_acta'];
+			} else {
+				$numeroActa = '';
+			}
+			
+			if (isset ( $_REQUEST ['id_proveedor'] ) && $_REQUEST ['id_proveedor'] != '') {
+				$nit = $_REQUEST ['id_proveedor'];
+			} else {
+				$nit = '';
+			}
+			
+			if (isset ( $_REQUEST ['sedeConsulta'] ) && $_REQUEST ['sedeConsulta'] != '') {
+				$sede = $_REQUEST ['sedeConsulta'];
+			} else {
+				$sede = '';
+			}
+			
+			if (isset ( $_REQUEST ['dependenciaConsulta'] ) && $_REQUEST ['dependenciaConsulta'] != '') {
+				$dependencia = $_REQUEST ['dependenciaConsulta'];
+			} else {
+				$dependencia = '';
+			}
+			
+			if (isset ( $_REQUEST ['fecha_inicio'] ) && $_REQUEST ['fecha_inicio'] != '') {
+				$fecha_inicio = $_REQUEST ['fecha_inicio'];
+			} else {
+				$fecha_inicio = '';
+			}
+			
+			if (isset ( $_REQUEST ['fecha_final'] ) && $_REQUEST ['fecha_final'] != '') {
+				$fecha_final = $_REQUEST ['fecha_final'];
+			} else {
+				$fecha_final = '';
+			}
+			
+			$arreglo = array (
+					'numero_acta' => $numeroActa,
+					'fecha' => $fechaRecibido,
+					'nit' => $nit,
+					'sede' => $sede,
+					'dependencia' => $dependencia,
+					'fecha_inicial' => $fecha_inicio,
+					'fecha_final' => $fecha_final 
+			);
+			
+			$cadenaSql = $this->miSql->getCadenaSql ( 'consultarActa', $arreglo );
+			
+			$Acta = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
+		}
+		
 		$miPaginaActual = $this->miConfigurador->getVariableConfiguracion ( 'pagina' );
 		
 		$directorio = $this->miConfigurador->getVariableConfiguracion ( "host" );
@@ -137,7 +136,7 @@ class registrarForm {
 		$directorio .= $this->miConfigurador->getVariableConfiguracion ( "enlace" );
 		
 		$variable = "pagina=" . $miPaginaActual;
-		$variable .= "&usuario=".$_REQUEST['usuario'];
+		$variable .= "&usuario=" . $_REQUEST ['usuario'];
 		$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
 		
 		// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
@@ -150,7 +149,7 @@ class registrarForm {
 		$atributos ['ancho'] = '10%';
 		$atributos ['alto'] = '10%';
 		$atributos ['redirLugar'] = true;
-		echo $this->miFormulario->enlace ( $atributos );
+// 		echo $this->miFormulario->enlace ( $atributos );
 		
 		unset ( $atributos );
 		
@@ -162,7 +161,7 @@ class registrarForm {
 		$atributos ['tipoEtiqueta'] = 'inicio';
 		$atributos ["leyenda"] = "Consultar  Actas Recibido";
 		echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
-		 	
+		
 		if ($Acta) {
 			
 			echo "<table id='tablaTitulos'>";
@@ -185,7 +184,7 @@ class registrarForm {
 				$variable = "pagina=" . $miPaginaActual; // pendiente la pagina para modificar parametro
 				$variable .= "&opcion=cargarElemento";
 				$variable .= "&numero_acta=" . $Acta [$i] [0];
-				$variable .= "&usuario=".$_REQUEST['usuario']; 
+				$variable .= "&usuario=" . $_REQUEST ['usuario'];
 				$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
 				
 				$mostrarHtml = "<tr>

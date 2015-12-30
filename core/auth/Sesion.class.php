@@ -357,6 +357,21 @@ class Sesion extends SesionBase {
         return $nivel;
     }
 
+    
+    /**
+     * @METHOD obtener_nivel
+     *
+     * Retorna el nivel de usuario en la base de datos
+     * @PARAM
+     *
+     * @return valor
+     * @access public
+     */
+    function idUsuario() {
+    	return $this->sesionUsuarioId = trim($this->getValorSesion('idUsuario'));
+    }
+    
+    
 }
 
 ?>

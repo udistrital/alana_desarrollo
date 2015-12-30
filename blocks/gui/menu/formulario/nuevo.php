@@ -19,7 +19,7 @@ $miSesion = Sesion::singleton ();
 // var_dump($_REQUEST);
 // var_dump($_COOKIE);
 
-$id_usuario=$_REQUEST['registro'];
+$id_usuario=$_REQUEST['usuario'];
 
 // CambiarContraseña
 $_REQUEST ['tiempo'] = time ();
@@ -43,6 +43,25 @@ $enlaceFinSesion ['enlace'] .= "&usuario=" . $id_usuario;
 $enlaceFinSesion ['urlCodificada'] = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $enlaceFinSesion ['enlace'], $directorio );
 $enlaceFinSesion ['nombre'] = "Cerrar Sesión";
 
+/**************************************************************
+ * 															  *		
+ * 	                    GESTIÓN CONTRACTUAL                   *
+ *                                                            * 
+ **************************************************************/
+
+
+$enlaceRegistroContrato ['enlace'] = "pagina=registrarContrato";
+$enlaceRegistroContrato ['enlace'] .= "&bloque=registrarContrato";
+$enlaceRegistroContrato ['enlace'] .= "&opcion=registrarContrato";
+$enlaceRegistroContrato ['enlace'] .= "&bloqueGrupo=gestionContractual/contratos";
+$enlaceRegistroContrato  ['enlace'] .= "&campoSeguro=" . $_REQUEST ['tiempo'];
+$enlaceRegistroContrato  ['enlace'] .= "&usuario=" . $id_usuario;
+$enlaceRegistroContrato  ['enlace'] .= "&registro=". $id_usuario;;
+$enlaceRegistroContrato  ['urlCodificada'] = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $enlaceRegistroContrato  ['enlace'], $directorio );
+$enlaceRegistroContrato  ['nombre'] = "Registro Contrato";
+
+
+
 // ------------------------------- Inicio del Menú-------------------------- //
 ?>
 <nav id="cbp-hrmenu" class="cbp-hrmenu">
@@ -53,7 +72,7 @@ $enlaceFinSesion ['nombre'] = "Cerrar Sesión";
 					<div>
 						<h4>Contratos</h4>
 						<ul>
-							<li><a href="<?php echo $enlaceFinSesion['urlCodificada'] ?>"><?php echo ($enlaceFinSesion['nombre']) ?></a></li>
+							<li><a href="<?php echo $enlaceRegistroContrato['urlCodificada']; ?>"><?php echo ($enlaceRegistroContrato['nombre']); ?></a></li>
 						</ul>
 					</div>
             	</div>

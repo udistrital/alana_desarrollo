@@ -1,24 +1,27 @@
 .bannerAplicativo {
 	clear: both;
 	position: fixed;
-    width: 94%;
+	width: 94%;
 	height: 200px;
 	border-style: double;
-	border-color: rgba(143, 188, 143, 1);
-	background-color: rgba(143, 188, 143, 0.55);
+	/*border-color: rgb(45, 146, 45);*/
+	/* background-color: rgba(143, 188, 143, 0.3); */
+	border-color: rgb(54, 40, 14);
+	background-color:rgb(105, 69, 53);
+	z-index: 1;
 }
 
 .texto {
 	text-align: right;
 	font-size: xx-large;
 	font-family: fantasy;
-	color: green;
+	color: white;
 	width: 97%;
 }
 
 .texto2 {
 	text-align: right;
 	font-size: small;
-	color: green;
+	color: white;
 	width: 97%;
 }

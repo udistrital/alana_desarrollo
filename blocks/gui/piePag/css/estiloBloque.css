@@ -4,8 +4,9 @@
 	display: block;
 	background-size: 100%;
 	width: 100%;
-	border-color: rgba(143, 188, 143, 1);
-	background-color: rgba(143, 188, 143, 0.55);
+    border-color: #592003;
+    background-color: rgba(112, 65, 47, 0.58);
+	z-index: 0;
 }
 
 #marcoDatosBasicosPie {
@@ -82,7 +83,7 @@ element.style {
 #colm2 {
 	width: 60%;
 	float: left;
-	color: #123506;
+	color: #592003;
 	display: block;
 	height: 50px;
 	left: 0;
@@ -91,8 +92,8 @@ element.style {
 }
 
 #colm3 {
-	width: 29%;
-	color: #123506;
+	width: 31%;
+	color: #592003;
 	float: right;
 	display: block;
 	left: 0;
@@ -100,7 +101,7 @@ element.style {
 }
 
 #colm4 {
-	width: 9%;
+	width: 10%;
 	float: right;
 	display: block;
 	height: 50px;

@@ -65,7 +65,7 @@ class Formulario {
 			
 			
 				echo "<h3>Sistema de Gestión</h3>
-					 <h3>Contractual y Contratistas</h3>";;
+					 <h3>Contractual y Compras</h3>";;
 			
 			
 				// ------------------- Inicio División -------------------------------

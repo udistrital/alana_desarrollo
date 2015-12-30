@@ -227,7 +227,7 @@ class Formulario {
 	<div id="fondo_texto">
 		<div id="texto">
 			<h3>SISTEMA  DE GESTIÓN</h3>
-			<h3>CONTRACTUAL Y CONTRATISTAS</h3>
+			<h3>CONTRACTUAL Y COMPRAS</h3>
 			<BR>
 			<h2>ALANA</h2>
 		</div>

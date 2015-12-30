@@ -16,7 +16,7 @@ class Redireccionador {
 			case "indexAplicativo" :
 				
 				$variable = 'pagina=indexAlana';
-				$variable .= '&registro=' . $valor [0];
+				$variable .= '&usuario=' . $valor [0];
 			
 				break;
 			

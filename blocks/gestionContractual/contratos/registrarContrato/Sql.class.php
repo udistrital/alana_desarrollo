@@ -149,6 +149,19 @@ class Sql extends \Sql {
 			 * Clausulas Del Caso Uso.
 			 */
 			
+			case "vigencias_solicitudes" :
+				
+				$cadenaSql = "SELECT DISTINCT vigencia , vigencia valor  ";
+				$cadenaSql .= " FROM solicitud_necesidad  ";
+				$cadenaSql .= "WHERE estado_registro=TRUE; ";
+				
+				break;
+			
+			/*
+			 *
+			 *
+			 */
+			
 			case "dependenciasConsultadas" :
 				$cadenaSql = "SELECT DISTINCT  \"ESF_CODIGO_DEP\" , \"ESF_DEP_ENCARGADA\" ";
 				$cadenaSql .= " FROM arka_parametros.arka_dependencia ad ";

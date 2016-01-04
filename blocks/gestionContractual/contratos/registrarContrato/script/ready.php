@@ -1,10 +1,9 @@
 <?php
-
+$_REQUEST ['tiempo'] = time ();
 ?>
-            
   // Asociar el widget de validación al formulario
-            $("#<?php echo $this->campoSeguro('login')?>").validationEngine({
-            promptPosition : "centerLeft", 
+            $("#registrarContrato").validationEngine({
+            promptPosition : "bottomRight", 
             scroll: false,
             autoHidePrompt: true,
             autoHideDelay: 2000
@@ -12,8 +11,8 @@
 
 
      $(function() {
-            $("#<?php echo $this->campoSeguro('login')?>").submit(function() {
-                $resultado=$("#<?php echo $this->campoSeguro('login')?>").validationEngine("validate");
+            $("#registrarContrato").submit(function() {
+                $resultado=$("#registrarContrato").validationEngine("validate");
            
                 if ($resultado) {
                 
@@ -22,9 +21,8 @@
                 return false;
             });
         });
-
-        
-
+	$("#<?php echo $this->campoSeguro('vigencia')?>").select2();
+	$("#<?php echo $this->campoSeguro('vigencia')?>").select2(); 
           
 
 

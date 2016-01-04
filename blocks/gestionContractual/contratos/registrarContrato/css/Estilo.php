@@ -3,6 +3,9 @@ $indice=0;
 $estilo[$indice++]="jquery.dataTables.css";
 $estilo[$indice++]="jquery.dataTables_themeroller.css";
 
+$estilo[$indice++]="select2.css";
+$estilo[$indice++]="select2.min.css";
+
 
 
 /*

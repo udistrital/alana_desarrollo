@@ -24,66 +24,9 @@ $enlace = $this->miConfigurador->getVariableConfiguracion ( "enlace" );
 $cadena = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $cadenaACodificar, $enlace );
 
 // URL definitiva
-$urlFinal = $url . $cadena;
+$urlVigencia= $url . $cadena;
 
 
-
-
-
-
-// Variables
-$cadenaACodificarProveedor = "pagina=" . $this->miConfigurador->getVariableConfiguracion ( "pagina" );
-$cadenaACodificarProveedor .= "&procesarAjax=true";
-$cadenaACodificarProveedor .= "&action=index.php";
-$cadenaACodificarProveedor .= "&bloqueNombre=" . $esteBloque ["nombre"];
-$cadenaACodificarProveedor .= "&bloqueGrupo=" . $esteBloque ["grupo"];
-$cadenaACodificarProveedor .= "&funcion=consultaProveedor";
-$cadenaACodificarProveedor .= "&tiempo=" . $_REQUEST ['tiempo'];
-
-
-
-// Codificar las variables
-$enlace = $this->miConfigurador->getVariableConfiguracion ( "enlace" );
-$cadena = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $cadenaACodificarProveedor, $enlace );
-
-// URL definitiva
-$urlFinalProveedor = $url . $cadena;
-
-
-
-// Variables
-$cadenaACodificar16 = "pagina=" . $this->miConfigurador->getVariableConfiguracion ( "pagina" );
-$cadenaACodificar16 .= "&procesarAjax=true";
-$cadenaACodificar16 .= "&action=index.php";
-$cadenaACodificar16 .= "&bloqueNombre=" . $esteBloque ["nombre"];
-$cadenaACodificar16 .= "&bloqueGrupo=" . $esteBloque ["grupo"];
-$cadenaACodificar16 .= $cadenaACodificar16 . "&funcion=consultarDependencia";
-$cadenaACodificar16 .= "&tiempo=" . $_REQUEST ['tiempo'];
-
-// Codificar las variables
-$enlace = $this->miConfigurador->getVariableConfiguracion ( "enlace" );
-$cadena16 = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $cadenaACodificar16, $enlace );
-
-// URL definitiva
-$urlFinal16 = $url . $cadena16;
-
-
-
-// Variables
-$cadenaACodificariva = "pagina=" . $this->miConfigurador->getVariableConfiguracion ( "pagina" );
-$cadenaACodificariva .= "&procesarAjax=true";
-$cadenaACodificariva .= "&action=index.php";
-$cadenaACodificariva .= "&bloqueNombre=" . $esteBloque ["nombre"];
-$cadenaACodificariva .= "&bloqueGrupo=" . $esteBloque ["grupo"];
-$cadenaACodificariva .= "&funcion=consultarIva";
-$cadenaACodificariva .= "&tiempo=" . $_REQUEST ['tiempo'];
-
-// Codificar las variables
-$enlace = $this->miConfigurador->getVariableConfiguracion ( "enlace" );
-$cadenaiva = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $cadenaACodificariva, $enlace );
-
-// URL definitiva
-$urlFinaliva = $url . $cadenaiva;
 
 
 

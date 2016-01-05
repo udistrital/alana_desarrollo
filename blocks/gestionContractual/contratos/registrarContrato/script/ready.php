@@ -94,7 +94,9 @@ $_REQUEST ['tiempo'] = time ();
 	
 
           
-
+       $('#tabla').dataTable( {
+                "sPaginationType": "full_numbers"
+                 } );
 
 
 

@@ -159,48 +159,37 @@ class Sql extends \Sql {
 			
 			case "ConsultarNumeroNecesidades" :
 				
-				$cadenaSql = "SELECT DISTINCT id_sol_necesidad id , numero_solicitud descripcion   ";
+				$cadenaSql = "SELECT DISTINCT numero_solicitud id , numero_solicitud descripcion   ";
 				$cadenaSql .= " FROM solicitud_necesidad  ";
 				$cadenaSql .= "WHERE vigencia='" . $variable . "';";
 				
 				break;
 			
 				
-				SELECT id_sol_necesidad, vigencia, numero_solicitud, fecha_solicitud,
-				valor_contratacion, unidad_tiempo_ejecucion ||' '||descripcion duracion
-				FROM solicitud_necesidad
-				JOIN parametros pr ON pr.id_parametro = ejecucion
-				WHERE estado_registro= TRUE
+// 				SELECT id_sol_necesidad, vigencia, numero_solicitud, fecha_solicitud,
+// 				valor_contratacion, unidad_tiempo_ejecucion ||' '||descripcion duracion
+// 				FROM solicitud_necesidad
+// 				JOIN parametros pr ON pr.id_parametro = ejecucion
+// 				WHERE estado_registro= TRUE
 				
 				
 			case "consultarSolicitud" :
 				$cadenaSql = "SELECT DISTINCT ";
 				$cadenaSql .= "id_sol_necesidad, vigencia, numero_solicitud, fecha_solicitud,
-				               valor_contratacion, unidad_tiempo_ejecucion ||' '||descripcion duracion ";
+				               valor_contratacion, unidad_tiempo_ejecucion ||' '||descripcion duracion, objeto_contrato ";
 				$cadenaSql .= "FROM solicitud_necesidad ";
 				$cadenaSql .= "JOIN parametros pr ON pr.id_parametro = ejecucion   ";
-				$cadenaSql .= "WHERE estado_registro= TRUE ";
-				$cadenaSql .= "AND estado_registro = 1 ";
-				if ($variable [''] != '') {
-					$cadenaSql .= " AND id_actarecibido = '" . $variable ['numero_acta'] . "' ";
-				}
-				if ($variable ['fecha'] != '') {
-					$cadenaSql .= " AND fecha_recibido = '" . $variable ['fecha'] . "' ";
-				}
-				if ($variable ['nit'] != '') {
-					$cadenaSql .= " AND proveedor = '" . $variable ['nit'] . "' ";
-				}
+				$cadenaSql .= "WHERE solicitud_necesidad.estado_registro= TRUE ";
 				
-				if ($variable ['sede'] != '') {
-					$cadenaSql .= " AND ar.sede = '" . $variable ['sede'] . "' ";
+				if ($variable ['vigencia'] != '') {
+					$cadenaSql .= " AND vigencia = '" . $variable ['vigencia'] . "' ";
 				}
-				
-				if ($variable ['dependencia'] != '') {
-					$cadenaSql .= " AND ar.dependencia = '" . $variable ['dependencia'] . "' ";
+				if ($variable ['numero_solicitud'] != '') {
+					$cadenaSql .= " AND numero_solicitud = '" . $variable ['numero_solicitud'] . "' ";
 				}
 				
 				if ($variable ['fecha_inicial'] != '') {
-					$cadenaSql .= " AND ar.fecha_registro BETWEEN CAST ( '" . $variable ['fecha_inicial'] . "' AS DATE) ";
+					$cadenaSql .= " AND fecha_solicitud BETWEEN CAST ( '" . $variable ['fecha_inicial'] . "' AS DATE) ";
 					$cadenaSql .= " AND  CAST ( '" . $variable ['fecha_final'] . "' AS DATE)  ";
 				}
 				

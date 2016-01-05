@@ -73,8 +73,6 @@ class registrarForm {
 			$esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB ( $conexion );
 			
 			
-			var_dump($_REQUEST);
-			
 			if (isset ( $_REQUEST ['vigencia'] ) && $_REQUEST ['vigencia'] != '') {
 				$vigencia = $_REQUEST ['vigencia'];
 			} else {
@@ -106,12 +104,10 @@ class registrarForm {
 					'fecha_final' => $fecha_final 
 			);
 			
-			
-			
-			
 			$cadenaSql = $this->miSql->getCadenaSql ( 'consultarSolicitud', $arreglo );
 			
 			$solicitudes = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
+			
 		}
 		
 		$miPaginaActual = $this->miConfigurador->getVariableConfiguracion ( 'pagina' );
@@ -134,7 +130,7 @@ class registrarForm {
 		$atributos ['ancho'] = '10%';
 		$atributos ['alto'] = '10%';
 		$atributos ['redirLugar'] = true;
-// 		echo $this->miFormulario->enlace ( $atributos );
+		// echo $this->miFormulario->enlace ( $atributos );
 		
 		unset ( $atributos );
 		
@@ -147,41 +143,46 @@ class registrarForm {
 		$atributos ["leyenda"] = "Consultar  Actas Recibido";
 		echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
 		
-		if ($Acta) {
+		if ($solicitudes) {
 			
-			echo "<table id='tablaTitulos'>";
+			echo "<table id='tabla'>";
 			
 			echo "<thead>
                              <tr>
-                                <th>Número Acta Recibido</th>
-                    			<th>Sede</th>            
-            					<th>Dependencia</th>
-                                <th>Fecha Recibido</th>
-                                 <th>Proveedor</th>
-                                <th>Observaciones</th>
-			        			<th>Cargar Elementos</th>
-                                
+                                <th>Vigencia</th>
+                    			<th>Fecha Solicitud</th>            
+            					<th>Número de Solicitud</th>
+                                <th>Objeto</th>
+                                 <th>Duración</th>
+                                <th>($) Valor</th>
+			        			<th>Registrar<br>Contrato</th>
                              </tr>
             </thead>
             <tbody>";
 			
-			for($i = 0; $i < count ( $Acta ); $i ++) {
+			foreach ( $solicitudes as $valor ) {
 				$variable = "pagina=" . $miPaginaActual; // pendiente la pagina para modificar parametro
-				$variable .= "&opcion=cargarElemento";
-				$variable .= "&numero_acta=" . $Acta [$i] [0];
+				$variable .= "&opcion=registroContrato";
+				$variable .= "&id_solicitud_necesidad=" . $valor ['id_sol_necesidad'];
 				$variable .= "&usuario=" . $_REQUEST ['usuario'];
+				$variable .= "&bloqueNombre=" . $_REQUEST['bloque'];
+				$variable .= "&bloqueGrupo=" . $_REQUEST['bloqueGrupo'];
+				$variable .= "&tiempo=" . $_REQUEST['tiempo'];
 				$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
 				
+				
+				
+				
 				$mostrarHtml = "<tr>
-                    <td><center>" . $Acta [$i] ['id_actarecibido'] . "</center></td>
-                    <td><center>" . $Acta [$i] ['sede'] . "</center></td>		
-                    <td><center>" . $Acta [$i] ['dependencia'] . "</center></td>
-                    <td><center>" . $Acta [$i] ['fecha_recibido'] . "</center></td>
-                    <td><center>" . $Acta [$i] ['proveedor'] . "</center></td>
-                    <td><center>" . $Acta [$i] ['observacionesacta'] . "</center></td>
+                    <td><center>" . $valor ['vigencia'] . "</center></td>
+                    <td><center>" . $valor ['fecha_solicitud'] . "</center></td>		
+                    <td><center>" . $valor ['numero_solicitud'] . "</center></td>
+                   	<td><center>" . $valor ['objeto_contrato'] . "</center></td>
+                    <td><center>" . $valor ['valor_contratacion'] . "</center></td>
+                    <td><center>" . $valor ['duracion'] . "</center></td>
                     <td><center>
                     	<a href='" . $variable . "'>
-                            <img src='" . $rutaBloque . "/css/images/item.png' width='15px'>
+                            <img src='" . $rutaBloque . "/css/images/contrato.png' width='15px'>
                         </a>
                   	</center> </td>
                          </tr>";

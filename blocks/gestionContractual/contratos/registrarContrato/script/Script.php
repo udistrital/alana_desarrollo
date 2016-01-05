@@ -10,6 +10,9 @@ $funcion [$indice ++] = "jquery.dataTables.min.js";
 $funcion [$indice ++] = "jquery.autocomplete.js";
 $funcion [$indice ++] = "jquery.autocomplete.min.js";
 
+$funcion [$indice ++] = "jquery.steps.js";
+$funcion [$indice ++] = "jquery.steps.min.js";
+
 
 $rutaBloque = $this->miConfigurador->getVariableConfiguracion ( "host" );
 $rutaBloque .= $this->miConfigurador->getVariableConfiguracion ( "site" );

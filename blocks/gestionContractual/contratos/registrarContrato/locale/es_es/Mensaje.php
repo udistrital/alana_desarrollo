@@ -61,6 +61,26 @@ $this->idioma ["correoTitulo"] = "Ingrese Correo Electrónico";
 $this->idioma ["perfil"] = "Perfil: ";
 $this->idioma ["perfilTitulo"] = "Seleccione Perfil";
 
+$this->idioma ["profesion"] = "Profesión: ";
+$this->idioma ["profesionTitulo"] = "Ingrese Profesión";
+
+$this->idioma ["especialidad"] = "Especialidad: ";
+$this->idioma ["especialidadTitulo"] = "Ingrese  Especialidad";
+
+$this->idioma ["tipo_cuenta"] = "Tipo de Cuenta: ";
+$this->idioma ["tipo_cuentaTitulo"] = "Seleccione Tipo de Cuenta";
+
+$this->idioma ["numero_cuenta"] = "Número de Cuenta: ";
+$this->idioma ["numero_cuentaTitulo"] = "Ingrese  Especialidad";
+
+$this->idioma ["entidad_bancaria"] = "Entidad Bancaria: ";
+$this->idioma ["entidad_bancariaTitulo"] = "Ingrese Entidad Bancaria";
+
+$this->idioma ["tipo_configuracion"] = "Tipo Configuración: ";
+$this->idioma ["tipo_configuracionTitulo"] = "Seleccione Tipo Configuración";
+
+
+
 $this->idioma ["noDefinido"] = "Etiqueta no esta definida en locale/es_es/Mensaje.php";
 // /---------------------------------------------------------------
 $this->idioma ["informacion_numero"] = " # Número de Entrada : ";

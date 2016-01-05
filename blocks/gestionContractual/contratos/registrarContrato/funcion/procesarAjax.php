@@ -1,75 +1,18 @@
 <?php
-use inventarios\gestionActa\registrarActa\Sql;
+use contratos\registrarContrato\Sql;
 
-$conexion = "inventarios";
+$conexion = "contractual";
 $esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB ( $conexion );
 
-if ($_REQUEST ['funcion'] == 'SeleccionTipoBien') {
-
+if ($_REQUEST ['funcion'] == 'NumeroSolicitud') {
 	
-	$cadenaSql = $this->sql->getCadenaSql ( 'ConsultaTipoBien', $_REQUEST['valor'] );
+	$cadenaSql = $this->sql->getCadenaSql ( 'ConsultarNumeroNecesidades', $_REQUEST ['valor'] );
+	
 	$resultadoItems = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
-	$resultadoItems=$resultadoItems[0];
-
-	echo json_encode($resultadoItems);
-}
-
-if ($_REQUEST ['funcion'] == 'consultarDependencia') {
-
-
-	$cadenaSql = $this->sql->getCadenaSql ( 'dependenciasConsultadas', $_REQUEST ['valor'] );
-
-	$resultado = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
-
-	$resultado = json_encode ( $resultado );
-
-	echo $resultado;
-}
-
-
-
-if ($_REQUEST ['funcion'] == 'consultaProveedor') {
-
-
-
-
-	$cadenaSql = $this->sql->getCadenaSql ( 'buscar_Proveedores', $_GET ['query'] );
-
-	$resultadoItems = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
-
-	foreach ( $resultadoItems as $key => $values ) {
-		$keys = array (
-				'value',
-				'data'
-		);
-		$resultado [$key] = array_intersect_key ( $resultadoItems [$key], array_flip ( $keys ) );
-	}
-
-	echo '{"suggestions":' . json_encode ( $resultado ) . '}';
-}
-
-
-
-
-
-if ($_REQUEST ['funcion'] == 'consultarIva') {
-
-
-
-
-	$cadenaSql = $this->sql->getCadenaSql ( 'consultar_tipo_iva' );
-
-	$resultado = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
+// 	var_dump($resultadoItems);exit;
+// 	$resultadoItems = $resultadoItems [0];
 	
-	$resultado = json_encode ( $resultado );
-	
-	echo $resultado;
+	echo json_encode ( $resultadoItems );
 }
-
-
-
-
-
-
 
 ?>

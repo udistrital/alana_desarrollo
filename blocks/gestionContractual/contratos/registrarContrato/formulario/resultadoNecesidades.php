@@ -65,41 +65,26 @@ class registrarForm {
 		echo $this->miFormulario->formulario ( $atributos );
 		
 		/*
-		 * PROCESAR VARIABLES
+		 * PROCESAR VARIABLES DE CONSULTA
 		 */
 		{
 			
 			$conexion = "contractual";
 			$esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB ( $conexion );
 			
-			if (isset ( $_REQUEST ['fecha_recibido'] ) && $_REQUEST ['fecha_recibido'] != '') {
-				$fechaRecibido = $_REQUEST ['fecha_recibido'];
+			
+			var_dump($_REQUEST);
+			
+			if (isset ( $_REQUEST ['vigencia'] ) && $_REQUEST ['vigencia'] != '') {
+				$vigencia = $_REQUEST ['vigencia'];
 			} else {
-				$fechaRecibido = '';
+				$vigencia = '';
 			}
 			
-			if (isset ( $_REQUEST ['numero_acta'] ) && $_REQUEST ['numero_acta'] != '') {
-				$numeroActa = $_REQUEST ['numero_acta'];
+			if (isset ( $_REQUEST ['num_solicitud'] ) && $_REQUEST ['num_solicitud'] != '') {
+				$numeroSolicitud = $_REQUEST ['num_solicitud'];
 			} else {
-				$numeroActa = '';
-			}
-			
-			if (isset ( $_REQUEST ['id_proveedor'] ) && $_REQUEST ['id_proveedor'] != '') {
-				$nit = $_REQUEST ['id_proveedor'];
-			} else {
-				$nit = '';
-			}
-			
-			if (isset ( $_REQUEST ['sedeConsulta'] ) && $_REQUEST ['sedeConsulta'] != '') {
-				$sede = $_REQUEST ['sedeConsulta'];
-			} else {
-				$sede = '';
-			}
-			
-			if (isset ( $_REQUEST ['dependenciaConsulta'] ) && $_REQUEST ['dependenciaConsulta'] != '') {
-				$dependencia = $_REQUEST ['dependenciaConsulta'];
-			} else {
-				$dependencia = '';
+				$numeroSolicitud = '';
 			}
 			
 			if (isset ( $_REQUEST ['fecha_inicio'] ) && $_REQUEST ['fecha_inicio'] != '') {
@@ -115,18 +100,18 @@ class registrarForm {
 			}
 			
 			$arreglo = array (
-					'numero_acta' => $numeroActa,
-					'fecha' => $fechaRecibido,
-					'nit' => $nit,
-					'sede' => $sede,
-					'dependencia' => $dependencia,
+					'vigencia' => $vigencia,
+					'numero_solicitud' => $numeroSolicitud,
 					'fecha_inicial' => $fecha_inicio,
 					'fecha_final' => $fecha_final 
 			);
 			
-			$cadenaSql = $this->miSql->getCadenaSql ( 'consultarActa', $arreglo );
 			
-			$Acta = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
+			
+			
+			$cadenaSql = $this->miSql->getCadenaSql ( 'consultarSolicitud', $arreglo );
+			
+			$solicitudes = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
 		}
 		
 		$miPaginaActual = $this->miConfigurador->getVariableConfiguracion ( 'pagina' );

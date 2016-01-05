@@ -91,7 +91,7 @@
 				$atributos ['tab'] = $tab;
 				$atributos ['tamanno'] = 1;
 				$atributos ['estilo'] = 'jqueryui';
-				$atributos ['validar'] = 'required';
+				$atributos ['validar'] = ' ';
 				$atributos ['limitar'] = true;
 				$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
 				$atributos ['anchoEtiqueta'] = 213;
@@ -122,7 +122,7 @@
 				$atributos ['tab'] = $tab;
 				$atributos ['tamanno'] = 1;
 				$atributos ['estilo'] = 'jqueryui';
-				$atributos ['validar'] = 'required';
+				$atributos ['validar'] = '';
 				$atributos ['limitar'] = true;
 				$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
 				$atributos ['anchoEtiqueta'] = 213;
@@ -208,7 +208,7 @@
 				$atributos ['deshabilitado'] = false;
 				$atributos ['tamanno'] = 8;
 				$atributos ['maximoTamanno'] = '';
-				$atributos ['anchoEtiqueta'] = 150;
+				$atributos ['anchoEtiqueta'] = 213;
 				$tab ++;
 				
 				// Aplica atributos globales al control

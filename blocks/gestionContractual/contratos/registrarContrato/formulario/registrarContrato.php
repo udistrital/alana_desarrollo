@@ -624,7 +624,7 @@
 							$atributos ['tamanno'] = 1;
 							$atributos ['estilo'] = 'jqueryui';
 							$atributos ['validar'] = 'required';
-							$atributos ['limitar'] = true;
+							$atributos ['limitar'] = false;
 							$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
 							$atributos ['anchoEtiqueta'] = 213;
 							
@@ -672,7 +672,7 @@
 							$atributos ['dobleLinea'] = 0;
 							$atributos ['tabIndex'] = $tab;
 							$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-							$atributos ['validar'] = '';
+							$atributos ['validar'] = 'required';
 							
 							if (isset ( $_REQUEST [$esteCampo] )) {
 								$atributos ['valor'] = $_REQUEST [$esteCampo];
@@ -703,7 +703,7 @@
 							$atributos ['dobleLinea'] = 0;
 							$atributos ['tabIndex'] = $tab;
 							$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-							$atributos ['validar'] = '';
+							$atributos ['validar'] = 'required';
 							
 							if (isset ( $_REQUEST [$esteCampo] )) {
 								$atributos ['valor'] = $_REQUEST [$esteCampo];
@@ -888,7 +888,7 @@
 						{
 							
 							$esteCampo = 'clase_contratista';
-							$atributos ['columnas'] = 2;
+							$atributos ['columnas'] = 1;
 							$atributos ['nombre'] = $esteCampo;
 							$atributos ['id'] = $esteCampo;
 							$atributos ['evento'] = '';
@@ -898,10 +898,10 @@
 							$atributos ['tamanno'] = 1;
 							$atributos ['estilo'] = 'jqueryui';
 							$atributos ['validar'] = 'required';
-							$atributos ['limitar'] = true;
+							$atributos ['limitar'] = false;
 							$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
 							$atributos ['anchoEtiqueta'] = 213;
-							$atributos ['anchoCaja'] = 22;
+							$atributos ['anchoCaja'] = 35;
 							if (isset ( $_REQUEST [$esteCampo] )) {
 								$atributos ['seleccion'] = $_REQUEST [$esteCampo];
 							} else {
@@ -926,7 +926,7 @@
 							unset ( $atributos );
 							
 							$atributos ["id"] = "divisionClaseContratista";
-							$atributos ["estiloEnLinea"] = "display:block";
+							$atributos ["estiloEnLinea"] = "display:none";
 							$atributos = array_merge ( $atributos, $atributosGlobales );
 							echo $this->miFormulario->division ( "inicio", $atributos );
 							unset ( $atributos );

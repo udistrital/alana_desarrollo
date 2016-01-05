@@ -4,10 +4,108 @@ $_REQUEST ['tiempo'] = time ();
 
       
 		 
-		 	$("#<?php echo $this->campoSeguro('vigencia')?>").select2();
+	$("#<?php echo $this->campoSeguro('vigencia')?>").select2();
 	$("#<?php echo $this->campoSeguro('num_solicitud')?>").select2(); 
+	$("#<?php echo $this->campoSeguro('tipo_identificacion')?>").select2();
+	$("#<?php echo $this->campoSeguro('tipo_persona')?>").select2(); 
+	$("#<?php echo $this->campoSeguro('genero')?>").select2();
+	$("#<?php echo $this->campoSeguro('nacionalidad')?>").select2(); 
+	$("#<?php echo $this->campoSeguro('genero')?>").select2();
+	$("#<?php echo $this->campoSeguro('nacionalidad')?>").select2(); 
+	$("#<?php echo $this->campoSeguro('perfil')?>").select2();
+	$("#<?php echo $this->campoSeguro('tipo_cuenta')?>").select2(); 
+	$("#<?php echo $this->campoSeguro('tipo_configuracion')?>").select2();
+	$("#<?php echo $this->campoSeguro('clase_contratista')?>").select2();
+	
+	
+	
+	$("#<?php echo $this->campoSeguro('profesion')?>").attr('disabled', 'disabled');
+	$("#<?php echo $this->campoSeguro('especialidad')?>").attr('disabled', 'disabled');
+	 
 
-	$("#<?php echo $this->campoSeguro('vigencia')?>").change(function() {
+
+
+
+		$("#<?php echo $this->campoSeguro('perfil')?>").change(function() {
+		
+    	
+				if($("#<?php echo $this->campoSeguro('perfil')?>").val()!=''){
+		
+		
+		
+		 		 switch($("#<?php echo $this->campoSeguro('perfil')?>").val())
+			            {
+			                           
+			                case '221':
+			                    
+			                   
+			                    $("#<?php echo $this->campoSeguro('profesion')?>").attr('disabled', 'disabled');
+			                                       
+			
+			                break;
+			     
+			         		case '225':
+			                    
+			                   
+			                    $("#<?php echo $this->campoSeguro('profesion')?>").attr('disabled', 'disabled');
+			                                       
+			
+			                break;
+			     			
+			     			case '223':
+			                    
+			                   
+			                    $("#<?php echo $this->campoSeguro('especialidad')?>").removeAttr('disabled');
+			                    $("#<?php echo $this->campoSeguro('profesion')?>").removeAttr('disabled');                   
+			
+			                break;
+			   
+			                default:
+			                
+			               		$("#<?php echo $this->campoSeguro('profesion')?>").removeAttr('disabled');
+			                    $("#<?php echo $this->campoSeguro('especialidad')?>").attr('disabled', 'disabled');
+			                   
+			                   break;
+			                
+			                
+			             }
+				}else{
+						                   
+				      $("#<?php echo $this->campoSeguro('profesion')?>").attr('disabled', 'disabled');
+				      $("#<?php echo $this->campoSeguro('especialidad')?>").attr('disabled', 'disabled');
+			                                       
+			
+				
+				}
+		
+		 });
+		 
+		 
+		 
+		 
+	 	$("#<?php echo $this->campoSeguro('clase_contratista')?>").change(function() {
+    	
+				if($("#<?php echo $this->campoSeguro('clase_contratista')?>").val()!=''){
+		
+						if($("#<?php echo $this->campoSeguro('clase_contratista')?>").val()!=35){
+		
+							$("#<?php echo $this->campoSeguro('divisionClaseContratista')?>").css('display','block');
+							
+		                    }
+		
+				}else{
+				
+				$("#<?php echo $this->campoSeguro('divisionClaseContratista')?>").css('display','none');
+				
+				
+				
+				}
+		
+		 });
+		 
+		 
+		 
+		$("#<?php echo $this->campoSeguro('vigencia')?>").change(function() {
     	
 				if($("#<?php echo $this->campoSeguro('vigencia')?>").val()!=''){
 		

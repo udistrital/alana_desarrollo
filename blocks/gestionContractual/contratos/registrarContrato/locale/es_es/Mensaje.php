@@ -11,6 +11,38 @@ $this->idioma ["num_solicitud"] = "Número de Solicitud : ";
 $this->idioma ["num_solicitudTitulo"] = "Ingrese Número de Solicitud Necesidad";
 
 
+$this->idioma ["fecha_inicio"] = "Fecha Inicial : ";
+$this->idioma ["fecha_inicioTitulo"] = "Seleccione Fecha Inicial";
+
+$this->idioma ["fecha_final"] = "Fecha Final : ";
+$this->idioma ["fecha_finalTitulo"] = "Seleccione Fecha Final";
+
+
+$this->idioma ["botonConsultar"] = "Consultar";
+
+
+$this->idioma ["numero_contrato"] = "Número de Contrato: ";
+$this->idioma ["numero_contratoTitulo"] = "Ingrese Número de Contrato";
+
+
+$this->idioma ["tipo_identificacion"] = "Tipo de Identificación: ";
+$this->idioma ["tipo_identificacionTitulo"] = "Seleccione Tipo de Identificación";
+
+
+$this->idioma ["numero_identificacion"] = "Número de Identificación: ";
+$this->idioma ["numero_identificacionTitulo"] = "Ingrese  Número de Identificación";
+
+
+
+$this->idioma ["digito_verificacion"] = "Dígito de Verificación: ";
+$this->idioma ["digito_verificacionTitulo"] = "Ingrese  Número de Identificación";
+
+$this->idioma ["tipo_persona"] = "Tipo de Persona: ";
+$this->idioma ["tipo_personaTitulo"] = "Seleccione Tipo de Persona";
+
+
+
+
 $this->idioma ["noDefinido"] = "Etiqueta no esta definida en locale/es_es/Mensaje.php";
 // /---------------------------------------------------------------
 $this->idioma ["informacion_numero"] = " # Número de Entrada : ";
@@ -94,11 +126,7 @@ $this->idioma ["total_iva_conTitulo"] = "Ingrese Total con IVA";
 
 // _______________________________________________________
 
-$this->idioma ["fecha_inicio"] = "Fecha Inicial : ";
-$this->idioma ["fecha_inicioTitulo"] = "Seleccione Fecha Inicial";
 
-$this->idioma ["fecha_final"] = "Fecha Final : ";
-$this->idioma ["fecha_finalTitulo"] = "Seleccione Fecha Final";
 
 $this->idioma ["numero_acta"] = "Número de Acta de Recibido : ";
 $this->idioma ["numero_actaTitulo"] = "Ingrese Número Acta de Recibido";
@@ -148,8 +176,7 @@ $this->idioma ["acta_recuperacionTitulo"] = "Carge Archivo Acta";
 $this->idioma ["tipo_contrato"] = "Tipo Contrato : ";
 $this->idioma ["acta_recuperacionTitulo"] = "Seleccione Tipo de Contrato";
 
-$this->idioma ["numero_contrato"] = "Número de Contrato: ";
-$this->idioma ["numero_contratoTitulo"] = "Ingrese Número de Contrato";
+
 
 $this->idioma ["fecha_contrato"] = "Fecha de Contrato: ";
 $this->idioma ["fecha_contratoTitulo"] = "Seleccione Fecha de Contrato";
@@ -271,7 +298,7 @@ $this->idioma ["botonAceptar"] = "Guardar Entrada";
 $this->idioma ["botonCancelar"] = "Cancelar";
 $this->idioma ["botonContinuar"] = "Salir";
 $this->idioma ["botonSalida"] = "Generar Salida";
-$this->idioma ["botonConsultar"] = "Consultar";
+
 $this->idioma ["botonRegresar"] = "<< Regresar";
 
 // ________________________________________________

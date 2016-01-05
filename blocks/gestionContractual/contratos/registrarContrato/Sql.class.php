@@ -165,14 +165,24 @@ class Sql extends \Sql {
 				
 				break;
 			
+			case "tipo_identificacion" :
 				
-// 				SELECT id_sol_necesidad, vigencia, numero_solicitud, fecha_solicitud,
-// 				valor_contratacion, unidad_tiempo_ejecucion ||' '||descripcion duracion
-// 				FROM solicitud_necesidad
-// 				JOIN parametros pr ON pr.id_parametro = ejecucion
-// 				WHERE estado_registro= TRUE
+				$cadenaSql = "SELECT id_parametro  id,pr.codigo_contraloria|| ' - ' ||pr.descripcion valor   ";
+				$cadenaSql .= " FROM relacion_parametro rl ";
+				$cadenaSql .= "JOIN parametros pr ON pr.rel_parametro=rl.id_rel_parametro ";
+				$cadenaSql .= "WHERE rl.descripcion ='tipo_indentificacion_contratista'; ";
 				
+				break;
+			
+			case "tipo_persona" :
 				
+				$cadenaSql = "SELECT id_parametro  id,pr.codigo_contraloria|| ' - ' ||pr.descripcion valor   ";
+				$cadenaSql .= " FROM relacion_parametro rl ";
+				$cadenaSql .= "JOIN parametros pr ON pr.rel_parametro=rl.id_rel_parametro ";
+				$cadenaSql .= "WHERE rl.descripcion ='tipo_persona'; ";
+				
+				break;
+			
 			case "consultarSolicitud" :
 				$cadenaSql = "SELECT DISTINCT ";
 				$cadenaSql .= "id_sol_necesidad, vigencia, numero_solicitud, fecha_solicitud,

@@ -1,15 +1,12 @@
 
 <?php
-
 $this->idioma ["registrarContrato"] = "Registrar Contrato";
 
 $this->idioma ["vigencia"] = "Vigencia : ";
 $this->idioma ["vigenciaTitulo"] = "Seleccione Vigencia Socilitud Necesidad";
 
-
 $this->idioma ["num_solicitud"] = "Número de Solicitud : ";
 $this->idioma ["num_solicitudTitulo"] = "Ingrese Número de Solicitud Necesidad";
-
 
 $this->idioma ["fecha_inicio"] = "Fecha Inicial : ";
 $this->idioma ["fecha_inicioTitulo"] = "Seleccione Fecha Inicial";
@@ -17,22 +14,16 @@ $this->idioma ["fecha_inicioTitulo"] = "Seleccione Fecha Inicial";
 $this->idioma ["fecha_final"] = "Fecha Final : ";
 $this->idioma ["fecha_finalTitulo"] = "Seleccione Fecha Final";
 
-
 $this->idioma ["botonConsultar"] = "Consultar";
-
 
 $this->idioma ["numero_contrato"] = "Número de Contrato: ";
 $this->idioma ["numero_contratoTitulo"] = "Ingrese Número de Contrato";
 
-
 $this->idioma ["tipo_identificacion"] = "Tipo de Identificación: ";
 $this->idioma ["tipo_identificacionTitulo"] = "Seleccione Tipo de Identificación";
 
-
 $this->idioma ["numero_identificacion"] = "Número de Identificación: ";
 $this->idioma ["numero_identificacionTitulo"] = "Ingrese  Número de Identificación";
-
-
 
 $this->idioma ["digito_verificacion"] = "Dígito de Verificación: ";
 $this->idioma ["digito_verificacionTitulo"] = "Ingrese  Número de Identificación";
@@ -40,8 +31,35 @@ $this->idioma ["digito_verificacionTitulo"] = "Ingrese  Número de Identificaci�
 $this->idioma ["tipo_persona"] = "Tipo de Persona: ";
 $this->idioma ["tipo_personaTitulo"] = "Seleccione Tipo de Persona";
 
+$this->idioma ["primer_nombre"] = "Primer Nombre: ";
+$this->idioma ["primer_nombreTitulo"] = "Ingrese Primer Nombre: ";
 
+$this->idioma ["segundo_nombre"] = "Segundo Nombre: ";
+$this->idioma ["segundo_nombreTitulo"] = "Ingrese Segundo Nombre: ";
 
+$this->idioma ["primer_apellido"] = "Primer Apellido: ";
+$this->idioma ["primer_apellidoTitulo"] = "Ingrese Primer Apellido: ";
+
+$this->idioma ["segundo_apellido"] = "Segundo Apellido: ";
+$this->idioma ["segundo_apellidoTitulo"] = "Ingrese Segundo Apellido: ";
+
+$this->idioma ["genero"] = "Genero : ";
+$this->idioma ["generoTitulo"] = "Seleccione Genero: ";
+
+$this->idioma ["nacionalidad"] = "Nacionalidad: ";
+$this->idioma ["nacionalidadTitulo"] = "Seleccione Nacionalidad: ";
+
+$this->idioma ["direccion"] = "Dirección : ";
+$this->idioma ["direccionTitulo"] = "Ingrese Dirección ";
+
+$this->idioma ["telefono"] = "Teléfono  : ";
+$this->idioma ["telefonoTitulo"] = "Ingrese Teléfono Fijo o Teléfono Celular ";
+
+$this->idioma ["correo"] = "Correo Electrónico: ";
+$this->idioma ["correoTitulo"] = "Ingrese Correo Electrónico";
+
+$this->idioma ["perfil"] = "Perfil: ";
+$this->idioma ["perfilTitulo"] = "Seleccione Perfil";
 
 $this->idioma ["noDefinido"] = "Etiqueta no esta definida en locale/es_es/Mensaje.php";
 // /---------------------------------------------------------------
@@ -126,8 +144,6 @@ $this->idioma ["total_iva_conTitulo"] = "Ingrese Total con IVA";
 
 // _______________________________________________________
 
-
-
 $this->idioma ["numero_acta"] = "Número de Acta de Recibido : ";
 $this->idioma ["numero_actaTitulo"] = "Ingrese Número Acta de Recibido";
 
@@ -175,8 +191,6 @@ $this->idioma ["acta_recuperacionTitulo"] = "Carge Archivo Acta";
 
 $this->idioma ["tipo_contrato"] = "Tipo Contrato : ";
 $this->idioma ["acta_recuperacionTitulo"] = "Seleccione Tipo de Contrato";
-
-
 
 $this->idioma ["fecha_contrato"] = "Fecha de Contrato: ";
 $this->idioma ["fecha_contratoTitulo"] = "Seleccione Fecha de Contrato";

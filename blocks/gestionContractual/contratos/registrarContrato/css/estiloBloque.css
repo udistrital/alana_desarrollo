@@ -22,3 +22,8 @@
 	display: block;
 	background-image: url("../img/knobs/cancel.png");
 }
+
+#division{
+	clear:both;
+}
+

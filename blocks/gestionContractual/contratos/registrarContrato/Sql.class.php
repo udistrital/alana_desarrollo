@@ -227,6 +227,14 @@ class Sql extends \Sql {
 				$cadenaSql .= "WHERE rl.descripcion ='tipo_configuracion'; ";
 				break;
 			
+			case "tipo_clase_contratista" :
+				
+				$cadenaSql = "SELECT id_parametro  id,pr.codigo_contraloria|| ' - ' ||pr.descripcion valor   ";
+				$cadenaSql .= " FROM relacion_parametro rl ";
+				$cadenaSql .= "JOIN parametros pr ON pr.rel_parametro=rl.id_rel_parametro ";
+				$cadenaSql .= "WHERE rl.descripcion ='clase_contratista'; ";
+				break;
+			
 			case "consultarSolicitud" :
 				$cadenaSql = "SELECT DISTINCT ";
 				$cadenaSql .= "id_sol_necesidad, vigencia, numero_solicitud, fecha_solicitud,

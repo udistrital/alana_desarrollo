@@ -80,6 +80,20 @@ $this->idioma ["tipo_configuracion"] = "Tipo Configuración: ";
 $this->idioma ["tipo_configuracionTitulo"] = "Seleccione Tipo Configuración";
 
 
+$this->idioma ["clase_contratista"] = "Clase Contratista: ";
+$this->idioma ["clase_contratistaTitulo"] = "Seleccione Clase Contratista";
+
+$this->idioma ["identificacion_clase_contratista"] = "Identificacion - RUT: ";
+$this->idioma ["identificacion_clase_contratistaTitulo"] = "Ingrese Identificación de Unión Temporal O Consorcio";
+
+$this->idioma ["digito_verificacion_clase_contratista"] = "Digito de Verificación: ";
+$this->idioma ["digito_verificacion_clase_contratistaTitulo"] = "Ingrese Digito de Verificación de Unión Temporal O Consorcio";
+
+
+$this->idioma ["porcentaje_clase_contratista"] = "Porcentaje de Participación: ";
+$this->idioma ["porcentaje_clase_contratistaTitulo"] = "Ingrese Porcentaje de Participación de Unión Temporal O Consorcio en Número Decimales";
+
+
 
 $this->idioma ["noDefinido"] = "Etiqueta no esta definida en locale/es_es/Mensaje.php";
 // /---------------------------------------------------------------

@@ -94,6 +94,12 @@ $this->idioma ["porcentaje_clase_contratista"] = "Porcentaje de Participación: 
 $this->idioma ["porcentaje_clase_contratistaTitulo"] = "Ingrese Porcentaje de Participación de Unión Temporal O Consorcio en Número Decimales";
 
 
+$this->idioma ["clase_contrato"] = "Clase de Contrato: ";
+$this->idioma ["clase_contratoTitulo"] = "Seleccione Clase de Contrato";
+
+
+$this->idioma ["tipo_compromiso"] = "Tipo de Compromiso: ";
+$this->idioma ["tipo_compromisoTitulo"] = "Seleccione Tipo de Compromiso";
 
 $this->idioma ["noDefinido"] = "Etiqueta no esta definida en locale/es_es/Mensaje.php";
 // /---------------------------------------------------------------

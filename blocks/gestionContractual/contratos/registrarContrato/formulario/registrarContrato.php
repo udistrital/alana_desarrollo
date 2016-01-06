@@ -853,7 +853,7 @@
 							$atributos ['validar'] = 'required';
 							$atributos ['limitar'] = true;
 							$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-							$atributos ['anchoEtiqueta'] 	= 213;
+							$atributos ['anchoEtiqueta'] = 213;
 							$atributos ['anchoCaja'] = 29;
 							if (isset ( $_REQUEST [$esteCampo] )) {
 								$atributos ['seleccion'] = $_REQUEST [$esteCampo];
@@ -1038,37 +1038,92 @@
 							<h3>Datos Contrato</h3>
 							<section>";
 					{
-						// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-						$esteCampo = 'wer';
-						$atributos ['columnas'] = 2;
-						$atributos ['nombre'] = $esteCampo;
-						$atributos ['id'] = $esteCampo;
-						$atributos ['evento'] = '';
-						$atributos ['deshabilitado'] = false;
-						$atributos ["etiquetaObligatorio"] = false;
-						$atributos ['tab'] = $tab;
-						$atributos ['tamanno'] = 1;
-						$atributos ['estilo'] = 'jqueryui';
-						$atributos ['validar'] = 'required';
-						$atributos ['limitar'] = true;
-						$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-						$atributos ['anchoEtiqueta'] = 213;
 						
-						if (isset ( $_REQUEST [$esteCampo] )) {
-							$atributos ['seleccion'] = $_REQUEST [$esteCampo];
-						} else {
-							$atributos ['seleccion'] = - 1;
-						}
-						
-						// $atributos ['matrizItems'] = $matrizItems;
-						
-						// Utilizar lo siguiente cuando no se pase un arreglo:
-						$atributos ['baseDatos'] = 'contractual';
-						$atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "vigencias_solicitudes" );
-						$tab ++;
-						$atributos = array_merge ( $atributos, $atributosGlobales );
-						echo $this->miFormulario->campoCuadroLista ( $atributos );
+						$atributos ["id"] = "division";
+						echo $this->miFormulario->division ( "inicio", $atributos );
 						unset ( $atributos );
+						{
+							
+							$esteCampo = 'clase_contrato';
+							$atributos ['columnas'] = 2;
+							$atributos ['nombre'] = $esteCampo;
+							$atributos ['id'] = $esteCampo;
+							$atributos ['evento'] = '';
+							$atributos ['deshabilitado'] = false;
+							$atributos ["etiquetaObligatorio"] = true;
+							$atributos ['tab'] = $tab;
+							$atributos ['tamanno'] = 1;
+							$atributos ['estilo'] = 'jqueryui';
+							$atributos ['validar'] = 'required';
+							$atributos ['limitar'] = true;
+							$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+							$atributos ['anchoEtiqueta'] = 213;
+							$atributos ['anchoCaja'] = 29;
+							if (isset ( $_REQUEST [$esteCampo] )) {
+								$atributos ['seleccion'] = $_REQUEST [$esteCampo];
+							} else {
+								$atributos ['seleccion'] = - 1;
+							}
+							
+							$matrizItems = array (
+									array (
+											' ',
+											'Sin Solicitud de Necesidad' 
+									) 
+							);
+							
+							// $atributos ['matrizItems'] = $matrizItems;
+							
+							// Utilizar lo siguiente cuando no se pase un arreglo:
+							$atributos ['baseDatos'] = 'contractual';
+							$atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "tipo_clase_contrato" );
+							$tab ++;
+							$atributos = array_merge ( $atributos, $atributosGlobales );
+							echo $this->miFormulario->campoCuadroLista ( $atributos );
+							unset ( $atributos );
+							
+							$esteCampo = 'tipo_compromiso';
+							$atributos ['columnas'] = 2;
+							$atributos ['nombre'] = $esteCampo;
+							$atributos ['id'] = $esteCampo;
+							$atributos ['evento'] = '';
+							$atributos ['deshabilitado'] = false;
+							$atributos ["etiquetaObligatorio"] = true;
+							$atributos ['tab'] = $tab;
+							$atributos ['tamanno'] = 1;
+							$atributos ['estilo'] = 'jqueryui';
+							$atributos ['validar'] = 'required';
+							$atributos ['limitar'] = true;
+							$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+							$atributos ['anchoEtiqueta'] = 213;
+							$atributos ['anchoCaja'] = 20;
+							if (isset ( $_REQUEST [$esteCampo] )) {
+								$atributos ['seleccion'] = $_REQUEST [$esteCampo];
+							} else {
+								$atributos ['seleccion'] = - 1;
+							}
+							
+							$matrizItems = array (
+									array (
+											' ',
+											'Sin Solicitud de Necesidad' 
+									) 
+							);
+							
+							// $atributos ['matrizItems'] = $matrizItems;
+							
+							// Utilizar lo siguiente cuando no se pase un arreglo:
+							$atributos ['baseDatos'] = 'contractual';
+							$atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "tipo_compromiso" );
+							$tab ++;
+							$atributos = array_merge ( $atributos, $atributosGlobales );
+							echo $this->miFormulario->campoCuadroLista ( $atributos );
+							unset ( $atributos );
+						}
+						// ------------------Fin Division para los botones-------------------------
+						echo $this->miFormulario->division ( "fin" );
+						unset ( $atributos );
+					
 					}
 					
 					echo "</section>

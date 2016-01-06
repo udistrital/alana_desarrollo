@@ -2001,7 +2001,7 @@
 							
 							// Utilizar lo siguiente cuando no se pase un arreglo:
 							$atributos ['baseDatos'] = 'contractual';
-							$atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "tema_gasto" );echo $atributos ['cadena_sql'];
+							$atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "tema_gasto" );
 							$tab ++;
 							$atributos = array_merge ( $atributos, $atributosGlobales );
 							echo $this->miFormulario->campoCuadroLista ( $atributos );

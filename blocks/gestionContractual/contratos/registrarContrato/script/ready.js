@@ -1,9 +1,15 @@
  $('#tabla').dataTable( {
-                "sPaginationType": "full_numbers"
-                 } );
-
-
-
+"sPaginationType": "full_numbers"
+ } );
+ 
+ $('#tablaDisponibilidades').dataTable( {
+	 "sPaginationType": "full_numbers"
+	  } );
+ 
+ $('#tablaRegistros').dataTable( {
+	 "sPaginationType": "full_numbers"
+	  } );
+ 
 			
 			$("#ventanaA").steps({
 			    headerTag: "h3",

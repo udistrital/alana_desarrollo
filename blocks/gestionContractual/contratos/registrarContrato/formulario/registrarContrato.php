@@ -1055,7 +1055,7 @@
 							$atributos ['tamanno'] = 1;
 							$atributos ['estilo'] = 'jqueryui';
 							$atributos ['validar'] = 'required';
-							$atributos ['limitar'] = true;
+							$atributos ['limitar'] = false;
 							$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
 							$atributos ['anchoEtiqueta'] = 213;
 							$atributos ['anchoCaja'] = 29;
@@ -1814,10 +1814,10 @@
 						$atributos ['tamanno'] = 1;
 						$atributos ['estilo'] = 'jqueryui';
 						$atributos ['validar'] = 'required';
-						$atributos ['limitar'] = false;
+						$atributos ['limitar'] = true;
 						$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
 						$atributos ['anchoEtiqueta'] = 213;
-// 						$atributos ['anchoCaja'] = 35;
+						$atributos ['anchoCaja'] = 26;
 						if (isset ( $_REQUEST [$esteCampo] )) {
 							$atributos ['seleccion'] = $_REQUEST [$esteCampo];
 						} else {

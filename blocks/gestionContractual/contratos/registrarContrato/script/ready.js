@@ -10,16 +10,10 @@
 			    bodyTag: "section",
 			    enableAllSteps: true,
 			    enablePagination: true,
-			    transitionEffect: "slide",
+			    transitionEffect: "slideLeft",
 			    onStepChanging: function (event, currentIndex, newIndex){
 			    
-		             $resultado = $("#registrarContrato").validationEngine("validate");
-
-		     		if ($resultado) {
-
-		     			return true;
-		     		}
-		     		return false;
+			    	return true;
 			    },
 			    onFinished: function (event, currentIndex)
 			    {
@@ -29,12 +23,12 @@
 			    },
 			    labels: {
 			        cancel: "Cancelar",
-			        current: "current step:",
+			        current: "Paso Siguiente :",
 			        pagination: "Paginación",
 			        finish: "Guardar Información",
 			        next: "Siquiente",
 			        previous: "Atras",
-			        loading: "Cagarndo ..."
+			        loading: "Cargando ..."
 			    }
 			     
 			});

@@ -190,9 +190,39 @@ $this->idioma ["tasa_cambio"] = "Valor de Tasa Cambio: ";
 $this->idioma ["tasa_cambioTitulo"] = "Ingrese Valor de Tasa Cambio a la Fecha";
 
 
+$this->idioma ["tipo_control"] = "Tipo de Control: ";
+$this->idioma ["tipo_controlTitulo"] = "Seleccione Tipo de Control";
 
 
 
+
+$this->idioma ["supervisor"] = "Nombre Supervisor: ";
+$this->idioma ["supervisorTitulo"] = "Ingrese Nombre Supervisor o Interventor";
+
+
+$this->idioma ["identificacion_supervisor"] = "Cedula Supervisor: ";
+$this->idioma ["identificacion_supervisorTitulo"] = "Ingrese Cedula Supervisor o Interventor";
+
+
+
+
+
+$this->idioma ["digito_supervisor"] = "Digito de Verificación:<br>Supervisor";
+$this->idioma ["digito_supervisorTitulo"] = "Ingrese Digito de Verificación del Supervisor";
+
+
+$this->idioma ["fecha_suscrip_super"] = "Fecha Subcripción:<br>Supervisor ";
+$this->idioma ["fecha_suscrip_superTitulo"] = "Seleccione Fecha Subcripción Supervisor";
+
+
+
+
+$this->idioma ["fecha_limite"] = "Fecha Limite:<br>Ejecución Contrato ";
+$this->idioma ["fecha_limiteTitulo"] = "Seleccione Fecha límite pactada para la ejecución del contrato e interventoría";
+
+
+$this->idioma ["observaciones_interventoria"] = "Observaciones Interventoria: ";
+$this->idioma ["observaciones_interventoriaTitulo"] = "Ingrese Observaciones Interventoria";
 
 
 

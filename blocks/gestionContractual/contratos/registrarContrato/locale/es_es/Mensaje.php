@@ -138,6 +138,12 @@ $this->idioma ["tipologia_especifica"] = "Tipología Especifica: <br>Contrato";
 $this->idioma ["tipologia_especificaTitulo"] = "Seleccione Tipología Especifica Contrato";
 
 
+$this->idioma ["numero_constancia"] = "Número de Constancia: ";
+$this->idioma ["numero_constanciaTitulo"] = "Ingrese Número de Constancia";
+
+$this->idioma ["modalidad_seleccion"] = "Modalidad de Selección: ";
+$this->idioma ["modalidad_seleccionTitulo"] = "Seleccione Modalidad de Selección";
+
 
 
 

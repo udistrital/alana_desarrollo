@@ -144,6 +144,17 @@ $this->idioma ["numero_constanciaTitulo"] = "Ingrese Número de Constancia";
 $this->idioma ["modalidad_seleccion"] = "Modalidad de Selección: ";
 $this->idioma ["modalidad_seleccionTitulo"] = "Seleccione Modalidad de Selección";
 
+$this->idioma ["procedimiento"] = "Procedimiento: ";
+$this->idioma ["procedimientoTitulo"] = "Seleccione Procedimiento";
+
+$this->idioma ["regimen_contratación"] = "Régimen de Contratación: ";
+$this->idioma ["regimen_contrataciónTitulo"] = "Seleccione Régimen de Contratación";
+
+$this->idioma ["tipo_moneda"] = "Tipo de Moneda: ";
+$this->idioma ["tipo_monedaTitulo"] = "Seleccione Tipo de Moneda";
+
+$this->idioma ["valor_contrato"] = "Valor de Contrato: ";
+$this->idioma ["valor_contratoTitulo"] = "Ingrese Valor de Contrato";
 
 
 

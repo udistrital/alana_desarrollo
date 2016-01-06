@@ -42,7 +42,7 @@
             promptPosition : "bottomRight", 
             scroll: false,
             autoHidePrompt: true,
-            autoHideDelay: 100000
+            autoHideDelay: 5000
 	         });
 
 

@@ -1121,7 +1121,7 @@
 							unset ( $atributos );
 							
 							$atributos ["id"] = "divisionConvenio";
-							$atributos ["estiloEnLinea"] = "display:block";
+							$atributos ["estiloEnLinea"] = "display:none";
 							$atributos = array_merge ( $atributos, $atributosGlobales );
 							echo $this->miFormulario->division ( "inicio", $atributos );
 							unset ( $atributos );
@@ -1237,7 +1237,7 @@
 							$atributos ['dobleLinea'] = 0;
 							$atributos ['tabIndex'] = $tab;
 							$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-							$atributos ['validar'] = 'required,custom[date]';
+							$atributos ['validar'] = 'required';
 							
 							if (isset ( $_REQUEST [$esteCampo] )) {
 								$atributos ['valor'] = $_REQUEST [$esteCampo];
@@ -1245,7 +1245,7 @@
 								$atributos ['valor'] = '';
 							}
 							$atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
-							$atributos ['deshabilitado'] = false;
+							$atributos ['deshabilitado'] = true;
 							$atributos ['tamanno'] = 10;
 							$atributos ['maximoTamanno'] = '';
 							$atributos ['anchoEtiqueta'] = 213;
@@ -1355,7 +1355,7 @@
 							$atributos ['dobleLinea'] = 0;
 							$atributos ['tabIndex'] = $tab;
 							$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-							$atributos ['validar'] = 'required,custom[date]';
+							$atributos ['validar'] = 'required';
 							
 							if (isset ( $_REQUEST [$esteCampo] )) {
 								$atributos ['valor'] = $_REQUEST [$esteCampo];
@@ -1363,8 +1363,8 @@
 								$atributos ['valor'] = '';
 							}
 							$atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
-							$atributos ['deshabilitado'] = false;
-							$atributos ['tamanno'] = 8;
+							$atributos ['deshabilitado'] = true;
+							$atributos ['tamanno'] = 10;
 							$atributos ['maximoTamanno'] = '';
 							$atributos ['anchoEtiqueta'] = 213;
 							$tab ++;
@@ -1394,8 +1394,8 @@
 								$atributos ['valor'] = '';
 							}
 							$atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
-							$atributos ['deshabilitado'] = false;
-							$atributos ['tamanno'] = 8;
+							$atributos ['deshabilitado'] = true;
+							$atributos ['tamanno'] = 10;
 							$atributos ['maximoTamanno'] = '';
 							$atributos ['anchoEtiqueta'] = 213;
 							$tab ++;
@@ -1573,42 +1573,103 @@
 						echo $this->miFormulario->division ( "fin" );
 						unset ( $atributos );
 						
+						$atributos ["id"] = "division";
 						echo $this->miFormulario->division ( "inicio", $atributos );
 						unset ( $atributos );
 						{
 							
-							$esteCampo = 'numero_constancia';
-							$atributos ['id'] = $esteCampo;
-							$atributos ['nombre'] = $esteCampo;
-							$atributos ['tipo'] = 'text';
-							$atributos ['estilo'] = 'jqueryui';
-							$atributos ['marco'] = true;
-							$atributos ['estiloMarco'] = '';
-							$atributos ["etiquetaObligatorio"] = true;
+							$esteCampo = 'procedimiento';
 							$atributos ['columnas'] = 2;
-							$atributos ['dobleLinea'] = 0;
-							$atributos ['tabIndex'] = $tab;
-							$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-							$atributos ['validar'] = 'required,custom[onlyNumberSp]';
-							
-							if (isset ( $_REQUEST [$esteCampo] )) {
-								$atributos ['valor'] = $_REQUEST [$esteCampo];
-							} else {
-								$atributos ['valor'] = '';
-							}
-							$atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
+							$atributos ['nombre'] = $esteCampo;
+							$atributos ['id'] = $esteCampo;
+							$atributos ['evento'] = '';
 							$atributos ['deshabilitado'] = false;
-							$atributos ['tamanno'] = 20;
-							$atributos ['maximoTamanno'] = '';
+							$atributos ["etiquetaObligatorio"] = true;
+							$atributos ['tab'] = $tab;
+							$atributos ['tamanno'] = 1;
+							$atributos ['estilo'] = 'jqueryui';
+							$atributos ['validar'] = 'required';
+							$atributos ['limitar'] = true;
+							$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
 							$atributos ['anchoEtiqueta'] = 213;
-							$tab ++;
+							$atributos ['anchoCaja'] = 30;
+							if (isset ( $_REQUEST [$esteCampo] )) {
+								$atributos ['seleccion'] = $_REQUEST [$esteCampo];
+							} else {
+								$atributos ['seleccion'] = - 1;
+							}
 							
-							// Aplica atributos globales al control
+							$matrizItems = array (
+									array (
+											' ',
+											'Sin Solicitud de Necesidad' 
+									) 
+							);
+							
+							// $atributos ['matrizItems'] = $matrizItems;
+							
+							// Utilizar lo siguiente cuando no se pase un arreglo:
+							$atributos ['baseDatos'] = 'contractual';
+							$atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "tipo_procedimiento" );
+							$tab ++;
 							$atributos = array_merge ( $atributos, $atributosGlobales );
-							echo $this->miFormulario->campoCuadroTexto ( $atributos );
+							echo $this->miFormulario->campoCuadroLista ( $atributos );
 							unset ( $atributos );
 							
-							$esteCampo = 'modalidad_seleccion';
+							$esteCampo = 'regimen_contratación';
+							$atributos ['columnas'] = 2;
+							$atributos ['nombre'] = $esteCampo;
+							$atributos ['id'] = $esteCampo;
+							$atributos ['evento'] = '';
+							$atributos ['deshabilitado'] = false;
+							$atributos ["etiquetaObligatorio"] = true;
+							$atributos ['tab'] = $tab;
+							$atributos ['tamanno'] = 1;
+							$atributos ['estilo'] = 'jqueryui';
+							$atributos ['validar'] = 'required';
+							$atributos ['limitar'] = true;
+							$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+							$atributos ['anchoEtiqueta'] = 213;
+							$atributos ['anchoCaja'] = 30;
+							if (isset ( $_REQUEST [$esteCampo] )) {
+								$atributos ['seleccion'] = $_REQUEST [$esteCampo];
+							} else {
+								$atributos ['seleccion'] = - 1;
+							}
+							
+							$matrizItems = array (
+									array (
+											' ',
+											'Sin Solicitud de Necesidad' 
+									) 
+							);
+							
+							// $atributos ['matrizItems'] = $matrizItems;
+							
+							// Utilizar lo siguiente cuando no se pase un arreglo:
+							$atributos ['baseDatos'] = 'contractual';
+							$atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "regimen_contratacion" );
+							$tab ++;
+							$atributos = array_merge ( $atributos, $atributosGlobales );
+							echo $this->miFormulario->campoCuadroLista ( $atributos );
+							unset ( $atributos );
+						}
+						// ------------------Fin Division para los botones-------------------------
+						echo $this->miFormulario->division ( "fin" );
+						unset ( $atributos );
+					}
+					
+					echo "</section>
+							<h3>Información Presupuestal</h3>
+							<section>";
+					{
+						
+						$atributos ["id"] = "division";
+						echo $this->miFormulario->division ( "inicio", $atributos );
+						unset ( $atributos );
+						{
+							
+							$esteCampo = 'tipo_moneda';
 							$atributos ['columnas'] = 2;
 							$atributos ['nombre'] = $esteCampo;
 							$atributos ['id'] = $esteCampo;
@@ -1640,52 +1701,109 @@
 							
 							// Utilizar lo siguiente cuando no se pase un arreglo:
 							$atributos ['baseDatos'] = 'contractual';
-							$atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "modalidad_seleccion" );
+							$atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "tipo_moneda" );
 							$tab ++;
 							$atributos = array_merge ( $atributos, $atributosGlobales );
 							echo $this->miFormulario->campoCuadroLista ( $atributos );
+							unset ( $atributos );
+							
+							$esteCampo = 'valor_contrato';
+							$atributos ['id'] = $esteCampo;
+							$atributos ['nombre'] = $esteCampo;
+							$atributos ['tipo'] = 'text';
+							$atributos ['estilo'] = 'jqueryui';
+							$atributos ['marco'] = true;
+							$atributos ['estiloMarco'] = '';
+							$atributos ["etiquetaObligatorio"] = true;
+							$atributos ['columnas'] = 2;
+							$atributos ['dobleLinea'] = 0;
+							$atributos ['tabIndex'] = $tab;
+							$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+							$atributos ['validar'] = 'required,custom[number]';
+							
+							if (isset ( $_REQUEST [$esteCampo] )) {
+								$atributos ['valor'] = $_REQUEST [$esteCampo];
+							} else {
+								$atributos ['valor'] = '';
+							}
+							$atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
+							$atributos ['deshabilitado'] = false;
+							$atributos ['tamanno'] = 20;
+							$atributos ['maximoTamanno'] = '';
+							$atributos ['anchoEtiqueta'] = 213;
+							$tab ++;
+							
+							// Aplica atributos globales al control
+							$atributos = array_merge ( $atributos, $atributosGlobales );
+							echo $this->miFormulario->campoCuadroTexto ( $atributos );
 							unset ( $atributos );
 						}
 						// ------------------Fin Division para los botones-------------------------
 						echo $this->miFormulario->division ( "fin" );
 						unset ( $atributos );
-					}
-					
-					echo "</section>
-							<h3>Datos Presupustales</h3>
-							<section>";
-					{
-						// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-						$esteCampo = 'vigeeeeencia';
-						$atributos ['columnas'] = 2;
-						$atributos ['nombre'] = $esteCampo;
+						
+						$esteCampo = "AgrupacionDisponibilidad";
 						$atributos ['id'] = $esteCampo;
-						$atributos ['evento'] = '';
-						$atributos ['deshabilitado'] = false;
-						$atributos ["etiquetaObligatorio"] = false;
-						$atributos ['tab'] = $tab;
-						$atributos ['tamanno'] = 1;
-						$atributos ['estilo'] = 'jqueryui';
-						$atributos ['validar'] = ' ';
-						$atributos ['limitar'] = true;
-						$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-						$atributos ['anchoEtiqueta'] = 213;
-						
-						if (isset ( $_REQUEST [$esteCampo] )) {
-							$atributos ['seleccion'] = $_REQUEST [$esteCampo];
-						} else {
-							$atributos ['seleccion'] = - 1;
+						$atributos ['leyenda'] = "Disponibilidades Presupuestales Asociadas";
+						echo $this->miFormulario->agrupacion ( 'inicio', $atributos );
+						{
+							
+							echo "<center><table id='tablaDisponibilidades'>";
+							
+							echo "<thead>
+                             <tr>
+                                <th>Número</th>
+                    			<th>Fecha </th>
+            					<th>Valor($)</th>
+                                <th>Codigo Rubro</th>
+                                 <th>Nombre Rubro</th>
+                             </tr>
+				            </thead>
+            				<tbody>
+							<tr>
+                                <th>22123</th>
+                    			<th>2016-12-12</th>
+            					<th>$ 12.000.000</th>
+                                <th>11121212-1</th>
+                                 <th>Oficina Asesora de Sistemas</th>
+                             </tr>	
+							</tbody>
+							</table></center>";
 						}
+						echo $this->miFormulario->agrupacion ( 'fin' );
 						
-						// $atributos ['matrizItems'] = $matrizItems;
 						
-						// Utilizar lo siguiente cuando no se pase un arreglo:
-						$atributos ['baseDatos'] = 'contractual';
-						$atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "vigencias_solicitudes" );
-						$tab ++;
-						$atributos = array_merge ( $atributos, $atributosGlobales );
-						echo $this->miFormulario->campoCuadroLista ( $atributos );
-						unset ( $atributos );
+						$esteCampo = "AgrupacionRegistrosP";
+						$atributos ['id'] = $esteCampo;
+						$atributos ['leyenda'] = "Registros Presupuestales Asociados";
+						echo $this->miFormulario->agrupacion ( 'inicio', $atributos );
+						{
+								
+							echo "<center><table id='tablaRegistros'>";
+								
+							echo "<thead>
+                             <tr>
+                                <th>Número</th>
+                    			<th>Fecha</th>
+            					<th>Valor($)</th>
+                                <th>Codigo Rubro</th>
+                                 <th>Nombre Rubro</th>
+                             </tr>
+				            </thead>
+            				<tbody>
+							<tr>
+                                <th>22123</th>
+                    			<th>2016-12-12</th>
+            					<th>$ 12.000.000</th>
+                                <th>11121212-1</th>
+                                 <th>Oficina Asesora de Sistemas</th>
+                             </tr>
+							</tbody>
+							</table></center>";
+						}
+						echo $this->miFormulario->agrupacion ( 'fin' );
+						
+						
 					}
 					
 					echo "</section>";

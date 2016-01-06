@@ -16,7 +16,14 @@ $_REQUEST ['tiempo'] = time ();
 	$("#<?php echo $this->campoSeguro('tipo_cuenta')?>").select2(); 
 	$("#<?php echo $this->campoSeguro('tipo_configuracion')?>").select2();
 	$("#<?php echo $this->campoSeguro('clase_contratista')?>").select2();
-	
+	$("#<?php echo $this->campoSeguro('clase_contrato')?>").select2();
+	$("#<?php echo $this->campoSeguro('tipo_compromiso')?>").select2();
+	$("#<?php echo $this->campoSeguro('dependencia')?>").select2();
+	$("#<?php echo $this->campoSeguro('tipologia_especifica')?>").select2();
+	$("#<?php echo $this->campoSeguro('modalidad_seleccion')?>").select2();
+	$("#<?php echo $this->campoSeguro('procedimiento')?>").select2();
+	$("#<?php echo $this->campoSeguro('regimen_contratación')?>").select2();
+	$("#<?php echo $this->campoSeguro('unidad_ejecucion_tiempo')?>").select2();
 	
 	
 	$("#<?php echo $this->campoSeguro('profesion')?>").attr('disabled', 'disabled');
@@ -82,6 +89,36 @@ $_REQUEST ['tiempo'] = time ();
 		 
 		 
 		 
+		 	 
+	 	$("#<?php echo $this->campoSeguro('tipo_compromiso')?>").change(function() {
+    	
+    	
+    	
+				if($("#<?php echo $this->campoSeguro('tipo_compromiso')?>").val()!=''){
+		
+						if($("#<?php echo $this->campoSeguro('tipo_compromiso')?>").val()==46){
+		
+							$("#<?php echo $this->campoSeguro('divisionConvenio')?>").css('display','block');
+							
+		                    }else{
+		                    
+		                    
+		                    $("#<?php echo $this->campoSeguro('divisionConvenio')?>").css('display','none');
+		                    
+		                    }
+		
+				}else{
+				
+				$("#<?php echo $this->campoSeguro('divisionConvenio')?>").css('display','none');
+				
+				
+				
+				}
+		
+		 });
+		 
+		 
+		 
 		 
 	 	$("#<?php echo $this->campoSeguro('clase_contratista')?>").change(function() {
     	
@@ -116,6 +153,21 @@ $_REQUEST ['tiempo'] = time ();
 		 });
 		 
 		 
+		 
+		 
+		         $('#<?php echo $this->campoSeguro('fecha_subcripcion')?>').datepicker({
+		dateFormat: 'yy-mm-dd',
+		maxDate: 0,
+		changeYear: true,
+		changeMonth: true,
+		monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+		    'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+		    monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+		    dayNames: ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'],
+		    dayNamesShort: ['Dom','Lun','Mar','Mie','Jue','Vie','Sab'],
+		    dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sa'],
+		    
+		});
 		 
 		 
 		             
@@ -171,6 +223,67 @@ $_REQUEST ['tiempo'] = time ();
 			
 	   });
 	
+
+
+
+			 
+			 
+			    $('#<?php echo $this->campoSeguro('fecha_inicio_poliza')?>').datepicker({
+			dateFormat: 'yy-mm-dd',
+			changeYear: true,
+			changeMonth: true,
+			monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+			    'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+			    monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+			    dayNames: ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'],
+			    dayNamesShort: ['Dom','Lun','Mar','Mie','Jue','Vie','Sab'],
+			    dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sa'],
+			    onSelect: function(dateText, inst) {
+				var lockDate = new Date($('#<?php echo $this->campoSeguro('fecha_inicio_poliza')?>').datepicker('getDate'));
+				$('input#<?php echo $this->campoSeguro('fecha_final_poliza')?>').datepicker('option', 'minDate', lockDate);
+				},
+				onClose: function() { 
+			 	    if ($('input#<?php echo $this->campoSeguro('fecha_inicio_poliza')?>').val()!='')
+		            {
+		                $('#<?php echo $this->campoSeguro('fecha_final_poliza')?>').attr("class", "cuadroTexto ui-widget ui-widget-content ui-corner-all   validate[required]");
+		        }else {
+		                $('#<?php echo $this->campoSeguro('fecha_final_poliza')?>').attr("class", "cuadroTexto ui-widget ui-widget-content ui-corner-all ");
+		            }
+				  }
+			
+			
+			});
+		      $('#<?php echo $this->campoSeguro('fecha_final_poliza')?>').datepicker({
+			dateFormat: 'yy-mm-dd',
+			changeYear: true,
+			changeMonth: true,
+			monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+			    'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+			    monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+			    dayNames: ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'],
+			    dayNamesShort: ['Dom','Lun','Mar','Mie','Jue','Vie','Sab'],
+			    dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sa'],
+			    onSelect: function(dateText, inst) {
+				var lockDate = new Date($('#<?php echo $this->campoSeguro('fecha_final_poliza')?>').datepicker('getDate'));
+				$('input#<?php echo $this->campoSeguro('fecha_inicio_poliza')?>').datepicker('option', 'maxDate', lockDate);
+				 },
+				 onClose: function() { 
+			 	    if ($('input#<?php echo $this->campoSeguro('fecha_final_poliza')?>').val()!='')
+		            {
+		                $('#<?php echo $this->campoSeguro('fecha_inicio_poliza')?>').attr("class", "cuadroTexto ui-widget ui-widget-content ui-corner-all   validate[required]");
+		        }else {
+		                $('#<?php echo $this->campoSeguro('fecha_inicio_poliza')?>').attr("class", "cuadroTexto ui-widget ui-widget-content ui-corner-all ");
+		            }
+				  }
+			
+		   });
+	
+			 
+			 
+			 
+			 
+			 
+			 
 
           
 

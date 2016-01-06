@@ -252,6 +252,30 @@ class Sql extends \Sql {
 				$cadenaSql .= "WHERE rl.descripcion ='tipo_compromiso'; ";
 				break;
 			
+			case "tipo_ejecucion_tiempo" :
+				
+				$cadenaSql = "SELECT id_parametro  id, pr.descripcion valor   ";
+				$cadenaSql .= " FROM relacion_parametro rl ";
+				$cadenaSql .= "JOIN parametros pr ON pr.rel_parametro=rl.id_rel_parametro ";
+				$cadenaSql .= "WHERE rl.descripcion ='tipo_ejecucion_tiempo'; ";
+				break;
+			
+			case "consulta_dependencia" :
+				
+				$cadenaSql = "SELECT id_dependencia  ,nombre    ";
+				$cadenaSql .= "FROM dependencia ";
+				$cadenaSql .= "WHERE estado_registro = TRUE ;";
+				
+				break;
+			
+			case "tipologia_contrato" :
+				
+				$cadenaSql = "SELECT id_parametro  id,pr.codigo_contraloria|| ' - ' ||pr.descripcion valor   ";
+				$cadenaSql .= " FROM relacion_parametro rl ";
+				$cadenaSql .= "JOIN parametros pr ON pr.rel_parametro=rl.id_rel_parametro ";
+				$cadenaSql .= "WHERE rl.descripcion ='tipologia_contrato'; ";
+				break;
+			
 			case "consultarSolicitud" :
 				$cadenaSql = "SELECT DISTINCT ";
 				$cadenaSql .= "id_sol_necesidad, vigencia, numero_solicitud, fecha_solicitud,

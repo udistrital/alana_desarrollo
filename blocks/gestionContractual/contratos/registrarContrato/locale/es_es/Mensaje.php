@@ -101,6 +101,46 @@ $this->idioma ["clase_contratoTitulo"] = "Seleccione Clase de Contrato";
 $this->idioma ["tipo_compromiso"] = "Tipo de Compromiso: ";
 $this->idioma ["tipo_compromisoTitulo"] = "Seleccione Tipo de Compromiso";
 
+
+
+$this->idioma ["numero_convenio"] = "Número de Convenio: ";
+$this->idioma ["numero_convenioTitulo"] = "Ingrese Número de Convenio Marco ";
+
+
+$this->idioma ["vigencia_convenio"] = "Vigencia de Convenio: ";
+$this->idioma ["vigencia_convenioTitulo"] = "Ingrese Vigencia de Convenio de Marco";
+
+
+$this->idioma ["objeto_contrato"] = "Objeto Contrato :";
+$this->idioma ["objeto_contratoTitulo"] = "Ingrese Objeto de Contrato";
+
+$this->idioma ["fecha_subcripcion"] = "Fecha Subcripción:";
+$this->idioma ["fecha_subcripcionTitulo"] = "Seleccione Fecha de Subcripción";
+
+
+$this->idioma ["plazo_ejecucion"] = "Plazo Ejecución:";
+$this->idioma ["plazo_ejecucionTitulo"] = "Ingrese Plazo de Ejecución de Números con relacion a la Unidad de Ejecución";
+
+$this->idioma ["unidad_ejecucion_tiempo"] = "Unidad de Ejecución:";
+$this->idioma ["unidad_ejecucion_tiempoTitulo"] = "Seleccione Unidad de Ejecución Temporal";
+
+$this->idioma ["fecha_inicio_poliza"] = "Fecha Inicial Poliza: ";
+$this->idioma ["fecha_inicio_polizaTitulo"] = "Seleccione Fecha Inicial Poliza";
+
+$this->idioma ["fecha_final_poliza"] = "Fecha Final Poliza: ";
+$this->idioma ["fecha_final_polizaTitulo"] = "Seleccione Fecha Final Poliza";
+
+
+$this->idioma ["dependencia"] = "Dependencia: ";
+$this->idioma ["dependenciaTitulo"] = "Seleccione Dependencia";
+
+$this->idioma ["tipologia_especifica"] = "Tipología Especifica: <br>Contrato";
+$this->idioma ["tipologia_especificaTitulo"] = "Seleccione Tipología Especifica Contrato";
+
+
+
+
+
 $this->idioma ["noDefinido"] = "Etiqueta no esta definida en locale/es_es/Mensaje.php";
 // /---------------------------------------------------------------
 $this->idioma ["informacion_numero"] = " # Número de Entrada : ";
@@ -276,8 +316,6 @@ $this->idioma ["telefono_contratistaTitulo"] = "Ingrese Teléfono Fijo del Contr
 $this->idioma ["cargo_contratista"] = "Cargo :";
 $this->idioma ["cargo_contratistaTitulo"] = "Ingrese Cargo del Contratista";
 
-$this->idioma ["objeto_contrato"] = "Objeto General :";
-$this->idioma ["objeto_contratoTitulo"] = "Modifique o Ingrese Objeto General del Contrato";
 
 $this->idioma ["duracion"] = "Duración (en Dias) :";
 $this->idioma ["duracionTitulo"] = "Ingrese Duración Dependencia";

@@ -156,6 +156,45 @@ $this->idioma ["tipo_monedaTitulo"] = "Seleccione Tipo de Moneda";
 $this->idioma ["valor_contrato"] = "Valor de Contrato: ";
 $this->idioma ["valor_contratoTitulo"] = "Ingrese Valor de Contrato";
 
+$this->idioma ["ordenador_gasto"] = "Ordenador Gasto: ";
+$this->idioma ["ordenador_gastoTitulo"] = "Seleccione Ordenador Gasto";
+
+$this->idioma ["tipo_gasto"] = "Tipo Gasto: ";
+$this->idioma ["tipo_gastoTitulo"] = "Seleccione Tipo de Gasto";
+
+
+$this->idioma ["origen_recursos"] = "Origen Recursos: ";
+$this->idioma ["origen_recursosTitulo"] = "Seleccione Origen Recursos";
+
+
+
+$this->idioma ["origen_presupuesto"] = "Origen Presupuesto: ";
+$this->idioma ["origen_presupuestoTitulo"] = "Seleccione Origen Presupuesto";
+
+
+$this->idioma ["tema_gasto_inversion"] = "Tema Gasto Inversión: ";
+$this->idioma ["tema_gasto_inversionTitulo"] = "Seleccione Tema Gasto Inversión";
+
+
+
+$this->idioma ["observacionesContrato"] = "Observaciones Datos Contrato: ";
+$this->idioma ["observacionesContratoTitulo"] = "Ingrese Observaciones Datos Contrato";
+
+
+
+$this->idioma ["valor_contrato_moneda_ex"] = "Valor Contrato Moneda:<br>Extranjera ";
+$this->idioma ["valor_contrato_moneda_exTitulo"] = "Ingrese Valor Contrato en Moneda Extranjera";
+
+
+$this->idioma ["tasa_cambio"] = "Valor de Tasa Cambio: ";
+$this->idioma ["tasa_cambioTitulo"] = "Ingrese Valor de Tasa Cambio a la Fecha";
+
+
+
+
+
+
+
 
 
 $this->idioma ["noDefinido"] = "Etiqueta no esta definida en locale/es_es/Mensaje.php";

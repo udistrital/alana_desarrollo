@@ -308,6 +308,48 @@ class Sql extends \Sql {
 				$cadenaSql .= "WHERE rl.descripcion ='tipo_moneda'; ";
 				break;
 			
+			case "consulta_ordenador" :
+				
+				$cadenaSql = "SELECT og.id_ordenador, pr.descripcion || ': ' ||og.nombre_cp ordenador  ";
+				$cadenaSql .= "FROM ordenador_gasto og  ";
+				$cadenaSql .= "JOIN parametros pr ON pr.id_parametro= og.tipo_ordenador  ";
+				$cadenaSql .= "JOIN parametros rp ON rp.id_parametro= og.estado ";
+				$cadenaSql .= "WHERE rp.descripcion='Activo' ";
+				$cadenaSql .= "AND  og.estado_registro= TRUE;  ";
+				break;
+			
+			case "tipo_gasto" :
+				
+				$cadenaSql = "SELECT id_parametro  id,pr.codigo_contraloria|| ' - ' ||pr.descripcion valor   ";
+				$cadenaSql .= " FROM relacion_parametro rl ";
+				$cadenaSql .= "JOIN parametros pr ON pr.rel_parametro=rl.id_rel_parametro ";
+				$cadenaSql .= "WHERE rl.descripcion ='tipo_gasto'; ";
+				break;
+			
+			case "origen_recursos" :
+				
+				$cadenaSql = "SELECT id_parametro  id,pr.codigo_contraloria|| ' - ' ||pr.descripcion valor   ";
+				$cadenaSql .= " FROM relacion_parametro rl ";
+				$cadenaSql .= "JOIN parametros pr ON pr.rel_parametro=rl.id_rel_parametro ";
+				$cadenaSql .= "WHERE rl.descripcion ='origen_recursos'; ";
+				break;
+			
+			case "origen_presupuesto" :
+				
+				$cadenaSql = "SELECT id_parametro  id,pr.codigo_contraloria|| ' - ' ||pr.descripcion valor   ";
+				$cadenaSql .= " FROM relacion_parametro rl ";
+				$cadenaSql .= "JOIN parametros pr ON pr.rel_parametro=rl.id_rel_parametro ";
+				$cadenaSql .= "WHERE rl.descripcion ='origen_presupuesto'; ";
+				break;
+			
+			case "tema_gasto" :
+				
+				$cadenaSql = "SELECT id_parametro  id,pr.codigo_contraloria|| ' - ' ||pr.descripcion valor   ";
+				$cadenaSql .= " FROM relacion_parametro rl ";
+				$cadenaSql .= "JOIN parametros pr ON pr.rel_parametro=rl.id_rel_parametro ";
+				$cadenaSql .= "WHERE rl.descripcion ='tema_gasto'; ";
+				break;
+			
 			case "consultarSolicitud" :
 				$cadenaSql = "SELECT DISTINCT ";
 				$cadenaSql .= "id_sol_necesidad, vigencia, numero_solicitud, fecha_solicitud,

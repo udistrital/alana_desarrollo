@@ -2,29 +2,6 @@
 $_REQUEST ['tiempo'] = time ();
 ?>
 
-      
-		 
-	$("#<?php echo $this->campoSeguro('vigencia')?>").select2();
-	$("#<?php echo $this->campoSeguro('num_solicitud')?>").select2(); 
-	$("#<?php echo $this->campoSeguro('tipo_identificacion')?>").select2();
-	$("#<?php echo $this->campoSeguro('tipo_persona')?>").select2(); 
-	$("#<?php echo $this->campoSeguro('genero')?>").select2();
-	$("#<?php echo $this->campoSeguro('nacionalidad')?>").select2(); 
-	$("#<?php echo $this->campoSeguro('genero')?>").select2();
-	$("#<?php echo $this->campoSeguro('nacionalidad')?>").select2(); 
-	$("#<?php echo $this->campoSeguro('perfil')?>").select2();
-	$("#<?php echo $this->campoSeguro('tipo_cuenta')?>").select2(); 
-	$("#<?php echo $this->campoSeguro('tipo_configuracion')?>").select2();
-	$("#<?php echo $this->campoSeguro('clase_contratista')?>").select2();
-	$("#<?php echo $this->campoSeguro('clase_contrato')?>").select2();
-	$("#<?php echo $this->campoSeguro('tipo_compromiso')?>").select2();
-	$("#<?php echo $this->campoSeguro('dependencia')?>").select2();
-	$("#<?php echo $this->campoSeguro('tipologia_especifica')?>").select2();
-	$("#<?php echo $this->campoSeguro('modalidad_seleccion')?>").select2();
-	$("#<?php echo $this->campoSeguro('procedimiento')?>").select2();
-	$("#<?php echo $this->campoSeguro('regimen_contratación')?>").select2();
-	$("#<?php echo $this->campoSeguro('unidad_ejecucion_tiempo')?>").select2();
-	
 	
 	$("#<?php echo $this->campoSeguro('profesion')?>").attr('disabled', 'disabled');
 	$("#<?php echo $this->campoSeguro('especialidad')?>").attr('disabled', 'disabled');
@@ -278,6 +255,44 @@ $_REQUEST ['tiempo'] = time ();
 			
 		   });
 	
+			 
+			 
+			 
+      
+		 
+	$("#<?php echo $this->campoSeguro('vigencia')?>").select2();
+	$("#<?php echo $this->campoSeguro('num_solicitud')?>").select2(); 
+	$("#<?php echo $this->campoSeguro('tipo_identificacion')?>").select2();
+	$("#<?php echo $this->campoSeguro('tipo_persona')?>").select2(); 
+	$("#<?php echo $this->campoSeguro('genero')?>").select2();
+	$("#<?php echo $this->campoSeguro('nacionalidad')?>").select2(); 
+	$("#<?php echo $this->campoSeguro('genero')?>").select2();
+	$("#<?php echo $this->campoSeguro('nacionalidad')?>").select2(); 
+	$("#<?php echo $this->campoSeguro('perfil')?>").select2();
+	$("#<?php echo $this->campoSeguro('tipo_cuenta')?>").select2(); 
+	$("#<?php echo $this->campoSeguro('tipo_configuracion')?>").select2();
+	$("#<?php echo $this->campoSeguro('clase_contratista')?>").select2();
+	
+	$('#<?php echo $this->campoSeguro('clase_contrato')?>').width(300);
+	$("#<?php echo $this->campoSeguro('clase_contrato')?>").select2();
+	$("#<?php echo $this->campoSeguro('tipo_compromiso')?>").select2();
+	$("#<?php echo $this->campoSeguro('dependencia')?>").select2();
+	$("#<?php echo $this->campoSeguro('tipologia_especifica')?>").select2();
+	$("#<?php echo $this->campoSeguro('modalidad_seleccion')?>").select2();
+	$("#<?php echo $this->campoSeguro('procedimiento')?>").select2();
+	$("#<?php echo $this->campoSeguro('regimen_contratación')?>").select2();
+	$("#<?php echo $this->campoSeguro('unidad_ejecucion_tiempo')?>").select2();
+	
+	$("#<?php echo $this->campoSeguro('tipo_moneda')?>").select2();
+	$("#<?php echo $this->campoSeguro('ordenador_gasto')?>").select2();
+	
+	$("#<?php echo $this->campoSeguro('tipo_gasto')?>").select2();
+	$("#<?php echo $this->campoSeguro('origen_recursos')?>").select2();
+
+	$("#<?php echo $this->campoSeguro('origen_presupuesto')?>").select2();
+	$("#<?php echo $this->campoSeguro('tema_gasto_inversion')?>").select2();
+
+			 
 			 
 			 
 			 

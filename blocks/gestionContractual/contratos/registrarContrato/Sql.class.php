@@ -382,6 +382,44 @@ class Sql extends \Sql {
 				
 				break;
 			
+			case "Consultar_Solicitud_Particular" :
+				$cadenaSql = "SELECT DISTINCT ";
+				$cadenaSql .= " *  ";
+				$cadenaSql .= "FROM solicitud_necesidad ";
+				$cadenaSql .= "WHERE solicitud_necesidad.estado_registro= TRUE ";
+				$cadenaSql .= " AND id_sol_necesidad = '" . $variable . "' ;";
+				
+				break;
+			
+			case "Consultar_Disponibilidad" :
+				$cadenaSql = "SELECT DISTINCT ";
+				$cadenaSql .= " *  ";
+				$cadenaSql .= "FROM disponibilidad_presupuestal  ";
+				$cadenaSql .= "WHERE estado_registro=TRUE ";
+				$cadenaSql .= " AND solicitud_necesidad='" . $variable . "' ;";
+				break;
+			
+			case "Consultar_Registro_Presupuestales" :
+				$cadenaSql = "SELECT id_registro_pres, numero_registro, valor_registro,
+									disponibilidad_presupuestal, fecha_rgs_pr  ";
+				$cadenaSql .= "FROM registro_presupuestal rp  ";
+				$cadenaSql .= "JOIN disponibilidad_presupuestal dp ON dp.id_disponibilidad=rp.disponibilidad_presupuestal  ";
+				$cadenaSql .= "JOIN solicitud_necesidad sl ON sl.id_sol_necesidad=dp.solicitud_necesidad  ";
+				$cadenaSql .= "WHERE rp.estado_registro= TRUE ";
+				$cadenaSql .= " AND sl.id_sol_necesidad='" . $variable . "' ;";
+				break;
+			
+			case "Consultar_Contratista" :
+				$cadenaSql = " SELECT cns.*, ib.tipo_cuenta,ib.nombre_banco,ib.numero_cuenta ";
+				$cadenaSql .= " FROM contratista cns";
+				$cadenaSql .= " LEFT JOIN inf_bancaria ib ON ib.contratista=cns.id_contratista ";
+				$cadenaSql .= " JOIN orden_contrato oc ON oc.contratista=cns.id_contratista";
+				$cadenaSql .= " JOIN solicitud_necesidad sl ON sl.id_sol_necesidad=oc.solicitud_necesidad";
+				$cadenaSql .= " WHERE cns.estado_registro=TRUE ";
+				$cadenaSql .= " AND sl.id_sol_necesidad= '".$variable."';";
+				
+				break;
+			
 			/*
 			 *
 			 *

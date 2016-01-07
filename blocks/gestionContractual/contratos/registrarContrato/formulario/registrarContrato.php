@@ -81,6 +81,72 @@
 			unset ( $atributos );
 			{
 				
+				$cadena_sql = $this->miSql->getCadenaSql ( 'Consultar_Solicitud_Particular', $_REQUEST ['id_solicitud_necesidad'] );
+				$solicitud = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, "busqueda" );
+				$solicitud = $solicitud [0];
+				
+				var_dump ( $solicitud );
+				
+				$arregloSolicitud = array (
+						
+						"objeto_contrato" => $solicitud ['objeto_contrato'],
+						"dependencia" => $solicitud ['dependencia_destino'],
+						"ordenador_gasto" => $solicitud ['ordenador_gasto'],
+						"valor_contrato" => $solicitud ['valor_contratacion'],
+						"clase_contrato" => $solicitud ['tipo_contrato'] 
+				);
+				$_REQUEST = array_merge ( $_REQUEST, $arregloSolicitud );
+				
+				$cadena_sql = $this->miSql->getCadenaSql ( 'Consultar_Disponibilidad', $_REQUEST ['id_solicitud_necesidad'] );
+				$disponibilidad = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, "busqueda" );
+				
+				$cadena_sql = $this->miSql->getCadenaSql ( 'Consultar_Registro_Presupuestales', $_REQUEST ['id_solicitud_necesidad'] );
+				$registrosP = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, "busqueda" );
+				var_dump ( $registrosP );
+				
+				if ($registrosP) {
+					
+					$arregloRegistro = array (
+							
+							"fecha_inicio_poliza" => $registrosP [0] ['fecha_rgs_pr'] 
+					)
+					;
+					$_REQUEST = array_merge ( $_REQUEST, $arregloRegistro );
+				}
+				
+				
+				$cadena_sql = $this->miSql->getCadenaSql ( 'Consultar_Contratista', $_REQUEST ['id_solicitud_necesidad'] );
+				$contratista = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, "busqueda" );
+				var_dump($contratista);
+				
+				if ($contratista) {
+					$contratista=$contratista[0];
+					$arregloContratista = array (
+								
+							"tipo_identificacion" => $contratista ['tipo_documento'],
+							"numero_identificacion" => $contratista ['identificacion'],
+							"digito_verificacion" => $contratista ['codigo_verificacion'],
+							"tipo_persona" => $contratista ['tipo_naturaleza'],
+							"primer_nombre" => $contratista ['primer_nombre'],
+							"segundo_nombre" => $contratista ['segundo_nombre'],
+							"primer_apellido" => $contratista ['primer_apellido'],
+							"segundo_apellido" => $contratista ['segundo_apellido'],
+							"genero" => $contratista ['sexo'],
+							"direccion" => $contratista ['direccion'],
+							"telefono" => $contratista ['telefono'],
+							"correo" => $contratista ['correo'],
+							"tipo_cuenta" => $contratista ['tipo_cuenta'],
+							"numero_cuenta" => $contratista ['numero_cuenta'],
+							"entidad_bancaria" => $contratista ['nombre_banco'],
+							
+							
+					)
+					;
+					$_REQUEST = array_merge ( $_REQUEST, $arregloContratista );
+				}
+				
+				
+				
 				// ------------------Division para los botones-------------------------
 				$atributos ["id"] = "ventanaA";
 				echo $this->miFormulario->division ( "inicio", $atributos );
@@ -1687,7 +1753,7 @@
 							if (isset ( $_REQUEST [$esteCampo] )) {
 								$atributos ['seleccion'] = $_REQUEST [$esteCampo];
 							} else {
-								$atributos ['seleccion'] = - 1;
+								$atributos ['seleccion'] = 139;
 							}
 							
 							$matrizItems = array (
@@ -1747,28 +1813,37 @@
 						$atributos ['leyenda'] = "Disponibilidades Presupuestales Asociadas";
 						echo $this->miFormulario->agrupacion ( 'inicio', $atributos );
 						{
-							
-							echo "<center><table id='tablaDisponibilidades'>";
-							
-							echo "<thead>
+							if ($disponibilidad) {
+								echo "<table id='tablaDisponibilidades'>";
+								
+								echo "<thead>
                              <tr>
                                 <th>Número</th>
                     			<th>Fecha </th>
             					<th>Valor($)</th>
-                                <th>Codigo Rubro</th>
-                                 <th>Nombre Rubro</th>
+                                <th>Codigo - Nombre Rubro</th>
+                                 
                              </tr>
 				            </thead>
-            				<tbody>
-							<tr>
-                                <th>22123</th>
-                    			<th>2016-12-12</th>
-            					<th>$ 12.000.000</th>
-                                <th>11121212-1</th>
-                                 <th>Oficina Asesora de Sistemas</th>
-                             </tr>	
-							</tbody>
-							</table></center>";
+            				<tbody>";
+								
+								foreach ( $disponibilidad as $valor ) {
+									$mostrarHtml = "<tr>
+							                    <td><center>" . $valor ['numero_disp'] . "</center></td>
+							                    <td><center>" . $valor ['fecha_disp'] . "</center></td>
+							                    <td><center>$" . number_format ( $valor ['valor_disp'], 2, ",", "." ) . "</center></td>
+							                   	<td><center>" . $solicitud ['rubro'] . "</center></td>
+							                    </tr>";
+									echo $mostrarHtml;
+									unset ( $mostrarHtml );
+									unset ( $variable );
+								}
+								
+								echo "</tbody>
+									</table>";
+							} else {
+								echo "<center>No Existen Disponibilidades Asociadas</center>";
+							}
 						}
 						echo $this->miFormulario->agrupacion ( 'fin' );
 						
@@ -1777,28 +1852,37 @@
 						$atributos ['leyenda'] = "Registros Presupuestales Asociados";
 						echo $this->miFormulario->agrupacion ( 'inicio', $atributos );
 						{
-							
-							echo "<center><table id='tablaRegistros'>";
-							
-							echo "<thead>
+							if ($registrosP) {
+								echo "<center><table id='tablaRegistros'>";
+								
+								echo "<thead>
                              <tr>
                                 <th>Número</th>
                     			<th>Fecha</th>
             					<th>Valor($)</th>
-                                <th>Codigo Rubro</th>
-                                 <th>Nombre Rubro</th>
-                             </tr>
+                                <th>Codigo - Nombre Rubro</th>
+                              </tr>
 				            </thead>
-            				<tbody>
-							<tr>
-                                <th>22123</th>
-                    			<th>2016-12-12</th>
-            					<th>$ 12.000.000</th>
-                                <th>11121212-1</th>
-                                 <th>Oficina Asesora de Sistemas</th>
-                             </tr>
-							</tbody>
-							</table></center>";
+            				<tbody>";
+								
+								foreach ( $registrosP as $valor ) {
+									$mostrarHtml = "<tr>
+							                    <td><center>" . $valor ['numero_registro'] . "</center></td>
+							                    <td><center>" . $valor ['fecha_rgs_pr'] . "</center></td>
+							                    <td><center>$" . number_format ( $valor ['valor_registro'], 2, ",", "." ) . "</center></td>
+							                   	<td><center>" . $solicitud ['rubro'] . "</center></td>
+							                    </tr>";
+									echo $mostrarHtml;
+									unset ( $mostrarHtml );
+									unset ( $variable );
+								}
+								
+								echo "</tbody>
+									</table>";
+							} else {
+								
+								echo "<center>No Existen Registros Presupuestales Asociads</center>";
+							}
 						}
 						echo $this->miFormulario->agrupacion ( 'fin' );
 						unset ( $atributos );
@@ -2300,8 +2384,6 @@
 						echo $this->miFormulario->division ( "fin" );
 						unset ( $atributos );
 						
-						
-						
 						$esteCampo = 'fecha_limite';
 						$atributos ['id'] = $esteCampo;
 						$atributos ['nombre'] = $esteCampo;
@@ -2315,7 +2397,7 @@
 						$atributos ['tabIndex'] = $tab;
 						$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
 						$atributos ['validar'] = 'required';
-							
+						
 						if (isset ( $_REQUEST [$esteCampo] )) {
 							$atributos ['valor'] = $_REQUEST [$esteCampo];
 						} else {
@@ -2327,12 +2409,11 @@
 						$atributos ['maximoTamanno'] = '';
 						$atributos ['anchoEtiqueta'] = 213;
 						$tab ++;
-							
+						
 						// Aplica atributos globales al control
 						$atributos = array_merge ( $atributos, $atributosGlobales );
 						echo $this->miFormulario->campoCuadroTexto ( $atributos );
 						unset ( $atributos );
-						
 						
 						// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
 						$esteCampo = 'observaciones_interventoria';
@@ -2365,8 +2446,6 @@
 						$atributos = array_merge ( $atributos, $atributosGlobales );
 						echo $this->miFormulario->campoTextArea ( $atributos );
 						unset ( $atributos );
-						
-						
 					}
 					
 					echo "</section>";

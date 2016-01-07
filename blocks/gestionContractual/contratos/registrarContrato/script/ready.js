@@ -3,11 +3,13 @@
  } );
  
  $('#tablaDisponibilidades').dataTable( {
-	 "sPaginationType": "full_numbers"
+	 paging: false,
+	 "bLengthChange": false,
 	  } );
  
  $('#tablaRegistros').dataTable( {
-	 "sPaginationType": "full_numbers"
+	 paging: false,
+	 "bLengthChange": false,
 	  } );
  
 			
@@ -18,8 +20,8 @@
 			    enablePagination: true,
 			    transitionEffect: "slideLeft",
 			    onStepChanging: function (event, currentIndex, newIndex){
-			    
-			    	return true;
+
+	        		return true;
 			    },
 			    onFinished: function (event, currentIndex)
 			    {

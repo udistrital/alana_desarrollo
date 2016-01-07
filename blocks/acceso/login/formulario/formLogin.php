@@ -28,6 +28,7 @@ class Formulario {
 		$atributosGlobales ['campoSeguro'] = 'false';
 		$_REQUEST ['tiempo'] = time ();
 		
+		
 		// -------------------------------------------------------------------------------------------------
 		
 		?>
@@ -82,7 +83,6 @@ class Formulario {
 		$_REQUEST ['tiempo'] = time ();
 		
 		// -------------------------------------------------------------------------------------------------
-	
 		
 		$atributos ["id"] = "botones";
 		$atributos ["estilo"] = "marcoBotones";
@@ -183,7 +183,7 @@ class Formulario {
 		$valorCodificado .= "&bloque=" . $esteBloque ['nombre'];
 		$valorCodificado .= "&bloqueGrupo=" . $esteBloque ["grupo"];
 		$valorCodificado .= "&opcion=validarLogin";
-		$valorCodificado .= "&tiempo=".$_REQUEST['tiempo'];
+		$valorCodificado .= "&tiempo=" . $_REQUEST ['tiempo'];
 		/**
 		 * SARA permite que los nombres de los campos sean dinámicos.
 		 * Para ello utiliza la hora en que es creado el formulario para
@@ -226,10 +226,10 @@ class Formulario {
 <section>
 	<div id="fondo_texto">
 		<div id="texto">
-			<h3>SISTEMA  DE GESTIÓN</h3>
+			<h3>SISTEMA DE GESTIÓN</h3>
 			<h3>CONTRACTUAL Y COMPRAS</h3>
 			<BR>
-			<h2>ALANA</h2>
+			<h2>ARGO</h2>
 		</div>
 	</div>
 </section>
@@ -263,20 +263,22 @@ class Formulario {
 		$mensaje = $this->miConfigurador->getVariableConfiguracion ( 'mostrarMensaje' );
 		$this->miConfigurador->setVariableConfiguracion ( 'mostrarMensaje', null );
 		
-		if (isset ( $_REQUEST ['error'] )) {
-			if ($_REQUEST ['error'] == 'formularioExpirado') {
-				$atributos ["estilo"] = 'information';
-			} else {
-				$atributos ["estilo"] = 'error';
-			}
+		if (isset ( $_REQUEST ['error'] )==true || isset ( $_REQUEST ['mostrarMensaje'] )==true) {
 			
+			if (isset ( $_REQUEST ['mostrarMensaje'] ) == true) {
+				$mensaje = $_REQUEST ['mostrarMensaje'];
+				$atributos ["estilo"] = 'information';
+			} else if (isset ( $_REQUEST ['error'] ) == true) {
+				$atributos ["estilo"] = 'error';
+				$mensaje = $_REQUEST ['error'];
+			}
 			// -------------Control texto-----------------------
 			$esteCampo = 'divMensaje';
 			$atributos ['id'] = $esteCampo;
 			$atributos ["tamanno"] = '';
 			$atributos ["etiqueta"] = '';
 			$atributos ["columnas"] = ''; // El control ocupa 47% del tamaño del formulario
-			$atributos ['mensaje'] = $this->lenguaje->getCadena ( $_REQUEST ['error'] );
+			$atributos ['mensaje'] = $this->lenguaje->getCadena ( $mensaje );
 			echo $this->miFormulario->campoMensaje ( $atributos );
 			unset ( $atributos );
 		}

@@ -410,22 +410,40 @@ class Sql extends \Sql {
 				break;
 			
 			case "Consultar_Contratista" :
-				$cadenaSql = " SELECT cns.*, ib.tipo_cuenta,ib.nombre_banco,ib.numero_cuenta,ib.id_inf_bancaria  ";
+				$cadenaSql = " SELECT cns.*, ib.tipo_cuenta,ib.nombre_banco,ib.numero_cuenta,ib.id_inf_bancaria,oc.id_orden_contr  ";
 				$cadenaSql .= " FROM contratista cns";
 				$cadenaSql .= " LEFT JOIN inf_bancaria ib ON ib.contratista=cns.id_contratista ";
 				$cadenaSql .= " JOIN orden_contrato oc ON oc.contratista=cns.id_contratista";
 				$cadenaSql .= " JOIN solicitud_necesidad sl ON sl.id_sol_necesidad=oc.solicitud_necesidad";
 				$cadenaSql .= " WHERE cns.estado_registro=TRUE ";
-				$cadenaSql .= " AND sl.id_sol_necesidad= '".$variable."';";
+				$cadenaSql .= " AND sl.id_sol_necesidad= '" . $variable . "';";
 				
 				break;
 			
+			case "actualizar_contratista" :
+				$cadenaSql = " UPDATE contratista";
+				$cadenaSql .= " SET primer_nombre='" . $variable ['primer_nombre'] . "',";
+				$cadenaSql .= " segundo_nombre='" . $variable ['segundo_nombre'] . "', ";
+				$cadenaSql .= " primer_apellido='" . $variable ['primer_apellido'] . "',";
+				$cadenaSql .= " direccion='" . $variable ['direccion'] . "', ";
+				$cadenaSql .= " telefono='" . $variable ['telefono'] . "', ";
+				$cadenaSql .= " digito_verificacion='" . $variable ['digito_verificacion'] . "', ";
+				$cadenaSql .= " correo='" . $variable ['correo'] . "', ";
+				$cadenaSql .= " identificacion='" . $variable ['numero_identificacion'] . "', ";
+				$cadenaSql .= " genero='" . $variable ['genero'] . "', ";
+				$cadenaSql .= " tipo_naturaleza='" . $variable ['tipo_persona'] . "', ";
+				$cadenaSql .= " tipo_documento='" . $variable ['tipo_identificacion'] . "', ";
+				$cadenaSql .= " segundo_apellido='" . $variable ['segundo_apellido'] . "',";
+				$cadenaSql .= " nacionalidad='" . $variable ['nacionalidad'] . "', ";
+				$cadenaSql .= " perfil='" . $variable ['perfil'] . "', ";
+				$cadenaSql .= " profesion='" . $variable ['profesion'] . "',";
+				$cadenaSql .= " especialidad='" . $variable ['especialidad'] . "'";
+				$cadenaSql .= " WHERE id_contratista='" . $variable ['id_contratista'] . "';";
+				break;
 			/*
 			 *
 			 *
 			 */
-			
-		
 		}
 		return $cadenaSql;
 	}

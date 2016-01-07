@@ -119,19 +119,22 @@
 							
 							"tipo_identificacion" => $contratista ['tipo_documento'],
 							"numero_identificacion" => $contratista ['identificacion'],
-							"digito_verificacion" => $contratista ['codigo_verificacion'],
+							"digito_verificacion" => $contratista ['digito_verificacion'],
 							"tipo_persona" => $contratista ['tipo_naturaleza'],
 							"primer_nombre" => $contratista ['primer_nombre'],
 							"segundo_nombre" => $contratista ['segundo_nombre'],
 							"primer_apellido" => $contratista ['primer_apellido'],
 							"segundo_apellido" => $contratista ['segundo_apellido'],
-							"genero" => $contratista ['sexo'],
+							"genero" => $contratista ['genero'],
 							"direccion" => $contratista ['direccion'],
 							"telefono" => $contratista ['telefono'],
 							"correo" => $contratista ['correo'],
 							"tipo_cuenta" => $contratista ['tipo_cuenta'],
 							"numero_cuenta" => $contratista ['numero_cuenta'],
-							"entidad_bancaria" => $contratista ['nombre_banco'] 
+							"entidad_bancaria" => $contratista ['nombre_banco'], 
+							"perfil" => $contratista ['perfil'],
+							"profesion" => $contratista ['profesion'],
+							"especialidad" => $contratista ['especialidad'],
 					);
 					$_REQUEST = array_merge ( $_REQUEST, $arregloContratista );
 				}
@@ -727,15 +730,16 @@
 							$atributos ['dobleLinea'] = 0;
 							$atributos ['tabIndex'] = $tab;
 							$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-							$atributos ['validar'] = 'required';
+							$atributos ['validar'] = '';
 							
 							if (isset ( $_REQUEST [$esteCampo] )) {
 								$atributos ['valor'] = $_REQUEST [$esteCampo];
+								$atributos ['deshabilitado'] = false;
 							} else {
 								$atributos ['valor'] = '';
+								$atributos ['deshabilitado'] = true;
 							}
 							$atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
-							$atributos ['deshabilitado'] = false;
 							$atributos ['tamanno'] = 20;
 							$atributos ['maximoTamanno'] = '';
 							$atributos ['anchoEtiqueta'] = 213;
@@ -758,15 +762,16 @@
 							$atributos ['dobleLinea'] = 0;
 							$atributos ['tabIndex'] = $tab;
 							$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-							$atributos ['validar'] = 'required';
+							$atributos ['validar'] = '  ';
 							
 							if (isset ( $_REQUEST [$esteCampo] )) {
 								$atributos ['valor'] = $_REQUEST [$esteCampo];
+								$atributos ['deshabilitado'] = false;
 							} else {
 								$atributos ['valor'] = '';
+								$atributos ['deshabilitado'] = true;
 							}
 							$atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
-							$atributos ['deshabilitado'] = false;
 							$atributos ['tamanno'] = 20;
 							$atributos ['maximoTamanno'] = '';
 							$atributos ['anchoEtiqueta'] = 213;
@@ -2487,6 +2492,9 @@
 			if ($contratista) {
 				
 				$valorCodificado .= "&id_contratista=" . $contratista ['id_contratista'];
+				$valorCodificado .= "&id_inf_bancaria=" . $contratista ['id_inf_bancaria'];
+				$valorCodificado .= "&id_orden_contrato=" . $contratista ['id_orden_contr'];
+				
 			}
 			
 			/**

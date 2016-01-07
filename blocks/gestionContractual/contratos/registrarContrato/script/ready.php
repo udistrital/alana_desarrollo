@@ -3,8 +3,7 @@ $_REQUEST ['tiempo'] = time ();
 ?>
 
 	
-	$("#<?php echo $this->campoSeguro('profesion')?>").attr('disabled', 'disabled');
-	$("#<?php echo $this->campoSeguro('especialidad')?>").attr('disabled', 'disabled');
+
 	 
 
 
@@ -15,49 +14,71 @@ $_REQUEST ['tiempo'] = time ();
     	
 				if($("#<?php echo $this->campoSeguro('perfil')?>").val()!=''){
 		
-		
-		
+		$("#<?php echo $this->campoSeguro('profesion')?>").val('');
+		$("#<?php echo $this->campoSeguro('especialidad')?>").val('');
+				
 		 		 switch($("#<?php echo $this->campoSeguro('perfil')?>").val())
 			            {
 			                           
 			                case '221':
 			                    
+			                    $("#<?php echo $this->campoSeguro('profesion')?>").prop("readonly",true);
 			                   
-			                    $("#<?php echo $this->campoSeguro('profesion')?>").attr('disabled', 'disabled');
-			                                       
+			                    
+			                    $("#<?php echo $this->campoSeguro('profesion')?>").removeClass( " validate[required] " );
 			
 			                break;
 			     
 			         		case '225':
 			                    
 			                   
-			                    $("#<?php echo $this->campoSeguro('profesion')?>").attr('disabled', 'disabled');
-			                                       
+			                   $("#<?php echo $this->campoSeguro('profesion')?>").prop("readonly",true);
+			                    
+			                   $("#<?php echo $this->campoSeguro('profesion')?>").removeClass( " validate[required] " );                    
 			
 			                break;
 			     			
 			     			case '223':
 			                    
 			                   
-			                    $("#<?php echo $this->campoSeguro('especialidad')?>").removeAttr('disabled');
-			                    $("#<?php echo $this->campoSeguro('profesion')?>").removeAttr('disabled');                   
-			
+			                   $("#<?php echo $this->campoSeguro('profesion')?>").prop("readonly",false);
+			                   
+			                   $("#<?php echo $this->campoSeguro('profesion')?>").addClass( " validate[required] " );
+     		                   
+     		                   
+     		                   $("#<?php echo $this->campoSeguro('especialidad')?>").prop("readonly",false);
+     		                   
+     		                   
+     		                   $("#<?php echo $this->campoSeguro('especialidad')?>").addClass( " validate[required] " );
+     		                   
 			                break;
 			   
 			                default:
 			                
-			               		$("#<?php echo $this->campoSeguro('profesion')?>").removeAttr('disabled');
-			                    $("#<?php echo $this->campoSeguro('especialidad')?>").attr('disabled', 'disabled');
-			                   
+			               		
+		               		   $("#<?php echo $this->campoSeguro('profesion')?>").prop("readonly",false);
+		               		   
+		               		   $("#<?php echo $this->campoSeguro('profesion')?>").addClass( " validate[required] " );
+		               		   
+		               		   
+		               		   
+		               		   
+     		                   $("#<?php echo $this->campoSeguro('especialidad')?>").prop("readonly",true);
+     		                   
+     		                   $("#<?php echo $this->campoSeguro('especialidad')?>").removeClass( " validate[required] " );
+     		                   
 			                   break;
 			                
 			                
 			             }
 				}else{
-						                   
-				      $("#<?php echo $this->campoSeguro('profesion')?>").attr('disabled', 'disabled');
-				      $("#<?php echo $this->campoSeguro('especialidad')?>").attr('disabled', 'disabled');
-			                                       
+					  
+					  $("#<?php echo $this->campoSeguro('profesion')?>").prop("readonly",true);
+     		  		  $("#<?php echo $this->campoSeguro('especialidad')?>").prop("readonly",true);
+                                       	       
+			        $("#<?php echo $this->campoSeguro('profesion')?>").removeClass( " validate[required] " );
+                   $("#<?php echo $this->campoSeguro('especialidad')?>").removeClass( " validate[required] " );
+				                                   
 			
 				
 				}

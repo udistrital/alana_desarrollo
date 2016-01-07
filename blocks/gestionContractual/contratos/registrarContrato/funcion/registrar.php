@@ -188,12 +188,12 @@ class RegistradorContrato {
 			
 		} else {
 			
-			redireccion::redireccionar("noInserto");
+			redireccion::redireccionar("ErrorRegistro");
 			exit;
 			
 		}
 		
-		exit ();
+		
 	}
 }
 

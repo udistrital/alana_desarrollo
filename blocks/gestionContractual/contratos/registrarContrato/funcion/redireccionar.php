@@ -10,7 +10,7 @@ class redireccion {
 	public static function redireccionar($opcion, $valor = "", $valor1 = "") {
 		$miConfigurador = \Configurador::singleton ();
 		$miPaginaActual = $miConfigurador->getVariableConfiguracion ( "pagina" );
-		
+
 		
 		
 		switch ($opcion) {
@@ -27,63 +27,16 @@ class redireccion {
 				
 				break;
 			
-			case "noInserto" :
+			case "ErrorRegistro" :
 				$variable = "pagina=" . $miPaginaActual;
 				$variable .= "&bloque=" . $_REQUEST ['bloque'];
 				$variable .= "&bloqueGrupo=" . $_REQUEST ["bloqueGrupo"];
 				$variable .= "&opcion=mensaje";
-				$variable .= "&opcion=noInserto";
+				$variable .= "&mensaje=noInserto";
 				$variable .= "&usuario=" . $_REQUEST ['usuario'];
-				
 				break;
 			
-			case "inserto_cargue_masivo" :
-				
-				$variable = "pagina=" . $miPaginaActual;
-				$variable .= "&opcion=mensaje";
-				$variable .= "&mensaje=confirmaMasivo";
-				$variable .= "&numero_acta=" . $valor [0];
-				$variable .= "&usuario=" . $valor [2];
-				break;
-			
-			case "noFormatoImagen" :
-				
-				$variable = "pagina=" . $miPaginaActual;
-				$variable .= "&opcion=mensaje";
-				$variable .= "&mensaje=noFormatoImagen";
-				break;
-			
-			case "noExtension" :
-				
-				$variable = "pagina=" . $miPaginaActual;
-				$variable .= "&opcion=mensaje";
-				$variable .= "&mensaje=noExtension";
-				break;
-			
-			case "noArchivoCarga" :
-				
-				$variable = "pagina=" . $miPaginaActual;
-				$variable .= "&opcion=mensaje";
-				$variable .= "&mensaje=noArchivoCarga";
-				$variable .= "&usuario=" . $valor;
-				break;
-			
-			case "noCargarElemento" :
-				
-				$variable = "pagina=" . $miPaginaActual;
-				$variable .= "&opcion=mensaje";
-				$variable .= "&mensaje=noElemento";
-				
-				break;
-			
-			case "notextos" :
-				$variable = "pagina=" . $miPaginaActual;
-				$variable .= "&opcion=mensaje";
-				$variable .= "&mensaje=otros";
-				$variable .= "&errores=notextos";
-				
-				break;
-			
+
 			case "Salir" :
 				
 				$variable = "pagina=indexAlmacen";
@@ -98,18 +51,14 @@ class redireccion {
 				$variable .= "&datosGenerales=" . $valor1;
 				break;
 			
-			case "datosVacios" :
-				
-				$variable = "pagina=" . $miPaginaActual;
-				$variable .= "&opcion=mensaje";
-				$variable .= "&mensaje=datosVacios";
-				$variable .= "&usuario=" . $valor [1];
-				break;
+			
 		}
 		
 		foreach ( $_REQUEST as $clave => $valor ) {
 			unset ( $_REQUEST [$clave] );
 		}
+		
+		
 		
 		$url = $miConfigurador->configuracion ["host"] . $miConfigurador->configuracion ["site"] . "/index.php?";
 		$enlace = $miConfigurador->configuracion ['enlace'];
@@ -118,15 +67,7 @@ class redireccion {
 		$redireccion = $url . $_REQUEST [$enlace];
 		
 		echo "<script>location.replace('" . $redireccion . "')</script>";
-		
-		// $enlace =$miConfigurador->getVariableConfiguracion("enlace");
-		// $variable = $miConfigurador->fabricaConexiones->crypto->codificar($variable);
-		// // echo $enlace;
-		// // // echo $variable;
-		// // exit;
-		// $_REQUEST[$enlace] = $variable;
-		// $_REQUEST["recargar"] = true;
-		// return true;
+
 	}
 }
 

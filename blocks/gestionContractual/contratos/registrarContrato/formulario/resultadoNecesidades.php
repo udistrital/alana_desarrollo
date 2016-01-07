@@ -199,7 +199,7 @@ class registrarForm {
 			// echo $this->miFormulario->marcoAgrupacion("fin");
 		} else {
 			
-			$mensaje = "No Se Encontraron<br>Actas de Recibido";
+			$mensaje = "No Se Encontraron<br>Solicitudes de Necesidades";
 			
 			// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
 			$esteCampo = 'mensajeRegistro';

@@ -82,7 +82,7 @@ var _CaptionTransitions = [];
             function ScaleSlider() {
                 var bodyWidth = document.body.clientWidth;
                 if (bodyWidth)
-                    jssor_slider1.$ScaleWidth(Math.min(bodyWidth,1270));
+                    jssor_slider1.$ScaleWidth(Math.min(bodyWidth,$("#espacio_trabajo").width() -50));
                 else
                     window.setTimeout(ScaleSlider, 30);
             }

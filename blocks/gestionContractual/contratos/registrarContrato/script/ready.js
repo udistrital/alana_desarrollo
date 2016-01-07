@@ -20,8 +20,14 @@
 			    enablePagination: true,
 			    transitionEffect: "slideLeft",
 			    onStepChanging: function (event, currentIndex, newIndex){
+	                $resultado = $("#registrarContrato").validationEngine("validate");
 
-	        		return true;
+	        		if ($resultado) {
+
+	        			return true;
+	        		}
+	        		return false;
+	        		;
 			    },
 			    onFinished: function (event, currentIndex)
 			    {

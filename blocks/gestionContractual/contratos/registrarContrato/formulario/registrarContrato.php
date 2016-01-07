@@ -85,7 +85,7 @@
 				$solicitud = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, "busqueda" );
 				$solicitud = $solicitud [0];
 				
-				var_dump ( $solicitud );
+				
 				
 				$arregloSolicitud = array (
 						
@@ -102,7 +102,7 @@
 				
 				$cadena_sql = $this->miSql->getCadenaSql ( 'Consultar_Registro_Presupuestales', $_REQUEST ['id_solicitud_necesidad'] );
 				$registrosP = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, "busqueda" );
-				var_dump ( $registrosP );
+				
 				
 				if ($registrosP) {
 					
@@ -117,7 +117,7 @@
 				
 				$cadena_sql = $this->miSql->getCadenaSql ( 'Consultar_Contratista', $_REQUEST ['id_solicitud_necesidad'] );
 				$contratista = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, "busqueda" );
-				var_dump($contratista);
+				
 				
 				if ($contratista) {
 					$contratista=$contratista[0];
@@ -2290,7 +2290,7 @@
 							$atributos ['dobleLinea'] = 0;
 							$atributos ['tabIndex'] = $tab;
 							$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-							$atributos ['validar'] = 'required,custom[onlyNumberSP]';
+							$atributos ['validar'] = 'required,custom[onlyNumberSp]';
 							
 							if (isset ( $_REQUEST [$esteCampo] )) {
 								$atributos ['valor'] = $_REQUEST [$esteCampo];

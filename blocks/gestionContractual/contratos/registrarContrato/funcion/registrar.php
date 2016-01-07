@@ -24,43 +24,112 @@ class RegistradorContrato {
 		$this->miFuncion = $funcion;
 	}
 	function procesarFormulario() {
-		var_dump ( $_REQUEST );
 		$conexion = "contractual";
 		$esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB ( $conexion );
 		
-		
-		
-		$arreglo_contratista = array (
+		if (isset ( $_REQUEST ['id_contratista'] ) == true && $_REQUEST ['id_contratista'] != '') {
+			
+			$arreglo_contratista = array (
+					
+					"tipo_identificacion" => $_REQUEST ['tipo_identificacion'],
+					"numero_identificacion" => $_REQUEST ['numero_identificacion'],
+					"digito_verificacion" => $_REQUEST ['digito_verificacion'],
+					"tipo_persona" => $_REQUEST ['tipo_persona'],
+					"primer_nombre" => $_REQUEST ['primer_nombre'],
+					"segundo_nombre" => $_REQUEST ['segundo_nombre'],
+					"primer_apellido" => $_REQUEST ['primer_apellido'],
+					"segundo_apellido" => $_REQUEST ['segundo_apellido'],
+					"genero" => $_REQUEST ['genero'],
+					"nacionalidad" => $_REQUEST ['nacionalidad'],
+					"direccion" => $_REQUEST ['direccion'],
+					"telefono" => $_REQUEST ['telefono'],
+					"correo" => $_REQUEST ['correo'],
+					"perfil" => $_REQUEST ['perfil'],
+					"profesion" => $_REQUEST ['profesion'],
+					"especialidad" => $_REQUEST ['especialidad'],
+					"id_contratista" => $_REQUEST ['id_contratista'],
+					"fecha_registro" => date ( 'Y-m-d' ) 
+			);
+			
+			$cadenaSql = $this->miSql->getCadenaSql ( 'actualizar_contratista', $arreglo_contratista );
+			
+			$contratista = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso", $arreglo_contratista, 'actualizar_contratista' );
+			
+			if ($_REQUEST ['id_inf_bancaria'] != '') {
 				
-				"tipo_identificacion" => $_REQUEST ['tipo_identificacion'],
-				"numero_identificacion" => $_REQUEST ['numero_identificacion'],
-				"digito_verificacion" => $_REQUEST ['digito_verificacion'],
-				"tipo_persona" => $_REQUEST ['tipo_persona'],
-				"primer_nombre" => $_REQUEST ['primer_nombre'],
-				"segundo_nombre" => $_REQUEST ['segundo_nombre'],
-				"primer_apellido" => $_REQUEST ['primer_apellido'],
-				"segundo_apellido" => $_REQUEST ['segundo_apellido'],
-				"genero" => $_REQUEST ['genero'],
-				"nacionalidad" => $_REQUEST ['nacionalidad'],
-				"direccion" => $_REQUEST ['direccion'],
-				"telefono" => $_REQUEST ['telefono'],
-				"correo" => $_REQUEST ['correo'],
-				"perfil" => $_REQUEST ['perfil'],
-				"profesion" => $_REQUEST ['profesion'],
-				"especialidad" => $_REQUEST ['especialidad'],
-				"id_contratista" => $_REQUEST ['id_contratista']
-		);
-		
-		$arreglo_info_bancaria = array (
+				$arreglo_info_bancaria = array (
+						
+						"tipo_cuenta" => $_REQUEST ['tipo_cuenta'],
+						"numero_cuenta" => $_REQUEST ['numero_cuenta'],
+						"entidad_bancaria" => $_REQUEST ['entidad_bancaria'],
+						"id_info_bancaria" => $_REQUEST ['id_inf_bancaria'] 
+				);
 				
-				"tipo_cuenta" => $_REQUEST ['tipo_cuenta'],
-				"numero_cuenta" => $_REQUEST ['numero_cuenta'],
-				"entidad_bancaria" => $_REQUEST ['entidad_bancaria'] 
-		);
+				$cadenaSql = $this->miSql->getCadenaSql ( 'actualizar_informacion_bancaria', $arreglo_info_bancaria );
+				
+				$inf_bancaria = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda", $arreglo_info_bancaria, 'actualizar_informacion_bancaria' );
+			} else {
+				
+				$arreglo_info_bancaria = array (
+						
+						"tipo_cuenta" => $_REQUEST ['tipo_cuenta'],
+						"numero_cuenta" => $_REQUEST ['numero_cuenta'],
+						"entidad_bancaria" => $_REQUEST ['entidad_bancaria'],
+						"id_contratista" => $_REQUEST ['id_contratista'],
+						"fecha_registro" => date ( 'Y-m-d' ) 
+				);
+				
+				$cadenaSql = $this->miSql->getCadenaSql ( 'registrar_informacion_bancaria', $arreglo_info_bancaria );
+				$inf_bancaria = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso", $arreglo_info_bancaria, 'registrar_informacion_bancaria' );
+			}
+			
+			$id_contratista = $_REQUEST ['id_contratista'];
+		} else {
+			
+			$arreglo_contratista = array (
+					
+					"tipo_identificacion" => $_REQUEST ['tipo_identificacion'],
+					"numero_identificacion" => $_REQUEST ['numero_identificacion'],
+					"digito_verificacion" => $_REQUEST ['digito_verificacion'],
+					"tipo_persona" => $_REQUEST ['tipo_persona'],
+					"primer_nombre" => $_REQUEST ['primer_nombre'],
+					"segundo_nombre" => $_REQUEST ['segundo_nombre'],
+					"primer_apellido" => $_REQUEST ['primer_apellido'],
+					"segundo_apellido" => $_REQUEST ['segundo_apellido'],
+					"genero" => $_REQUEST ['genero'],
+					"nacionalidad" => $_REQUEST ['nacionalidad'],
+					"direccion" => $_REQUEST ['direccion'],
+					"telefono" => $_REQUEST ['telefono'],
+					"correo" => $_REQUEST ['correo'],
+					"perfil" => $_REQUEST ['perfil'],
+					"profesion" => $_REQUEST ['profesion'],
+					"especialidad" => $_REQUEST ['especialidad'],
+					"fecha_registro" => date ( 'Y-m-d' ) 
+			);
+			
+			$cadenaSql = $this->miSql->getCadenaSql ( 'registrar_contratista', $arreglo_contratista );
+			
+			$contratista = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda", $arreglo_contratista, 'registrar_contratista' );
+			
+			$arreglo_info_bancaria = array (
+					
+					"tipo_cuenta" => $_REQUEST ['tipo_cuenta'],
+					"numero_cuenta" => $_REQUEST ['numero_cuenta'],
+					"entidad_bancaria" => $_REQUEST ['entidad_bancaria'],
+					"id_contratista" => $contratista [0] [0],
+					"fecha_registro" => date ( 'Y-m-d' ) 
+			);
+			
+			$cadenaSql = $this->miSql->getCadenaSql ( 'registrar_informacion_bancaria', $arreglo_info_bancaria );
+			
+			$inf_bancaria = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso", $arreglo_info_bancaria, 'registrar_informacion_bancaria' );
+			
+			$id_contratista = $contratista [0] [0];
+		}
 		
 		$arreglo_contrato = array (
 				
-				"vigencia" => date('Y'),
+				"vigencia" => date ( 'Y' ),
 				"numero_contrato" => $_REQUEST ['numero_contrato'],
 				"tipo_configuracion" => $_REQUEST ['tipo_configuracion'],
 				"clase_contratista" => $_REQUEST ['clase_contratista'],
@@ -100,26 +169,31 @@ class RegistradorContrato {
 				"fecha_suscrip_super" => $_REQUEST ['fecha_suscrip_super'],
 				"fecha_limite" => $_REQUEST ['fecha_limite'],
 				"observaciones_interventoria" => $_REQUEST ['observaciones_interventoria'],
-				
+				"fecha_registro" => date ( 'Y-m-d' ),
+				"contratista" => $id_contratista,
+				"solicitud_necesidad" => $_REQUEST ['id_solicitud_necesidad'],
+				"orden_contrato" => $_REQUEST ['id_orden_contrato'] 
 		);
 		
-		if (isset ( $_REQUEST ['id_contratista'] ) == true && $_REQUEST ['id_contratista'] != '') {
+		
+		$cadenaSql = $this->miSql->getCadenaSql ( 'registrar_contrato', $arreglo_contrato );
+		
+		$contrato = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso", $arreglo_contrato, 'registrar_contrato' );
+		
+		
+		if ($contrato) {
 			
-			$cadenaSql = $this->miSql->getCadenaSql ( 'actualizar_contratista', $arreglo_contratista );
-			$contratista = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso", $arreglo_contratista, 'actualizar_contratista' );
-			
-			
-			
+			redireccion::redireccionar("Inserto",$arreglo_contrato);
+			exit;
 			
 		} else {
 			
-// 			$cadenaSql = $this->miSql->getCadenaSql ( 'registrar_contratista', $arreglo_contratista );
-// 			$contratista = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso", $arreglo_contratista, 'actualizar_contratista' );
-				
+// 			redireccion::redireccionar("noInserto",$arreglo_contrato);
+			exit;
 			
 		}
 		
-		$fechaActual = date ( 'Y-m-d' );
+		exit ();
 	}
 }
 

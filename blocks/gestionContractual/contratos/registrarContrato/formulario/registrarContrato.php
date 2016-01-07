@@ -910,7 +910,7 @@
 							$atributos ['tab'] = $tab;
 							$atributos ['tamanno'] = 1;
 							$atributos ['estilo'] = 'jqueryui';
-							$atributos ['validar'] = 'required';
+							$atributos ['validar'] = ' required ';
 							$atributos ['limitar'] = true;
 							$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
 							$atributos ['anchoEtiqueta'] = 213;

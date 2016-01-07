@@ -11,15 +11,30 @@ class redireccion {
 		$miConfigurador = \Configurador::singleton ();
 		$miPaginaActual = $miConfigurador->getVariableConfiguracion ( "pagina" );
 		
+		
+		
 		switch ($opcion) {
-			case "inserto" :
+			case "Inserto" :
 				
 				$variable = "pagina=" . $miPaginaActual;
-				$variable .= "&opcion=cargarElemento";
-				$variable .= "&mensaje=registro";
-				$variable .= "&numero_acta=" . $valor [0];
-				$variable .= "&fecha_orden=" . $valor [1];
-				$variable .= "&usuario=" . $valor [2];  
+				$variable .= "&bloque=" . $_REQUEST ['bloque'];
+				$variable .= "&bloqueGrupo=" . $_REQUEST ["bloqueGrupo"];
+				$variable .= "&opcion=mensaje";
+				$variable .= "&mensaje=Inserto";
+				$variable .= "&numero_contrato=" . $valor ['numero_contrato'];
+				$variable .= "&vigencia=" . $valor ['vigencia'];
+				$variable .= "&usuario=" . $_REQUEST ['usuario'];
+				
+				break;
+			
+			case "noInserto" :
+				$variable = "pagina=" . $miPaginaActual;
+				$variable .= "&bloque=" . $_REQUEST ['bloque'];
+				$variable .= "&bloqueGrupo=" . $_REQUEST ["bloqueGrupo"];
+				$variable .= "&opcion=mensaje";
+				$variable .= "&opcion=noInserto";
+				$variable .= "&usuario=" . $_REQUEST ['usuario'];
+				
 				break;
 			
 			case "inserto_cargue_masivo" :
@@ -28,7 +43,7 @@ class redireccion {
 				$variable .= "&opcion=mensaje";
 				$variable .= "&mensaje=confirmaMasivo";
 				$variable .= "&numero_acta=" . $valor [0];
-				$variable .= "&usuario=" . $valor [2]; 
+				$variable .= "&usuario=" . $valor [2];
 				break;
 			
 			case "noFormatoImagen" :
@@ -50,14 +65,7 @@ class redireccion {
 				$variable = "pagina=" . $miPaginaActual;
 				$variable .= "&opcion=mensaje";
 				$variable .= "&mensaje=noArchivoCarga";
-				$variable .= "&usuario=".$valor;
-				break;
-			
-			case "noInserto" :
-				$variable = "pagina=" . $miPaginaActual;
-				$variable .= "&opcion=mensaje";
-				$variable .= "&mensaje=error";
-				$variable .= "&usuario=".$valor; 
+				$variable .= "&usuario=" . $valor;
 				break;
 			
 			case "noCargarElemento" :
@@ -95,7 +103,7 @@ class redireccion {
 				$variable = "pagina=" . $miPaginaActual;
 				$variable .= "&opcion=mensaje";
 				$variable .= "&mensaje=datosVacios";
-				$variable .= "&usuario=".$valor[1]; 
+				$variable .= "&usuario=" . $valor [1];
 				break;
 		}
 		

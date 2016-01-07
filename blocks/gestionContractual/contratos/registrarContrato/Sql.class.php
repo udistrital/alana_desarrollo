@@ -413,8 +413,8 @@ class Sql extends \Sql {
 				$cadenaSql = " SELECT cns.*, ib.tipo_cuenta,ib.nombre_banco,ib.numero_cuenta,ib.id_inf_bancaria,oc.id_orden_contr  ";
 				$cadenaSql .= " FROM contratista cns";
 				$cadenaSql .= " LEFT JOIN inf_bancaria ib ON ib.contratista=cns.id_contratista ";
-				$cadenaSql .= " JOIN orden_contrato oc ON oc.contratista=cns.id_contratista";
-				$cadenaSql .= " JOIN solicitud_necesidad sl ON sl.id_sol_necesidad=oc.solicitud_necesidad";
+				$cadenaSql .= " LEFT JOIN orden_contrato oc ON oc.contratista=cns.id_contratista";
+				$cadenaSql .= " LEFT JOIN solicitud_necesidad sl ON sl.id_sol_necesidad=oc.solicitud_necesidad";
 				$cadenaSql .= " WHERE cns.estado_registro=TRUE ";
 				$cadenaSql .= " AND sl.id_sol_necesidad= '" . $variable . "';";
 				
@@ -440,6 +440,96 @@ class Sql extends \Sql {
 				$cadenaSql .= " especialidad='" . $variable ['especialidad'] . "'";
 				$cadenaSql .= " WHERE id_contratista='" . $variable ['id_contratista'] . "';";
 				break;
+			
+			case 'actualizar_informacion_bancaria' :
+				
+				$cadenaSql = " UPDATE inf_bancaria";
+				$cadenaSql .= " SET tipo_cuenta='" . $variable ['tipo_cuenta'] . "',";
+				$cadenaSql .= " nombre_banco='" . $variable ['entidad_bancaria'] . "', ";
+				$cadenaSql .= " numero_cuenta='" . $variable ['numero_cuenta'] . "' ";
+				$cadenaSql .= " WHERE id_inf_bancaria='" . $variable ['id_info_bancaria'] . "' ;";
+				
+				break;
+			
+			case 'registrar_informacion_bancaria' :
+				$cadenaSql = " INSERT INTO inf_bancaria(tipo_cuenta, nombre_banco, numero_cuenta,contratista, fecha_registro)";
+				$cadenaSql .= " VALUES ( '" . $variable ['tipo_cuenta'] . "',";
+				$cadenaSql .= " '" . $variable ['entidad_bancaria'] . "',";
+				$cadenaSql .= " '" . $variable ['numero_cuenta'] . "',";
+				$cadenaSql .= " '" . $variable ['id_contratista'] . "', ";
+				$cadenaSql .= " '" . $variable ['fecha_registro'] . "');";
+				break;
+			
+			case 'registrar_contratista' :
+				$cadenaSql = " INSERT INTO contratista( primer_nombre, segundo_nombre, ";
+				$cadenaSql .= " primer_apellido,segundo_apellido, direccion, telefono, digito_verificacion, correo, ";
+				$cadenaSql .= " identificacion, genero, tipo_naturaleza, tipo_documento,";
+				$cadenaSql .= " fecha_registro, nacionalidad, perfil, profesion, ";
+				$cadenaSql .= " especialidad)";
+				$cadenaSql .= " VALUES ('" . $variable ['primer_nombre'] . "',";
+				$cadenaSql .= " '" . $variable ['segundo_nombre'] . "',";
+				$cadenaSql .= " '" . $variable ['primer_apellido'] . "',";
+				$cadenaSql .= " '" . $variable ['segundo_apellido'] . "', ";
+				$cadenaSql .= " '" . $variable ['direccion'] . "',";
+				$cadenaSql .= " '" . $variable ['telefono'] . "',";
+				$cadenaSql .= " '" . $variable ['digito_verificacion'] . "',";
+				$cadenaSql .= " '" . $variable ['correo'] . "',";
+				$cadenaSql .= " '" . $variable ['numero_identificacion'] . "', ";
+				$cadenaSql .= " '" . $variable ['genero'] . "', ";
+				$cadenaSql .= " '" . $variable ['tipo_persona'] . "',";
+				$cadenaSql .= " '" . $variable ['tipo_identificacion'] . "',";
+				$cadenaSql .= " '" . $variable ['fecha_registro'] . "',";
+				$cadenaSql .= " '" . $variable ['nacionalidad'] . "', ";
+				$cadenaSql .= " '" . $variable ['perfil'] . "',";
+				$cadenaSql .= " '" . $variable ['profesion'] . "',";
+				$cadenaSql .= " '" . $variable ['especialidad'] . "') RETURNING id_contratista ;";
+				
+				break;
+			
+			case 'registrar_contrato' :
+				
+				$cadenaSql = " INSERT INTO contrato(vigencia, numero_contrato, fecha_sub, plazo_ejecucion, ";
+				$cadenaSql .= " fecha_inicio, fecha_final, valor_moneda_ext, valor_tasa_cb, fecha_sub_super, ";
+				$cadenaSql .= " fecha_lim_ejec, observacion_inter, observacion_contr, solicitud_necesidad, ";
+				$cadenaSql .= " contratista, tipologia_contrato, tipo_configuracion, clase_contratista, ";
+				$cadenaSql .= " clase_contrato, clase_compromiso, numero_constancia, unidad_ejecucion_tiempo, ";
+				$cadenaSql .= " modalidad_seleccion, procedimiento, regimen_contratacion, tipo_moneda, ";
+				$cadenaSql .= " tipo_gasto, origen_recursos, origen_presupuesto, tema_corr_gst_inv, ";
+				$cadenaSql .= " tipo_control_ejecucion, orden_contrato, fecha_registro)";
+				$cadenaSql .= " VALUES ('" . $variable ['vigencia'] . "',";
+				$cadenaSql .= " '" . $variable ['numero_contrato'] . "',";
+				$cadenaSql .= " '" . $variable ['fecha_subcripcion'] . "',";
+				$cadenaSql .= " '" . $variable ['plazo_ejecucion'] . "',";
+				$cadenaSql .= " '" . $variable ['fecha_inicio_poliza'] . "',";
+				$cadenaSql .= " '" . $variable ['fecha_final_poliza'] . "',";
+				$cadenaSql .= " '" . $variable ['valor_contrato_moneda_ex'] . "',";
+				$cadenaSql .= " '" . $variable ['tasa_cambio'] . "',";
+				$cadenaSql .= " '" . $variable ['fecha_suscrip_super'] . "',";
+				$cadenaSql .= " '" . $variable ['fecha_limite'] . "',";
+				$cadenaSql .= " '" . $variable ['observaciones_interventoria'] . "',";
+				$cadenaSql .= " '" . $variable ['observacionesContrato'] . "',";
+				$cadenaSql .= " '" . $variable ['solicitud_necesidad'] . "',";
+				$cadenaSql .= " '" . $variable ['contratista'] . "',";
+				$cadenaSql .= " '" . $variable ['tipologia_especifica'] . "',";
+				$cadenaSql .= " '" . $variable ['tipo_configuracion'] . "',";
+				$cadenaSql .= " '" . $variable ['clase_contratista'] . "',";
+				$cadenaSql .= " '" . $variable ['clase_contrato'] . "',";
+				$cadenaSql .= " '" . $variable ['tipo_compromiso'] . "',";
+				$cadenaSql .= " '" . $variable ['numero_constancia'] . "',";
+				$cadenaSql .= " '" . $variable ['unidad_ejecucion_tiempo'] . "',";
+				$cadenaSql .= " '" . $variable ['modalidad_seleccion'] . "',";
+				$cadenaSql .= " '" . $variable ['procedimiento'] . "',";
+				$cadenaSql .= " '" . $variable ['regimen_contratación'] . "',";
+				$cadenaSql .= " '" . $variable ['tipo_moneda'] . "',";
+				$cadenaSql .= " '" . $variable ['tipo_gasto'] . "',";
+				$cadenaSql .= " '" . $variable ['origen_recursos'] . "',";
+				$cadenaSql .= " '" . $variable ['origen_presupuesto'] . "',";
+				$cadenaSql .= " '" . $variable ['tema_gasto_inversion'] . "',";
+				$cadenaSql .= " '" . $variable ['tipo_control'] . "',";
+				$cadenaSql .= " '" . $variable ['orden_contrato'] . "',";
+				$cadenaSql .= " '" . $variable ['fecha_registro'] . "');";
+				break;
+			
 			/*
 			 *
 			 *

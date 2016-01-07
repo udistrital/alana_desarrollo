@@ -12,8 +12,10 @@ $indice ++;
 if (isset ( $_REQUEST ['jquery'] )) {
 	if($_REQUEST ['jquery'] != 'true'){//Se carga una versión de jquery en particular
 		$funcion [$indice] = 'javascript/jquery-'. $_REQUEST ['jquery'] . '.js';
+		
 	} else {
 		$funcion [$indice] = 'javascript/jquery.js';
+		
 	}
 	$indice ++;
 }

@@ -186,7 +186,6 @@ div.recaptcha {
 }
 
 div.campoCuadroTexto {
-	width: 95%;
 	margin: 0px auto 0px auto;
 	float: left;
 	border-collapse: collapse;
@@ -266,7 +265,7 @@ div.campoCuadroTextoLateral {
 
 div.campoCuadroLista {
 	width: 90%;
-	margin: 5px auto 5px auto;
+	margin: 0px auto 5px auto;
 	float: left;
 	border-collapse: collapse;
 	border-width: 0px 0px 0px 0px;
@@ -573,7 +572,7 @@ div.espacioBlanco {
 }
 
 .anchoColumna2 {
-	width: 46% !important;
+	width: 50% !important;
 }
 
 .anchoColumna3 {

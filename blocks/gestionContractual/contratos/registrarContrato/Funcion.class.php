@@ -63,7 +63,7 @@ class Funcion {
 			
 			switch ($_REQUEST ['opcion']) {
 				
-				case "registrar" :
+				case "RegistrarContrato" :
 					$this->regitrar ();
 					break;
 				

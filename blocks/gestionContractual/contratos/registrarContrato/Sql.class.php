@@ -410,7 +410,7 @@ class Sql extends \Sql {
 				break;
 			
 			case "Consultar_Contratista" :
-				$cadenaSql = " SELECT cns.*, ib.tipo_cuenta,ib.nombre_banco,ib.numero_cuenta ";
+				$cadenaSql = " SELECT cns.*, ib.tipo_cuenta,ib.nombre_banco,ib.numero_cuenta,ib.id_inf_bancaria  ";
 				$cadenaSql .= " FROM contratista cns";
 				$cadenaSql .= " LEFT JOIN inf_bancaria ib ON ib.contratista=cns.id_contratista ";
 				$cadenaSql .= " JOIN orden_contrato oc ON oc.contratista=cns.id_contratista";

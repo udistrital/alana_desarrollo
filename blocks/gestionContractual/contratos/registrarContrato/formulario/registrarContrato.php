@@ -85,8 +85,6 @@
 				$solicitud = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, "busqueda" );
 				$solicitud = $solicitud [0];
 				
-				
-				
 				$arregloSolicitud = array (
 						
 						"objeto_contrato" => $solicitud ['objeto_contrato'],
@@ -103,26 +101,22 @@
 				$cadena_sql = $this->miSql->getCadenaSql ( 'Consultar_Registro_Presupuestales', $_REQUEST ['id_solicitud_necesidad'] );
 				$registrosP = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, "busqueda" );
 				
-				
 				if ($registrosP) {
 					
 					$arregloRegistro = array (
 							
 							"fecha_inicio_poliza" => $registrosP [0] ['fecha_rgs_pr'] 
-					)
-					;
+					);
 					$_REQUEST = array_merge ( $_REQUEST, $arregloRegistro );
 				}
-				
 				
 				$cadena_sql = $this->miSql->getCadenaSql ( 'Consultar_Contratista', $_REQUEST ['id_solicitud_necesidad'] );
 				$contratista = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, "busqueda" );
 				
-				
 				if ($contratista) {
-					$contratista=$contratista[0];
+					$contratista = $contratista [0];
 					$arregloContratista = array (
-								
+							
 							"tipo_identificacion" => $contratista ['tipo_documento'],
 							"numero_identificacion" => $contratista ['identificacion'],
 							"digito_verificacion" => $contratista ['codigo_verificacion'],
@@ -137,15 +131,10 @@
 							"correo" => $contratista ['correo'],
 							"tipo_cuenta" => $contratista ['tipo_cuenta'],
 							"numero_cuenta" => $contratista ['numero_cuenta'],
-							"entidad_bancaria" => $contratista ['nombre_banco'],
-							
-							
-					)
-					;
+							"entidad_bancaria" => $contratista ['nombre_banco'] 
+					);
 					$_REQUEST = array_merge ( $_REQUEST, $arregloContratista );
 				}
-				
-				
 				
 				// ------------------Division para los botones-------------------------
 				$atributos ["id"] = "ventanaA";
@@ -2458,6 +2447,20 @@
 				// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
 			}
 			
+			switch ($_REQUEST ['opcion']) {
+				case 'registroContrato' :
+					
+					$opcion = "RegistrarContrato";
+					
+					break;
+				
+				case 'modificarContrato' :
+					
+					$opcion = "ModificarContrato";
+					
+					break;
+			}
+			
 			// ------------------- SECCION: Paso de variables ------------------------------------------------
 			
 			/**
@@ -2473,12 +2476,19 @@
 			// En este formulario se utiliza el mecanismo (b) para pasar las siguientes variables:
 			// Paso 1: crear el listado de variables
 			
-			$valorCodificado = "actionBloque=" . $esteBloque ["nombre"];
+			$valorCodificado = "action=" . $esteBloque ["nombre"];
 			$valorCodificado .= "&pagina=" . $this->miConfigurador->getVariableConfiguracion ( 'pagina' );
 			$valorCodificado .= "&bloque=" . $esteBloque ['nombre'];
 			$valorCodificado .= "&bloqueGrupo=" . $esteBloque ["grupo"];
-			$valorCodificado .= "&opcion=ConsultarSolicitudes";
+			$valorCodificado .= "&opcion=".$opcion;
 			$valorCodificado .= "&usuario=" . $_REQUEST ['usuario'];
+			$valorCodificado .= "&id_solicitud_necesidad=" . $_REQUEST ['id_solicitud_necesidad'];
+			
+			if ($contratista) {
+				
+				$valorCodificado .= "&id_contratista=" . $contratista ['id_contratista'];
+			}
+			
 			/**
 			 * SARA permite que los nombres de los campos sean dinámicos.
 			 * Para ello utiliza la hora en que es creado el formulario para

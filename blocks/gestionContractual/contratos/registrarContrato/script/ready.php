@@ -105,6 +105,11 @@ $_REQUEST ['tiempo'] = time ();
 		
 							$("#<?php echo $this->campoSeguro('divisionClaseContratista')?>").css('display','block');
 							
+		                    }else{
+		                    
+		                    
+		                    $("#<?php echo $this->campoSeguro('divisionClaseContratista')?>").css('display','none');
+		                    
 		                    }
 		
 				}else{

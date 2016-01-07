@@ -42,7 +42,7 @@ class Formulario {
 			{
 				
 				
-				echo "<h2>ALANA</h2>
+				echo "<h2>ARGO</h2>
 						";
 				
 				

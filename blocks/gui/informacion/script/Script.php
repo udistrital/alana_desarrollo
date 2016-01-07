@@ -1,7 +1,7 @@
 <?php
 
 $indice=0;
-// $funcion[$indice ++]="jssor.slider.mini.js";
+$funcion[$indice ++]="jssor.slider.mini.js";
 
 
 $rutaBloque=$this->miConfigurador->getVariableConfiguracion("host");

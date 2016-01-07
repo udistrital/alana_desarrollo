@@ -188,7 +188,7 @@ class RegistradorContrato {
 			
 		} else {
 			
-// 			redireccion::redireccionar("noInserto",$arreglo_contrato);
+			redireccion::redireccionar("noInserto");
 			exit;
 			
 		}

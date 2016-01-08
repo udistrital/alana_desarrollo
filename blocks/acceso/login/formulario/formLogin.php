@@ -24,14 +24,40 @@ class Formulario {
 		$rutaBloque = $this->miConfigurador->getVariableConfiguracion ( "host" );
 		$rutaBloque .= $this->miConfigurador->getVariableConfiguracion ( "site" ) . "/blocks/";
 		$rutaBloque .= $esteBloque ['grupo'] . "/" . $esteBloque ['nombre'];
-		
+		$rutaBloque .= '/css';
 		$atributosGlobales ['campoSeguro'] = 'false';
 		$_REQUEST ['tiempo'] = time ();
-		
 		
 		// -------------------------------------------------------------------------------------------------
 		
 		?>
+
+
+
+<div id="Fondo_Slider">
+	<div id="slider1_container"
+		style="position: inherit; top: 0px; left: 0px; width: 1800px; height: 880px; overflow: hidden; z-index: 0;">
+		<!-- Slides Container -->
+		<div u="slides"
+			style="cursor: move; position: absolute; overflow: hidden; left: 0px; top: 0px; width: 1800px; height: 880px; overflow: hidden;z-index: 0;">
+			<div>
+				<img u="image" src="<?php echo $rutaBloque ?>/imagen/Fractales1.jpg" />
+			</div>
+			<div>
+				<img u="image" src="<?php echo $rutaBloque ?>/imagen/Fractales2.jpg" />
+			</div>
+			<div>
+				<img u="image" src="<?php echo $rutaBloque ?>/imagen/Fractales3.jpg" />
+			</div>
+			<div>
+				<img u="image" src="<?php echo $rutaBloque ?>/imagen/Fractales4.jpg" />
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
 
 
 <header>
@@ -263,7 +289,7 @@ class Formulario {
 		$mensaje = $this->miConfigurador->getVariableConfiguracion ( 'mostrarMensaje' );
 		$this->miConfigurador->setVariableConfiguracion ( 'mostrarMensaje', null );
 		
-		if (isset ( $_REQUEST ['error'] )==true || isset ( $_REQUEST ['mostrarMensaje'] )==true) {
+		if (isset ( $_REQUEST ['error'] ) == true || isset ( $_REQUEST ['mostrarMensaje'] ) == true) {
 			
 			if (isset ( $_REQUEST ['mostrarMensaje'] ) == true) {
 				$mensaje = $_REQUEST ['mostrarMensaje'];

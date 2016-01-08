@@ -11,24 +11,24 @@ header {
 
 body {
 	position: static;
-	top: -1px;
+/*	top: -1px;
 	background-image: url("imagen/imagenPanoramica2.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-position: center 5%;
+	background-position: center 5%; */
 }
 
 #divMensaje {
-	position: absolute;
-	width: 11%;
-	left: 75%;
-	height: 3%;
-	z-index: 1;
-	opacity: 0.75;
-	font-size: xx-small;
-	background-position: 25px 8px;
+    position: absolute;
+    width: 11%;
+    left: 75%;
+    height: 3%;
+    z-index: 2;
+    top: 3px;
+    opacity: 0.75;
+    font-size: xx-small;
+    background-position: 25px 8px;
 }
-
 #fondo_base {
 	position: absolute;
 	margin: 0;

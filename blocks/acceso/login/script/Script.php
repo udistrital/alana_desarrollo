@@ -7,6 +7,7 @@
 $funcion=array();
 $indice=0;
 
+$funcion[$indice++]="jssor.slider.mini.js";
 $funcion[$indice++]="md5.js";
 
 

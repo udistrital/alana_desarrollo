@@ -1,120 +1,107 @@
 #pie {
-	border-style: double;
-	height: 159px;
-	display: block;
-	background-size: 100%;
-	width: 100%;
-    border-color: #592003;
-    background-color: rgba(112, 65, 47, 0.58);
-	z-index: 0;
+    height: 125px;
+    display: block;
+    background-size: 100%;
+    width: 100%;
+    background-color: #fff;
+    background-image: url(../css/imagen/pieArgo2.jpg);
+    z-index: 0;
 }
 
 #marcoDatosBasicosPie {
-	width: 107%;
-	border: 0;
+    width: 107%;
+    border: 0;
 }
 
 #cssclock {
-	height: 270px;
-}
-
-#ventana1 {
-	opacity: 1;
-}
-
-#ventana2 {
-	opacity: 0.8;
+    height: 270px;
 }
 
 #clockdigital img {
-	border: 0 none;
-	display: block;
-	height: 500px;
-	left: -385px;
-	margin: 0;
-	padding: 0;
-	position: absolute;
-	top: -215px;
-	width: 500px;
+    border: 0 none;
+    display: block;
+    height: 500px;
+    left: -385px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: -215px;
+    width: 500px;
 }
 
 #clockdigital {
-	background: url(../imagen/digital2.gif) no-repeat 44px 26px #012345;
-	background-size: 32% 20%;
-	float: right;
-	height: 62px;
-	margin: 0;
-	overflow: hidden;
-	padding: 0;
-	position: relative;
-	width: 121px;
+    background: url(../imagen/digital2.gif) no-repeat 44px 26px #012345;
+    background-size: 32% 20%;
+    float: right;
+    height: 62px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    width: 121px;
 }
 
 #clockdigital div {
-	background: none repeat scroll 0 0 #012345;
-	height: 21px;
-	position: absolute;
-	width: 121px;
-	opacity: 0.8;
+    background: none repeat scroll 0 0 #012345;
+    height: 21px;
+    position: absolute;
+    width: 121px;
+    opacity: 0.8;
 }
 
 #clockdigital div:last-child {
-	bottom: 0;
-}
-
-element.style {
-	opacity: 0.8;
+    bottom: 0;
 }
 
 .fecha {
-	margin-bottom: 10px;
-	text-align: right;
+    margin-bottom: 10px;
+    text-align: right;
 }
 
 #colm1 {
-	width: 9%;
-	float: left;
-	display: block;
-	height: 50px;
-	left: 0;
-	opacity: 1;
+    width: 9%;
+    float: left;
+    display: block;
+    height: 50px;
+    left: 0;
+    opacity: 1;
 }
 
 #colm2 {
-	width: 60%;
-	float: left;
-	color: #592003;
-	display: block;
-	height: 50px;
-	left: 0;
-	margin: 0%;
-	
+    width: 60%;
+    float: left;
+    color: #2c3670;
+    display: block;
+    height: 50px;
+    left: 0;
+    margin: 0%;
+
 }
 
 #colm3 {
-	width: 31%;
-	color: #592003;
-	float: right;
-	display: block;
-	left: 0;
-	margin-top: 0.1%;
+    width: 31%;
+    color: #2c3670;
+    float: right;
+    display: block;
+    left: 0;
+    margin-top: 0.1%;
 }
 
 #colm4 {
-	width: 10%;
-	float: right;
-	display: block;
-	height: 50px;
-	left: 0;
-	right: 80%;
-	margin-left: 95%;
-	opacity: 0.65;
+    width: 10%;
+    float: right;
+    display: block;
+    height: 50px;
+    left: 0;
+    right: 80%;
+    margin-left: 95%;
+    opacity: 0.65;
 }
 
 #escudo {
-	clear: both;
-	width: 50px;
-	height: 85px;
-	display: block;
-	margin: auto;
+    clear: both;
+    width: 50px;
+    height: 85px;
+    display: block;
+    margin: auto;
 }

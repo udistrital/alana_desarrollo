@@ -3,13 +3,7 @@
 	position: fixed;
 	width: 94%;
 	height: 200px;
-	border-style: double;
-	/*border-color: rgb(45, 146, 45);*/
-	/* background-color: rgba(143, 188, 143, 0.3); */
-	border-color: rgb(54, 40, 14);
-	background-color:rgb(105, 69, 53);
 	z-index: 1;
-	opacity: 0.5;
 }
 
 .texto {

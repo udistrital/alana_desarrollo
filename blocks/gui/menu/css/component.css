@@ -1,10 +1,12 @@
 .cbp-hrmenu {
-	width: 94%;
-	margin-top: 0;
-	border-bottom: 3px solid #592003;
-	position: fixed;
-	top: 200px;
-	z-index: 1;
+    width: 94%;
+    margin-top: 0;
+    border-bottom: 3px solid #2c3670;
+    position: fixed;
+    top: 180px;
+    z-index: 1;
+    background-color: #fff;
+
 }
 
 /* general ul style */
@@ -15,39 +17,40 @@
 }
 
 /* first level ul style */
-.cbp-hrmenu>ul, .cbp-hrmenu .cbp-hrsub-inner {
+.cbp-hrmenu > ul,
+.cbp-hrmenu .cbp-hrsub-inner {
 	width: 100%;
 	max-width: 100em;
 	margin: 0 0;
-	background-color: rgb(158, 117, 100);
 }
 
-.cbp-hrmenu>ul>li {
+.cbp-hrmenu > ul > li {
 	display: inline-block;
 }
 
-.cbp-hrmenu>ul>li>a {
+.cbp-hrmenu > ul > li > a {
 	font-weight: 700;
 	padding: 0.5em;
-	color: #FFFFFF;
+	color: #6584A9;
 	display: inline-block;
 }
 
-.cbp-hrmenu>ul>li>a:hover {
-	color: #F1E0D6;
+.cbp-hrmenu > ul > li > a:hover {
+	color: #2c3670;
 }
 
-.cbp-hrmenu>ul>li.cbp-hropen a, .cbp-hrmenu>ul>li.cbp-hropen>a:hover {
+.cbp-hrmenu > ul > li.cbp-hropen a,
+.cbp-hrmenu > ul > li.cbp-hropen > a:hover {
 	color: #fff;
-	background:rgba(153, 104, 87);
-	z-index: 1000;
+	background: #2c3670;
+        z-index: 1000;
 }
 
 /* sub-menu */
 .cbp-hrmenu .cbp-hrsub {
 	display: none;
 	position: absolute;
-	background: rgb(158, 117, 100);
+	background: #2c3670;
 	width: 95%;
 	left: 2.5%;
 }
@@ -55,17 +58,17 @@
 .cbp-hropen .cbp-hrsub {
 	display: block;
 	padding-bottom: 1.5em;
-	z-index: 1000;
+        z-index: 1000;
 }
 
-.cbp-hrmenu .cbp-hrsub-inner>div {
+.cbp-hrmenu .cbp-hrsub-inner > div {
 	width: 33%;
 	float: left;
 	padding: 0 2em 0;
 }
 
-.cbp-hrmenu .cbp-hrsub-inner:before, .cbp-hrmenu .cbp-hrsub-inner:after
-	{
+.cbp-hrmenu .cbp-hrsub-inner:before,
+.cbp-hrmenu .cbp-hrsub-inner:after {
 	content: " ";
 	display: table;
 }
@@ -74,12 +77,12 @@
 	clear: both;
 }
 
-.cbp-hrmenu .cbp-hrsub-inner>div a {
+.cbp-hrmenu .cbp-hrsub-inner > div a {
 	line-height: 1.5em;
 }
 
 .cbp-hrsub h4 {
-	color: #592003;
+	color: #afdefa;
 	padding: 1em 0 0.6em;
 	margin: 0;
 	font-size: 120%;
@@ -87,45 +90,65 @@
 }
 
 /* Examples for media queries */
-@media screen and (max-width: 52.75em) {
+
+@media screen and (max-width: 52.75em) { 
+
 	.cbp-hrmenu {
 		font-size: 80%;
 	}
+
 }
 
-@media screen and (max-width: 43em) {
+@media screen and (max-width: 43em) { 
+
 	.cbp-hrmenu {
 		font-size: 120%;
 		border: none;
 	}
-	.cbp-hrmenu>ul, .cbp-hrmenu .cbp-hrsub-inner {
+
+	.cbp-hrmenu > ul,
+	.cbp-hrmenu .cbp-hrsub-inner {
 		width: 100%;
 		padding: 0;
 	}
+
 	.cbp-hrmenu .cbp-hrsub-inner {
 		padding: 0 2em;
 		font-size: 75%;
 	}
-	.cbp-hrmenu>ul>li {
+
+	.cbp-hrmenu > ul > li {
 		display: block;
-		border-bottom: 4px solid #592003;
+		border-bottom: 4px solid #2c3670;
 	}
-	.cbp-hrmenu>ul>li>a {
+
+	.cbp-hrmenu > ul > li > a { 
 		display: block;
 		padding: 1em 3em;
 	}
-	.cbp-hrmenu .cbp-hrsub {
+
+	.cbp-hrmenu .cbp-hrsub { 
 		position: relative;
 	}
+
 	.cbp-hrsub h4 {
 		padding-top: 0.6em;
 	}
+
 }
 
-@media screen and (max-width: 36em) {
-	.cbp-hrmenu .cbp-hrsub-inner>div {
+@media screen and (max-width: 36em) { 
+	.cbp-hrmenu .cbp-hrsub-inner > div {
 		width: 100%;
 		float: none;
 		padding: 0 2em;
 	}
 }
+
+
+
+
+}
+
+
+

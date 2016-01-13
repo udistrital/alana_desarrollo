@@ -37,10 +37,10 @@ body, html { font-size: 100%; 	padding: 0; margin: 0;}
 body {
     font-family: 'Lato', Calibri, Arial, sans-serif;
     color: #000000;
-    background-image: url(images/wallpaper5.jpg);
+    background-image: url(images/wallpaper0.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    opacity: 0.80;
+    opacity: 0.9;
 }
 
 a {

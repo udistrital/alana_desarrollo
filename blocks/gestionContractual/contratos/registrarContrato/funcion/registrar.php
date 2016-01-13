@@ -24,6 +24,7 @@ class RegistradorContrato {
 		$this->miFuncion = $funcion;
 	}
 	function procesarFormulario() {
+		
 		$conexion = "contractual";
 		$esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB ( $conexion );
 		
@@ -164,7 +165,6 @@ class RegistradorContrato {
 				"observacionesContrato" => $_REQUEST ['observacionesContrato'],
 				"tipo_control" => $_REQUEST ['tipo_control'],
 				"supervisor" => $_REQUEST ['supervisor'],
-				"identificacion_supervisor" => $_REQUEST ['identificacion_supervisor'],
 				"digito_supervisor" => $_REQUEST ['digito_supervisor'],
 				"fecha_suscrip_super" => $_REQUEST ['fecha_suscrip_super'],
 				"fecha_limite" => $_REQUEST ['fecha_limite'],
@@ -172,7 +172,7 @@ class RegistradorContrato {
 				"fecha_registro" => date ( 'Y-m-d' ),
 				"contratista" => $id_contratista,
 				"solicitud_necesidad" => $_REQUEST ['id_solicitud_necesidad'],
-				"orden_contrato" => $_REQUEST ['id_orden_contrato'] 
+				"orden_contrato" => $_REQUEST ['id_orden_contrato'],
 		);
 		
 		

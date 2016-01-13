@@ -495,7 +495,9 @@ class Sql extends \Sql {
 				$cadenaSql .= " clase_contrato, clase_compromiso, numero_constancia, unidad_ejecucion_tiempo, ";
 				$cadenaSql .= " modalidad_seleccion, procedimiento, regimen_contratacion, tipo_moneda, ";
 				$cadenaSql .= " tipo_gasto, origen_recursos, origen_presupuesto, tema_corr_gst_inv, ";
-				$cadenaSql .= " tipo_control_ejecucion, orden_contrato, fecha_registro)";
+				$cadenaSql .= " tipo_control_ejecucion, orden_contrato, fecha_registro, ";
+				$cadenaSql .= " identificacion_clase_contratista,digito_verificacion_clase_contratista,porcentaje_clase_contratista,  ";
+				$cadenaSql .= " numero_convenio,vigencia_convenio,supervisor)  ";
 				$cadenaSql .= " VALUES ('" . $variable ['vigencia'] . "',";
 				$cadenaSql .= " '" . $variable ['numero_contrato'] . "',";
 				$cadenaSql .= " '" . $variable ['fecha_subcripcion'] . "',";
@@ -527,7 +529,23 @@ class Sql extends \Sql {
 				$cadenaSql .= " '" . $variable ['tema_gasto_inversion'] . "',";
 				$cadenaSql .= " '" . $variable ['tipo_control'] . "',";
 				$cadenaSql .= " '" . $variable ['orden_contrato'] . "',";
-				$cadenaSql .= " '" . $variable ['fecha_registro'] . "');";
+				$cadenaSql .= " '" . $variable ['fecha_registro'] . "',";
+				$cadenaSql .= " '" . $variable ['identificacion_clase_contratista'] . "',";
+				$cadenaSql .= " '" . $variable ['digito_verificacion_clase_contratista'] . "',";
+				$cadenaSql .= " '" . $variable ['porcentaje_clase_contratista'] . "',";
+				$cadenaSql .= " '" . $variable ['numero_convenio'] . "',";
+				$cadenaSql .= " '" . $variable ['vigencia_convenio'] . "',";
+				$cadenaSql .= " '" . $variable ['supervisor'] . "');";
+				
+				
+				break;
+			
+			case 'consultar_supervisores' :
+				
+				$cadenaSql = " SELECT DISTINCT id_funcionario identificador, identificacion||' - ' ||nombre_cp supervisor";
+				$cadenaSql .= " FROM funcionario";
+				$cadenaSql .= " WHERE estado_registro=TRUE";
+				
 				break;
 			
 			/*

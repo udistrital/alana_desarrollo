@@ -26,7 +26,7 @@ class FormProcessor {
 		$this->miLogger = \logger::singleton();
 	}
 	function procesarFormulario() {
-		
+	
 		/**
 		 *
 		 * @todo lógica de procesamiento
@@ -54,7 +54,7 @@ class FormProcessor {
 			$cadena_sql = $this->miSql->getCadenaSql ( "buscarUsuario", $variable );
 			
 			$registro = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, "busqueda" );
-			
+		
 			if ($registro) {
 				if ($registro [0] ['clave'] == $variable ["clave"]) {
 					// 1. Crear una sesión de trabajo

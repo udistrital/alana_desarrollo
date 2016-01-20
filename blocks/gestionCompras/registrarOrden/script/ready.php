@@ -1,6 +1,6 @@
 
 // Asociar el widget de validación al formulario
-     $("#registrarOrdenServicios").validationEngine({
+     $("#registrarOrden").validationEngine({
             promptPosition : "centerRight", 
             scroll: false,
             autoHidePrompt: true,
@@ -9,8 +9,8 @@
 	
 
         $(function() {
-            $("#registrarOrdenServicios").submit(function() {
-                $resultado=$("#registrarOrdenServicios").validationEngine("validate");
+            $("#registrarOrden").submit(function() {
+                $resultado=$("#registrarOrden").validationEngine("validate");
                    
                 if ($resultado) {
                 

@@ -13,6 +13,10 @@ body {
 	display: table;
 }
 
+#marcoDatosBasicos {
+	margin: 13% auto;
+	}
+
 
 .seccionAmplia {
 	width: 100%;

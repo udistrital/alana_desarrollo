@@ -1,6 +1,6 @@
 <?php
 
-namespace inventarios\gestionCompras\registrarOrdenServicios;
+namespace gestionCompras\registrarOrden;
 
 if (! isset ( $GLOBALS ["autorizado"] )) {
 	include ("../index.php");

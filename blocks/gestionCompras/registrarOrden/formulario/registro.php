@@ -43,6 +43,7 @@ class registrarForm {
 		
 		$esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB ( $conexion );
 		
+		
 		$cadenaSql = $this->miSql->getCadenaSql ( 'polizas' );
 		
 		$resultado_polizas = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
@@ -100,19 +101,7 @@ class registrarForm {
 			$variable = "pagina=" . $miPaginaActual;
 			$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
 			
-			// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-			$esteCampo = 'botonRegresar';
-			$atributos ['id'] = $esteCampo;
-			$atributos ['enlace'] = $variable;
-			$atributos ['tabIndex'] = 1;
-			$atributos ['estilo'] = 'textoSubtitulo';
-			$atributos ['enlaceTexto'] = $this->lenguaje->getCadena ( $esteCampo );
-			$atributos ['ancho'] = '10%';
-			$atributos ['alto'] = '10%';
-			$atributos ['redirLugar'] = true;
-			echo $this->miFormulario->enlace ( $atributos );
 			
-			unset ( $atributos );
 			
 			$esteCampo = "marcoDatosBasicos";
 			$atributos ['id'] = $esteCampo;
@@ -694,7 +683,7 @@ class registrarForm {
 					$atributos ['marco'] = true;
 					$atributos ['estiloMarco'] = '';
 					$atributos ["etiquetaObligatorio"] = true;
-					$atributos ['columnas'] = 110;
+					$atributos ['columnas'] = 95;
 					$atributos ['filas'] = 15;
 					$atributos ['dobleLinea'] = 0;
 					$atributos ['tabIndex'] = $tab;
@@ -882,7 +871,7 @@ class registrarForm {
 					$atributos ['marco'] = true;
 					$atributos ['estiloMarco'] = '';
 					$atributos ["etiquetaObligatorio"] = true;
-					$atributos ['columnas'] = 105;
+					$atributos ['columnas'] = 95;
 					$atributos ['filas'] = 3;
 					$atributos ['dobleLinea'] = 0;
 					$atributos ['tabIndex'] = $tab;

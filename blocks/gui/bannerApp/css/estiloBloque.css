@@ -4,6 +4,7 @@
 	width: 94%;
 	height: 200px;
 	z-index: 1;
+	opacity: .5;
 }
 
 .texto {

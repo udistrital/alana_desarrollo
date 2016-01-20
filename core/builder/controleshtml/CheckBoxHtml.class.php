@@ -19,7 +19,7 @@ class CheckBoxHtml extends HtmlBase{
             }
         }
     
-        $this->cadenaHTML .= $this->checkBox ( $this->configuracion, $atributos );
+        $this->cadenaHTML .= $this->checkBox ( $atributos );
         if (! isset ( $atributos [self::SINDIVISION] )) {
             $this->cadenaHTML .= "\n</div>\n";
         }

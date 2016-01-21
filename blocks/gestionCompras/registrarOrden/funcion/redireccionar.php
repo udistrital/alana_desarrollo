@@ -64,14 +64,7 @@ class redireccion {
 		
 		echo "<script>location.replace('" . $redireccion . "')</script>";
 		
-		// $enlace =$miConfigurador->getVariableConfiguracion("enlace");
-		// $variable = $miConfigurador->fabricaConexiones->crypto->codificar($variable);
-		// // echo $enlace;
-		// // // echo $variable;
-		// // exit;
-		// $_REQUEST[$enlace] = $variable;
-		// $_REQUEST["recargar"] = true;
-		// return true;
+
 	}
 }
 

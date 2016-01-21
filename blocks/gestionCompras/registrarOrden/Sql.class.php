@@ -430,7 +430,7 @@ class Sql extends \Sql {
 				$cadenaSql .= "tipo_orden, vigencia, consecutivo_servicio, consecutivo_compras, 
 								            fecha_registro, dependencia_solicitante, sede_solicitante, 
 								            objeto_contrato, poliza1, poliza2, poliza3, poliza4, duracion_pago, 
-								            fecha_inicio_pago, fecha_final_pago, forma_pago,id_contratista,id_supervisor, id_ordenador_encargado, tipo_ordenador,id_proveedor)";
+								            fecha_inicio_pago, fecha_final_pago, forma_pago,id_contratista,id_supervisor, id_ordenador_encargado, tipo_ordenador,id_proveedor,unidad_ejecutora)";
 				$cadenaSql .= " VALUES (";
 				$cadenaSql .= "'" . $variable ['tipo_orden'] . "',";
 				$cadenaSql .= "'" . $variable ['vigencia'] . "',";
@@ -475,7 +475,8 @@ class Sql extends \Sql {
 				$cadenaSql .= "'" . $variable ['id_supervisor'] . "',";
 				$cadenaSql .= "'" . $variable ['id_ordenador_encargado'] . "',";
 				$cadenaSql .= "'" . $variable ['tipo_ordenador'] . "',";
-				$cadenaSql .= "'" . $variable ['id_proveedor'] . "') ";
+				$cadenaSql .= "'" . $variable ['id_proveedor'] . "',";
+				$cadenaSql .= "'" . $variable ['unidad_ejecutora'] . "') ";
 				$cadenaSql .= "RETURNING  consecutivo_compras,consecutivo_servicio,id_orden  ; ";
 				
 				break;
@@ -591,7 +592,8 @@ class Sql extends \Sql {
 				
 				$cadenaSql = " 	SELECT max(consecutivo_compras)  ";
 				$cadenaSql .= " FROM orden ";
-				$cadenaSql .= " WHERE vigencia ='" . $variable . "';";
+				$cadenaSql .= " WHERE vigencia ='" . $variable ['vigencia']. "' ";
+				$cadenaSql .= " AND unidad_ejecutora ='" . $variable ['unidad_ejecutora']. "';";
 				
 				break;
 			
@@ -599,8 +601,8 @@ class Sql extends \Sql {
 				
 				$cadenaSql = " 	SELECT max(consecutivo_servicio)  ";
 				$cadenaSql .= " FROM orden ";
-				$cadenaSql .= " WHERE vigencia ='" . $variable . "';";
-				
+				$cadenaSql .= " WHERE vigencia ='" . $variable['vigencia'] . "' ";
+				$cadenaSql .= " AND unidad_ejecutora ='" . $variable['unidad_ejecutora'] . "';";
 				break;
 			
 			case "Unidad_Ejecutoria" :

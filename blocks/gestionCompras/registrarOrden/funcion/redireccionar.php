@@ -64,7 +64,7 @@ class redireccion {
 		
 		echo "<script>location.replace('" . $redireccion . "')</script>";
 		
-
+ 
 	}
 }
 

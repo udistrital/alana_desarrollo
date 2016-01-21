@@ -1,6 +1,6 @@
 <?php
 
-namespace inventarios\gestionCompras\registrarElementoOrden;
+namespace gestionCompras\registrarElementoOrden;
 
 // Evitar un acceso directo a este archivo
 if (! isset ( $GLOBALS ["autorizado"] )) {

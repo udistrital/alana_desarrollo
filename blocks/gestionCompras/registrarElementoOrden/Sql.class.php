@@ -1,6 +1,6 @@
 <?php
 
-namespace inventarios\gestionCompras\registrarElementoOrden;
+namespace gestionCompras\registrarElementoOrden;
 
 if (! isset ( $GLOBALS ["autorizado"] )) {
 	include ("../index.php");
@@ -197,12 +197,12 @@ class Sql extends \Sql {
 				$cadenaSql .= "JOIN  arka_parametros.arka_sedes se ON se.\"ESF_ID_SEDE\" = ro.sede_solicitante	 ";
 				$cadenaSql .= "WHERE 1 = 1 ";
 				$cadenaSql .= "AND ro.estado = 't' ";
-				if ($variable ['tipo_orden'] != '') {
-					$cadenaSql .= " AND ro.tipo_orden = '" . $variable ['tipo_orden'] . "' ";
+				if ($variable ['tipoorden'] != '') {
+					$cadenaSql .= " AND ro.tipo_orden = '" . $variable ['tipoorden'] . "' ";
 				}
 				
-				if ($variable ['numero_orden'] != '') {
-					$cadenaSql .= " AND ro.id_orden = '" . $variable ['numero_orden'] . "' ";
+				if ($variable ['numeroorden'] != '') {
+					$cadenaSql .= " AND ro.id_orden = '" . $variable ['numeroorden'] . "' ";
 				}
 				
 				if ($variable ['nit'] != '') {
@@ -217,9 +217,9 @@ class Sql extends \Sql {
 					$cadenaSql .= " AND ro.dependencia_solicitante = '" . $variable ['dependencia'] . "' ";
 				}
 				
-				if ($variable ['fecha_inicial'] != '') {
-					$cadenaSql .= " AND ro.fecha_registro BETWEEN CAST ( '" . $variable ['fecha_inicial'] . "' AS DATE) ";
-					$cadenaSql .= " AND  CAST ( '" . $variable ['fecha_final'] . "' AS DATE)  ";
+				if ($variable ['fechainicial'] != '') {
+					$cadenaSql .= " AND ro.fecha_registro BETWEEN CAST ( '" . $variable ['fechainicial'] . "' AS DATE) ";
+					$cadenaSql .= " AND  CAST ( '" . $variable ['fechafinal'] . "' AS DATE)  ";
 				}
 				
 				$cadenaSql .= " ; ";
@@ -574,8 +574,8 @@ class Sql extends \Sql {
 				
 				$cadenaSql = " 	SELECT 	id_orden ,
 								 CASE tipo_orden 
-										WHEN 1 THEN vigencia || ' - ' || consecutivo_compras 
-										WHEN 9 THEn vigencia || ' - ' || consecutivo_servicio
+										WHEN 1 THEN vigencia || ' - ' || consecutivo_compras ||' - Unidad Ejecutora  '||unidad_ejecutora 
+										WHEN 9 THEn vigencia || ' - ' || consecutivo_servicio ||' - Unidad Ejecutora  '||unidad_ejecutora
 								 END  valor  ";
 				$cadenaSql .= " FROM orden ";
 				$cadenaSql .= " WHERE tipo_orden ='" . $variable . "';";

@@ -73,7 +73,7 @@ class registrarForm {
 		$atributos ['marco'] = false;
 		$tab = 1;
 		// ---------------- FIN SECCION: de Parámetros Generales del Formulario ----------------------------
-		 
+		
 		// ----------------INICIAR EL FORMULARIO ------------------------------------------------------------
 		$atributos ['tipoEtiqueta'] = 'inicio';
 		echo $this->miFormulario->formulario ( $atributos );
@@ -92,34 +92,26 @@ class registrarForm {
 				$variable .= "&id_orden=" . $_REQUEST ['id_orden'];
 				$variable .= "&mensaje_titulo=" . $_REQUEST ['mensaje_titulo'];
 			} else {
+				
+				
 				$arreglo = unserialize ( $_REQUEST ['arreglo'] );
+				
 				$miPaginaActual = $this->miConfigurador->getVariableConfiguracion ( 'pagina' );
 				$variable = "pagina=" . $miPaginaActual;
 				$variable .= "&opcion=ConsultarActa";
-				$variable .= "&numero_orden=" . $arreglo ['numero_orden'];
-				$variable .= "&tipo_orden=" . $arreglo ['tipo_orden'];
+				$variable .= "&numero_orden=" . $arreglo ['numeroorden'];
+				$variable .= "&tipo_orden=" . $arreglo ['tipoorden'];
 				$variable .= "&id_proveedor=" . $arreglo ['nit'];
 				$variable .= "&sedeConsulta=" . $arreglo ['sede'];
 				$variable .= "&dependenciaConsulta=" . $arreglo ['dependencia'];
-				$variable .= "&fecha_inicio=" . $arreglo ['fecha_inicial'];
-				$variable .= "&fecha_final=" . $arreglo ['fecha_final'];
+				$variable .= "&fecha_inicio=" . $arreglo ['fechainicial'];
+				$variable .= "&fecha_final=" . $arreglo ['fechafinal'];
 				$variable .= "&usuario=" . $_REQUEST ['usuario'];
 			}
 			
 			$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
 			
-			// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-			$esteCampo = 'botonRegresar';
-			$atributos ['id'] = $esteCampo;
-			$atributos ['enlace'] = $variable;
-			$atributos ['tabIndex'] = 1;
-			$atributos ['estilo'] = 'textoSubtitulo';
-			$atributos ['enlaceTexto'] = $this->lenguaje->getCadena ( $esteCampo );
-			$atributos ['ancho'] = '10%';
-			$atributos ['alto'] = '10%';
-			$atributos ['redirLugar'] = true;
-			echo $this->miFormulario->enlace ( $atributos );
-			
+
 			$esteCampo = "marcoDatosBasicos";
 			$atributos ['id'] = $esteCampo;
 			$atributos ["estilo"] = "jqueryui";
@@ -129,6 +121,19 @@ class registrarForm {
 			unset ( $atributos );
 			{
 				
+				
+				// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+				$esteCampo = 'botonRegresar';
+				$atributos ['id'] = $esteCampo;
+				$atributos ['enlace'] = $variable;
+				$atributos ['tabIndex'] = 1;
+				$atributos ['estilo'] = 'textoSubtitulo';
+				$atributos ['enlaceTexto'] = $this->lenguaje->getCadena ( $esteCampo );
+				$atributos ['ancho'] = '10%';
+				$atributos ['alto'] = '10%';
+				$atributos ['redirLugar'] = true;
+				echo $this->miFormulario->enlace ( $atributos );
+				unset($atributos);				
 				// ---------------- CONTROL: Cuadro Lista --------------------------------------------------------
 				
 				$esteCampo = 'tipo_registro';
@@ -927,7 +932,7 @@ class registrarForm {
 			$valorCodificado .= "&opcion=registrar";
 			$valorCodificado .= "&id_orden=" . $_REQUEST ['id_orden'];
 			$valorCodificado .= "&mensaje_titulo=" . $_REQUEST ['mensaje_titulo'];
-			$valorCodificado .= "&usuario=" . $_REQUEST['usuario'];
+			$valorCodificado .= "&usuario=" . $_REQUEST ['usuario'];
 			
 			if (! isset ( $_REQUEST ['registroOrden'] )) {
 				$valorCodificado .= "&arreglo=" . $_REQUEST ['arreglo'];
@@ -1014,7 +1019,7 @@ class registrarForm {
 			$atributos ['marco'] = false;
 			$tab = 1;
 			// ---------------- FIN SECCION: de Parámetros Generales del Formulario ----------------------------
-						// ----------------INICIAR EL FORMULARIO ------------------------------------------------------------
+			// ----------------INICIAR EL FORMULARIO ------------------------------------------------------------
 			$atributos ['tipoEtiqueta'] = 'inicio';
 			echo $this->miFormulario->formulario ( $atributos );
 			{
@@ -1109,27 +1114,24 @@ class registrarForm {
 					
 					$miPaginaActual = $this->miConfigurador->getVariableConfiguracion ( 'pagina' );
 					
-					
-					
 					$variable = "pagina=gestionDisponibilidadOrden";
 					$variable .= "&opcion=cargarDisponibilidad";
-					$variable .= "&id_orden=" . $_REQUEST ['id_orden'];;
+					$variable .= "&id_orden=" . $_REQUEST ['id_orden'];
+					;
 					$variable .= "&arreglo=" . "";
-					$variable .= "&usuario=" . $_REQUEST['usuario'];
+					$variable .= "&usuario=" . $_REQUEST ['usuario'];
 					$variable .= "&mensaje_titulo=" . $_REQUEST ['mensaje_titulo'];
 					$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
-						
 					
+					// $variable = "action=consultaOrdenServicios";
+					// $variable .= "&pagina=consultaOrdenServicios";
+					// $variable .= "&bloque=consultaOrdenServicios";
+					// $variable .= "&bloqueGrupo=inventarios/gestionCompras/";
+					// $variable .= "&opcion=generarDocumento";
+					// $variable .= "&id_orden=" . $_REQUEST ['id_orden'];
+					// $variable .= "&mensaje_titulo=" . $_REQUEST ['mensaje_titulo'];
 					
-// 					$variable = "action=consultaOrdenServicios";
-// 					$variable .= "&pagina=consultaOrdenServicios";
-// 					$variable .= "&bloque=consultaOrdenServicios";
-// 					$variable .= "&bloqueGrupo=inventarios/gestionCompras/";
-// 					$variable .= "&opcion=generarDocumento";
-// 					$variable .= "&id_orden=" . $_REQUEST ['id_orden'];
-// 					$variable .= "&mensaje_titulo=" . $_REQUEST ['mensaje_titulo'];
-					
-// 					$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
+					// $variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
 					
 					echo "&nbsp&nbsp&nbsp&nbsp&nbsp";
 					// -----------------CONTROL: Botón ----------------------------------------------------------------
@@ -1160,7 +1162,7 @@ class registrarForm {
 			$valorCodificado .= "&bloque=" . $esteBloque ['nombre'];
 			$valorCodificado .= "&bloqueGrupo=" . $esteBloque ["grupo"];
 			$valorCodificado .= "&opcion=redireccionar";
-			$valorCodificado .= "&usuario=" . $_REQUEST['usuario'];
+			$valorCodificado .= "&usuario=" . $_REQUEST ['usuario'];
 			
 			/**
 			 * SARA permite que los nombres de los campos sean dinámicos.

@@ -1,8 +1,8 @@
 <?php
 
-namespace inventarios\gestionCompras\registrarElementoOrden\funcion;
+namespace gestionCompras\registrarElementoOrden\funcion;
 
-use inventarios\gestionCompras\registrarElementoOrden\funcion\redireccion;
+use gestionCompras\registrarElementoOrden\funcion\redireccion;
 
 include_once ('redireccionar.php');
 

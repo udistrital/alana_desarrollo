@@ -94,13 +94,13 @@ class registrarForm {
 		
 
 		$arreglo = array (
-				'tipo_orden' => $tipo_orden,
-				'numero_orden' => $numero_orden,
+				'tipoorden' => $tipo_orden,
+				'numeroorden' => $numero_orden,
 				'nit' => $nit,
 				'sede'=>$sede,
 				'dependencia'=>$dependencia,
-				'fecha_inicial'=>$fecha_inicio,
-				'fecha_final'=>$fecha_final
+				'fechainicial'=>$fecha_inicio,
+				'fechafinal'=>$fecha_final
 		);
 		
 		$cadenaSql = $this->miSql->getCadenaSql ( 'consultarOrden', $arreglo );

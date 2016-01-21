@@ -1,8 +1,8 @@
 <?php
 
-namespace inventarios\gestionCompras\registrarOrdenServicios\funcion;
+namespace gestionCompras\registrarOrden\funcion;
 
-use inventarios\gestionCompras\registrarOrdenServicios\funcion\redireccion;
+use gestionCompras\registrarOrden\funcion\redireccion;
 
 include_once ('redireccionar.php');
 if (! isset ( $GLOBALS ["autorizado"] )) {
@@ -24,6 +24,7 @@ class RegistradorOrden {
 		$this->miFuncion = $funcion;
 	}
 	function procesarFormulario() {
+		var_dump($_REQUEST);exit;
 		$fechaActual = date ( 'Y-m-d' );
 		
 		$conexion = "inventarios";

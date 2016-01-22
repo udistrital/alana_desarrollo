@@ -4,7 +4,7 @@ namespace gestionCompras\registrarElementoOrden\funcion;
 
 use gestionCompras\registrarElementoOrden\funcion\redireccion;
 
-include_once ('redireccionar.php');
+
 
 $ruta_1 = $this->miConfigurador->getVariableConfiguracion ( 'raizDocumento' ) . '/plugin/php_excel/Classes/PHPExcel.class.php';
 $ruta_2 = $this->miConfigurador->getVariableConfiguracion ( 'raizDocumento' ) . '/plugin/php_excel/Classes/PHPExcel/Reader/Excel2007.class.php';
@@ -208,11 +208,13 @@ class RegistradorOrden {
 			case '2' :
 				{
 					
+				
+					
 					$esteBloque = $this->miConfigurador->getVariableConfiguracion ( "esteBloque" );
 					// ** Ruta a directorio ******
-					$rutaBloque = $this->miConfigurador->getVariableConfiguracion ( "raizDocumento" ) . "/blocks/inventarios/gestionCompras/";
+					$rutaBloque = $this->miConfigurador->getVariableConfiguracion ( "raizDocumento" ) . "/blocks/gestionCompras/";
 					$rutaBloque .= $esteBloque ['nombre'];
-					$host = $this->miConfigurador->getVariableConfiguracion ( "host" ) . $this->miConfigurador->getVariableConfiguracion ( "site" ) . "/blocks/inventarios/gestionCompras/" . $esteBloque ['nombre'];
+					$host = $this->miConfigurador->getVariableConfiguracion ( "host" ) . $this->miConfigurador->getVariableConfiguracion ( "site" ) . "/blocks/gestionCompras/" . $esteBloque ['nombre'];
 					
 					$ingreso = 0;
 					
@@ -255,15 +257,19 @@ class RegistradorOrden {
 									$status = "Archivo subido: <b>" . $archivo1 . "</b>";
 								} else {
 									
-									\inventarios\gestionActa\registrarElementoOrden\funcion\redireccion::redireccionar ( 'noArchivoCarga' );
+									
+									redireccion::redireccionar('noArchivoCarga');
 									exit ();
 								}
 							} else {
-								\inventarios\gestionActa\registrarElementoOrden\funcion\redireccion::redireccionar ( 'noArchivoCarga' );
+								
+							
+								
+								redireccion::redireccionar('noArchivoCarga');
 								exit ();
 							}
 						}
-						
+						exit;
 						if (file_exists ( $ruta_absoluta )) {
 							
 							// Cargando la hoja de cálculo

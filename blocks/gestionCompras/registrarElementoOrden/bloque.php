@@ -70,9 +70,6 @@ class Bloque implements \Bloque {
 		$this->miLenguaje = new Lenguaje ();
 	}
 	public function bloque() {
-
-		
-		
 		if (isset ( $_REQUEST ['botonCancelar'] ) && $_REQUEST ['botonCancelar'] == "true") {
 			redireccion::redireccionar ( "paginaPrincipal" );
 		} else {

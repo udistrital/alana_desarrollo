@@ -4,8 +4,6 @@ namespace gestionCompras\registrarElementoOrden\funcion;
 
 use gestionCompras\registrarElementoOrden\funcion\redireccion;
 
-
-
 $ruta_1 = $this->miConfigurador->getVariableConfiguracion ( 'raizDocumento' ) . '/plugin/php_excel/Classes/PHPExcel.class.php';
 $ruta_2 = $this->miConfigurador->getVariableConfiguracion ( 'raizDocumento' ) . '/plugin/php_excel/Classes/PHPExcel/Reader/Excel2007.class.php';
 
@@ -208,8 +206,6 @@ class RegistradorOrden {
 			case '2' :
 				{
 					
-				
-					
 					$esteBloque = $this->miConfigurador->getVariableConfiguracion ( "esteBloque" );
 					// ** Ruta a directorio ******
 					$rutaBloque = $this->miConfigurador->getVariableConfiguracion ( "raizDocumento" ) . "/blocks/gestionCompras/";
@@ -257,19 +253,16 @@ class RegistradorOrden {
 									$status = "Archivo subido: <b>" . $archivo1 . "</b>";
 								} else {
 									
-									
-									redireccion::redireccionar('noArchivoCarga');
+									redireccion::redireccionar ( 'noArchivoCarga' );
 									exit ();
 								}
 							} else {
 								
-							
-								
-								redireccion::redireccionar('noArchivoCarga');
+								redireccion::redireccionar ( 'noArchivoCarga' );
 								exit ();
 							}
 						}
-						exit;
+						
 						if (file_exists ( $ruta_absoluta )) {
 							
 							// Cargando la hoja de cálculo
@@ -299,46 +292,45 @@ class RegistradorOrden {
 								$datos [$i] ['Nivel'] = $objPHPExcel->getActiveSheet ()->getCell ( 'A' . $i )->getCalculatedValue ();
 								if (is_null ( $datos [$i] ['Nivel'] ) == true) {
 									
-									\inventarios\gestionActa\registrarElementoOrden\funcion\redireccion::redireccionar ( 'datosVacios', $datos_enviar );
-									
+									redireccion::redireccionar ( 'datosVacios', $datos_enviar );
 									exit ();
 								}
 								
 								$datos [$i] ['Tipo_Bien'] = $objPHPExcel->getActiveSheet ()->getCell ( 'B' . $i )->getCalculatedValue ();
 								if (is_null ( $datos [$i] ['Tipo_Bien'] ) == true) {
 									
-									\inventarios\gestionActa\registrarElementoOrden\funcion\redireccion::redireccionar ( 'datosVacios', $datos_enviar );
+									redireccion::redireccionar ( 'datosVacios', $datos_enviar );
 									exit ();
 								}
 								$datos [$i] ['Descripcion'] = $objPHPExcel->getActiveSheet ()->getCell ( 'C' . $i )->getCalculatedValue ();
 								if (is_null ( $datos [$i] ['Descripcion'] ) == true) {
 									
-									\inventarios\gestionActa\registrarElementoOrden\funcion\redireccion::redireccionar ( 'datosVacios', $datos_enviar );
+									redireccion::redireccionar ( 'datosVacios', $datos_enviar );
 									exit ();
 								}
 								$datos [$i] ['Cantidad'] = $objPHPExcel->getActiveSheet ()->getCell ( 'D' . $i )->getCalculatedValue ();
 								if (is_null ( $datos [$i] ['Cantidad'] ) == true) {
 									
-									\inventarios\gestionActa\registrarElementoOrden\funcion\redireccion::redireccionar ( 'datosVacios', $datos_enviar );
+									redireccion::redireccionar ( 'datosVacios', $datos_enviar );
 									exit ();
 								}
 								$datos [$i] ['Unidad_Medida'] = $objPHPExcel->getActiveSheet ()->getCell ( 'E' . $i )->getCalculatedValue ();
 								if (is_null ( $datos [$i] ['Unidad_Medida'] ) == true) {
 									
-									\inventarios\gestionActa\registrarElementoOrden\funcion\redireccion::redireccionar ( 'datosVacios', $datos_enviar );
+									redireccion::redireccionar ( 'datosVacios', $datos_enviar );
 									exit ();
 								}
 								$datos [$i] ['Valor_Precio'] = $objPHPExcel->getActiveSheet ()->getCell ( 'F' . $i )->getCalculatedValue ();
 								if (is_null ( $datos [$i] ['Valor_Precio'] ) == true) {
 									
-									\inventarios\gestionActa\registrarElementoOrden\funcion\redireccion::redireccionar ( 'datosVacios', $datos_enviar );
+									redireccion::redireccionar ( 'datosVacios', $datos_enviar );
 									exit ();
 								}
 								$datos [$i] ['Iva'] = $objPHPExcel->getActiveSheet ()->getCell ( 'G' . $i )->getCalculatedValue ();
 								
 								if (is_null ( $datos [$i] ['Iva'] ) == true) {
 									
-									\inventarios\gestionActa\registrarElementoOrden\funcion\redireccion::redireccionar ( 'datosVacios', $datos_enviar );
+									redireccion::redireccionar ( 'datosVacios', $datos_enviar );
 									exit ();
 								}
 								$datos [$i] ['Tipo_poliza'] = $objPHPExcel->getActiveSheet ()->getCell ( 'H' . $i )->getCalculatedValue ();
@@ -420,7 +412,7 @@ class RegistradorOrden {
 											$datos [$i] ['Iva'],
 											$datos [$i] ['Cantidad'] * $datos [$i] ['Valor_Precio'],
 											$datos [$i] ['Cantidad'] * $datos [$i] ['Valor_Precio'] * $IVA,
-											round ( $datos [$i] ['Cantidad'] * $datos [$i] ['Valor_Precio'] * $IVA ) + ($datos [$i] ['Cantidad'] * $datos [$i] ['Valor_Precio']),
+											($datos [$i] ['Cantidad'] * $datos [$i] ['Valor_Precio'] * $IVA) + ($datos [$i] ['Cantidad'] * $datos [$i] ['Valor_Precio']),
 											(is_null ( $datos [$i] ['Marca'] ) == true) ? null : trim ( $datos [$i] ['Marca'], "'" ),
 											(is_null ( $datos [$i] ['Serie'] ) == true) ? null : trim ( $datos [$i] ['Serie'], "'" ),
 											$_REQUEST ['id_orden'] 
@@ -441,7 +433,7 @@ class RegistradorOrden {
 											$datos [$i] ['Iva'],
 											1 * $datos [$i] ['Valor_Precio'],
 											1 * $datos [$i] ['Valor_Precio'] * $IVA,
-											round ( 1 * $datos [$i] ['Valor_Precio'] * $IVA ) + (1 * $datos [$i] ['Valor_Precio']),
+											(1 * $datos [$i] ['Valor_Precio'] * $IVA) + (1 * $datos [$i] ['Valor_Precio']),
 											(is_null ( $datos [$i] ['Marca'] ) == true) ? null : trim ( $datos [$i] ['Marca'], "'" ),
 											(is_null ( $datos [$i] ['Serie'] ) == true) ? null : trim ( $datos [$i] ['Serie'], "'" ),
 											$_REQUEST ['id_orden'] 
@@ -465,7 +457,7 @@ class RegistradorOrden {
 												$datos [$i] ['Iva'],
 												1 * $datos [$i] ['Valor_Precio'],
 												1 * $datos [$i] ['Valor_Precio'] * $IVA,
-												round ( 1 * $datos [$i] ['Valor_Precio'] * $IVA ) + (1 * $datos [$i] ['Valor_Precio']),
+												(1 * $datos [$i] ['Valor_Precio'] * $IVA) + (1 * $datos [$i] ['Valor_Precio']),
 												$datos [$i] ['Tipo_poliza'],
 												NULL,
 												NULL,
@@ -486,7 +478,7 @@ class RegistradorOrden {
 												$datos [$i] ['Iva'],
 												1 * $datos [$i] ['Valor_Precio'],
 												1 * $datos [$i] ['Valor_Precio'] * $IVA,
-												round ( 1 * $datos [$i] ['Valor_Precio'] * $IVA ) + (1 * $datos [$i] ['Valor_Precio']),
+												(1 * $datos [$i] ['Valor_Precio'] * $IVA) + (1 * $datos [$i] ['Valor_Precio']),
 												$datos [$i] ['Tipo_poliza'],
 												$datos [$i] ['Fecha_Inicio_Poliza_Anio'] . "-" . $datos [$i] ['Fecha_Inicio_Poliza_Mes'] . "-" . $datos [$i] ['Fecha_Inicio_Poliza_Dia'],
 												$datos [$i] ['Fecha_Final_Poliza_Anio'] . "-" . $datos [$i] ['Fecha_Final_Poliza_Mes'] . "-" . $datos [$i] ['Fecha_Final_Poliza_Dia'],
@@ -502,42 +494,38 @@ class RegistradorOrden {
 								}
 							}
 							
+							foreach ( glob ( $ruta_eliminar_xlsx ) as $filename ) {
+								unlink ( $filename );
+							}
+							foreach ( glob ( $ruta_eliminar_xls ) as $filename ) {
+								unlink ( $filename );
+							}
+
 							$datos = array (
 									$_REQUEST ['mensaje_titulo'],
 									$_REQUEST ['id_orden'],
 									date ( 'Y-m-d' ),
 									(! isset ( $_REQUEST ['registroOrden'] )) ? $_REQUEST ['arreglo'] : $_REQUEST ['registroOrden'],
 									$_REQUEST ['usuario'] 
-							)
-							;
+							);
 							
 							if ($elemento_id && $_REQUEST ['id_orden']) {
 								$this->miConfigurador->setVariableConfiguracion ( "cache", true );
-								\inventarios\gestionActa\registrarElementoOrden\funcion\redireccion::redireccionar ( 'inserto_cargue_masivo', $datos );
-								exit ();
+								redireccion::redireccionar ( 'inserto_cargue_masivo', $datos );
+								exit();
 							} else {
-								
-								\inventarios\gestionActa\registrarElementoOrden\funcion\redireccion::redireccionar ( 'noInsertoMasivo', $datos );
+								redireccion::redireccionar ( 'noInsertoMasivo', $datos );
 								exit ();
 							}
 						}
 					} else {
 						
-						\inventarios\gestionActa\registrarElementoOrden\funcion\redireccion::redireccionar ( 'noExtension' );
-						
+						redireccion::redireccionar ( 'noExtension' );
 						exit ();
 					}
 				}
 				
 				break;
-		}
-	}
-	function resetForm() {
-		foreach ( $_REQUEST as $clave => $valor ) {
-			
-			if ($clave != 'pagina' && $clave != 'development' && $clave != 'jquery' && $clave != 'tiempo') {
-				unset ( $_REQUEST [$clave] );
-			}
 		}
 	}
 }

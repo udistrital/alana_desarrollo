@@ -212,6 +212,8 @@ $("#<?php echo $this->campoSeguro('tipo_poliza')?>").select2();
             precio = cantidad * valor;
       
       
+            total=Math.round(precio*100)/100;
+      
             if (precio==0){
             
             
@@ -219,7 +221,7 @@ $("#<?php echo $this->campoSeguro('tipo_poliza')?>").select2();
             
             }else{
             
-            $("#<?php echo $this->campoSeguro('subtotal_sin_iva')?>").val(precio);
+            $("#<?php echo $this->campoSeguro('subtotal_sin_iva')?>").val(total);
             
             }
 

@@ -27,11 +27,8 @@ include_once ("Sql.class.php");
 // Mensajes
 include_once ("Lenguaje.class.php");
 
-// ------Tratar de Corregir
-
-include_once ('funcion/redireccionar.php');
-
-use inventarios\gestionCompras\registrarOrdenCompra\funcion\redireccion;
+use gestionCompras\registrarElementoOrden\funcion\redireccion;
+include_once ("funcion/redireccionar.php");
 // ------------------
 
 // Esta clase actua como control del bloque en un patron FCE
@@ -70,8 +67,13 @@ class Bloque implements \Bloque {
 		$this->miLenguaje = new Lenguaje ();
 	}
 	public function bloque() {
+		
 		if (isset ( $_REQUEST ['botonCancelar'] ) && $_REQUEST ['botonCancelar'] == "true") {
 			redireccion::redireccionar ( "paginaPrincipal" );
+			exit ();
+		} else if (isset ( $_REQUEST ['botonContinuar'] ) && $_REQUEST ['botonContinuar'] == "true") {
+			redireccion::redireccionar ( "paginaPrincipal" );
+			exit ();
 		} else {
 			
 			$this->miFrontera->setSql ( $this->miSql );
@@ -83,7 +85,7 @@ class Bloque implements \Bloque {
 			$this->miFuncion->setLenguaje ( $this->miLenguaje );
 			
 			if (! isset ( $_REQUEST ['action'] )) {
-
+				
 				$this->miFrontera->frontera ();
 			} else {
 				

@@ -5,7 +5,7 @@ namespace gestionCompras\registrarElementoOrden\funcion;
 if (! isset ( $GLOBALS ["autorizado"] )) {
 	include ("index.php");
 	exit ();
-} 
+}
 class redireccion {
 	public static function redireccionar($opcion, $valor = "", $valor1 = "") {
 		$miConfigurador = \Configurador::singleton ();
@@ -71,7 +71,7 @@ class redireccion {
 				$variable = "pagina=" . $miPaginaActual;
 				$variable .= "&opcion=mensaje";
 				$variable .= "&mensaje=noFormatoImagen";
-				$variable .= "&usuario=".$valor;
+				$variable .= "&usuario=" . $valor;
 				break;
 			
 			case "noExtension" :
@@ -130,33 +130,15 @@ class redireccion {
 				
 				break;
 			
-			case "Salir" :
-				
-				$variable = "pagina=indexAlmacen";
-				
-				break;
-			
-			case "SalidaElemento" :
-				
-				$variable = "pagina=registrarSalidas";
-				$variable .= "&opcion=Salida";
-				$variable .= "&numero_entrada=" . $valor;
-				$variable .= "&datosGenerales=" . $valor1;
-				break;
-			
-			case "RegistrarActa" :
-				
-				$variable = "pagina=registrarActa";
-				$variable .= "&opcion=asociarActa";
-				$variable .= "&mensaje_titulo=" . $valor ['mensaje_titulo'];
-				$variable .= "&numero_orden=" . $valor ['id_orden'];
-				$variable .= "&fecha_orden=" . date ( 'Y-m-d' );
+			case "paginaPrincipal" :
+				$variable = "pagina=registrarElementoOrden";
 				break;
 		}
 		
 		foreach ( $_REQUEST as $clave => $valor ) {
 			unset ( $_REQUEST [$clave] );
 		}
+		
 		
 		$url = $miConfigurador->configuracion ["host"] . $miConfigurador->configuracion ["site"] . "/index.php?";
 		$enlace = $miConfigurador->configuracion ['enlace'];
@@ -165,15 +147,7 @@ class redireccion {
 		$redireccion = $url . $_REQUEST [$enlace];
 		
 		echo "<script>location.replace('" . $redireccion . "')</script>";
-		
-		// $enlace =$miConfigurador->getVariableConfiguracion("enlace");
-		// $variable = $miConfigurador->fabricaConexiones->crypto->codificar($variable);
-		// // echo $enlace;
-		// // // echo $variable;
-		// // exit;
-		// $_REQUEST[$enlace] = $variable;
-		// $_REQUEST["recargar"] = true;
-		// return true;
+
 	}
 }
 

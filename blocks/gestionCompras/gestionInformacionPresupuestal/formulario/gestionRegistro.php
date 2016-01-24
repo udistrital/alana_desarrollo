@@ -55,6 +55,9 @@ class registrarForm {
 		
 		$registro_presupuestales_exitentes = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
 		
+		
+		
+		
 		// // $cadenaSql = $this->miSql->getCadenaSql ( 'clase_entrada_descrip', $entrada [0] [2] );
 		// // $Clase = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
 		// // $cadenaSql = $this->miSql->getCadenaSql ( 'consulta_proveedor', $entrada [0] [7] );
@@ -83,29 +86,7 @@ class registrarForm {
 		$atributos ['tipoEtiqueta'] = 'inicio';
 		echo $this->miFormulario->formulario ( $atributos );
 		{
-			$miPaginaActual = $this->miConfigurador->getVariableConfiguracion ( 'pagina' );
-			
-			$directorio = $this->miConfigurador->getVariableConfiguracion ( "host" );
-			$directorio .= $this->miConfigurador->getVariableConfiguracion ( "site" ) . "/index.php?";
-			$directorio .= $this->miConfigurador->getVariableConfiguracion ( "enlace" );
-			
-			$variable = "pagina=" . $miPaginaActual;
-			$variable .= "&usuario=" . $_REQUEST ['usuario'];
-			$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
-			
-			// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-			$esteCampo = 'botonRegresar';
-			$atributos ['id'] = $esteCampo;
-			$atributos ['enlace'] = $variable;
-			$atributos ['tabIndex'] = 1;
-			$atributos ['estilo'] = 'textoSubtitulo';
-			$atributos ['enlaceTexto'] = $this->lenguaje->getCadena ( $esteCampo );
-			$atributos ['ancho'] = '10%';
-			$atributos ['alto'] = '10%';
-			$atributos ['redirLugar'] = true;
-			echo $this->miFormulario->enlace ( $atributos );
-			
-			unset ( $atributos );
+
 			
 			if (isset ( $_REQUEST ['mensaje'] )) {
 				switch ($_REQUEST ['mensaje']) {
@@ -169,6 +150,31 @@ class registrarForm {
 			$atributos ['tipoEtiqueta'] = 'inicio';
 			$atributos ["leyenda"] = "Asociar Certificado de Registro Presupuestal";
 			echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
+						
+			$miPaginaActual = $this->miConfigurador->getVariableConfiguracion ( 'pagina' );
+				
+			$directorio = $this->miConfigurador->getVariableConfiguracion ( "host" );
+			$directorio .= $this->miConfigurador->getVariableConfiguracion ( "site" ) . "/index.php?";
+			$directorio .= $this->miConfigurador->getVariableConfiguracion ( "enlace" );
+				
+			$variable = "pagina=" . $miPaginaActual;
+			$variable .= "&usuario=" . $_REQUEST ['usuario'];
+			$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
+				
+			// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+			$esteCampo = 'botonRegresar';
+			$atributos ['id'] = $esteCampo;
+			$atributos ['enlace'] = $variable;
+			$atributos ['tabIndex'] = 1;
+			$atributos ['estilo'] = 'textoSubtitulo';
+			$atributos ['enlaceTexto'] = $this->lenguaje->getCadena ( $esteCampo );
+			$atributos ['ancho'] = '10%';
+			$atributos ['alto'] = '10%';
+			$atributos ['redirLugar'] = true;
+			echo $this->miFormulario->enlace ( $atributos );
+				
+			unset ( $atributos );
+			
 			
 			if ($registro_presupuestales_exitentes) {
 				
@@ -198,7 +204,7 @@ class registrarForm {
 							"numero_disponibilidad" => $_REQUEST ['numero_disponibilidad'] 
 					);
 					
-					$informacion = serialize ( $informacion );
+					$informacion =base64_encode( serialize ( $informacion ));
 					
 					$variable = "pagina=" . $miPaginaActual; // pendiente la pagina para modificar parametro
 					$variable .= "&action=" . $esteBloque ["nombre"];

@@ -36,7 +36,7 @@ class RegistradorOrden {
 		switch ($_REQUEST ['tipo_registro']) {
 			
 			case '1' :
-				var_dump($_REQUEST);exit;
+				
 				foreach ( $_FILES as $key => $values ) {
 					
 					$archivo [] = $_FILES [$key];
@@ -47,16 +47,11 @@ class RegistradorOrden {
 				if ($archivoImagen ['error'] == 0) {
 					
 					if ($archivoImagen ['type'] != 'image/jpeg') {
-						// redireccion::redireccionar ( 'noFormatoImagen' );
-						\inventarios\gestionActa\registrarElementoOrden\funcion\redireccion::redireccionar ( 'noFormatoImagen', $_REQUEST ['usuario'] );
+						
+						redireccion::redireccionar ( 'noFormatoImagen' );
 						exit ();
 					}
 				}
-				
-				$_REQUEST ['valor'] = round ( $_REQUEST ['valor'], 2 );
-				$_REQUEST ['subtotal_sin_iva'] = round ( $_REQUEST ['subtotal_sin_iva'], 2 );
-				$_REQUEST ['total_iva'] = round ( $_REQUEST ['total_iva'], 2 );
-				$_REQUEST ['total_iva_con'] = round ( $_REQUEST ['total_iva_con'], 2 );
 				
 				$cadenaSql = $this->miSql->getCadenaSql ( 'consultar_iva', $_REQUEST ['iva'] );
 				
@@ -77,9 +72,9 @@ class RegistradorOrden {
 							$_REQUEST ['unidad'],
 							$_REQUEST ['valor'],
 							$_REQUEST ['iva'],
-							$_REQUEST ['subtotal_sin_iva'],
-							$_REQUEST ['total_iva'],
-							$_REQUEST ['total_iva_con'],
+							$_REQUEST ['cantidad'] * $_REQUEST ['valor'],
+							$_REQUEST ['cantidad'] * $_REQUEST ['valor'] * $valor_iva,
+							$_REQUEST ['cantidad'] * $_REQUEST ['valor'] + $_REQUEST ['cantidad'] * $_REQUEST ['valor'] * $valor_iva,
 							($_REQUEST ['marca'] != '') ? $_REQUEST ['marca'] : null,
 							($_REQUEST ['serie'] != '') ? $_REQUEST ['serie'] : null,
 							$_REQUEST ['id_orden'] 
@@ -100,9 +95,9 @@ class RegistradorOrden {
 							$_REQUEST ['valor'],
 							$_REQUEST ['iva'],
 							$_REQUEST ['iva'],
-							$_REQUEST ['subtotal_sin_iva'],
-							$_REQUEST ['total_iva'],
-							$_REQUEST ['total_iva_con'],
+							$_REQUEST ['cantidad'] * $_REQUEST ['valor'],
+							$_REQUEST ['cantidad'] * $_REQUEST ['valor'] * $valor_iva,
+							$_REQUEST ['cantidad'] * $_REQUEST ['valor'] + $_REQUEST ['cantidad'] * $_REQUEST ['valor'] * $valor_iva,
 							($_REQUEST ['marca'] != '') ? $_REQUEST ['marca'] : null,
 							($_REQUEST ['serie'] != '') ? $_REQUEST ['serie'] : null,
 							$_REQUEST ['id_orden'] 
@@ -123,9 +118,9 @@ class RegistradorOrden {
 								$_REQUEST ['unidad'],
 								$_REQUEST ['valor'],
 								$_REQUEST ['iva'],
-								$_REQUEST ['subtotal_sin_iva'],
-								$_REQUEST ['total_iva'],
-								$_REQUEST ['total_iva_con'],
+								$_REQUEST ['cantidad'] * $_REQUEST ['valor'],
+								$_REQUEST ['cantidad'] * $_REQUEST ['valor'] * $valor_iva,
+								$_REQUEST ['cantidad'] * $_REQUEST ['valor'] + $_REQUEST ['cantidad'] * $_REQUEST ['valor'] * $valor_iva,
 								$_REQUEST ['tipo_poliza'],
 								NULL,
 								NULL,
@@ -143,9 +138,9 @@ class RegistradorOrden {
 								$_REQUEST ['unidad'],
 								$_REQUEST ['valor'],
 								$_REQUEST ['iva'],
-								$_REQUEST ['subtotal_sin_iva'],
-								$_REQUEST ['total_iva'],
-								$_REQUEST ['total_iva_con'],
+								$_REQUEST ['cantidad'] * $_REQUEST ['valor'],
+								$_REQUEST ['cantidad'] * $_REQUEST ['valor'] * $valor_iva,
+								$_REQUEST ['cantidad'] * $_REQUEST ['valor'] + $_REQUEST ['cantidad'] * $_REQUEST ['valor'] * $valor_iva,
 								$_REQUEST ['tipo_poliza'],
 								$_REQUEST ['fecha_inicio'],
 								$_REQUEST ['fecha_final'],
@@ -192,13 +187,12 @@ class RegistradorOrden {
 				
 				if ($elemento) {
 					$this->miConfigurador->setVariableConfiguracion ( "cache", true );
-					\inventarios\gestionActa\registrarElementoOrden\funcion\redireccion::redireccionar ( 'inserto', $datos );
 					
+					redireccion::redireccionar ( "inserto", $datos );
 					exit ();
 				} else {
 					
-					\inventarios\gestionActa\registrarElementoOrden\funcion\redireccion::redireccionar ( 'noInserto', $datos );
-					
+					redireccion::redireccionar ( "noInserto", $datos );
 					exit ();
 				}
 				
@@ -233,62 +227,63 @@ class RegistradorOrden {
 					$archivo = $archivo [0];
 					
 					$trozos = explode ( ".", $archivo ['name'] );
-					$extension = end ( $trozos );	if ($_REQUEST ['mensaje'] == 'confirmaMasivo') {
-				
-// 				$esteCampo = 'desicion2';
-// 				$atributos ['id'] = $esteCampo;
-// 				$atributos ['nombre'] = $esteCampo;
-// 				$atributos ['tipo'] = 'text';
-// 				$atributos ['estilo'] = 'textoCentrar';
-// 				$atributos ['marco'] = true;
-// 				$atributos ['estiloMarco'] = '';
-// 				$atributos ['texto'] = $this->lenguaje->getCadena ( $esteCampo );
-// 				$atributos ["etiquetaObligatorio"] = false;
-// 				$atributos ['columnas'] = 1;
-// 				$atributos ['dobleLinea'] = 0;
-// 				$atributos ['tabIndex'] = $tab;
-// 				$atributos ['validar'] = '';
-// 				// $atributos ['etiqueta'] =$this->lenguaje->getCadena ( $esteCampo."Nota" );
-// 				if (isset ( $_REQUEST [$esteCampo] )) {
-// 					$atributos ['valor'] = $_REQUEST [$esteCampo];
-// 				} else {
-// 					$atributos ['valor'] = '';
-// 				}
-// 				$atributos ['titulo'] = '';
-// 				$atributos ['deshabilitado'] = true;
-// 				$atributos ['tamanno'] = 10;
-// 				$atributos ['maximoTamanno'] = '';
-// 				$atributos ['anchoEtiqueta'] = 10;
-// 				$tab ++;
-				
-// 				// Aplica atributos globales al control
-// 				$atributos = array_merge ( $atributos, $atributosGlobales );
-// 				echo $this->miFormulario->campoTexto ( $atributos );
-// 				unset ( $atributos );
-				
-// 				echo "<br><br><br>";
-				
-// 				// -----------------CONTROL: Botón ----------------------------------------------------------------
-// 				$esteCampo = 'botonActa';
-// 				$atributos ["id"] = $esteCampo;
-// 				$atributos ["tabIndex"] = $tab;
-// 				$atributos ["tipo"] = 'boton';
-// 				// submit: no se coloca si se desea un tipo button genérico
-// 				$atributos ['submit'] = true;
-// 				$atributos ["estiloMarco"] = '';
-// 				$atributos ["estiloBoton"] = 'jqueryui';
-// 				// verificar: true para verificar el formulario antes de pasarlo al servidor.
-// 				$atributos ["verificar"] = '';
-// 				$atributos ["tipoSubmit"] = 'jquery'; // Dejar vacio para un submit normal, en este caso se ejecuta la función submit declarada en ready.js
-// 				$atributos ["valor"] = $this->lenguaje->getCadena ( $esteCampo );
-// 				$atributos ['nombreFormulario'] = $esteBloque ['nombre'];
-// 				$tab ++;
-				
-// 				// Aplica atributos globales al control
-// 				$atributos = array_merge ( $atributos, $atributosGlobales );
-// 				// echo $this->miFormulario->campoBoton ( $atributos );
-// 				unset ( $atributos );
-			}
+					$extension = end ( $trozos );
+					if ($_REQUEST ['mensaje'] == 'confirmaMasivo') {
+						
+						// $esteCampo = 'desicion2';
+						// $atributos ['id'] = $esteCampo;
+						// $atributos ['nombre'] = $esteCampo;
+						// $atributos ['tipo'] = 'text';
+						// $atributos ['estilo'] = 'textoCentrar';
+						// $atributos ['marco'] = true;
+						// $atributos ['estiloMarco'] = '';
+						// $atributos ['texto'] = $this->lenguaje->getCadena ( $esteCampo );
+						// $atributos ["etiquetaObligatorio"] = false;
+						// $atributos ['columnas'] = 1;
+						// $atributos ['dobleLinea'] = 0;
+						// $atributos ['tabIndex'] = $tab;
+						// $atributos ['validar'] = '';
+						// // $atributos ['etiqueta'] =$this->lenguaje->getCadena ( $esteCampo."Nota" );
+						// if (isset ( $_REQUEST [$esteCampo] )) {
+						// $atributos ['valor'] = $_REQUEST [$esteCampo];
+						// } else {
+						// $atributos ['valor'] = '';
+						// }
+						// $atributos ['titulo'] = '';
+						// $atributos ['deshabilitado'] = true;
+						// $atributos ['tamanno'] = 10;
+						// $atributos ['maximoTamanno'] = '';
+						// $atributos ['anchoEtiqueta'] = 10;
+						// $tab ++;
+						
+						// // Aplica atributos globales al control
+						// $atributos = array_merge ( $atributos, $atributosGlobales );
+						// echo $this->miFormulario->campoTexto ( $atributos );
+						// unset ( $atributos );
+						
+						// echo "<br><br><br>";
+						
+						// // -----------------CONTROL: Botón ----------------------------------------------------------------
+						// $esteCampo = 'botonActa';
+						// $atributos ["id"] = $esteCampo;
+						// $atributos ["tabIndex"] = $tab;
+						// $atributos ["tipo"] = 'boton';
+						// // submit: no se coloca si se desea un tipo button genérico
+						// $atributos ['submit'] = true;
+						// $atributos ["estiloMarco"] = '';
+						// $atributos ["estiloBoton"] = 'jqueryui';
+						// // verificar: true para verificar el formulario antes de pasarlo al servidor.
+						// $atributos ["verificar"] = '';
+						// $atributos ["tipoSubmit"] = 'jquery'; // Dejar vacio para un submit normal, en este caso se ejecuta la función submit declarada en ready.js
+						// $atributos ["valor"] = $this->lenguaje->getCadena ( $esteCampo );
+						// $atributos ['nombreFormulario'] = $esteBloque ['nombre'];
+						// $tab ++;
+						
+						// // Aplica atributos globales al control
+						// $atributos = array_merge ( $atributos, $atributosGlobales );
+						// // echo $this->miFormulario->campoBoton ( $atributos );
+						// unset ( $atributos );
+					}
 					
 					if ($extension == 'xlsx') {
 						
@@ -555,7 +550,7 @@ class RegistradorOrden {
 							foreach ( glob ( $ruta_eliminar_xls ) as $filename ) {
 								unlink ( $filename );
 							}
-
+							
 							$datos = array (
 									$_REQUEST ['mensaje_titulo'],
 									$_REQUEST ['id_orden'],
@@ -567,7 +562,7 @@ class RegistradorOrden {
 							if ($elemento_id && $_REQUEST ['id_orden']) {
 								$this->miConfigurador->setVariableConfiguracion ( "cache", true );
 								redireccion::redireccionar ( 'inserto_cargue_masivo', $datos );
-								exit();
+								exit ();
 							} else {
 								redireccion::redireccionar ( 'noInsertoMasivo', $datos );
 								exit ();

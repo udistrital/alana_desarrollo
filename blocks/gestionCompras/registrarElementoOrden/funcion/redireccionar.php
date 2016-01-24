@@ -71,7 +71,7 @@ class redireccion {
 				$variable = "pagina=" . $miPaginaActual;
 				$variable .= "&opcion=mensaje";
 				$variable .= "&mensaje=noFormatoImagen";
-				$variable .= "&usuario=" . $valor;
+				$variable .= "&usuario=" . $_REQUEST['usuario '];
 				break;
 			
 			case "noExtension" :

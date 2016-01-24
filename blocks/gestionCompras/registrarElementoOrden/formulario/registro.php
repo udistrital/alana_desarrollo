@@ -1095,7 +1095,7 @@ class registrarForm {
 					$directorio .= $this->miConfigurador->getVariableConfiguracion ( "enlace" );
 					
 					$miPaginaActual = $this->miConfigurador->getVariableConfiguracion ( 'pagina' );
-					$variable = "pagina=indexAlmacen";
+					$variable = "pagina=indexAlana";
 					
 					$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
 					
@@ -1114,7 +1114,7 @@ class registrarForm {
 					
 					$miPaginaActual = $this->miConfigurador->getVariableConfiguracion ( 'pagina' );
 					
-					$variable = "pagina=gestionDisponibilidadOrden";
+					$variable = "pagina=gestionInformacionPresupuestal";
 					$variable .= "&opcion=cargarDisponibilidad";
 					$variable .= "&id_orden=" . $_REQUEST ['id_orden'];
 					;

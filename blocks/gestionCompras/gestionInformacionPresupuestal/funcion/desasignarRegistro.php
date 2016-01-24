@@ -25,31 +25,21 @@ class RegistradorOrden {
 		$this->miFuncion = $funcion;
 	}
 	function procesarFormulario() {
+		$datos = unserialize ( base64_decode ( $_REQUEST ['informacion'] ) );
 		
-		
-		
-		$datos = unserialize ( $_REQUEST ['informacion'] );
-		
-		
-		
-
 		$conexion = "inventarios";
 		$esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB ( $conexion );
 		
-
-		$cadenaSql = $this->miSql->getCadenaSql ( 'noRelacionRegistrar', $_REQUEST['id_disponibilidad'] );
+		$cadenaSql = $this->miSql->getCadenaSql ( 'noRelacionRegistrar', $_REQUEST ['id_disponibilidad'] );
 		
 		$registro = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso" );
-		
-		
-		
 		
 		$datos = array (
 				"vigencia" => $datos ['vigencia'],
 				"numero_disponibilidad" => $datos ['numero_disponibilidad'],
 				"unidad_ejecutora" => $datos ['unidad_ejecutora'],
 				"usuario" => $_REQUEST ['usuario'],
-				"id_disponibilidad" => $_REQUEST ['id_disponibilidad'],
+				"id_disponibilidad" => $_REQUEST ['id_disponibilidad'] 
 		);
 		
 		if ($registro == true) {

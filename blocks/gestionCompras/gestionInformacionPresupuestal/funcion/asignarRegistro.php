@@ -27,11 +27,7 @@ class RegistradorOrden {
 	function procesarFormulario() {
 		
 		
-		$datos = unserialize ( $_REQUEST ['informacion'] );
-		
-		
-		
-		
+		$datos =unserialize(base64_decode( $_REQUEST ['informacion'] ));
 		$conexion = "inventarios";
 		$esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB ( $conexion );
 		
@@ -55,7 +51,7 @@ class RegistradorOrden {
 				"numero_disponibilidad" => $datos ['numero_disponibilidad'],
 				"unidad_ejecutora" => $datos ['unidad_ejecutora'],
 				"usuario" => $_REQUEST ['usuario'],
-				"id_disponibilidad" => $_REQUEST ['id_disponibilidad'],
+				"id_disponibilidad" => $_REQUEST ['id_disponibilidad'] 
 		);
 		
 		if ($registro == true) {

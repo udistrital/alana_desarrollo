@@ -12,7 +12,7 @@ $estilo[$indice++]="jquery.dataTables.css";
 $estilo[$indice++]="jquery.dataTables_themeroller.css";
 
 
-
+$estilo[$indice++]="estiloBloque.css";
 
 
 $rutaBloque=$this->miConfigurador->getVariableConfiguracion("host");

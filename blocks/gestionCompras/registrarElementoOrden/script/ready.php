@@ -25,7 +25,7 @@
 
         setTimeout(function() {
     		$('#marcoDatosBasicosMensaje').hide( "drop", { direction: "up" }, "slow" );
-			}, 1000000); // <-- time in milliseconds
+			}, 10000000); // <-- time in milliseconds
         
               
               

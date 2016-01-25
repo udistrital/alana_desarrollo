@@ -690,71 +690,7 @@ class registrarForm {
 						echo $this->miFormulario->campoCuadroLista ( $atributos );
 						unset ( $atributos );
 						
-						// $esteCampo = 'ajuste';
-						// $atributos ['id'] = $esteCampo;
-						// $atributos ['nombre'] = $esteCampo;
-						// $atributos ['tipo'] = 'text';
-						// $atributos ['estilo'] = 'jqueryui';
-						// $atributos ['marco'] = true;
-						// $atributos ['estiloMarco'] = '';
-						// $atributos ["etiquetaObligatorio"] = true;
-						// $atributos ['columnas'] = 1;
-						// $atributos ['dobleLinea'] = 0;
-						// $atributos ['tabIndex'] = $tab;
-						// $atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-						// $atributos ['validar'] = 'required, minSize[1],maxSize[30],custom[number]';
-						
-						// if (isset ( $_REQUEST [$esteCampo] )) {
-						// $atributos ['valor'] = $_REQUEST [$esteCampo];
-						// } else {
-						// $atributos ['valor'] = '';
-						// }
-						// $atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
-						// $atributos ['deshabilitado'] = false;
-						// $atributos ['tamanno'] = 10;
-						// $atributos ['maximoTamanno'] = '';
-						// $atributos ['anchoEtiqueta'] = 220;
-						// $tab ++;
-						
-						// // Aplica atributos globales al control
-						// $atributos = array_merge ( $atributos, $atributosGlobales );
-						// echo $this->miFormulario->campoCuadroTexto ( $atributos );
-						// unset ( $atributos );
-						
-						// ---------------- CONTROL: Cuadro Lista --------------------------------------------------------
-						
-						$esteCampo = 'bodega';
-						$atributos ['columnas'] = 1;
-						$atributos ['nombre'] = $esteCampo;
-						$atributos ['id'] = $esteCampo;
-						if (isset ( $_REQUEST [$esteCampo] )) {
-							$atributos ['seleccion'] = $_REQUEST [$esteCampo];
-						} else {
-							$atributos ['seleccion'] = '';
-						}
-						$atributos ['evento'] = '';
-						$atributos ['deshabilitado'] = false;
-						$atributos ["etiquetaObligatorio"] = true;
-						$atributos ['tab'] = $tab;
-						$atributos ['tamanno'] = 1;
-						$atributos ['estilo'] = 'jqueryui';
-						$atributos ['validar'] = 'required';
-						$atributos ['limitar'] = false;
-						$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-						$atributos ['anchoEtiqueta'] = 213;
-						// Valores a mostrar en el control
-						// $atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "consultar_bodega" );
-						// $matrizItems = $esteRecursoDB->ejecutarAcceso ( $atributos ['cadena_sql'], "busqueda" );
-						// $atributos ['matrizItems'] = $matrizItems;
-						
-						// Utilizar lo siguiente cuando no se pase un arreglo:
-						// $atributos['baseDatos']='ponerAquiElNombreDeLaConexión';
-						// $atributos ['cadena_sql']='ponerLaCadenaSqlAEjecutar';
-						$tab ++;
-						$atributos = array_merge ( $atributos, $atributosGlobales );
-						// echo $this->miFormulario->campoCuadroLista ( $atributos );
-						unset ( $atributos );
-						
+
 						$esteCampo = 'subtotal_sin_iva';
 						$atributos ['id'] = $esteCampo;
 						$atributos ['nombre'] = $esteCampo;
@@ -775,7 +711,7 @@ class registrarForm {
 							$atributos ['valor'] = '';
 						}
 						$atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
-						$atributos ['deshabilitado'] = false;
+						$atributos ['deshabilitado'] = true;
 						$atributos ['tamanno'] = 10;
 						$atributos ['maximoTamanno'] = '';
 						$atributos ['anchoEtiqueta'] = 220;
@@ -806,7 +742,7 @@ class registrarForm {
 							$atributos ['valor'] = '';
 						}
 						$atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
-						$atributos ['deshabilitado'] = false;
+						$atributos ['deshabilitado'] = true;
 						$atributos ['tamanno'] = 10;
 						$atributos ['maximoTamanno'] = '';
 						$atributos ['anchoEtiqueta'] = 220;
@@ -837,7 +773,7 @@ class registrarForm {
 							$atributos ['valor'] = '';
 						}
 						$atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
-						$atributos ['deshabilitado'] = false;
+						$atributos ['deshabilitado'] = true;
 						$atributos ['tamanno'] = 10;
 						$atributos ['maximoTamanno'] = '';
 						$atributos ['anchoEtiqueta'] = 220;

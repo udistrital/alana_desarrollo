@@ -3,7 +3,7 @@
 ?>
 
 // Asociar el widget de validación al formulario
-              $("#consultaOrdenServicios").validationEngine({
+              $("#consultaOrden").validationEngine({
             promptPosition : "centerRight", 
             scroll: false,
             autoHidePrompt: true,
@@ -12,11 +12,8 @@
 	
         
         $(function() {
-            $("#consultaOrdenServicios").submit(function() {
-                $resultado=$("#consultaOrdenServicios").validationEngine("validate");
-                   
-                   
-                   
+            $("#consultaOrden").submit(function() {
+                $resultado=$("#consultaOrden").validationEngine("validate");
                 if ($resultado) {
                 
                     return true;

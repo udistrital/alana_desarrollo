@@ -179,7 +179,7 @@ class registrarForm {
 				$variable .= "&id_orden=" . $Orden [$i] ['id_orden'];
 				$variable .= "&arreglo=" . $arreglo;
 				$variable .= "&usuario=" . $_REQUEST ['usuario'];
-				$variable .= "&mensaje_titulo=" . $Orden [$i] ['tipo_contrato'] . "<br>VIGENCIA Y/O NÚMERO ORDEN : " . $Orden [$i] ['identificador'];
+				$variable .= "&mensaje_titulo=" . $Orden [$i] ['tipo_contrato'] . "  VIGENCIA Y/O NÚMERO ORDEN : " . $Orden [$i] ['identificador'];
 				$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
 				
 				$variable_elementos = "pagina=" . $miPaginaActual; // pendiente la pagina para modificar parametro
@@ -187,7 +187,7 @@ class registrarForm {
 				$variable_elementos .= "&id_orden=" . $Orden [$i] ['id_orden'];
 				$variable_elementos .= "&arreglo=" . $arreglo;
 				$variable_elementos .= "&usuario=" . $_REQUEST ['usuario'];
-				$variable_elementos .= "&mensaje_titulo=" . $Orden [$i] ['tipo_contrato'] . "<br>VIGENCIA Y/O NÚMERO ORDEN : " . $Orden [$i] ['identificador'];
+				$variable_elementos .= "&mensaje_titulo=" . $Orden [$i] ['tipo_contrato'] . "  VIGENCIA Y/O NÚMERO ORDEN : " . $Orden [$i] ['identificador'];
 				$variable_elementos = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable_elementos, $directorio );
 				
 				// $variable_documento = "pagina=" . $miPaginaActual; // pendiente la pagina para modificar parametro

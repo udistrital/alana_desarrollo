@@ -1,8 +1,8 @@
 <?php
 
-namespace inventarios\gestionCompras\consultaOrdenServicios\funcion;
+namespace gestionCompras\consultaOrden\funcion;
 
-use inventarios\gestionCompras\consultaOrdenServicios\funcion\redireccion;
+use gestionCompras\consultaOrden\funcion\redireccion;
 
 include_once ('redireccionar.php');
 if (! isset ( $GLOBALS ["autorizado"] )) {
@@ -24,8 +24,6 @@ class RegistradorOrden {
 		$this->miFuncion = $funcion;
 	}
 	function procesarFormulario() {
-		
-		
 		$conexion = "inventarios";
 		$esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB ( $conexion );
 		
@@ -71,14 +69,31 @@ class RegistradorOrden {
 				$_REQUEST ['identifcacion_contratista'],
 				$_REQUEST ['cargo_contratista'],
 				$_REQUEST ['contratista'] 
-		)
-		;
+		);
 		
 		// Actualizar Contratista
 		$cadenaSql = $this->miSql->getCadenaSql ( 'actualizarContratista', $datosContratista );
 		
 		$Contratista = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda", $datosContratista, 'actualizarContratista' );
 		
+		$cadenaSql = $this->miSql->getCadenaSql ( 'consultarConsecutivo', $_REQUEST ['id_orden'] );
+		
+		$consecutivo = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
+		
+		$consecutivo = $consecutivo [0];
+		
+		if ($consecutivo ['unidad_ejecutora'] != $_REQUEST ['unidad_ejecutora']) {
+			
+			$cadenaSql = $this->miSql->getCadenaSql ( 'consultarConsecutivoUnidad', array (
+					"unidad_ejecutora"=>$_REQUEST ['unidad_ejecutora'],
+					"vigencia"=>$consecutivo ['vigencia'],
+					"tipo_orden"=>$consecutivo['tipo_orden'],
+			) );
+			
+			$consecutivo = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
+			var_dump($consecutivo);
+		}
+		exit;
 		// Actualizar Orden
 		
 		$datosOrden = array (
@@ -95,7 +110,8 @@ class RegistradorOrden {
 				$_REQUEST ['forma_pago'],
 				$_REQUEST ['id_ordenador'],
 				$_REQUEST ['tipo_ordenador'],
-				$_REQUEST ['id_orden'] 
+				$_REQUEST ['id_orden'],
+				$_REQUEST ['unidad_ejecutora'] 
 		);
 		
 		$cadenaSql = $this->miSql->getCadenaSql ( 'actualizarOrden', $datosOrden );

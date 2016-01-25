@@ -686,8 +686,8 @@ class Sql extends \Sql {
 								 cn.identificacion ||' - '|| cn.nombres as  contratista,
 						         tc.descripcion tipo_contrato,
 						         CASE ro.tipo_orden
-										WHEN 1 THEN ro.vigencia || ' - ' ||ro.consecutivo_compras
-										WHEN 9 THEn ro.vigencia || ' - ' ||ro.consecutivo_servicio
+										WHEN 1 THEN ro.vigencia || ' - ' ||ro.consecutivo_compras ||' - Unidad Ejecutora  '||unidad_ejecutora
+										WHEN 9 THEn ro.vigencia || ' - ' ||ro.consecutivo_servicio ||' - Unidad Ejecutora  '||unidad_ejecutora
 								 END identificador, ela.id_orden validacion ,  ela.estado estado_elementos  ";
 				$cadenaSql .= "FROM orden ro ";
 				$cadenaSql .= " JOIN contratistas_adquisiones cn ON cn.id_contratista_adq =  ro.id_contratista  ";
@@ -989,6 +989,27 @@ class Sql extends \Sql {
 								";
 				
 				$cadenaSql .= " WHERE od.id_orden='" . $variable . "'";
+				break;
+			
+			case "consultarConsecutivo" :
+				
+				$cadenaSql = "SELECT ro.vigencia,ro.unidad_ejecutora, ro.consecutivo_servicio,ro.consecutivo_compras,ro.tipo_orden   ";
+				$cadenaSql .= " FROM orden ro  ";
+				$cadenaSql .= " WHERE ro.id_orden='" . $variable . "'";
+				break;
+			
+			case "consultarConsecutivoUnidad" :
+				
+				$cadenaSql = "SELECT 
+								CASE ro.tipo_orden
+								WHEN 1 THEN max(ro.consecutivo_compras)
+								WHEN 9 THEn max(ro.consecutivo_servicio)
+								END consecutivo ";
+				$cadenaSql .= " FROM orden ro  ";
+				$cadenaSql .= " WHERE ro.vigencia='" . $variable['vigencia'] . "' ";
+				$cadenaSql .= " AND  ro.unidad_ejecutora ='" . $variable['unidad_ejecutora'] . "' ";
+				$cadenaSql .= " AND  ro.tipo_orden ='" . $variable['tipo_orden'] . "' ";
+				$cadenaSql .= " GROUP BY ro.tipo_orden ; ";
 				
 				break;
 		}

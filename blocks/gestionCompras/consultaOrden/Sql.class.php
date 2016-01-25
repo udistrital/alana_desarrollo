@@ -979,7 +979,7 @@ class Sql extends \Sql {
 			case "consultarInformaciónRegistro" :
 				
 				$cadenaSql = "SELECT ro.* , \"DIS_DESCRIPCION_RUBRO\" descr_rubro,od.id_rubro ";
-				$cadenaSql .= " FROM registro_presupuestal_orden_orden ro  ";
+				$cadenaSql .= " FROM registro_presupuestal_orden ro  ";
 				$cadenaSql .= " JOIN disponibilidad_orden od ON od.id_disponibilidad=ro.id_disponibilidad  ";
 				$cadenaSql .= " JOIN   arka_parametros.arka_disponibilidadpresupuestal ru
 								ON  ru.\"DIS_NUMERO_DISPONIBILIDAD\"=od.numero_diponibilidad

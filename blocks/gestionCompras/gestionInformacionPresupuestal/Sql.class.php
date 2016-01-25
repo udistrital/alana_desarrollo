@@ -695,7 +695,7 @@ class Sql extends \Sql {
 			case "ConsultarRegistrosPresupuestales" :
 				$cadenaSql = "SELECT ar.*,ro.* ";
 				$cadenaSql .= "FROM arka_parametros.arka_registropresupuestal ar ";
-				$cadenaSql .= "LEFT JOIN registro_presupuestal_orden_orden ro ON to_number(ro.vigencia,text(9999))= ar.\"REP_VIGENCIA\" AND ro.numero_registro=ar.\"REP_IDENTIFICADOR\" AND ro.unidad_ejecutora=ar.\"REP_UNIDAD_EJECUTORA\" ";
+				$cadenaSql .= "LEFT JOIN registro_presupuestal_orden ro ON to_number(ro.vigencia,text(9999))= ar.\"REP_VIGENCIA\" AND ro.numero_registro=ar.\"REP_IDENTIFICADOR\" AND ro.unidad_ejecutora=ar.\"REP_UNIDAD_EJECUTORA\" ";
 				$cadenaSql .= "WHERE \"REP_VIGENCIA\"='" . $variable [0] . "'";
 				$cadenaSql .= "AND  \"REP_NUMERO_DISPONIBILIDAD\"='" . $variable [1] . "'";
 				$cadenaSql .= "AND  \"REP_UNIDAD_EJECUTORA\"='" . $variable [2] . "'";
@@ -703,7 +703,7 @@ class Sql extends \Sql {
 				break;
 			
 			case "registrarRegistro" :
-				$cadenaSql = "INSERT INTO registro_presupuestal_orden_orden( ";
+				$cadenaSql = "INSERT INTO registro_presupuestal_orden( ";
 				$cadenaSql .= "id_disponibilidad, numero_disponibilidad,
 									vigencia, unidad_ejecutora,numero_registro, fecha_registro_presupuestal,
 									valor_registro, fecha_registro) ";
@@ -721,7 +721,7 @@ class Sql extends \Sql {
 			
 			case "noRelacionRegistrar" :
 				
-				$cadenaSql = "DELETE FROM registro_presupuestal_orden_orden  ";
+				$cadenaSql = "DELETE FROM registro_presupuestal_orden  ";
 				$cadenaSql .= " WHERE id_disponibilidad='" . $variable . "' ;";
 				
 				break;

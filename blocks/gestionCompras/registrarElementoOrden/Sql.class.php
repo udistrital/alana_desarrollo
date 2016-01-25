@@ -187,8 +187,8 @@ class Sql extends \Sql {
 								 cn.identificacion ||' - '|| cn.nombres as  contratista,
 						         tc.descripcion tipo_contrato,
 						         CASE ro.tipo_orden 
-										WHEN 1 THEN ro.vigencia || ' - ' ||ro.consecutivo_compras 
-										WHEN 9 THEn ro.vigencia || ' - ' ||ro.consecutivo_servicio
+										WHEN 1 THEN ro.vigencia || ' - ' ||ro.consecutivo_compras ||' - Unidad Ejecutora  '||unidad_ejecutora
+										WHEN 9 THEn ro.vigencia || ' - ' ||ro.consecutivo_servicio ||' - Unidad Ejecutora  '||unidad_ejecutora
 								 END identificador ";
 				$cadenaSql .= "FROM orden ro ";
 				$cadenaSql .= "JOIN contratistas_adquisiones cn ON cn.id_contratista_adq =  ro.id_contratista  ";

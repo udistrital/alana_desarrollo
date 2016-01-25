@@ -1006,10 +1006,30 @@ class Sql extends \Sql {
 								WHEN 9 THEn max(ro.consecutivo_servicio)
 								END consecutivo ";
 				$cadenaSql .= " FROM orden ro  ";
-				$cadenaSql .= " WHERE ro.vigencia='" . $variable['vigencia'] . "' ";
-				$cadenaSql .= " AND  ro.unidad_ejecutora ='" . $variable['unidad_ejecutora'] . "' ";
-				$cadenaSql .= " AND  ro.tipo_orden ='" . $variable['tipo_orden'] . "' ";
+				$cadenaSql .= " WHERE ro.vigencia='" . $variable ['vigencia'] . "' ";
+				$cadenaSql .= " AND  ro.unidad_ejecutora ='" . $variable ['unidad_ejecutora'] . "' ";
+				$cadenaSql .= " AND  ro.tipo_orden ='" . $variable ['tipo_orden'] . "' ";
 				$cadenaSql .= " GROUP BY ro.tipo_orden ; ";
+				
+				break;
+			
+			case "actualizarConsecutivoCompras" :
+				$cadenaSql = " UPDATE ";
+				$cadenaSql .= " orden ";
+				$cadenaSql .= " SET ";
+				$cadenaSql .= " consecutivo_compras='" . $variable ['consecutivo'] . "', ";
+				$cadenaSql .= " unidad_ejecutora='" . $variable ['unidad_ejecutora'] . "'  ";
+				$cadenaSql .= "  WHERE id_orden='" . $variable ['id_orden'] . "';";
+				
+				break;
+			
+			case "actualizarConsecutivoServicios" :
+				$cadenaSql = " UPDATE ";
+				$cadenaSql .= " orden ";
+				$cadenaSql .= " SET ";
+				$cadenaSql .= " consecutivo_servicio='" . $variable ['consecutivo'] . "', ";
+				$cadenaSql .= " unidad_ejecutora='" . $variable ['unidad_ejecutora'] . "'  ";
+				$cadenaSql .= "  WHERE id_orden='" . $variable ['id_orden'] . "';";
 				
 				break;
 		}

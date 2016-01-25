@@ -279,7 +279,7 @@ class registrarForm {
 			$tab ++;
 			
 			// Aplica atributos globales al control
-			$atributos = array_merge ( $atributos, $atributosGlobales );
+			$atributos = array_merge ( $atributos, $atributosGlobales);
 			echo $this->miFormulario->campoBoton ( $atributos );
 			// -----------------FIN CONTROL: Botón -----------------------------------------------------------
 			
@@ -322,7 +322,7 @@ class registrarForm {
 		
 		// Paso 1: crear el listado de variables
 		
-		$valorCodificado = "actionBloque=" . $esteBloque ["nombre"];
+		$valorCodificado = "action=" . $esteBloque ["nombre"];
 		$valorCodificado .= "&pagina=" . $this->miConfigurador->getVariableConfiguracion ( 'pagina' );
 		$valorCodificado .= "&bloque=" . $esteBloque ['nombre'];
 		$valorCodificado .= "&bloqueGrupo=" . $esteBloque ["grupo"];
@@ -334,6 +334,8 @@ class registrarForm {
 		 * (a) invocando a la variable $_REQUEST ['tiempo'] que se ha declarado en ready.php o
 		 * (b) asociando el tiempo en que se está creando el formulario
 		 */
+		
+		$valorCodificado .= "&campoSeguro=" . $_REQUEST ['tiempo'];
 		$valorCodificado .= "&tiempo=" . time ();
 		// Paso 2: codificar la cadena resultante
 		$valorCodificado = $this->miConfigurador->fabricaConexiones->crypto->codificar ( $valorCodificado );

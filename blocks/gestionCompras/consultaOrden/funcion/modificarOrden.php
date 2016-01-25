@@ -85,15 +85,43 @@ class RegistradorOrden {
 		if ($consecutivo ['unidad_ejecutora'] != $_REQUEST ['unidad_ejecutora']) {
 			
 			$cadenaSql = $this->miSql->getCadenaSql ( 'consultarConsecutivoUnidad', array (
-					"unidad_ejecutora"=>$_REQUEST ['unidad_ejecutora'],
-					"vigencia"=>$consecutivo ['vigencia'],
-					"tipo_orden"=>$consecutivo['tipo_orden'],
+					"unidad_ejecutora" => $_REQUEST ['unidad_ejecutora'],
+					"vigencia" => $consecutivo ['vigencia'],
+					"tipo_orden" => $consecutivo ['tipo_orden'] 
 			) );
 			
-			$consecutivo = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
-			var_dump($consecutivo);
+			$consecutivo_actual = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
+			
+			$consecutivo_suma = $consecutivo_actual [0] ['consecutivo'] + 1;
+			
+			$arreglo = array (
+					"id_orden" => $_REQUEST ['id_orden'],
+					"consecutivo" => $consecutivo_suma,
+					"unidad_ejecutora" => $_REQUEST ['unidad_ejecutora'] 
+			);
+			
+			if ($consecutivo ['tipo_orden'] == '1') {
+				
+				$cadenaSql = $this->miSql->getCadenaSql ( 'actualizarConsecutivoCompras', $arreglo );
+				$nombreAccion = 'actualizarConsecutivoCompras';
+				
+				$_REQUEST ['mensaje_titulo']="ORDEN COMPRA VIGENCIA Y/O NÚMERO ORDEN : ".$consecutivo ['vigencia']." - ".$consecutivo_suma."  Unidad Ejecutora: ".$_REQUEST ['unidad_ejecutora'] ;
+				
+				
+				
+			} else if ($consecutivo ['tipo_orden'] == '9') {
+				
+				$cadenaSql = $this->miSql->getCadenaSql ( 'actualizarConsecutivoServicios', $arreglo );
+				$nombreAccion = 'actualizarConsecutivoServicios';
+				
+				
+				$_REQUEST ['mensaje_titulo']="ORDEN SERVICIOS VIGENCIA Y/O NÚMERO ORDEN : ".$consecutivo ['vigencia']." - ".$consecutivo_suma."  Unidad Ejecutora: ".$_REQUEST ['unidad_ejecutora'] ;
+			}
+			
+			$actualizacion_consecutivo = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso", $datosContratista, $nombreAccion );
+			
 		}
-		exit;
+		
 		// Actualizar Orden
 		
 		$datosOrden = array (

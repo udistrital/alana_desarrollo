@@ -20,7 +20,7 @@ class registrarForm {
 		$this->miSql = $sql;
 	}
 	function miForm() {
-
+		
 		// Rescatar los datos de este bloque
 		$esteBloque = $this->miConfigurador->getVariableConfiguracion ( "esteBloque" );
 		$miPaginaActual = $this->miConfigurador->getVariableConfiguracion ( 'pagina' );
@@ -31,10 +31,7 @@ class registrarForm {
 		
 		$rutaBloque = $this->miConfigurador->getVariableConfiguracion ( "host" );
 		$rutaBloque .= $this->miConfigurador->getVariableConfiguracion ( "site" ) . "/blocks/";
-		$rutaBloque .= $esteBloque ['grupo'] . "/".$esteBloque ['nombre'];
-		
-		
-		
+		$rutaBloque .= $esteBloque ['grupo'] . "/" . $esteBloque ['nombre'];
 		
 		// ---------------- SECCION: Parámetros Globales del Formulario ----------------------------------
 		/**
@@ -49,7 +46,6 @@ class registrarForm {
 		
 		$conexion = "inventarios";
 		$esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB ( $conexion );
-
 		
 		if (isset ( $_REQUEST ['numero_orden'] ) && $_REQUEST ['numero_orden'] != '') {
 			$numero_orden = $_REQUEST ['numero_orden'];
@@ -92,22 +88,21 @@ class registrarForm {
 			$fecha_final = '';
 		}
 		
-
 		$arreglo = array (
 				'tipo_orden' => $tipo_orden,
 				'numero_orden' => $numero_orden,
 				'nit' => $nit,
-				'sede'=>$sede,
-				'dependencia'=>$dependencia,
-				'fecha_inicial'=>$fecha_inicio,
-				'fecha_final'=>$fecha_final
+				'sede' => $sede,
+				'dependencia' => $dependencia,
+				'fecha_inicial' => $fecha_inicio,
+				'fecha_final' => $fecha_final 
 		);
 		
 		$cadenaSql = $this->miSql->getCadenaSql ( 'consultarOrden', $arreglo );
 		
 		$Orden = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
 		
-		$arreglo=serialize($arreglo);
+		$arreglo = serialize ( $arreglo );
 		// ---------------- SECCION: Parámetros Generales del Formulario ----------------------------------
 		$esteCampo = $esteBloque ['nombre'];
 		$atributos ['id'] = $esteCampo;
@@ -137,6 +132,15 @@ class registrarForm {
 		$variable = "pagina=" . $miPaginaActual;
 		$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
 		
+		// ---------------- SECCION: Controles del Formulario -----------------------------------------------
+		
+		$esteCampo = "marcoDatosBasicos";
+		$atributos ['id'] = $esteCampo;
+		$atributos ["estilo"] = "jqueryui";
+		$atributos ['tipoEtiqueta'] = 'inicio';
+		$atributos ["leyenda"] = "Consulta de Ordenes";
+		echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
+		unset ( $atributos );
 		// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
 		$esteCampo = 'botonRegresar';
 		$atributos ['id'] = $esteCampo;
@@ -148,19 +152,7 @@ class registrarForm {
 		$atributos ['alto'] = '10%';
 		$atributos ['redirLugar'] = true;
 		echo $this->miFormulario->enlace ( $atributos );
-		
 		unset ( $atributos );
-		
-		// ---------------- SECCION: Controles del Formulario -----------------------------------------------
-		
-		
-	
-		$esteCampo = "marcoDatosBasicos";
-		$atributos ['id'] = $esteCampo;
-		$atributos ["estilo"] = "jqueryui";
-		$atributos ['tipoEtiqueta'] = 'inicio';
-		$atributos ["leyenda"] = "Consulta de Ordenes";
-		echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
 		
 		if ($Orden) {
 			
@@ -184,10 +176,10 @@ class registrarForm {
 				$variable .= "&opcion=cargarDisponibilidad";
 				$variable .= "&id_orden=" . $Orden [$i] ['id_orden'];
 				$variable .= "&arreglo=" . $arreglo;
-				$variable .= "&usuario=" . $_REQUEST['usuario'];
-				$variable .= "&mensaje_titulo=" . $Orden [$i] ['tipo_contrato'] ."<br>VIGENCIA Y/O NÚMERO ORDEN : ".$Orden [$i] ['identificador'];
+				$variable .= "&usuario=" . $_REQUEST ['usuario'];
+				$variable .= "&mensaje_titulo=" . $Orden [$i] ['tipo_contrato'] . "<br>VIGENCIA Y/O NÚMERO ORDEN : " . $Orden [$i] ['identificador'];
 				$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
-
+				
 				$mostrarHtml = "<tr>
                     <td><center>" . $Orden [$i] ['tipo_contrato'] . "</center></td>
                     <td><center>" . $Orden [$i] ['identificador'] . "</center></td>		

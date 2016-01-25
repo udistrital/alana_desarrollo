@@ -173,9 +173,9 @@ class registrarForm {
 				
 				
 				
-				$variable_documento = "action=consultaOrdenServicios";
-				$variable_documento .= "&pagina=consultaOrdenServicios";
-				$variable_documento .= "&bloque=consultaOrdenServicios";
+				$variable_documento = "action=consultaOrden";
+				$variable_documento .= "&pagina=consultaOrden";
+				$variable_documento .= "&bloque=consultaOrden";
 				$variable_documento .= "&bloqueGrupo=" . $esteBloque ["grupo"];
 				$variable_documento .= "&opcion=generarDocumento";
 				$variable_documento .= "&id_orden=" . $_REQUEST ['id_orden'];
@@ -635,7 +635,7 @@ class registrarForm {
 						$atributos ['marco'] = true;
 						$atributos ['estiloMarco'] = '';
 						$atributos ["etiquetaObligatorio"] = true;
-						$atributos ['columnas'] = 115;
+						$atributos ['columnas'] = 100;
 						$atributos ['filas'] = 3;
 						$atributos ['dobleLinea'] = 0;
 						$atributos ['tabIndex'] = $tab;

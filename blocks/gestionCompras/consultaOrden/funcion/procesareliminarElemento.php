@@ -1,8 +1,6 @@
 <?php
+use gestionCompras\consultaOrden\funcion\redireccion;
 
-use inventarios\gestionCompras\consultaOrdenServicios\funcion\redireccion;
-
-// include_once ('redireccionar.php');
 if (! isset ( $GLOBALS ["autorizado"] )) {
 	include ("../index.php");
 	exit ();
@@ -22,23 +20,20 @@ class RegistradorOrden {
 		$this->miFuncion = $funcion;
 	}
 	function procesarFormulario() {
-		
 		$conexion = "inventarios";
 		$esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB ( $conexion );
 		
 		$cadenaSql = $this->miSql->getCadenaSql ( 'eliminarElementoActa', $_REQUEST ['id_elemento_acta'] );
 		$eliminado = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso" );
 		
-		
-	
 		if ($eliminado) {
-			$this->miConfigurador->setVariableConfiguracion("cache",true);
+			$this->miConfigurador->setVariableConfiguracion ( "cache", true );
 			redireccion::redireccionar ( 'eliminoElemento' );
-			exit;
+			exit ();
 		} else {
 			
 			redireccion::redireccionar ( 'noeliminoElemento' );
-			exit;
+			exit ();
 		}
 	}
 	function resetForm() {

@@ -168,12 +168,13 @@ class registrarForm {
 			// En este formulario se utiliza el mecanismo (b) para pasar las siguientes variables:
 			// Paso 1: crear el listado de variables
 			
-			$valorCodificado = "actionBloque=" . $esteBloque ["nombre"];
+			$valorCodificado = "action=" . $esteBloque ["nombre"];
 			$valorCodificado .= "&pagina=" . $this->miConfigurador->getVariableConfiguracion ( 'pagina' );
 			$valorCodificado .= "&bloque=" . $esteBloque ['nombre'];
 			$valorCodificado .= "&bloqueGrupo=" . $esteBloque ["grupo"];
 			$valorCodificado .= "&opcion=eliminarElementoOrden";
 			$valorCodificado .= "&id_elemento_acta=" . $_REQUEST ['id_elemento_acta'];
+			$valorCodificado .= "&usuario=" . $_REQUEST ['usuario'];
 			
 			/**
 			 * SARA permite que los nombres de los campos sean dinámicos.

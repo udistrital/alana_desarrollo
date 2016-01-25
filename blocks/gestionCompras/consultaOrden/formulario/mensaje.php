@@ -96,11 +96,19 @@ class registrarForm {
 					break;
 			}
 			
-			
 			$variable = "pagina=" . $miPaginaActual;
-			$variable .= $opcion;
-			
+			if (isset ( $opcion ) == true) {
+				$variable .= $opcion;
+			}
 			$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
+			
+
+			
+			$esteCampo = "marcoDatosBasicos";
+			$atributos ['id'] = $esteCampo;
+			$atributos ["estilo"] = "jqueryui";
+			$atributos ['tipoEtiqueta'] = 'inicio';
+			echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
 			
 			// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
 			$esteCampo = 'botonRegresar';
@@ -113,15 +121,8 @@ class registrarForm {
 			$atributos ['alto'] = '10%';
 			$atributos ['redirLugar'] = true;
 			echo $this->miFormulario->enlace ( $atributos );
-			
 			unset ( $atributos );
 			
-			$esteCampo = "marcoDatosBasicos";
-			$atributos ['id'] = $esteCampo;
-			$atributos ["estilo"] = "jqueryui";
-			$atributos ['tipoEtiqueta'] = 'inicio';
-			
-			echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
 			
 			{
 				
@@ -279,7 +280,7 @@ class registrarForm {
 			$tab ++;
 			
 			// Aplica atributos globales al control
-			$atributos = array_merge ( $atributos, $atributosGlobales);
+			$atributos = array_merge ( $atributos, $atributosGlobales );
 			echo $this->miFormulario->campoBoton ( $atributos );
 			// -----------------FIN CONTROL: Botón -----------------------------------------------------------
 			

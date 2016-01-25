@@ -1,6 +1,6 @@
 <?php
 
-namespace inventarios\gestionCompras\consultaOrdenServicios;
+namespace gestionCompras\consultaOrden;
 
 // Evitar un acceso directo a este archivo
 if (! isset ( $GLOBALS ["autorizado"] )) {

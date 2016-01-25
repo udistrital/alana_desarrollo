@@ -1,6 +1,6 @@
 <?php
 
-namespace inventarios\gestionCompras\consultaOrdenServicios;
+namespace gestionCompras\consultaOrden;
 
 if (! isset ( $GLOBALS ["autorizado"] )) {
 	include ("../index.php");
@@ -653,9 +653,9 @@ class Sql extends \Sql {
 			case "buscar_numero_orden" :
 				
 				$cadenaSql = " 	SELECT 	id_orden ,
-								 CASE tipo_orden
-										WHEN 1 THEN vigencia || ' - ' || consecutivo_compras
-										WHEN 9 THEn vigencia || ' - ' || consecutivo_servicio
+								 CASE tipo_orden 
+										WHEN 1 THEN vigencia || ' - ' || consecutivo_compras ||' - Unidad Ejecutora  '||unidad_ejecutora 
+										WHEN 9 THEn vigencia || ' - ' || consecutivo_servicio ||' - Unidad Ejecutora  '||unidad_ejecutora
 								 END  valor  ";
 				$cadenaSql .= " FROM orden ";
 				$cadenaSql .= " WHERE tipo_orden ='" . $variable . "';";

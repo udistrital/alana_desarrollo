@@ -1,8 +1,8 @@
 <?php
 
-namespace inventarios\gestionCompras\consultaOrdenServicios;
+namespace gestionCompras\consultaOrden;
 
-use inventarios\gestionCompras\consultaOrdenServicios\funcion\redireccion;
+use gestionCompras\consultaOrden\funcion\redireccion;
 
 if (! isset ( $GLOBALS ["autorizado"] )) {
 	include ("../index.php");

@@ -389,24 +389,19 @@ $("#<?php echo $this->campoSeguro('unidad_ejecutora')?>").select2();
 	   
 	   $("#<?php echo $this->campoSeguro('contratista_consulta')?>").select2();
 	   
-	   	   $("#<?php echo $this->campoSeguro('selec_proveedor')?>").select2({
-			   	 placeholder: "Search for a repository",
-			   	 minimumInputLength: 3,
-			
-			       });
+	   	 
 	   
 	   
 	   $('#<?php echo $this->campoSeguro('selec_dependencia_Sol')?>').attr('disabled','');
 	   $("#<?php echo $this->campoSeguro('sede_consultar')?>").select2();
 	   
-	   $("#<?php echo $this->campoSeguro('sede_super')?>").select2();
+	   
 	    	
-	   $("#<?php echo $this->campoSeguro('nombre_supervisor')?>").select2();
 	   
 	   
-	   $("#<?php echo $this->campoSeguro('sede_super')?>").select2();
-	   $("#<?php echo $this->campoSeguro('dependencia_solicitante')?>").select2();
-	   $("#<?php echo $this->campoSeguro('dependencia_supervisor')?>").select2();
+	   
+	   
+	   
 	   
 	   
 	   $("#<?php echo $this->campoSeguro('rubro')?>").select2({

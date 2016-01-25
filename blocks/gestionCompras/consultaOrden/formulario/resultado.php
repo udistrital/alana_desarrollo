@@ -31,7 +31,7 @@ class registrarForm {
 		
 		$rutaBloque = $this->miConfigurador->getVariableConfiguracion ( "host" );
 		$rutaBloque .= $this->miConfigurador->getVariableConfiguracion ( "site" ) . "/blocks/";
-		$rutaBloque .= $esteBloque ['grupo'] ."/". $esteBloque ['nombre'];
+		$rutaBloque .= $esteBloque ['grupo'] . "/" . $esteBloque ['nombre'];
 		
 		// ---------------- SECCION: Parámetros Globales del Formulario ----------------------------------
 		/**
@@ -102,8 +102,7 @@ class registrarForm {
 		
 		$Orden = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
 		
-		
-		$arreglo=serialize($arreglo);
+		$arreglo = base64_encode ( serialize ( $arreglo ) );
 		
 		// ---------------- SECCION: Parámetros Generales del Formulario ----------------------------------
 		$esteCampo = $esteBloque ['nombre'];
@@ -134,6 +133,15 @@ class registrarForm {
 		$variable = "pagina=" . $miPaginaActual;
 		$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
 		
+		// ---------------- SECCION: Controles del Formulario -----------------------------------------------
+		
+		$esteCampo = "marcoDatosBasicos";
+		$atributos ['id'] = $esteCampo;
+		$atributos ["estilo"] = "jqueryui";
+		$atributos ['tipoEtiqueta'] = 'inicio';
+		$atributos ["leyenda"] = "Consulta de Ordenes";
+		echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
+		
 		// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
 		$esteCampo = 'botonRegresar';
 		$atributos ['id'] = $esteCampo;
@@ -145,17 +153,7 @@ class registrarForm {
 		$atributos ['alto'] = '10%';
 		$atributos ['redirLugar'] = true;
 		echo $this->miFormulario->enlace ( $atributos );
-		
 		unset ( $atributos );
-		
-		// ---------------- SECCION: Controles del Formulario -----------------------------------------------
-		
-		$esteCampo = "marcoDatosBasicos";
-		$atributos ['id'] = $esteCampo;
-		$atributos ["estilo"] = "jqueryui";
-		$atributos ['tipoEtiqueta'] = 'inicio';
-		$atributos ["leyenda"] = "Consulta de Ordenes";
-		echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
 		
 		if ($Orden) {
 			
@@ -180,7 +178,7 @@ class registrarForm {
 				$variable .= "&opcion=modificarOrden";
 				$variable .= "&id_orden=" . $Orden [$i] ['id_orden'];
 				$variable .= "&arreglo=" . $arreglo;
-				$variable .= "&usuario=".$_REQUEST['usuario'];
+				$variable .= "&usuario=" . $_REQUEST ['usuario'];
 				$variable .= "&mensaje_titulo=" . $Orden [$i] ['tipo_contrato'] . "<br>VIGENCIA Y/O NÚMERO ORDEN : " . $Orden [$i] ['identificador'];
 				$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
 				
@@ -188,15 +186,15 @@ class registrarForm {
 				$variable_elementos .= "&opcion=consultaElementos";
 				$variable_elementos .= "&id_orden=" . $Orden [$i] ['id_orden'];
 				$variable_elementos .= "&arreglo=" . $arreglo;
-				$variable_elementos .= "&usuario=".$_REQUEST['usuario'];
+				$variable_elementos .= "&usuario=" . $_REQUEST ['usuario'];
 				$variable_elementos .= "&mensaje_titulo=" . $Orden [$i] ['tipo_contrato'] . "<br>VIGENCIA Y/O NÚMERO ORDEN : " . $Orden [$i] ['identificador'];
 				$variable_elementos = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable_elementos, $directorio );
 				
-// 				$variable_documento = "pagina=" . $miPaginaActual; // pendiente la pagina para modificar parametro
-// 				$variable_documento .= "&opcion=generarDocumento";
-// 				$variable_documento .= "&id_orden=" . $Orden [$i] ['id_orden'];
-// 				$variable_documento .= "&mensaje_titulo=" . $Orden [$i] ['tipo_contrato'] . "<br>VIGENCIA Y/O NÚMERO ORDEN : " . $Orden [$i] ['identificador'];
-// 				$variable_documento = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable_documento, $directorio );
+				// $variable_documento = "pagina=" . $miPaginaActual; // pendiente la pagina para modificar parametro
+				// $variable_documento .= "&opcion=generarDocumento";
+				// $variable_documento .= "&id_orden=" . $Orden [$i] ['id_orden'];
+				// $variable_documento .= "&mensaje_titulo=" . $Orden [$i] ['tipo_contrato'] . "<br>VIGENCIA Y/O NÚMERO ORDEN : " . $Orden [$i] ['identificador'];
+				// $variable_documento = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable_documento, $directorio );
 				
 				$variable_documento = "action=" . $esteBloque ["nombre"];
 				$variable_documento .= "&pagina=" . $this->miConfigurador->getVariableConfiguracion ( 'pagina' );
@@ -204,14 +202,12 @@ class registrarForm {
 				$variable_documento .= "&bloqueGrupo=" . $esteBloque ["grupo"];
 				$variable_documento .= "&opcion=generarDocumento";
 				$variable_documento .= "&id_orden=" . $Orden [$i] ['id_orden'];
-				$variable_documento .= "&usuario=".$_REQUEST['usuario'];
+				$variable_documento .= "&usuario=" . $_REQUEST ['usuario'];
 				$variable_documento .= "&mensaje_titulo=" . $Orden [$i] ['tipo_contrato'] . "<br>VIGENCIA Y/O NÚMERO ORDEN : " . $Orden [$i] ['identificador'];
 				$variable_documento = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable_documento, $directorio );
 				
-				
-				
-				$elemento = (is_null($Orden[$i]['validacion'])==true)?'':(($Orden[$i]['estado_elementos']=='t')?"<a href='" . $variable_elementos . "'><img src='" . $rutaBloque . "/css/images/update.png' width='15px'></a>":'');
-				$documento =(is_null($Orden[$i]['validacion'])==true)?'': "<a href='" . $variable_documento . "'><img src='" . $rutaBloque . "/css/images/documento.png' width='15px'></a>";
+				$elemento = (is_null ( $Orden [$i] ['validacion'] ) == true) ? '' : (($Orden [$i] ['estado_elementos'] == 't') ? "<a href='" . $variable_elementos . "'><img src='" . $rutaBloque . "/css/images/update.png' width='15px'></a>" : '');
+				$documento = (is_null ( $Orden [$i] ['validacion'] ) == true) ? '' : "<a href='" . $variable_documento . "'><img src='" . $rutaBloque . "/css/images/documento.png' width='15px'></a>";
 				
 				$mostrarHtml = "<tr>
                     <td><center>" . $Orden [$i] ['tipo_contrato'] . "</center></td>

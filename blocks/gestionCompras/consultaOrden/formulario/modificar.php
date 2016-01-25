@@ -50,10 +50,7 @@ class registrarForm {
 		
 		$Orden = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
 		
-		
 		$Orden = $Orden [0];
-		
-		
 		
 		$arreglo = array (
 				'tipo_orden' => $Orden ['tipo_orden'],
@@ -85,8 +82,7 @@ class registrarForm {
 				'asignacionOrdenador' => $Orden ['id_ordenador_encargado'],
 				'nombreOrdenador' => $Orden ['nombre_ordenador'],
 				'id_ordenador' => $Orden ['id_ordenador_encargado'],
-				'tipo_ordenador' => $Orden ['tipo_ordenador'],
-				 
+				'tipo_ordenador' => $Orden ['tipo_ordenador'] 
 		);
 		
 		// var_dump($arreglo);
@@ -145,7 +141,7 @@ class registrarForm {
 			$directorio .= $this->miConfigurador->getVariableConfiguracion ( "site" ) . "/index.php?";
 			$directorio .= $this->miConfigurador->getVariableConfiguracion ( "enlace" );
 			
-			$arreglo = unserialize ( $_REQUEST ['arreglo'] );
+			$arreglo = unserialize ( base64_decode ( $_REQUEST ['arreglo'] ) );
 			
 			$variable = "pagina=" . $miPaginaActual;
 			$variable .= "&opcion=ConsultarOrden";
@@ -159,20 +155,6 @@ class registrarForm {
 			
 			$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
 			
-			// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-			$esteCampo = 'botonRegresar';
-			$atributos ['id'] = $esteCampo;
-			$atributos ['enlace'] = $variable;
-			$atributos ['tabIndex'] = 1;
-			$atributos ['estilo'] = 'textoSubtitulo';
-			$atributos ['enlaceTexto'] = $this->lenguaje->getCadena ( $esteCampo );
-			$atributos ['ancho'] = '10%';
-			$atributos ['alto'] = '10%';
-			$atributos ['redirLugar'] = true;
-			echo $this->miFormulario->enlace ( $atributos );
-			
-			unset ( $atributos );
-			
 			$esteCampo = "marcoDatosBasicos";
 			$atributos ['id'] = $esteCampo;
 			$atributos ["estilo"] = "jqueryui";
@@ -181,6 +163,19 @@ class registrarForm {
 			echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
 			unset ( $atributos );
 			{
+				
+				// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+				$esteCampo = 'botonRegresar';
+				$atributos ['id'] = $esteCampo;
+				$atributos ['enlace'] = $variable;
+				$atributos ['tabIndex'] = 1;
+				$atributos ['estilo'] = 'textoSubtitulo';
+				$atributos ['enlaceTexto'] = $this->lenguaje->getCadena ( $esteCampo );
+				$atributos ['ancho'] = '10%';
+				$atributos ['alto'] = '10%';
+				$atributos ['redirLugar'] = true;
+				echo $this->miFormulario->enlace ( $atributos );
+				unset ( $atributos );
 				
 				// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
 				$esteCampo = 'tipo_orden';

@@ -81,7 +81,7 @@ class registrarForm {
 		$directorio = $this->miConfigurador->getVariableConfiguracion ( "host" );
 		$directorio .= $this->miConfigurador->getVariableConfiguracion ( "site" ) . "/index.php?";
 
-		$arreglo=unserialize($_REQUEST['arreglo']);
+		$arreglo=unserialize(base64_decode($_REQUEST['arreglo']));
 		
 		
 		$variable = "pagina=" . $miPaginaActual;

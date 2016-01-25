@@ -767,7 +767,7 @@ class registrarForm {
 					$atributos ['marco'] = true;
 					$atributos ['estiloMarco'] = '';
 					$atributos ["etiquetaObligatorio"] = true;
-					$atributos ['columnas'] = 110;
+					$atributos ['columnas'] = 100;
 					$atributos ['filas'] = 15;
 					$atributos ['dobleLinea'] = 0;
 					$atributos ['tabIndex'] = $tab;
@@ -955,7 +955,7 @@ class registrarForm {
 					$atributos ['marco'] = true;
 					$atributos ['estiloMarco'] = '';
 					$atributos ["etiquetaObligatorio"] = true;
-					$atributos ['columnas'] = 105;
+					$atributos ['columnas'] = 100;
 					$atributos ['filas'] = 3;
 					$atributos ['dobleLinea'] = 0;
 					$atributos ['tabIndex'] = $tab;

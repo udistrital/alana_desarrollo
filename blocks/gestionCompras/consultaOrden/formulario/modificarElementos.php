@@ -129,29 +129,15 @@ class registrarForm {
 			$directorio = $this->miConfigurador->getVariableConfiguracion ( "host" );
 			$directorio .= $this->miConfigurador->getVariableConfiguracion ( "site" ) . "/index.php?";
 			$directorio .= $this->miConfigurador->getVariableConfiguracion ( "enlace" );
-			$arreglo = unserialize ( $_REQUEST ['arreglo'] );
+			$arreglo = unserialize ( base64_decode ( $_REQUEST ['arreglo'] ) );
 			
 			$variable = "pagina=" . $miPaginaActual;
 			$variable .= "&opcion=consultaElementos";
 			$variable .= "&id_orden=" . $_REQUEST ['id_orden'];
 			$variable .= "&mensaje_titulo=" . $_REQUEST ['mensaje_titulo'];
 			$variable .= "&arreglo=" . $_REQUEST ['arreglo'];
-
+			
 			$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
-			
-			// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-			$esteCampo = 'botonRegresar';
-			$atributos ['id'] = $esteCampo;
-			$atributos ['enlace'] = $variable;
-			$atributos ['tabIndex'] = 1;
-			$atributos ['estilo'] = 'textoSubtitulo';
-			$atributos ['enlaceTexto'] = $this->lenguaje->getCadena ( $esteCampo );
-			$atributos ['ancho'] = '10%';
-			$atributos ['alto'] = '10%';
-			$atributos ['redirLugar'] = true;
-			echo $this->miFormulario->enlace ( $atributos );
-			
-			unset ( $atributos );
 			
 			$esteCampo = "marcoDatosBasicos";
 			$atributos ['id'] = $esteCampo;
@@ -161,6 +147,19 @@ class registrarForm {
 			echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
 			unset ( $atributos );
 			{
+				
+				// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+				$esteCampo = 'botonRegresar';
+				$atributos ['id'] = $esteCampo;
+				$atributos ['enlace'] = $variable;
+				$atributos ['tabIndex'] = 1;
+				$atributos ['estilo'] = 'textoSubtitulo';
+				$atributos ['enlaceTexto'] = $this->lenguaje->getCadena ( $esteCampo );
+				$atributos ['ancho'] = '10%';
+				$atributos ['alto'] = '10%';
+				$atributos ['redirLugar'] = true;
+				echo $this->miFormulario->enlace ( $atributos );
+				unset ( $atributos );
 				
 				$atributos ["id"] = "cargar_elemento";
 				$atributos ["estiloEnLinea"] = "display:block";
@@ -919,7 +918,7 @@ class registrarForm {
 			$valorCodificado .= "&id_orden=" . $_REQUEST ['id_orden'];
 			$valorCodificado .= "&mensaje_titulo=" . $_REQUEST ['mensaje_titulo'];
 			$valorCodificado .= "&arreglo=" . $_REQUEST ['arreglo'];
-			$valorCodificado .= "&usuario=".$_REQUEST['usuario'];
+			$valorCodificado .= "&usuario=" . $_REQUEST ['usuario'];
 			
 			/**
 			 * SARA permite que los nombres de los campos sean dinámicos.

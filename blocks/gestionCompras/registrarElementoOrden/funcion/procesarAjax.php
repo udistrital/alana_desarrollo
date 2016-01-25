@@ -1,5 +1,4 @@
 <?php
-use gestionCompras\registrarElementoOrden\Sql;
 
 $conexion = "inventarios";
 $esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB ( $conexion );

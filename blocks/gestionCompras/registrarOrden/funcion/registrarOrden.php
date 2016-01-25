@@ -159,7 +159,7 @@ class RegistradorOrden {
 				}
 			}
 			
-			$datos = "NÚMERO DE " . $nombre . " # " . $consecutivo . "<br> Y VIGENCIA " . date ( 'Y' );
+			$datos = "NÚMERO DE " . $nombre . " # " . $consecutivo . "<br> Y VIGENCIA " . date ( 'Y' ) ." - Unidad Ejecutora ".$_REQUEST['unidad_ejecutora'];
 			$this->miConfigurador->setVariableConfiguracion ( "cache", true );
 			redireccion::redireccionar ( 'inserto', array (
 					$datos,

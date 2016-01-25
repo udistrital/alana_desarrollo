@@ -118,7 +118,8 @@ class registrarForm {
 		$atributos ['tipoEtiqueta'] = 'inicio';
 		$atributos ["leyenda"] = "ELEMENTOS ".$_REQUEST['mensaje_titulo'];
 		echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
-		
+		echo $cadenaSql;
+		var_dump($ElementosOrden);exit;
 		if ($ElementosOrden) {
 			
 			echo "<table id='tablaTitulos'>";

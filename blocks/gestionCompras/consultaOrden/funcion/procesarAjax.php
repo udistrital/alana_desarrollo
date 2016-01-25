@@ -282,7 +282,6 @@ if ($_REQUEST ['funcion'] == 'SeleccionOrdenador') {
 
 if ($_REQUEST ['funcion'] == 'SeleccionCargo') {
 	
-	
 	$cadenaSql = $this->sql->getCadenaSql ( 'informacion_cargo_jefe', $_REQUEST ['cargo'] );
 	
 	$resultadoItems = $esteRecursoDBO->ejecutarAcceso ( $cadenaSql, "busqueda" );
@@ -294,7 +293,10 @@ if ($_REQUEST ['funcion'] == 'SeleccionCargo') {
 
 if ($_REQUEST ['funcion'] == 'disponibilidades') {
 	
-	$cadenaSql = $this->sql->getCadenaSql ( 'buscar_disponibilidad',array($_REQUEST ['vigencia'],$_REQUEST['unidad']));
+	$cadenaSql = $this->sql->getCadenaSql ( 'buscar_disponibilidad', array (
+			$_REQUEST ['vigencia'],
+			$_REQUEST ['unidad'] 
+	) );
 	
 	$resultadoItems = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
 	
@@ -323,7 +325,7 @@ if ($_REQUEST ['funcion'] == 'registroPresupuestal') {
 	$arreglo = array (
 			$_REQUEST ['vigencia'],
 			$_REQUEST ['disponibilidad'],
-			$_REQUEST ['unidad']
+			$_REQUEST ['unidad'] 
 	);
 	
 	$cadenaSql = $this->sql->getCadenaSql ( 'buscar_registro', $arreglo );
@@ -351,10 +353,6 @@ if ($_REQUEST ['funcion'] == 'Inforegistro') {
 }
 
 if ($_REQUEST ['funcion'] == 'consultarContratistas') {
-	
-	
-	
-	
 	
 	$cadenaSql = $this->sql->getCadenaSql ( 'buscar_contratista', $_REQUEST ['vigencia'] );
 	$resultadoItems = $esteRecursoDBO->ejecutarAcceso ( $cadenaSql, "busqueda" );
@@ -431,6 +429,17 @@ if ($_REQUEST ['funcion'] == 'SeleccionTipoBien') {
 	$resultadoItems = $resultadoItems [0];
 	
 	echo json_encode ( $resultadoItems );
+}
+
+if ($_REQUEST ['funcion'] == 'consultarIva') {
+	
+	$cadenaSql = $this->sql->getCadenaSql ( 'consultar_tipo_iva' );
+	
+	$resultado = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
+	
+	$resultado = json_encode ( $resultado );
+	
+	echo $resultado;
 }
 
 ?>

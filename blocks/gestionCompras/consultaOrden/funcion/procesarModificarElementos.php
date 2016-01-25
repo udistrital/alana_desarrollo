@@ -1,5 +1,5 @@
 <?php
-use inventarios\gestionCompras\consultaOrdenServicios\funcion\redireccion;
+use gestionCompras\consultaOrden\funcion\redireccion;
 
 include_once ('redireccionar.php');
 if (! isset ( $GLOBALS ["autorizado"] )) {
@@ -21,6 +21,7 @@ class RegistradorOrden {
 		$this->miFuncion = $funcion;
 	}
 	function procesarFormulario() {
+		
 		$conexion = "inventarios";
 		$esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB ( $conexion );
 		// ------- Registro de Imagen
@@ -54,7 +55,7 @@ class RegistradorOrden {
 				
 				$cadenaSql = $this->miSql->getCadenaSql ( 'ActualizarElementoImagen', $arreglo );
 				
-				$imagen = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso", $arreglo,'ActualizarElementoImagen' );
+				$imagen = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso", $arreglo, 'ActualizarElementoImagen' );
 			} else if ($ExistenciaImagen == false) {
 				
 				$data = base64_encode ( file_get_contents ( $archivoImagen ['tmp_name'] ) );
@@ -66,7 +67,7 @@ class RegistradorOrden {
 				
 				$cadenaSql = $this->miSql->getCadenaSql ( 'RegistrarElementoImagen', $arreglo );
 				
-				$imagen = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso",$arreglo,'RegistrarElementoImagen' );
+				$imagen = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso", $arreglo, 'RegistrarElementoImagen' );
 			}
 		}
 		
@@ -88,9 +89,9 @@ class RegistradorOrden {
 					$_REQUEST ['unidad'],
 					$_REQUEST ['valor'],
 					$_REQUEST ['iva'],
-					$_REQUEST ['cantidad'] * $_REQUEST ['valor'],
-					$_REQUEST ['cantidad'] * $_REQUEST ['valor'] * $valor_iva,
-					round ( $_REQUEST ['cantidad'] * $_REQUEST ['valor'] + $_REQUEST ['cantidad'] * $_REQUEST ['valor'] * $valor_iva ),
+					$_REQUEST ['subtotal_sin_iva'],
+					$_REQUEST ['total_iva'],
+					$_REQUEST ['total_iva_con'],
 					($_REQUEST ['marca'] != '') ? $_REQUEST ['marca'] : null,
 					($_REQUEST ['serie'] != '') ? $_REQUEST ['serie'] : null,
 					$_REQUEST ['id_elemento_acta'] 
@@ -98,7 +99,7 @@ class RegistradorOrden {
 			
 			$cadenaSql = $this->miSql->getCadenaSql ( 'actualizar_elemento_tipo_1', $arreglo );
 			
-			$elemento = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso",$arreglo,'actualizar_elemento_tipo_1' );
+			$elemento = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso", $arreglo, 'actualizar_elemento_tipo_1' );
 		} else if ($_REQUEST ['id_tipo_bien'] == 2) {
 			
 			$arreglo = array (
@@ -109,9 +110,9 @@ class RegistradorOrden {
 					$_REQUEST ['unidad'],
 					$_REQUEST ['valor'],
 					$_REQUEST ['iva'],
-					1 * $_REQUEST ['valor'],
-					1 * $_REQUEST ['valor'] * $valor_iva,
-					round ( 1 * $_REQUEST ['valor'] + 1 * $_REQUEST ['valor'] * $valor_iva ),
+					$_REQUEST ['subtotal_sin_iva'],
+					$_REQUEST ['total_iva'],
+					$_REQUEST ['total_iva_con'],
 					($_REQUEST ['marca'] != '') ? $_REQUEST ['marca'] : null,
 					($_REQUEST ['serie'] != '') ? $_REQUEST ['serie'] : null,
 					$_REQUEST ['id_elemento_acta'] 
@@ -119,7 +120,7 @@ class RegistradorOrden {
 			
 			$cadenaSql = $this->miSql->getCadenaSql ( 'actualizar_elemento_tipo_1', $arreglo );
 			
-			$elemento = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso",$arreglo,'actualizar_elemento_tipo_1' );
+			$elemento = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso", $arreglo, 'actualizar_elemento_tipo_1' );
 		} else if ($_REQUEST ['id_tipo_bien'] == 3) {
 			
 			if ($_REQUEST ['tipo_poliza'] == 0) {
@@ -132,9 +133,9 @@ class RegistradorOrden {
 						$_REQUEST ['unidad'],
 						$_REQUEST ['valor'],
 						$_REQUEST ['iva'],
-						$_REQUEST ['cantidad'] * $_REQUEST ['valor'],
-						$_REQUEST ['cantidad'] * $_REQUEST ['valor'] * $valor_iva,
-						round ( $_REQUEST ['cantidad'] * $_REQUEST ['valor'] + $_REQUEST ['cantidad'] * $_REQUEST ['valor'] * $valor_iva ),
+						$_REQUEST ['subtotal_sin_iva'],
+						$_REQUEST ['total_iva'],
+						$_REQUEST ['total_iva_con'],
 						$_REQUEST ['tipo_poliza'],
 						NULL,
 						NULL,
@@ -151,9 +152,9 @@ class RegistradorOrden {
 						$_REQUEST ['unidad'],
 						$_REQUEST ['valor'],
 						$_REQUEST ['iva'],
-						$_REQUEST ['cantidad'] * $_REQUEST ['valor'],
-						$_REQUEST ['cantidad'] * $_REQUEST ['valor'] * $valor_iva,
-						round ( $_REQUEST ['cantidad'] * $_REQUEST ['valor'] + $_REQUEST ['cantidad'] * $_REQUEST ['valor'] * $valor_iva ),
+						$_REQUEST ['subtotal_sin_iva'],
+						$_REQUEST ['total_iva'],
+						$_REQUEST ['total_iva_con'],
 						$_REQUEST ['tipo_poliza'],
 						$_REQUEST ['fecha_inicio'],
 						$_REQUEST ['fecha_final'],
@@ -165,34 +166,18 @@ class RegistradorOrden {
 			
 			$cadenaSql = $this->miSql->getCadenaSql ( 'actualizar_elemento_tipo_2', $arreglo );
 			
-			$elemento = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso",$arreglo,'actualizar_elemento_tipo_2' );
+			$elemento = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso", $arreglo, 'actualizar_elemento_tipo_2' );
 		}
-		// echo $cadenaSql;exit;
-		
-		// if ($archivoImagen ['type'] == 'image/jpeg') {
-		
-		// $data = base64_encode ( file_get_contents ( $archivo ['tmp_name'] ) );
-		
-		// $arreglo = array (
-		// "elemento" => $_REQUEST ['id_elemento_acta'] ,
-		// "imagen" => $data
-		// );
-		
-		// $cadenaSql = $this->miSql->getCadenaSql ( 'ActualizarElementoImagen', $arreglo );
-		
-		// $imagen = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
-		// }
-		
+
 		$arreglo = array (
 				$_REQUEST ['id_orden'],
 				$_REQUEST ['mensaje_titulo'],
 				$_REQUEST ['arreglo'],
-				$_REQUEST['id_elemento_acta'] 
-		)
-		;
+				$_REQUEST ['id_elemento_acta'] 
+		);
 		
 		if ($elemento) {
-			$this->miConfigurador->setVariableConfiguracion("cache",true);
+			$this->miConfigurador->setVariableConfiguracion ( "cache", true );
 			redireccion::redireccionar ( 'ActualizoElemento', $arreglo );
 			exit ();
 		} else {

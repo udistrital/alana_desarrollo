@@ -741,7 +741,6 @@ class Sql extends \Sql {
 				$cadenaSql .= "JOIN  aplicacion_iva iv ON iv.id_iva=ela.iva  ";
 				$cadenaSql .= "WHERE id_orden ='" . $variable . "'  ";
 				$cadenaSql .= "AND  ela.estado=true ";
-				
 				break;
 			
 			case "consultarElemento" :

@@ -581,7 +581,14 @@ class registrarForm {
 							$atributos ['valor'] = '';
 						}
 						$atributos ['titulo'] = $this->lenguaje->getCadena ( $esteCampo . 'Titulo' );
-						$atributos ['deshabilitado'] = false;
+						
+						if ($atributos ['valor'] == '1') {
+							
+							$atributos ['deshabilitado'] = true;
+						} else {
+							$atributos ['deshabilitado'] = false;
+						}
+						
 						$atributos ['tamanno'] = 10;
 						$atributos ['maximoTamanno'] = '';
 						$atributos ['anchoEtiqueta'] = 220;
@@ -690,7 +697,6 @@ class registrarForm {
 						echo $this->miFormulario->campoCuadroLista ( $atributos );
 						unset ( $atributos );
 						
-
 						$esteCampo = 'subtotal_sin_iva';
 						$atributos ['id'] = $esteCampo;
 						$atributos ['nombre'] = $esteCampo;

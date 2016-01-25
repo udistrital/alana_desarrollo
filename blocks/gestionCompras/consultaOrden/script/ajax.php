@@ -364,9 +364,10 @@ function resetIva(elem, request, response){
 
 	    	                    $("#<?php echo $this->campoSeguro('devolutivo')?>").css('display','none');
 	    	                    $("#<?php echo $this->campoSeguro('consumo_controlado')?>").css('display','none');   
+	    	                    $("#<?php echo $this->campoSeguro('cantidad')?>").removeProp('readonly');
 	    	                    
-	    	                 
 	    	                 $("#<?php echo $this->campoSeguro('cantidad')?>").val('');
+	    	                 
 	    	                 $('#<?php echo $this->campoSeguro('cantidad')?>').removeAttr('disabled');
 	    	                 
 	    	                break;

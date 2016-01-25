@@ -82,7 +82,8 @@ class registrarForm {
 				'asignacionOrdenador' => $Orden ['id_ordenador_encargado'],
 				'nombreOrdenador' => $Orden ['nombre_ordenador'],
 				'id_ordenador' => $Orden ['id_ordenador_encargado'],
-				'tipo_ordenador' => $Orden ['tipo_ordenador'] 
+				'tipo_ordenador' => $Orden ['tipo_ordenador'], 
+				'unidad_ejecutora' => $Orden ['unidad_ejecutora']
 		);
 		
 		// var_dump($arreglo);
@@ -176,7 +177,7 @@ class registrarForm {
 				$atributos ['redirLugar'] = true;
 				echo $this->miFormulario->enlace ( $atributos );
 				unset ( $atributos );
-				
+				echo "<br>";
 				// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
 				$esteCampo = 'tipo_orden';
 				$atributos ['columnas'] = 2;
@@ -210,6 +211,45 @@ class registrarForm {
 				$atributos = array_merge ( $atributos, $atributosGlobales );
 				// echo $this->miFormulario->campoCuadroLista ( $atributos );
 				unset ( $atributos );
+				
+				
+				// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
+				$esteCampo = 'unidad_ejecutora';
+				$atributos ['columnas'] = 1;
+				$atributos ['nombre'] = $esteCampo;
+				$atributos ['id'] = $esteCampo;
+				$atributos ['evento'] = '';
+				$atributos ['deshabilitado'] = false;
+				$atributos ["etiquetaObligatorio"] = true;
+				$atributos ['tab'] = $tab;
+				$atributos ['tamanno'] = 1;
+				$atributos ['estilo'] = 'jqueryui';
+				$atributos ['validar'] = 'required';
+				$atributos ['limitar'] = true;
+				$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
+				$atributos ['anchoEtiqueta'] = 136;
+					
+				if (isset ( $_REQUEST [$esteCampo] )) {
+					
+					$atributos ['seleccion'] = $_REQUEST [$esteCampo];
+				} else {
+					$atributos ['seleccion'] = 1;
+				}
+					
+				$atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "Unidad_Ejecutoria" );
+				$matrizItems = $esteRecursoDB->ejecutarAcceso ( $atributos ['cadena_sql'], "busqueda" );
+				$atributos ['matrizItems'] = $matrizItems;
+					
+				// Utilizar lo siguiente cuando no se pase un arreglo:
+				// $atributos['baseDatos']='ponerAquiElNombreDeLaConexión';
+				// $atributos ['cadena_sql']='ponerLaCadenaSqlAEjecutar';
+				$tab ++;
+				$atributos = array_merge ( $atributos, $atributosGlobales );
+				echo $this->miFormulario->campoCuadroLista ( $atributos );
+				unset ( $atributos );
+				
+				
+				
 				
 				$esteCampo = "AgrupacionSolicitante";
 				$atributos ['id'] = $esteCampo;

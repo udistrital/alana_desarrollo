@@ -1,8 +1,5 @@
 <?php
-
-namespace inventarios\gestionCompras\gestionDisponibilidadOrden\funcion;
-
-use inventarios\gestionCompras\gestionDisponibilidadOrden\funcion\redireccion;
+use gestionCompras\gestionInformacionPresupuestal\funcion\redireccion;
 
 include_once ('redireccionar.php');
 
@@ -25,9 +22,7 @@ class RegistradorOrden {
 		$this->miFuncion = $funcion;
 	}
 	function procesarFormulario() {
-		
-		
-		$datos =unserialize(base64_decode( $_REQUEST ['informacion'] ));
+		$datos = unserialize ( base64_decode ( $_REQUEST ['informacion'] ) );
 		$conexion = "inventarios";
 		$esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB ( $conexion );
 		

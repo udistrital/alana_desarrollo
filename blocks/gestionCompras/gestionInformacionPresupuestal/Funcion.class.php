@@ -1,6 +1,6 @@
 <?php
 
-namespace inventarios\gestionCompras\gestionDisponibilidadOrden;
+namespace gestionCompras\gestionInformacionPresupuestal;
 
 use inventarios\gestionCompras\gestionDisponibilidadOrden\funcion\redireccion;
 

@@ -1,6 +1,4 @@
 <?php
-use inventarios\gestionCompras\gestionDisponibilidadOrden\Sql;
-
 $conexion = "inventarios";
 $esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB ( $conexion );
 class EnLetras {

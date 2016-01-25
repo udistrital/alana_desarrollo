@@ -1,8 +1,6 @@
 <?php
 
-namespace inventarios\gestionCompras\gestionDisponibilidadOrden\funcion;
-
-use inventarios\gestionCompras\gestionDisponibilidadOrden\funcion\redireccion;
+use gestionCompras\gestionInformacionPresupuestal\funcion\redireccion;
 
 include_once ('redireccionar.php');
 

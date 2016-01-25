@@ -1,8 +1,5 @@
 <?php
-
-namespace inventarios\gestionCompras\gestionDisponibilidadOrden\funcion;
-
-use inventarios\gestionCompras\gestionDisponibilidadOrden\funcion\redireccion;
+use gestionCompras\gestionInformacionPresupuestal\funcion\redireccion;
 
 include_once ('redireccionar.php');
 
@@ -50,7 +47,7 @@ class RegistradorOrden {
 				"valor_solicitud" => $_REQUEST ['valor_solicitud'],
 				"valorLetras_disponibilidad" => $_REQUEST ['valorLetras_disponibilidad'],
 				"id_orden" => $_REQUEST ['id_orden'],
-				"id_rubro"=>$_REQUEST['rubro']
+				"id_rubro" => $_REQUEST ['rubro'] 
 		);
 		
 		$cadenaSql = $this->miSql->getCadenaSql ( 'registrarDisponibilidad', $arregloDatos );
@@ -61,7 +58,7 @@ class RegistradorOrden {
 			$this->miConfigurador->setVariableConfiguracion ( "cache", true );
 			
 			if ($_REQUEST ['valor_orden'] == ($_REQUEST ['total_solicitado'] + $_REQUEST ['valor_solicitud'])) {
-				redireccion::redireccionar("insertoDisponibilidadCompleta",$datos);
+				redireccion::redireccionar ( "insertoDisponibilidadCompleta", $datos );
 				exit ();
 			} else {
 				redireccion::redireccionar ( "insertoDisponibilidad", $datos );

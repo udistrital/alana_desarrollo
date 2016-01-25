@@ -1,9 +1,8 @@
 <?php
-
 ?>
 
 // Asociar el widget de validación al formulario
-              $("#gestionDisponibilidadOrden").validationEngine({
+              $("#gestionInformacionPresupuestal").validationEngine({
             promptPosition : "centerRight", 
             scroll: false,
             autoHidePrompt: true,
@@ -13,7 +12,7 @@
         
         $(function() {
             $("#gestionDisponibilidadOrden").submit(function() {
-                $resultado=$("#gestionDisponibilidadOrden").validationEngine("validate");
+                $resultado=$("#gestionInformacionPresupuestal").validationEngine("validate");
                    
                 if ($resultado) {
                 

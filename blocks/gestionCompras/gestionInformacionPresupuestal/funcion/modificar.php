@@ -1,8 +1,5 @@
 <?php
-
-namespace inventarios\gestionCompras\gestionDisponibilidadOrden\funcion;
-
-use inventarios\gestionCompras\gestionDisponibilidadOrden\funcion\redireccion;
+use gestionCompras\gestionInformacionPresupuestal\funcion\redireccion;
 
 include_once ('redireccionar.php');
 
@@ -25,18 +22,13 @@ class RegistradorOrden {
 		$this->miFuncion = $funcion;
 	}
 	function procesarFormulario() {
-		
-		
-		
 		$datos = array (
 				$_REQUEST ['id_orden'],
 				$_REQUEST ['mensaje_titulo'],
 				$_REQUEST ['usuario'] 
 		);
 		
-		
-		
-		if ($_REQUEST ['valor_orden'] < (($_REQUEST ['total_solicitado']-$_REQUEST['solicitado_anterior']) + $_REQUEST ['valor_solicitud'])) {
+		if ($_REQUEST ['valor_orden'] < (($_REQUEST ['total_solicitado'] - $_REQUEST ['solicitado_anterior']) + $_REQUEST ['valor_solicitud'])) {
 			
 			redireccion::redireccionar ( "ErrorValorAsignarModificar", $datos );
 			
@@ -55,17 +47,17 @@ class RegistradorOrden {
 				"valor_solicitud" => $_REQUEST ['valor_solicitud'],
 				"valorLetras_disponibilidad" => $_REQUEST ['valorLetras_disponibilidad'],
 				"id_disponibilidad" => $_REQUEST ['id_disponibilidad'],
-				"id_rubro"=>$_REQUEST['rubro']
+				"id_rubro" => $_REQUEST ['rubro'] 
 		);
-	
+		
 		$cadenaSql = $this->miSql->getCadenaSql ( 'modificarDisponibilidades', $arregloDatos );
 		$Orden = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso" );
 		
 		if ($Orden == true) {
 			$this->miConfigurador->setVariableConfiguracion ( "cache", true );
 			
-			if ($_REQUEST ['valor_orden'] == (($_REQUEST ['total_solicitado']-$_REQUEST['solicitado_anterior']) + $_REQUEST ['valor_solicitud'])) {
-				redireccion::redireccionar("ModificarDisponibilidadCompleta",$datos);
+			if ($_REQUEST ['valor_orden'] == (($_REQUEST ['total_solicitado'] - $_REQUEST ['solicitado_anterior']) + $_REQUEST ['valor_solicitud'])) {
+				redireccion::redireccionar ( "ModificarDisponibilidadCompleta", $datos );
 				exit ();
 			} else {
 				redireccion::redireccionar ( "ModificarDisponibilidad", $datos );

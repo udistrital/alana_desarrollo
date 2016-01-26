@@ -59,8 +59,6 @@ class RegistradorOrden {
 				
 				$valor_iva = $valor_iva [0] [0];
 				
-				
-				
 				if ($_REQUEST ['id_tipo_bien'] == 1) {
 					
 					$arreglo = array (
@@ -77,7 +75,10 @@ class RegistradorOrden {
 							$_REQUEST ['total_iva_con'],
 							($_REQUEST ['marca'] != '') ? $_REQUEST ['marca'] : null,
 							($_REQUEST ['serie'] != '') ? $_REQUEST ['serie'] : null,
-							$_REQUEST ['id_orden'] 
+							$_REQUEST ['id_orden'],
+							($_REQUEST ['referencia'] != '') ? $_REQUEST ['referencia'] : null,
+							($_REQUEST ['placa'] != '') ? $_REQUEST ['placa'] : null,
+							($_REQUEST ['observaciones'] != '') ? $_REQUEST ['observaciones'] : null 
 					);
 					
 					$cadenaSql = $this->miSql->getCadenaSql ( 'ingresar_elemento_tipo_1', $arreglo );
@@ -100,7 +101,10 @@ class RegistradorOrden {
 							$_REQUEST ['total_iva_con'],
 							($_REQUEST ['marca'] != '') ? $_REQUEST ['marca'] : null,
 							($_REQUEST ['serie'] != '') ? $_REQUEST ['serie'] : null,
-							$_REQUEST ['id_orden'] 
+							$_REQUEST ['id_orden'],
+							($_REQUEST ['referencia'] != '') ? $_REQUEST ['referencia'] : null,
+							($_REQUEST ['placa'] != '') ? $_REQUEST ['placa'] : null,
+							($_REQUEST ['observaciones'] != '') ? $_REQUEST ['observaciones'] : null 
 					);
 					
 					$cadenaSql = $this->miSql->getCadenaSql ( 'ingresar_elemento_tipo_1', $arreglo );
@@ -126,7 +130,10 @@ class RegistradorOrden {
 								NULL,
 								($_REQUEST ['marca'] != '') ? $_REQUEST ['marca'] : NULL,
 								($_REQUEST ['serie'] != '') ? $_REQUEST ['serie'] : NULL,
-								$_REQUEST ['id_orden'] 
+								$_REQUEST ['id_orden'],
+								($_REQUEST ['referencia'] != '') ? $_REQUEST ['referencia'] : null,
+								($_REQUEST ['placa'] != '') ? $_REQUEST ['placa'] : null,
+								($_REQUEST ['observaciones'] != '') ? $_REQUEST ['observaciones'] : null 
 						);
 					} else if ($_REQUEST ['tipo_poliza'] == 1) {
 						$arreglo = array (
@@ -146,7 +153,10 @@ class RegistradorOrden {
 								$_REQUEST ['fecha_final'],
 								($_REQUEST ['marca'] != '') ? $_REQUEST ['marca'] : NULL,
 								($_REQUEST ['serie'] != '') ? $_REQUEST ['serie'] : NULL,
-								$_REQUEST ['id_orden'] 
+								$_REQUEST ['id_orden'],
+								($_REQUEST ['referencia'] != '') ? $_REQUEST ['referencia'] : null,
+								($_REQUEST ['placa'] != '') ? $_REQUEST ['placa'] : null,
+								($_REQUEST ['observaciones'] != '') ? $_REQUEST ['observaciones'] : null 
 						);
 					}
 					

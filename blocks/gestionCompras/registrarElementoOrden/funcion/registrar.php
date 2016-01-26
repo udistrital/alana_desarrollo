@@ -228,63 +228,6 @@ class RegistradorOrden {
 					
 					$trozos = explode ( ".", $archivo ['name'] );
 					$extension = end ( $trozos );
-					if ($_REQUEST ['mensaje'] == 'confirmaMasivo') {
-						
-						// $esteCampo = 'desicion2';
-						// $atributos ['id'] = $esteCampo;
-						// $atributos ['nombre'] = $esteCampo;
-						// $atributos ['tipo'] = 'text';
-						// $atributos ['estilo'] = 'textoCentrar';
-						// $atributos ['marco'] = true;
-						// $atributos ['estiloMarco'] = '';
-						// $atributos ['texto'] = $this->lenguaje->getCadena ( $esteCampo );
-						// $atributos ["etiquetaObligatorio"] = false;
-						// $atributos ['columnas'] = 1;
-						// $atributos ['dobleLinea'] = 0;
-						// $atributos ['tabIndex'] = $tab;
-						// $atributos ['validar'] = '';
-						// // $atributos ['etiqueta'] =$this->lenguaje->getCadena ( $esteCampo."Nota" );
-						// if (isset ( $_REQUEST [$esteCampo] )) {
-						// $atributos ['valor'] = $_REQUEST [$esteCampo];
-						// } else {
-						// $atributos ['valor'] = '';
-						// }
-						// $atributos ['titulo'] = '';
-						// $atributos ['deshabilitado'] = true;
-						// $atributos ['tamanno'] = 10;
-						// $atributos ['maximoTamanno'] = '';
-						// $atributos ['anchoEtiqueta'] = 10;
-						// $tab ++;
-						
-						// // Aplica atributos globales al control
-						// $atributos = array_merge ( $atributos, $atributosGlobales );
-						// echo $this->miFormulario->campoTexto ( $atributos );
-						// unset ( $atributos );
-						
-						// echo "<br><br><br>";
-						
-						// // -----------------CONTROL: Botón ----------------------------------------------------------------
-						// $esteCampo = 'botonActa';
-						// $atributos ["id"] = $esteCampo;
-						// $atributos ["tabIndex"] = $tab;
-						// $atributos ["tipo"] = 'boton';
-						// // submit: no se coloca si se desea un tipo button genérico
-						// $atributos ['submit'] = true;
-						// $atributos ["estiloMarco"] = '';
-						// $atributos ["estiloBoton"] = 'jqueryui';
-						// // verificar: true para verificar el formulario antes de pasarlo al servidor.
-						// $atributos ["verificar"] = '';
-						// $atributos ["tipoSubmit"] = 'jquery'; // Dejar vacio para un submit normal, en este caso se ejecuta la función submit declarada en ready.js
-						// $atributos ["valor"] = $this->lenguaje->getCadena ( $esteCampo );
-						// $atributos ['nombreFormulario'] = $esteBloque ['nombre'];
-						// $tab ++;
-						
-						// // Aplica atributos globales al control
-						// $atributos = array_merge ( $atributos, $atributosGlobales );
-						// // echo $this->miFormulario->campoBoton ( $atributos );
-						// unset ( $atributos );
-					}
-					
 					if ($extension == 'xlsx') {
 						
 						if ($archivo) {

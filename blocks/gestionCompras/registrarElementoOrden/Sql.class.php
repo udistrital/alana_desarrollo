@@ -370,10 +370,6 @@ class Sql extends \Sql {
 				
 				break;
 			
-			// INSERT INTO arka_movil.asignar_imagen(
-			// num_registro, , estado_registro)
-			// VALUES (?, ?, ?, ?, ?);
-			
 			case "ElementoImagen" :
 				
 				$cadenaSql = " 	INSERT INTO asignar_imagen_acta(";
@@ -419,11 +415,12 @@ class Sql extends \Sql {
 				$cadenaSql .= "'" . $variable [10] . "',";
 				$cadenaSql .= (is_null ( $variable [11] ) == true) ? ' NULL , ' : "'" . $variable [11] . "',";
 				$cadenaSql .= (is_null ( $variable [12] ) == true) ? ' NULL , ' : "'" . $variable [12] . "',";
-				$cadenaSql .= (is_null ( $variable [14] ) == true) ? ' NULL , ' : "'" . $variable [11] . "',";
-				$cadenaSql .= (is_null ( $variable [15] ) == true) ? ' NULL , ' : "'" . $variable [12] . "',";
-				$cadenaSql .= (is_null ( $variable [16] ) == true) ? ' NULL , ' : "'" . $variable [11] . "',";
+				$cadenaSql .= (is_null ( $variable [14] ) == true) ? ' NULL , ' : "'" . $variable [14] . "',";
+				$cadenaSql .= (is_null ( $variable [15] ) == true) ? ' NULL , ' : "'" . $variable [15] . "',";
+				$cadenaSql .= (is_null ( $variable [16] ) == true) ? ' NULL , ' : "'" . $variable [16] . "',";
 				$cadenaSql .= "'" . $variable [13] . "') ";
 				$cadenaSql .= "RETURNING  id_elemento_ac ";
+				
 				break;
 			
 			case "ingresar_elemento_tipo_2" :
@@ -458,9 +455,9 @@ class Sql extends \Sql {
 				
 				$cadenaSql .= (is_null ( $variable [14] ) == true) ? ' NULL , ' : "'" . $variable [14] . "',";
 				$cadenaSql .= (is_null ( $variable [15] ) == true) ? ' NULL , ' : "'" . $variable [15] . "',";
-				$cadenaSql .= (is_null ( $variable [17] ) == true) ? ' NULL , ' : "'" . $variable [11] . "',";
-				$cadenaSql .= (is_null ( $variable [18] ) == true) ? ' NULL , ' : "'" . $variable [12] . "',";
-				$cadenaSql .= (is_null ( $variable [19] ) == true) ? ' NULL , ' : "'" . $variable [11] . "',";
+				$cadenaSql .= (is_null ( $variable [17] ) == true) ? ' NULL , ' : "'" . $variable [17] . "',";
+				$cadenaSql .= (is_null ( $variable [18] ) == true) ? ' NULL , ' : "'" . $variable [18] . "',";
+				$cadenaSql .= (is_null ( $variable [19] ) == true) ? ' NULL , ' : "'" . $variable [19] . "',";
 				$cadenaSql .= "'" . $variable [16] . "') ";
 				$cadenaSql .= "RETURNING  id_elemento_ac; ";
 				

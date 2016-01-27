@@ -834,7 +834,10 @@ class Sql extends \Sql {
 				$cadenaSql .= "total_iva='" . $variable [8] . "', ";
 				$cadenaSql .= "total_iva_con='" . $variable [9] . "', ";
 				$cadenaSql .= (is_null ( $variable [10] ) == true) ? "marca=NULL, " : "marca='" . $variable [10] . "', ";
-				$cadenaSql .= (is_null ( $variable [11] ) == true) ? "serie=NULL  " : "serie='" . $variable [11] . "'  ";
+				$cadenaSql .= (is_null ( $variable [11] ) == true) ? "serie=NULL  " : "serie='" . $variable [11] . "',  ";
+				$cadenaSql .= (is_null ( $variable [13] ) == true) ? "marca=NULL, " : "marca='" . $variable [10] . "', ";
+				$cadenaSql .= (is_null ( $variable [14] ) == true) ? "serie=NULL,  " : "serie='" . $variable [11] . ",  ";
+				$cadenaSql .= (is_null ( $variable [15] ) == true) ? "marca=NULL, " : "marca='" . $variable [10] . "'  ";
 				$cadenaSql .= "WHERE id_elemento_ac ='" . $variable [12] . "'  ";
 				
 				break;

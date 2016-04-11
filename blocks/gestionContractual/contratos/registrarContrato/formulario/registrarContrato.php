@@ -134,7 +134,8 @@
 							"entidad_bancaria" => $contratista ['nombre_banco'],
 							"perfil" => $contratista ['perfil'],
 							"profesion" => $contratista ['profesion'],
-							"especialidad" => $contratista ['especialidad'] 
+							"especialidad" => $contratista ['especialidad'],
+							"supervisor" => $contratista ['funcionario_solicitante'] 
 					);
 					$_REQUEST = array_merge ( $_REQUEST, $arregloContratista );
 				}
@@ -652,7 +653,7 @@
 							$atributos ['dobleLinea'] = 0;
 							$atributos ['tabIndex'] = $tab;
 							$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-							$atributos ['validar'] = 'required, custom[email] ';
+							$atributos ['validar'] = ' custom[email] ';
 							
 							if (isset ( $_REQUEST [$esteCampo] )) {
 								$atributos ['valor'] = $_REQUEST [$esteCampo];
@@ -2259,7 +2260,7 @@
 							if (isset ( $_REQUEST [$esteCampo] )) {
 								$atributos ['seleccion'] = $_REQUEST [$esteCampo];
 							} else {
-								$atributos ['seleccion'] = -1;
+								$atributos ['seleccion'] = - 1;
 							}
 							
 							$matrizItems = array (

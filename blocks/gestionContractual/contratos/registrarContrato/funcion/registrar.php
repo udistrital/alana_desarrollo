@@ -128,6 +128,13 @@ class RegistradorContrato {
 			$id_contratista = $contratista [0] [0];
 		}
 		
+		
+		$_REQUEST;exit; 
+		
+		
+		
+		
+		
 		$arreglo_contrato = array (
 				
 				"vigencia" => date ( 'Y' ),

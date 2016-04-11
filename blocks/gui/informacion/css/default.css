@@ -13,3 +13,10 @@
 }
 
 
+.cbp-hrmenu {
+    width: 100%;
+    border-bottom: 3px solid #2c3670;
+    position: relative;
+    top:  0px;
+    z-index: 1;
+}

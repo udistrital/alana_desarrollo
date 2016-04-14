@@ -611,6 +611,13 @@ class Sql extends \Sql {
 				$cadenaSql .= "FROM arka_parametros.arka_disponibilidadpresupuestal; ";
 				
 				break;
+                            
+                        case "cargos_existentes" :
+				$cadenaSql  = " SELECT ";
+				$cadenaSql .= " distinct \"FUN_CARGO\" ";
+				$cadenaSql .= " FROM arka_parametros.arka_funcionarios; ";
+							
+				break;    
 		}
 		return $cadenaSql;
 	}

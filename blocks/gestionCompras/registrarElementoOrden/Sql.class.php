@@ -583,6 +583,12 @@ class Sql extends \Sql {
 				$cadenaSql .= " WHERE tipo_orden ='" . $variable . "';";
 				
 				break;
+			case "cargos_existentes" :
+				$cadenaSql  = " SELECT ";
+				$cadenaSql .= " distinct \"FUN_CARGO\" ";
+				$cadenaSql .= " FROM arka_parametros.arka_funcionarios; ";
+							
+				break;
 		}
 		return $cadenaSql;
 	}

@@ -78,6 +78,7 @@ class registrarForm {
 		$atributos ['tipoEtiqueta'] = 'inicio';
 		echo $this->miFormulario->formulario ( $atributos );
 		{
+                   
 			// ---------------- SECCION: Controles del Formulario -----------------------------------------------
 			$directorio = $this->miConfigurador->getVariableConfiguracion ( "host" );
 			$directorio .= $this->miConfigurador->getVariableConfiguracion ( "site" ) . "/index.php?";
@@ -257,7 +258,6 @@ class registrarForm {
 						$atributos ['anchoEtiqueta'] = 213;
 						
 						$atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "consultar_nivel_inventario" );
-						
 						$matrizItems = $esteRecursoDB->ejecutarAcceso ( $atributos ['cadena_sql'], "busqueda" );
 						
 						$atributos ['matrizItems'] = $matrizItems;

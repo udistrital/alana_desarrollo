@@ -4,6 +4,9 @@ use usuarios\gestionUsuarios\Sql;
 $conexion = "estructura";
 $esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB ( $conexion );
 
+$conexionArka = "inventarios";
+$recursoArka =  $this->miConfigurador->fabricaConexiones->getRecursoDB($conexionArka);
+
 if ($_REQUEST ['funcion'] == 'consultarPerfil') {
         
         $parametro['subsistema']=$_REQUEST ['valor'];
@@ -26,6 +29,13 @@ if ($_REQUEST ['funcion'] == 'consultarPerfil') {
     
 	$cadenaSql = $this->sql->getCadenaSql ( 'consultaPerfiles', $parametro );
 	$resultado = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
+	$resultado = json_encode ( $resultado );
+	echo $resultado;
+}
+if ($_REQUEST ['funcion'] == 'consultaDependencia') {
+        $parametro = $_REQUEST ['valor'];
+        $cadenaSql = $this->sql->getCadenaSql ( 'dependencias', $parametro );
+	$resultado = $recursoArka->ejecutarAcceso ( $cadenaSql, "busqueda" );
 	$resultado = json_encode ( $resultado );
 	echo $resultado;
 }

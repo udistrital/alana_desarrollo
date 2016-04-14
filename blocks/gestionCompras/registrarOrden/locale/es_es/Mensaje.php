@@ -96,8 +96,8 @@ $this->idioma ["cargo_contratista"] = "Cargo :";
 $this->idioma ["cargo_contratistaTitulo"] = "Ingrese Cargo del Contratista";
 
 
-
-
+$this->idioma ["cargosExistentes"] = "Cargos Existentes :";
+$this->idioma ["cargosExistentesTitulo"] = "Seleccione un Cargo";
 
 
 $this->idioma ["objeto_contrato"] = "";
@@ -178,6 +178,7 @@ $this->idioma ["botonElemento"] = "Cargar Elementos";
 $this->idioma ["botonAceptar"] = "Guardar";
 $this->idioma ["botonCancelar"] = "Cancelar";
 $this->idioma ["botonContinuar"] = "Salir";
+$this->idioma ["botonCargo"] = "Otro Cargo";
 
 $this->idioma ["botonRegresar"] = "< < Regresar";
 

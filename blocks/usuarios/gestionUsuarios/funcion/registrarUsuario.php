@@ -66,6 +66,8 @@ class RegistradorUsuarios {
                               'pass'=>$pass,
                               'fechaIni'  =>$hoy,
                               'fechaFin'  =>$_REQUEST['fechaFin'],  
+                              'sede'=>$_REQUEST['sede'],
+                              'dependencia'=>$_REQUEST['dependencia'],
                               'identificacion'=>$_REQUEST['identificacion'],
                               'tipo_identificacion'=>$_REQUEST['tipo_identificacion'],  );
 

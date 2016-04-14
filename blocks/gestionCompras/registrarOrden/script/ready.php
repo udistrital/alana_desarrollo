@@ -219,6 +219,9 @@ $("#<?php echo $this->campoSeguro('unidad_ejecutora')?>").select2();
 $('#<?php echo $this->campoSeguro('sede')?>').width(300);
 $("#<?php echo $this->campoSeguro('sede')?>").select2();
 
+$('#<?php echo $this->campoSeguro('cargosExistentes')?>').width(300);
+$("#<?php echo $this->campoSeguro('cargosExistentes')?>").select2();
+
 
 $('#<?php echo $this->campoSeguro('sede_super')?>').width(300);
 $("#<?php echo $this->campoSeguro('sede_super')?>").select2();
@@ -242,7 +245,7 @@ $("#<?php echo $this->campoSeguro('vigencia_contratista')?>").select2();
 $('#<?php echo $this->campoSeguro('nombreContratista')?>').attr("style", "width: 60px '");
 
 
- 
+
         
           
 

@@ -70,6 +70,10 @@ $this->idioma["telefonoTitulo"]="Digite el teléfono del usuario";
 
 $this->idioma["telefono"]="Teléfono: ";
 
+$this->idioma["sede"]="Sede: ";
+
+$this->idioma["dependencia"]="Dependencia: ";
+
 $this->idioma["tipousuarioTitulo"]="Seleccione el tipo de usuario"; 
 
 $this->idioma["tipousuario"]="Tipo Usuario: ";

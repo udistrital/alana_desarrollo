@@ -39,6 +39,8 @@ class RegistradorUsuarios {
                               'id_usuario'=>$_REQUEST['id_usuario'],
                               'nombres'=>$_REQUEST['nombres'],
                               'apellidos'=>$_REQUEST['apellidos'],
+                              'dependencia'=>$_REQUEST['dependencia'],
+                              'dependencia_especifica'=>$_REQUEST['dependencia_especifica'],
                               'correo'=>$_REQUEST['correo'],
                               'telefono'=>$_REQUEST['telefono'],  );
 

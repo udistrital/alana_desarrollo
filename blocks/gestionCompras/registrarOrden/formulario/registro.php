@@ -170,8 +170,10 @@ class registrarForm {
                 } else {
                     $atributos ['seleccion'] = 1;
                 }
+                $miSesion = Sesion::singleton();
+                echo trim($miSesion->idUsuario());
 
-                $atributos ['cadena_sql'] = $this->miSql->getCadenaSql("Unidad_Ejecutoria");
+                $atributos ['cadena_sql'] = $this->miSql->getCadenaSql("obtenerInfoUsuario");
                 
                 $matrizItems = $esteRecursoDB->ejecutarAcceso($atributos ['cadena_sql'], "busqueda");
                 $atributos ['matrizItems'] = $matrizItems;

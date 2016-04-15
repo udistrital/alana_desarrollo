@@ -54,6 +54,12 @@ class RegistradorUsuarios {
         $pass=$pass.$keycar.$keyNum;       
         $password = $this->miConfigurador->fabricaConexiones->crypto->codificarClave ( $pass );
         $hoy = date("Y-m-d");   
+        if($_REQUEST['dependencia_especifica']){
+            $dependencia_especifica=$_REQUEST['dependencia_especifica'];
+        }
+        else{
+            $dependencia_especifica="IDEXUD";
+        }
 	$arregloDatos = array(
                               'id_usuario'=>$_REQUEST['tipo_identificacion'].$_REQUEST['identificacion'],
                               'nombres'=>$_REQUEST['nombres'],
@@ -66,8 +72,8 @@ class RegistradorUsuarios {
                               'pass'=>$pass,
                               'fechaIni'  =>$hoy,
                               'fechaFin'  =>$_REQUEST['fechaFin'],  
-                              'sede'=>$_REQUEST['sede'],
                               'dependencia'=>$_REQUEST['dependencia'],
+                              'dependencia_especifica'=>$dependencia_especifica,
                               'identificacion'=>$_REQUEST['identificacion'],
                               'tipo_identificacion'=>$_REQUEST['tipo_identificacion'],  );
 

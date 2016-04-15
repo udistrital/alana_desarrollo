@@ -252,7 +252,7 @@ class consultarForm {
                 unset($atributos);
                 // ---------------- FIN CONTROL: Cuadro de Texto --------------------------------------------------------
                 //  // ---------------- CONTROL: Cuadro de Lista --------------------------------------------------------
-                $esteCampo = 'sede';
+                $esteCampo = 'dependencia';
                 $atributos ['nombre'] = $esteCampo;
                 $atributos ['id'] = $esteCampo;
                 $atributos ['etiqueta'] = $this->lenguaje->getCadena($esteCampo);
@@ -277,9 +277,14 @@ class consultarForm {
                 $atributos ['anchoCaja'] = 60;
                 $atributos ['miEvento'] = '';
                 $atributos ['cadena_sql'] = $this->miSql->getCadenaSql("sede");
-                $matrizItems = array(array(0, ' '));
-                $matrizItems = $recursoArka->ejecutarAcceso($atributos ['cadena_sql'], "busqueda");
-                             $atributos ['matrizItems'] = $matrizItems;
+                $matrizItemsAdministrativo = $recursoArka->ejecutarAcceso($atributos ['cadena_sql'], "busqueda");
+                 for ($j = 0; $j < count($matrizItemsAdministrativo); $j++) {
+                    $matrizItemsAdministrativo[$j]=array($matrizItemsAdministrativo[$j]["nombre"],$matrizItemsAdministrativo[$j]["nombre"]);
+                }
+                $matrizItemsIdexud = array(array('IDEXUD', 'IDEXUD'));
+                $matrizItems = array_merge($matrizItemsIdexud,$matrizItemsAdministrativo);
+                $atributos ['matrizItems'] = $matrizItems;
+                
 
                 // $atributos['miniRegistro']=;
                 // $atributos ['baseDatos'] = "inventarios";
@@ -291,14 +296,14 @@ class consultarForm {
                
                 // ---------------- FIN CONTROL: Cuadro de Lista --------------------------------------------------------
                 // ---------------- CONTROL: Cuadro de Lista --------------------------------------------------------
-                $esteCampo = 'dependencia';
+                $esteCampo = 'dependencia_especifica';
                 $atributos ['nombre'] = $esteCampo;
                 $atributos ['id'] = $esteCampo;
                 $atributos ['etiqueta'] = $this->lenguaje->getCadena($esteCampo);
-                $atributos ["etiquetaObligatorio"] = true;
+                $atributos ["etiquetaObligatorio"] = false;
                 $atributos ['tab'] = $tab ++;
                 $atributos ['seleccion'] = - 1;
-                $atributos ['anchoEtiqueta'] = 170;
+                $atributos ['anchoEtiqueta'] = 180;
                 $atributos ['evento'] = '';
                 if (isset($_REQUEST [$esteCampo])) {
                     $atributos ['valor'] = $_REQUEST [$esteCampo];

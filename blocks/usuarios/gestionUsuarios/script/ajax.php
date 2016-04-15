@@ -37,7 +37,7 @@ $cadenaACodificar17 .= "&procesarAjax=true";
 $cadenaACodificar17 .= "&action=index.php";
 $cadenaACodificar17 .= "&bloqueNombre=" . $esteBloque ["nombre"];
 $cadenaACodificar17 .= "&bloqueGrupo=" . $esteBloque ["grupo"];
-$cadenaACodificar17 .= $cadenaACodificar16 . "&funcion=consultaDependencia";
+$cadenaACodificar17 .= $cadenaACodificar16 . "&funcion=consultaDependenciaEspecifica";
 $cadenaACodificar17 .= "&tiempo=" . $_REQUEST ['tiempo'];
 // Codificar las variables
 
@@ -91,33 +91,33 @@ $urlFinal17 = $url . $cadena17;
     $(function () {
         $("#<?php echo $this->campoSeguro('subsistema') ?>").change(function () {
             if ($("#<?php echo $this->campoSeguro('subsistema') ?>").val() != '') {
-                
+
                 consultarPerfil();
             } else {
                 $("#<?php echo $this->campoSeguro('perfil') ?>").attr('disabled', '');
             }
         });
     });
-    
 
 
 
-      function consultaDependencia(elem, request, response) {
-     
+
+    function consultaDependenciaEspecifica(elem, request, response) {
+
         $.ajax({
             url: "<?php echo $urlFinal17 ?>",
+            data: {valor: $("#<?php echo $this->campoSeguro('dependencia') ?>").val()},
             dataType: "json",
-            data: {valor: $("#<?php echo $this->campoSeguro('sede') ?>").val()},
             success: function (data) {
                 if (data[0] != " ") {
-                    $("#<?php echo $this->campoSeguro('dependencia') ?>").html('');
-                    $("<option value=''>Seleccione  ....</option>").appendTo("#<?php echo $this->campoSeguro('dependencia') ?>");
+                    $("#<?php echo $this->campoSeguro('dependencia_especifica') ?>").html('');
+                    $("<option value=''>Seleccione  ....</option>").appendTo("#<?php echo $this->campoSeguro('dependencia_especifica') ?>");
                     $.each(data, function (indice, valor) {
-                        $("<option value='" + data[ indice ].id + "'>" + data[ indice ].nombre + "</option>").appendTo("#<?php echo $this->campoSeguro('dependencia') ?>");
+                        $("<option value='" + data[ indice ].nombre + "'>" + data[ indice ].nombre + "</option>").appendTo("#<?php echo $this->campoSeguro('dependencia_especifica') ?>");
                     });
-                    $("#<?php echo $this->campoSeguro('dependencia') ?>").removeAttr('disabled');
-                    $('#<?php echo $this->campoSeguro('dependencia') ?>').width(210);
-                    $("#<?php echo $this->campoSeguro('dependencia') ?>").select2();
+                    $("#<?php echo $this->campoSeguro('dependencia_especifica') ?>").removeAttr('disabled');
+                    $('#<?php echo $this->campoSeguro('dependencia_especifica') ?>').width(210);
+                    $("#<?php echo $this->campoSeguro('dependencia_especifica') ?>").select2();
                 }
             }
 
@@ -126,16 +126,17 @@ $urlFinal17 = $url . $cadena17;
     ;
 
     $(function () {
-        $("#<?php echo $this->campoSeguro('sede') ?>").change(function () {
-            if ($("#<?php echo $this->campoSeguro('sede') ?>").val() != '') {
-                consultaDependencia();
+        $("#<?php echo $this->campoSeguro('dependencia') ?>").change(function () {
+            if ($("#<?php echo $this->campoSeguro('dependencia') ?>").val() != 'IDEXUD') {
+                consultaDependenciaEspecifica();
+                
             } else {
-                $("#<?php echo $this->campoSeguro('dependencia') ?>").attr('disabled', '');
+                $("#<?php echo $this->campoSeguro('dependencia_especifica') ?>").attr('disabled', '');
             }
         });
     });
 
 
 
-    
+
 </script>

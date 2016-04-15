@@ -544,6 +544,13 @@ class Sql extends \Sql {
 				$cadenaSql .= "WHERE CON_VIGENCIA ='" . $variable [1] . "' ";
 				$cadenaSql .= "AND  CON_IDENTIFICADOR ='" . $variable [0] . "' ";
 				break;
+                            
+			case "obtenerInfoUsuario" :
+				$cadenaSql = "SELECT CON_IDENTIFICACION , CON_NOMBRE AS CONTRATISTA ";
+				$cadenaSql .= "FROM CONTRATISTAS ";
+				$cadenaSql .= "WHERE CON_VIGENCIA ='" . $variable [1] . "' ";
+				$cadenaSql .= "AND  CON_IDENTIFICADOR ='" . $variable [0] . "' ";
+				break;
 			
 			case "consultarCosntraistaServicios" :
 				$cadenaSql = " SELECT nombre_razon_social, identificacion, direccion,telefono, cargo ";

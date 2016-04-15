@@ -45,7 +45,8 @@ class Sql extends \Sql {
                 $cadenaSql .= " usu.id_usuario, ";
                 $cadenaSql .= "usu.nombre, ";
                 $cadenaSql .= "usu.apellido, ";
-                $cadenaSql .= "usu.sede || '(' || usu.dependencia || ')' AS ubicacion, ";
+                $cadenaSql .= "usu.dependencia, ";
+                $cadenaSql .= "usu.dependencia_especifica, ";
                 $cadenaSql .= " usu.correo, ";
                 $cadenaSql .= " usu.telefono, ";
                 $cadenaSql .= " usu.tipo ,";
@@ -114,7 +115,7 @@ class Sql extends \Sql {
 
             case "consultarUsuariosEditar":
 
-                $cadenaSql = "SELECT id_usuario, nombre, apellido, correo, telefono, tipo, identificacion ";
+                $cadenaSql = "SELECT id_usuario, nombre, apellido, correo, telefono, dependencia , dependencia_especifica, tipo, identificacion ";
                 $cadenaSql .= "FROM " . $prefijo . "usuario ";
                 $cadenaSql .= " WHERE  id_usuario = '" . $variable . "'";
                 break;
@@ -183,13 +184,13 @@ class Sql extends \Sql {
 
             case "insertarUsuario":
 
-                $cadenaSql = "INSERT INTO " . $prefijo . "usuario(id_usuario, nombre, apellido,sede,dependencia, correo, telefono, imagen, clave, tipo, estilo, idioma, estado, fecha_registro, identificacion,tipo_identificacion) ";
+                $cadenaSql = "INSERT INTO " . $prefijo . "usuario(id_usuario, nombre, apellido,dependencia,dependencia_especifica, correo, telefono, imagen, clave, tipo, estilo, idioma, estado, fecha_registro, identificacion,tipo_identificacion) ";
                 $cadenaSql .= " VALUES ( ";
                 $cadenaSql .= " '" . $variable['id_usuario'] . "', ";
                 $cadenaSql .= " '" . $variable['nombres'] . "', ";
                 $cadenaSql .= " '" . $variable['apellidos'] . "', ";
-                $cadenaSql .= " '" . $variable['sede'] . "', ";
                 $cadenaSql .= " '" . $variable['dependencia'] . "', ";
+                $cadenaSql .= " '" . $variable['dependencia_especifica'] . "', ";
                 $cadenaSql .= " '" . $variable['correo'] . "', ";
                 $cadenaSql .= " '" . $variable['telefono'] . "', ";
                 $cadenaSql .= " 'N/A', ";
@@ -224,6 +225,8 @@ class Sql extends \Sql {
                 $cadenaSql = "UPDATE " . $prefijo . "usuario SET ";
                 $cadenaSql .= " nombre = '" . $variable['nombres'] . "', ";
                 $cadenaSql .= " apellido = '" . $variable['apellidos'] . "', ";
+                $cadenaSql .= " dependencia = '" . $variable['dependencia'] . "', ";
+                $cadenaSql .= " dependencia_especifica = '" . $variable['dependencia_especifica'] . "', ";
                 $cadenaSql .= " correo = '" . $variable['correo'] . "', ";
                 $cadenaSql .= " telefono = '" . $variable['telefono'] . "' ";
                 $cadenaSql .= " WHERE id_usuario = '" . $variable['id_usuario'] . "' ";
@@ -284,17 +287,29 @@ class Sql extends \Sql {
 
             case "sede" :
 
-                $cadenaSql = "SELECT DISTINCT  \"ESF_COD_SEDE\", \"ESF_SEDE\" ";
+                $cadenaSql = "SELECT DISTINCT  \"ESF_COD_SEDE\", \"ESF_SEDE\" as nombre ";
                 $cadenaSql .= " FROM arka_parametros.arka_sedes ";
                 $cadenaSql .= " WHERE   \"ESF_ESTADO\"='A' ";
                 $cadenaSql .= " AND    \"ESF_COD_SEDE\" >  0 ;";
                 break;
             case "dependencias" :
-                $cadenaSql = "SELECT DISTINCT  \"ESF_ID_ESPACIO\" AS id, \"ESF_NOMBRE_ESPACIO\" AS nombre ";
-                $cadenaSql .= " FROM arka_parametros.arka_espaciosfisicos ";
-                $cadenaSql .= " WHERE \"ESF_COD_SEDE\"='" . $variable . "' ";
-                $cadenaSql .= " AND  \"ESF_ESTADO\"='A'";
+                $cadenaSql = " SELECT DISTINCT \"ESF_DEP_ENCARGADA\" as nombre  ";
+                $cadenaSql .= " FROM arka.arka_parametros.arka_dependencia d, "
+                        . "arka.arka_parametros.arka_sedes s,"
+                        . "arka.arka_parametros.arka_espaciosfisicos e ";
+                $cadenaSql .= " WHERE s.\"ESF_COD_SEDE\" = e.\"ESF_COD_SEDE\"  AND ";
+                $cadenaSql .= " e.\"ESF_ID_ESPACIO\" = d.\"ESF_ID_ESPACIO\" AND ";
+                $cadenaSql .= " s.\"ESF_SEDE\" = '$variable' ;";
+                break;
 
+
+            case "dependenciasEdita" :
+                $cadenaSql = " SELECT DISTINCT \"ESF_DEP_ENCARGADA\" as nombre  ";
+                $cadenaSql .= " FROM arka.arka_parametros.arka_dependencia d, "
+                        . "arka.arka_parametros.arka_sedes s,"
+                        . "arka.arka_parametros.arka_espaciosfisicos e ";
+                $cadenaSql .= " WHERE s.\"ESF_COD_SEDE\" = e.\"ESF_COD_SEDE\"  AND ";
+                $cadenaSql .= " e.\"ESF_ID_ESPACIO\" = d.\"ESF_ID_ESPACIO\" ;";
                 break;
         }
         return $cadenaSql;

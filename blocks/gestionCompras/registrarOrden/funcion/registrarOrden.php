@@ -151,7 +151,7 @@ class RegistradorOrden {
             "fecha_inicio_pago" => $_REQUEST ['fecha_inicio_pago'],
             "fecha_final_pago" => $_REQUEST ['fecha_final_pago'],
             "forma_pago" => $_REQUEST ['forma_pago'],
-            "id_contratista" =>999999,
+            "id_contratista" => $id_Contratista [0] [0],
             "id_supervisor" => $id_supervisor [0] [0],
             "id_ordenador_encargado" => $_REQUEST ['id_ordenador'],
             "tipo_ordenador" => $_REQUEST ['tipo_ordenador'],

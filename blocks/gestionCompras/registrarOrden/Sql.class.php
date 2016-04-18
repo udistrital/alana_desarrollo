@@ -546,10 +546,9 @@ class Sql extends \Sql {
 				break;
                             
 			case "obtenerInfoUsuario" :
-				$cadenaSql = "SELECT CON_IDENTIFICACION , CON_NOMBRE AS CONTRATISTA ";
-				$cadenaSql .= "FROM CONTRATISTAS ";
-				$cadenaSql .= "WHERE CON_VIGENCIA ='" . $variable [1] . "' ";
-				$cadenaSql .= "AND  CON_IDENTIFICADOR ='" . $variable [0] . "' ";
+				$cadenaSql = "SELECT u.dependencia_especifica ||' - '|| u.dependencia as nombre ";
+				$cadenaSql .= "FROM frame_work.argo_usuario u  ";
+				$cadenaSql .= "WHERE u.id_usuario='" . $variable . "' ";
 				break;
 			
 			case "consultarCosntraistaServicios" :
@@ -625,6 +624,16 @@ class Sql extends \Sql {
 				$cadenaSql .= " FROM arka_parametros.arka_funcionarios; ";
 							
 				break;    
+                            
+                        case "inicio_transaccion"  :
+                            $cadenaSql  = " BEGIN; ";
+                            break;
+                        case "fin_transaccion"  :
+                            $cadenaSql  = " COMMIT; ";
+                            break;
+                        case "cancelar_transaccion"  :
+                            $cadenaSql  = " ROLLBACK; ";
+                            break;
 		}
 		return $cadenaSql;
 	}

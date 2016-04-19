@@ -14,5 +14,16 @@ if ($_REQUEST ['funcion'] == 'NumeroSolicitud') {
 	
 	echo json_encode ( $resultadoItems );
 }
+if ($_REQUEST ['funcion'] == 'AlmacenarDatos') {
+	
+	$arregloDatos = json_decode($_REQUEST ['valor']) ;
+       
+        for ($i = 0; $i <= count($arregloDatos); $i++) {
+            $cadenaSql="INSERT INTO contractual.temporal_contrato (informacion_campo) Values('".$arregloDatos[$i]."'); ";
+            $resultado = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso" );
+        }
+        $resultado = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "acceso" );
+        echo json_encode ( $arregloDatos );
+}
 
 ?>

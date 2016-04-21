@@ -382,6 +382,9 @@ $_REQUEST ['tiempo'] = time ();
 	
 	$("#<?php echo $this->campoSeguro('unidad_ejecutora')?>").select2();
 	
+        setTimeout(function() {
+            $('#mensajeEdicionPrevio').hide( "drop", { direction: "up" }, "slow" );
+                              }, 8000);
 	
    
 
@@ -438,9 +441,6 @@ $_REQUEST ['tiempo'] = time ();
 
 
    
-
-    
-			 
 			 
 			 
 

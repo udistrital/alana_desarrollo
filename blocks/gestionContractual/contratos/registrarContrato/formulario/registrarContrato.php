@@ -116,6 +116,7 @@ class registrarForm {
                 $solicitud = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
                 $solicitud = $solicitud [0];
                 $_REQUEST = array_merge($_REQUEST, $informacioAlmacenada);
+                 $mensaje="Proceso de Inserción Iniciado Previamente.";
                 //var_dump($_REQUEST);
             } else {
                 $cadena_sql = $this->miSql->getCadenaSql('Consultar_Solicitud_Particular', $_REQUEST ['id_solicitud_necesidad']);
@@ -173,12 +174,17 @@ class registrarForm {
                     );
                     $_REQUEST = array_merge($_REQUEST, $arregloContratista);
                 }
+                $mensaje="";
             }
 
             // ------------------Division para los botones-------------------------
             $atributos ["id"] = "ventanaA";
             echo $this->miFormulario->division("inicio", $atributos);
             unset($atributos); {
+                
+               if($mensaje!=""){
+                echo "<div name='mensajeRegistroPrevio' id='mensajeRegistroPrevio' class='information shadow textoCentrar' >".$mensaje."</div>";
+              }
 
                 echo "<h3>Datos Personales</h3>
 							<section>"; {
@@ -927,7 +933,7 @@ class registrarForm {
                         $atributos ['tab'] = $tab;
                         $atributos ['tamanno'] = 1;
                         $atributos ['estilo'] = 'jqueryui';
-                        $atributos ['validar'] = ' required ';
+                        $atributos ['validar'] = 'required';
                         $atributos ['limitar'] = true;
                         $atributos ['etiqueta'] = $this->lenguaje->getCadena($esteCampo);
                         $atributos ['anchoEtiqueta'] = 213;
@@ -1425,12 +1431,12 @@ class registrarForm {
                         $atributos ['estilo'] = 'jqueryui';
                         $atributos ['marco'] = true;
                         $atributos ['estiloMarco'] = '';
-                        $atributos ["etiquetaObligatorio"] = true;
+                        $atributos ["etiquetaObligatorio"] = false;
                         $atributos ['columnas'] = 2;
                         $atributos ['dobleLinea'] = 0;
                         $atributos ['tabIndex'] = $tab;
                         $atributos ['etiqueta'] = $this->lenguaje->getCadena($esteCampo);
-                        $atributos ['validar'] = 'required';
+                        $atributos ['validar'] = '';
 
                         if (isset($_REQUEST [$esteCampo])) {
                             $atributos ['valor'] = $_REQUEST [$esteCampo];
@@ -1456,12 +1462,12 @@ class registrarForm {
                         $atributos ['estilo'] = 'jqueryui';
                         $atributos ['marco'] = true;
                         $atributos ['estiloMarco'] = '';
-                        $atributos ["etiquetaObligatorio"] = true;
+                        $atributos ["etiquetaObligatorio"] = false;
                         $atributos ['columnas'] = 2;
                         $atributos ['dobleLinea'] = 0;
                         $atributos ['tabIndex'] = $tab;
                         $atributos ['etiqueta'] = $this->lenguaje->getCadena($esteCampo);
-                        $atributos ['validar'] = 'required,custom[date]';
+                        $atributos ['validar'] = 'custom[date]';
 
                         if (isset($_REQUEST [$esteCampo])) {
                             $atributos ['valor'] = $_REQUEST [$esteCampo];

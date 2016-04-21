@@ -127,6 +127,7 @@ class registrarForm {
 
                     $ventanaConvenio = 'block';
                 }
+                $mensaje="Proceso de Edición Iniciado Previamente.";
              }
             
         else{
@@ -247,13 +248,17 @@ class registrarForm {
                 );
                 $_REQUEST = array_merge($_REQUEST, $arregloContratista);
             }
+            $mensaje="";
         }
 
             // ------------------Division para los botones-------------------------
             $atributos ["id"] = "ventanaA";
             echo $this->miFormulario->division("inicio", $atributos);
             unset($atributos); {
-
+                
+              if($mensaje!=""){
+               echo "<div name='mensajeEdicionPrevio' id='mensajeEdicionPrevio' class='information shadow textoCentrar' >".$mensaje."</div>";
+              }
                 echo "<h3>Datos Personales</h3>
 							<section>"; {
                     $esteCampo = 'numero_contrato';
@@ -1001,7 +1006,7 @@ class registrarForm {
                         $atributos ['tab'] = $tab;
                         $atributos ['tamanno'] = 1;
                         $atributos ['estilo'] = 'jqueryui';
-                        $atributos ['validar'] = ' required ';
+                        $atributos ['validar'] = 'required';
                         $atributos ['limitar'] = true;
                         $atributos ['etiqueta'] = $this->lenguaje->getCadena($esteCampo);
                         $atributos ['anchoEtiqueta'] = 213;
@@ -1489,12 +1494,12 @@ class registrarForm {
                         $atributos ['estilo'] = 'jqueryui';
                         $atributos ['marco'] = true;
                         $atributos ['estiloMarco'] = '';
-                        $atributos ["etiquetaObligatorio"] = true;
+                        $atributos ["etiquetaObligatorio"] = false;
                         $atributos ['columnas'] = 2;
                         $atributos ['dobleLinea'] = 0;
                         $atributos ['tabIndex'] = $tab;
                         $atributos ['etiqueta'] = $this->lenguaje->getCadena($esteCampo);
-                        $atributos ['validar'] = 'required';
+                        $atributos ['validar'] = '';
 
                         if (isset($_REQUEST [$esteCampo])) {
                             $atributos ['valor'] = $_REQUEST [$esteCampo];
@@ -1520,12 +1525,12 @@ class registrarForm {
                         $atributos ['estilo'] = 'jqueryui';
                         $atributos ['marco'] = true;
                         $atributos ['estiloMarco'] = '';
-                        $atributos ["etiquetaObligatorio"] = true;
+                        $atributos ["etiquetaObligatorio"] = false;
                         $atributos ['columnas'] = 2;
                         $atributos ['dobleLinea'] = 0;
                         $atributos ['tabIndex'] = $tab;
                         $atributos ['etiqueta'] = $this->lenguaje->getCadena($esteCampo);
-                        $atributos ['validar'] = 'required,custom[date]';
+                        $atributos ['validar'] = 'custom[date]';
 
                         if (isset($_REQUEST [$esteCampo])) {
                             $atributos ['valor'] = $_REQUEST [$esteCampo];

@@ -316,6 +316,11 @@ $_REQUEST ['tiempo'] = time ();
 	
 			 
 	
+                   
+        setTimeout(function() {
+            $('#mensajeRegistroPrevio').hide( "drop", { direction: "up" }, "slow" );
+                              }, 5000);
+	            
 	$("#<?php echo $this->campoSeguro('clase_contrato')?>").width(250);
 	$("#<?php echo $this->campoSeguro('clase_contrato')?>").select2();
 	
@@ -385,10 +390,7 @@ $_REQUEST ['tiempo'] = time ();
 	$("#<?php echo $this->campoSeguro('supervisor')?>").width(305);
 	$("#<?php echo $this->campoSeguro('supervisor')?>").select2();
 			 
-			 
-			 
-			 
-
+	
           
 
 

@@ -164,6 +164,7 @@ class registrarForm {
 				$variable = "pagina=" . $miPaginaActual; // pendiente la pagina para modificar parametro
 				$variable .= "&opcion=registroContrato";
 				$variable .= "&id_solicitud_necesidad=" . $valor ['id_sol_necesidad'];
+				$variable .= "&numero_solicitud=" . $valor ['numero_solicitud'];
 				$variable .= "&usuario=" . $_REQUEST ['usuario'];
 				$variable .= "&bloqueNombre=" . $_REQUEST['bloque'];
 				$variable .= "&bloqueGrupo=" . $_REQUEST['bloqueGrupo'];

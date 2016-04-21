@@ -10,20 +10,35 @@ if ($_REQUEST ['funcion'] == 'NumeroSolicitud') {
     $cadenaSql = $this->sql->getCadenaSql('ConsultarNumeroNecesidades', $_REQUEST ['valor']);
 
     $resultadoItems = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
-// 	var_dump($resultadoItems);exit;
-// 	$resultadoItems = $resultadoItems [0];
-
     echo json_encode($resultadoItems);
 }
 if ($_REQUEST ['funcion'] == 'AlmacenarDatos') {
 
-    $arregloDatos = json_decode($_REQUEST ['valor']);
-    var_dump($arregloDatos);    
-    for ($i = 0; $i <= count($arregloDatos); $i++) {
-        $cadenaSql = "INSERT INTO contractual.temporal_contrato (campo_formulario,informacion_campo) Values('" . $arregloDatos[$i+1] . "', '" . $arregloDatos[$i] . "'); ";
+    $enlace = $this->miConfigurador->getVariableConfiguracion("enlace");
+    $miSesion = Sesion::singleton();
+    $id_usuario = $miSesion->idUsuario();
+    $arregloDatos = substr($_REQUEST ['valor'], 2, -2);
+    $arregloDatos = str_replace("'", "", $arregloDatos);
+    $arregloDatos = str_replace('"', "", $arregloDatos);
+    $arregloDatos = explode(",", $arregloDatos);
+    $idContratoTemp = str_replace(";", "", $arregloDatos[count($arregloDatos) - 1]);
+    $cadenaVerificarTemp = $this->sql->getCadenaSql('obtenerInfoTemporal', $idContratoTemp);
+    $infoTemp = $esteRecursoDB->ejecutarAcceso($cadenaVerificarTemp, "busqueda");
+    if($infoTemp != false){
+        echo "entro";
+     $cadenaEliminarInfoTemporal = $this->sql->getCadenaSql('eliminarInfoTemporal', $idContratoTemp);
+     $infoTemp = $esteRecursoDB->ejecutarAcceso($cadenaEliminarInfoTemporal, "acceso");
+     var_dump($cadenaEliminarInfoTemporal);
+    }
+    for ($i = 0; $i < count($arregloDatos); $i++) {
+        $Datos = explode(";", $arregloDatos[$i]);
+        $infoCadena = array('campo' => substr($this->miConfigurador->fabricaConexiones->crypto->decodificar($Datos[1], $enlace), 0, -10),
+            'informacion' => $Datos[0],
+            'fecha' => date("Y-m-d"),
+            'usuario' => $id_usuario,
+            'id' => $idContratoTemp);
+        $cadenaSql = $this->sql->getCadenaSql('insertarInformacionContratoTemporal', $infoCadena);
         $resultado = $esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso");
     }
-
-    echo json_encode(count($arregloDatos));
 }
 ?>

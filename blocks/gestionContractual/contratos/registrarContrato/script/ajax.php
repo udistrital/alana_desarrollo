@@ -114,7 +114,7 @@ $urlDatosPaso = $url . $cadena2;
                 InfoPaso0.push(document.getElementById("<?php echo $this->campoSeguro('nacionalidad') ?>").value+";"+document.getElementById("<?php echo $this->campoSeguro('nacionalidad') ?>").getAttribute("id"));
             }
             if (document.getElementById("<?php echo $this->campoSeguro('direccion') ?>").value != "") {
-                InfoPaso0.push(document.getElementById("<?php echo $this->campoSeguro('direccion') ?>").value)+";"+document.getElementById("<?php echo $this->campoSeguro('direccion') ?>").getAttribute("id");
+                InfoPaso0.push(document.getElementById("<?php echo $this->campoSeguro('direccion') ?>").value+";"+document.getElementById("<?php echo $this->campoSeguro('direccion') ?>").getAttribute("id"));
             }
             if (document.getElementById("<?php echo $this->campoSeguro('telefono') ?>").value != "") {
                 InfoPaso0.push(document.getElementById("<?php echo $this->campoSeguro('telefono') ?>").value+";"+document.getElementById("<?php echo $this->campoSeguro('telefono') ?>").getAttribute("id"));

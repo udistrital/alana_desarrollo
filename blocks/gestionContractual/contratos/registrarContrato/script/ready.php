@@ -102,7 +102,8 @@ $_REQUEST ['tiempo'] = time ();
 		                    
 		                    
 		                    $("#<?php echo $this->campoSeguro('divisionConvenio')?>").css('display','none');
-		                    
+		                    $("#<?php echo $this->campoSeguro('numero_convenio')?>").val("");
+		                    $("#<?php echo $this->campoSeguro('vigencia_convenio')?>").val("");
 		                    }
 		
 				}else{
@@ -126,11 +127,14 @@ $_REQUEST ['tiempo'] = time ();
 		
 							$("#<?php echo $this->campoSeguro('divisionClaseContratista')?>").css('display','block');
 							
+							
 		                    }else{
 		                    
 		                    
 		                    $("#<?php echo $this->campoSeguro('divisionClaseContratista')?>").css('display','none');
-		                    
+		                    $("#<?php echo $this->campoSeguro('identificacion_clase_contratista')?>").val("");
+				    $("#<?php echo $this->campoSeguro('digito_verificacion_clase_contratista')?>").val("");
+				    $("#<?php echo $this->campoSeguro('porcentaje_clase_contratista')?>").val("");
 		                    }
 		
 				}else{

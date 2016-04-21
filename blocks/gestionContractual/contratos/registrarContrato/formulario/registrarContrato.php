@@ -84,9 +84,7 @@ class registrarForm {
         $atributos ["leyenda"] = "Registrar Contrato";
         echo $this->miFormulario->marcoAgrupacion('inicio', $atributos);
         unset($atributos); {
-//            $cadenadeprueba = $this->miSql->getCadenaSql("tipo_clase_contratista");
-//            $resulprueba = $esteRecursoDB->ejecutarAcceso($cadenadeprueba, "busqueda");
-//            var_dump($resulprueba);
+
             
             $cadena_sql_Temp = $this->miSql->getCadenaSql('Consultar_info_Temporal', $_REQUEST ['id_solicitud_necesidad'] . "" . $_REQUEST ['numero_solicitud']);
             $infoTemporal = $esteRecursoDB->ejecutarAcceso($cadena_sql_Temp, "busqueda");

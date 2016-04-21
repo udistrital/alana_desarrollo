@@ -19,7 +19,7 @@ $("#ventanaA").steps({
     enablePagination: true,
     transitionEffect: "slideLeft",
     onStepChanging: function (event, currentIndex, newIndex) {
-        $resultado = true;
+        $resultado = $resultado = $("#registrarContrato").validationEngine("validate");
         almacenarInfoTemporal(currentIndex, newIndex);
         if ($resultado) {
 

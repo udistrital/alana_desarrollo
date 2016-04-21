@@ -25,10 +25,10 @@ if ($_REQUEST ['funcion'] == 'AlmacenarDatos') {
     $cadenaVerificarTemp = $this->sql->getCadenaSql('obtenerInfoTemporal', $idContratoTemp);
     $infoTemp = $esteRecursoDB->ejecutarAcceso($cadenaVerificarTemp, "busqueda");
     if($infoTemp != false){
-        echo "entro";
+     //echo "entro";
      $cadenaEliminarInfoTemporal = $this->sql->getCadenaSql('eliminarInfoTemporal', $idContratoTemp);
      $infoTemp = $esteRecursoDB->ejecutarAcceso($cadenaEliminarInfoTemporal, "acceso");
-     var_dump($cadenaEliminarInfoTemporal);
+     //var_dump($cadenaEliminarInfoTemporal);
     }
     for ($i = 0; $i < count($arregloDatos); $i++) {
         $Datos = explode(";", $arregloDatos[$i]);

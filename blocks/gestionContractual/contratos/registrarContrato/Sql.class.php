@@ -512,8 +512,8 @@ class Sql extends \Sql {
                 $cadenaSql .= " '" . $variable ['numero_contrato'] . "',";
                 $cadenaSql .= " '" . $variable ['fecha_subcripcion'] . "',";
                 $cadenaSql .= " '" . $variable ['plazo_ejecucion'] . "',";
-                $cadenaSql .= " '" . $variable ['fecha_inicio_poliza'] . "',";
-                $cadenaSql .= " '" . $variable ['fecha_final_poliza'] . "',";
+                $cadenaSql .= " " . $variable ['fecha_inicio_poliza'] . ",";
+                $cadenaSql .= " " . $variable ['fecha_final_poliza'] . ",";
                 $cadenaSql .= " '" . $variable ['valor_contrato_moneda_ex'] . "',";
                 $cadenaSql .= " '" . $variable ['tasa_cambio'] . "',";
                 $cadenaSql .= " '" . $variable ['fecha_suscrip_super'] . "',";
@@ -603,6 +603,14 @@ class Sql extends \Sql {
                 $cadenaSql .= "id_contrato_temp=" . $variable;
 
                 break;
+            case 'obtener_id_contratista' :
+
+                $cadenaSql = "SELECT ";
+                $cadenaSql .= "MAX(id_contratista) ";
+                $cadenaSql .= "FROM ";
+                $cadenaSql .= "contractual.contratista; ";
+                 break;
+            
 
             /*
              *

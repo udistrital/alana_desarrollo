@@ -122,7 +122,23 @@ class RegistradorOrden {
 			
 		}
 		
-		// Actualizar Orden
+		
+
+
+
+                 //Validacion campos nulos de fecha de inicio y finalizacion
+                if (isset($_REQUEST ['fecha_inicio_pago']) && $_REQUEST ['fecha_inicio_pago'] != "") {
+                    $fecha_inicio_pago = "'".$_REQUEST ['fecha_inicio_pago']."'";
+                } else {
+                    $fecha_inicio_pago = 'NULL';
+                }           
+                if (isset($_REQUEST ['fecha_final_pago']) && $_REQUEST ['fecha_final_pago'] != "") {
+                    $fecha_final_pago = "'".$_REQUEST ['fecha_final_pago']."'";
+                } else {
+                    $fecha_final_pago = 'NULL';
+                }
+
+                // Actualizar Orden
 		
 		$datosOrden = array (
 				$_REQUEST ['dependencia_solicitante'],
@@ -133,8 +149,8 @@ class RegistradorOrden {
 				isset ( $_REQUEST ['poliza3'] ),
 				isset ( $_REQUEST ['poliza4'] ),
 				$_REQUEST ['duracion'],
-				$_REQUEST ['fecha_inicio_pago'],
-				$_REQUEST ['fecha_final_pago'],
+				$fecha_inicio_pago,
+				$fecha_final_pago,
 				$_REQUEST ['forma_pago'],
 				$_REQUEST ['id_ordenador'],
 				$_REQUEST ['tipo_ordenador'],

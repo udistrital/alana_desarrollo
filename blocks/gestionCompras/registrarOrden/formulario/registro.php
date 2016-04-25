@@ -158,6 +158,7 @@ class registrarForm {
                 $id_usuario = $miSesion->idUsuario();
                 $cadenaSqlUnidad = $this->miSql->getCadenaSql("obtenerInfoUsuario", $id_usuario);
                 $unidadEjecutora = $esteRecursoDBArgo->ejecutarAcceso($cadenaSqlUnidad, "busqueda");
+                
                 $esteCampo = 'unidad_ejecutora';
                 $atributos ['id'] = $esteCampo;
                 $atributos ['nombre'] = $esteCampo;
@@ -856,12 +857,12 @@ class registrarForm {
                     $atributos ['estilo'] = 'jqueryui';
                     $atributos ['marco'] = true;
                     $atributos ['estiloMarco'] = '';
-                    $atributos ["etiquetaObligatorio"] = true;
+                    $atributos ["etiquetaObligatorio"] = false;
                     $atributos ['columnas'] = 3;
                     $atributos ['dobleLinea'] = 0;
                     $atributos ['tabIndex'] = $tab;
                     $atributos ['etiqueta'] = $this->lenguaje->getCadena($esteCampo);
-                    $atributos ['validar'] = 'require,custom[date]';
+                    $atributos ['validar'] = 'custom[date]';
 
                     if (isset($_REQUEST [$esteCampo])) {
                         $atributos ['valor'] = $_REQUEST [$esteCampo];
@@ -889,12 +890,12 @@ class registrarForm {
                     $atributos ['estilo'] = 'jqueryui';
                     $atributos ['marco'] = true;
                     $atributos ['estiloMarco'] = '';
-                    $atributos ["etiquetaObligatorio"] = true;
+                    $atributos ["etiquetaObligatorio"] = false;
                     $atributos ['columnas'] = 3;
                     $atributos ['dobleLinea'] = 0;
                     $atributos ['tabIndex'] = $tab;
                     $atributos ['etiqueta'] = $this->lenguaje->getCadena($esteCampo);
-                    $atributos ['validar'] = 'require,custom[date]';
+                    $atributos ['validar'] = 'custom[date]';
 
                     if (isset($_REQUEST [$esteCampo])) {
                         $atributos ['valor'] = $_REQUEST [$esteCampo];

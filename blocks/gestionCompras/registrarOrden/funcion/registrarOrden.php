@@ -46,9 +46,9 @@ class RegistradorOrden {
             exit();
         }
 
-        $inicio_transaccion = $this->miSql->getCadenaSql('inicio_transaccion', $datosSupervisor);
-        $fin_transaccion = $this->miSql->getCadenaSql('fin_transaccion', $datosSupervisor);
-        $cancelar_transaccion = $this->miSql->getCadenaSql('cancelar_transaccion', $datosSupervisor);
+        $inicio_transaccion = $this->miSql->getCadenaSql('inicio_transaccion');
+        $fin_transaccion = $this->miSql->getCadenaSql('fin_transaccion');
+        $cancelar_transaccion = $this->miSql->getCadenaSql('cancelar_transaccion');
 
         $datosSupervisor = array(
             $_REQUEST ['nombre_supervisor'],
@@ -133,7 +133,19 @@ class RegistradorOrden {
 
                 break;
         }
-
+        
+        //Validacion campos nulos de fecha de inicio y finalizacion
+        if (isset($_REQUEST ['fecha_inicio_pago']) && $_REQUEST ['fecha_inicio_pago'] != "") {
+            $fecha_inicio_pago = "'".$_REQUEST ['fecha_inicio_pago']."'";
+        } else {
+            $fecha_inicio_pago = 'NULL';
+        }
+        if (isset($_REQUEST ['fecha_final_pago']) && $_REQUEST ['fecha_final_pago'] != "") {
+            $fecha_final_pago = "'".$_REQUEST ['fecha_final_pago']."'";
+        } else {
+            $fecha_final_pago = 'NULL';
+        }
+        
         $datosOrden = array(
             "tipo_orden" => $_REQUEST ['tipo_orden'],
             "vigencia" => date('Y'),
@@ -147,9 +159,9 @@ class RegistradorOrden {
             "poliza2" => isset($_REQUEST ['polizaB']),
             "poliza3" => isset($_REQUEST ['polizaC']),
             "poliza4" => isset($_REQUEST ['polizaD']),
-            "duracion_pago" => $_REQUEST ['numero_dias'],
-            "fecha_inicio_pago" => $_REQUEST ['fecha_inicio_pago'],
-            "fecha_final_pago" => $_REQUEST ['fecha_final_pago'],
+            "duracion_pago" => $_REQUEST ['duracion'],
+            "fecha_inicio_pago" => $fecha_inicio_pago,
+            "fecha_final_pago" => $fecha_final_pago,
             "forma_pago" => $_REQUEST ['forma_pago'],
             "id_contratista" => $id_Contratista [0] [0],
             "id_supervisor" => $id_supervisor [0] [0],
@@ -160,7 +172,6 @@ class RegistradorOrden {
         );
 
         $cadenaSql = $this->miSql->getCadenaSql('insertarOrden', $datosOrden);
-
         $consecutivos_orden = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda", $datosOrden, 'insertarOrden');
 
         $consecutivo_orden = $consecutivos_orden [0];
@@ -178,7 +189,6 @@ class RegistradorOrden {
             $this->miConfigurador->setVariableConfiguracion("cache", true);
             $esteRecursoDB->ejecutarAcceso($fin_transaccion, "acceso", "", 'fin_transaccion');
 
-            sleep(10);
             redireccion::redireccionar('inserto', array(
                 $datos,
                 $consecutivo_orden [2]
@@ -186,7 +196,6 @@ class RegistradorOrden {
             exit();
         } else {
             $esteRecursoDB->ejecutarAcceso($cancelar_transaccion, "acceso", "", 'cancelar_transaccion');+
-            sleep(10);
             redireccion::redireccionar('noInserto', $datos);
             exit();
         }

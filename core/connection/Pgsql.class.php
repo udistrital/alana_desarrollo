@@ -547,7 +547,7 @@ class Pgsql extends ConectorDb {
         if ($acceso) {
             $resultado = pg_query($this->enlace, 'COMMIT');
         } else {
-            pg_query($this->enlace . 'ROLLBACK');
+            pg_query($this->enlace , 'ROLLBACK');
             $resultado = false;
         }
 

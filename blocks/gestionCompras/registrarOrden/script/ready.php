@@ -119,7 +119,7 @@
 
         
         
-		$('#<?php echo $this->campoSeguro('duracion')?>').attr('disabled',''); 
+		//$('#<?php echo $this->campoSeguro('duracion')?>').attr('disabled',''); 
 		$('#<?php echo $this->campoSeguro('total_iva')?>').attr('disabled',''); 
 		$('#<?php echo $this->campoSeguro('total')?>').attr('disabled','');    
 		

@@ -45,6 +45,11 @@ class registrarForm {
 		$conexion = "inventarios";
 		
 		$esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB ( $conexion );
+                
+                $conexionArgo = "estructura";
+
+                $esteRecursoDBArgo = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexionArgo);
+               
 		
 		$cadenaSql = $this->miSql->getCadenaSql ( 'ConsultarInformacionOrden', $_REQUEST ['id_orden'] );
 		
@@ -214,39 +219,39 @@ class registrarForm {
 				
 				
 				// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-				$esteCampo = 'unidad_ejecutora';
-				$atributos ['columnas'] = 1;
-				$atributos ['nombre'] = $esteCampo;
-				$atributos ['id'] = $esteCampo;
-				$atributos ['evento'] = '';
-				$atributos ['deshabilitado'] = false;
-				$atributos ["etiquetaObligatorio"] = true;
-				$atributos ['tab'] = $tab;
-				$atributos ['tamanno'] = 1;
-				$atributos ['estilo'] = 'jqueryui';
-				$atributos ['validar'] = 'required';
-				$atributos ['limitar'] = true;
-				$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-				$atributos ['anchoEtiqueta'] = 136;
-					
-				if (isset ( $_REQUEST [$esteCampo] )) {
-					
-					$atributos ['seleccion'] = $_REQUEST [$esteCampo];
-				} else {
-					$atributos ['seleccion'] = 1;
-				}
-					
-				$atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "Unidad_Ejecutoria" );
-				$matrizItems = $esteRecursoDB->ejecutarAcceso ( $atributos ['cadena_sql'], "busqueda" );
-				$atributos ['matrizItems'] = $matrizItems;
-					
-				// Utilizar lo siguiente cuando no se pase un arreglo:
-				// $atributos['baseDatos']='ponerAquiElNombreDeLaConexión';
-				// $atributos ['cadena_sql']='ponerLaCadenaSqlAEjecutar';
-				$tab ++;
-				$atributos = array_merge ( $atributos, $atributosGlobales );
-				echo $this->miFormulario->campoCuadroLista ( $atributos );
-				unset ( $atributos );
+				
+                                $miSesion = Sesion::singleton();
+                                $id_usuario = $miSesion->idUsuario();
+                                $cadenaSqlUnidad = $this->miSql->getCadenaSql("obtenerInfoUsuario", $id_usuario);
+                                $unidadEjecutora = $esteRecursoDBArgo->ejecutarAcceso($cadenaSqlUnidad, "busqueda");
+                                $esteCampo = 'unidad_ejecutora';
+                                $atributos ['id'] = $esteCampo;
+                                $atributos ['nombre'] = $esteCampo;
+                                $atributos ['tipo'] = 'text';
+                                $atributos ['estilo'] = 'jqueryui';
+                                $atributos ['marco'] = true;
+                                $atributos ['estiloMarco'] = '';
+                                $atributos ["etiquetaObligatorio"] = true;
+                                $atributos ['columnas'] = 2;
+                                $atributos ['dobleLinea'] = 0;
+                                $atributos ['tabIndex'] = $tab;
+                                $atributos ['etiqueta'] = $this->lenguaje->getCadena($esteCampo);
+                                $atributos ['validar'] = '';
+                                if (isset($unidadEjecutora)) {
+                                    $atributos ['valor'] = $unidadEjecutora[0]['nombre'];
+                                } else {
+                                    $atributos ['valor'] = 'Usuario sin Dependencia Registrada';
+                                }
+                                $atributos ['titulo'] = $this->lenguaje->getCadena($esteCampo . 'Titulo');
+                                $atributos ['deshabilitado'] = true;
+                                $atributos ['tamanno'] = 35;
+                                $atributos ['maximoTamanno'] = '';
+                                $atributos ['anchoEtiqueta'] = 220;
+                                $tab ++;
+				$atributos = array_merge($atributos, $atributosGlobales);
+                                echo $this->miFormulario->campoCuadroTexto($atributos);
+                                unset($atributos);
+
 				
 				
 				
@@ -844,12 +849,12 @@ class registrarForm {
 					$atributos ['estilo'] = 'jqueryui';
 					$atributos ['marco'] = true;
 					$atributos ['estiloMarco'] = '';
-					$atributos ["etiquetaObligatorio"] = true;
+					$atributos ["etiquetaObligatorio"] = false;
 					$atributos ['columnas'] = 3;
 					$atributos ['dobleLinea'] = 0;
 					$atributos ['tabIndex'] = $tab;
 					$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-					$atributos ['validar'] = 'require,custom[date]';
+					$atributos ['validar'] = 'custom[date]';
 					
 					if (isset ( $_REQUEST [$esteCampo] )) {
 						$atributos ['valor'] = $_REQUEST [$esteCampo];
@@ -877,12 +882,12 @@ class registrarForm {
 					$atributos ['estilo'] = 'jqueryui';
 					$atributos ['marco'] = true;
 					$atributos ['estiloMarco'] = '';
-					$atributos ["etiquetaObligatorio"] = true;
+					$atributos ["etiquetaObligatorio"] = false;
 					$atributos ['columnas'] = 3;
 					$atributos ['dobleLinea'] = 0;
 					$atributos ['tabIndex'] = $tab;
 					$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
-					$atributos ['validar'] = 'require,custom[date]';
+					$atributos ['validar'] = 'custom[date]';
 					
 					if (isset ( $_REQUEST [$esteCampo] )) {
 						$atributos ['valor'] = $_REQUEST [$esteCampo];

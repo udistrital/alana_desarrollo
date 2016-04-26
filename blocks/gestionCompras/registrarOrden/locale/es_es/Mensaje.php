@@ -16,6 +16,7 @@ $this->idioma ["sede_super"] = "Sede : ";
 $this->idioma ["sede_superTitulo"] = "Seleccione Sede";
 
 $this->idioma ["botonDocumento"] = "Generar Documento PDF";
+$this->idioma ["clausula_presupuesto"] = "Sujeto a disponibilidad presupuestal(Hasta Agotar Presupuesto): ";
 // --
 $this->idioma ["vigencia_registro"] = "Vigencia Registro : ";
 $this->idioma ["vigencia_registroTitulo"] = "Seleccione Vigencia Registro";

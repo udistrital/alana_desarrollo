@@ -571,7 +571,8 @@ class Sql extends \Sql {
 				$cadenaSql .= " fecha_final_pago=" . $variable [9] . ", ";
 				$cadenaSql .= " forma_pago='" . $variable [10] . "', ";
 				$cadenaSql .= " id_ordenador_encargado='" . $variable [11] . "', ";
-				$cadenaSql .= " tipo_ordenador='" . $variable [12] . "'  ";
+				$cadenaSql .= " tipo_ordenador='" . $variable [12] . "',  ";
+				$cadenaSql .= " clausula_presupuesto='" . $variable [15] . "'  ";
 				$cadenaSql .= "  WHERE id_orden='" . $variable [13] . "';";
 				
 				break;

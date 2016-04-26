@@ -89,7 +89,6 @@ class registrarForm {
         $infoTemporal = $esteRecursoDB->ejecutarAcceso($cadena_sql_Temp, "busqueda");
             if ($infoTemporal != false) {
                 
-                
                 $ventanaClaseContratista = 'none';
                 $ventanaConvenio = 'none';
                 $informacioAlmacenada = array();
@@ -119,7 +118,7 @@ class registrarForm {
                 $solicitud = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
                 $solicitud = $solicitud [0];
                 $_REQUEST = array_merge($_REQUEST, $informacioAlmacenada);
-                 if ($_REQUEST ['clase_contratista'] == '33' || $_REQUEST ['clase_contratista'] == '34') {
+                if ($_REQUEST ['clase_contratista'] == '33' || $_REQUEST ['clase_contratista'] == '34') {
 
                     $ventanaClaseContratista = 'block';
                 }

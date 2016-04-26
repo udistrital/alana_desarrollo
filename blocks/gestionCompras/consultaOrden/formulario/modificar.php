@@ -49,13 +49,16 @@ class registrarForm {
                 $conexionArgo = "estructura";
 
                 $esteRecursoDBArgo = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexionArgo);
-               
+                
 		
 		$cadenaSql = $this->miSql->getCadenaSql ( 'ConsultarInformacionOrden', $_REQUEST ['id_orden'] );
 		
+	       
 		$Orden = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
 		
+		
 		$Orden = $Orden [0];
+              
 		
 		$arreglo = array (
 				'tipo_orden' => $Orden ['tipo_orden'],
@@ -88,7 +91,8 @@ class registrarForm {
 				'nombreOrdenador' => $Orden ['nombre_ordenador'],
 				'id_ordenador' => $Orden ['id_ordenador_encargado'],
 				'tipo_ordenador' => $Orden ['tipo_ordenador'], 
-				'unidad_ejecutora' => $Orden ['unidad_ejecutora']
+				'unidad_ejecutora' => $Orden ['unidad_ejecutora'],
+				'clausula_presupuesto' => $Orden ['clausula_presupuesto']
 		);
 		
 		// var_dump($arreglo);
@@ -96,6 +100,7 @@ class registrarForm {
 		$cadenaSql = $this->miSql->getCadenaSql ( 'polizas' );
 		
 		$resultado_polizas = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
+                
 		
 		$resultado_polizas = $resultado_polizas [0];
 		
@@ -117,7 +122,8 @@ class registrarForm {
 		// );
 		
 		$_REQUEST = array_merge ( $_REQUEST, $arreglo );
-		
+                
+                
 		// ---------------- SECCION: Parámetros Generales del Formulario ----------------------------------
 		$esteCampo = $esteBloque ['nombre'];
 		$atributos ['id'] = $esteCampo;
@@ -850,7 +856,7 @@ class registrarForm {
 					$atributos ['marco'] = true;
 					$atributos ['estiloMarco'] = '';
 					$atributos ["etiquetaObligatorio"] = false;
-					$atributos ['columnas'] = 3;
+					$atributos ['columnas'] = 4;
 					$atributos ['dobleLinea'] = 0;
 					$atributos ['tabIndex'] = $tab;
 					$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
@@ -883,7 +889,7 @@ class registrarForm {
 					$atributos ['marco'] = true;
 					$atributos ['estiloMarco'] = '';
 					$atributos ["etiquetaObligatorio"] = false;
-					$atributos ['columnas'] = 3;
+					$atributos ['columnas'] = 4;
 					$atributos ['dobleLinea'] = 0;
 					$atributos ['tabIndex'] = $tab;
 					$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
@@ -916,7 +922,7 @@ class registrarForm {
 					$atributos ['marco'] = true;
 					$atributos ['estiloMarco'] = '';
 					$atributos ["etiquetaObligatorio"] = false;
-					$atributos ['columnas'] = 3;
+					$atributos ['columnas'] = 4;
 					$atributos ['dobleLinea'] = 0;
 					$atributos ['tabIndex'] = $tab;
 					$atributos ['etiqueta'] = $this->lenguaje->getCadena ( $esteCampo );
@@ -938,6 +944,36 @@ class registrarForm {
 					$atributos = array_merge ( $atributos, $atributosGlobales );
 					echo $this->miFormulario->campoCuadroTexto ( $atributos );
 					unset ( $atributos );
+                    
+                                        //---------Campo de Seleccion Clausula Presupuestal-------------------------------
+                                        $esteCampo = 'clausula_presupuesto';
+                                        $atributos ['id'] = $esteCampo;
+                                        $atributos ['nombre'] = $esteCampo;
+                                        $atributos ['estilo'] = 'campoCuadroSeleccionCorta';
+                                        $atributos ['marco'] = true;
+                                        $atributos ['estiloMarco'] = true;
+                                        $atributos ["etiquetaObligatorio"] = true;
+                                        $atributos ['columnas'] = 4;
+                                        $atributos ['dobleLinea'] = 1;
+                                        $atributos ['tabIndex'] = $tab;
+                                        $atributos ['etiqueta'] = $this->lenguaje->getCadena($esteCampo);
+                                        $atributos ['validar'] = '';
+                                            
+                                        if (isset($_REQUEST [$esteCampo]) && $_REQUEST [$esteCampo]=='t') {
+                                            $atributos ['valor'] = $_REQUEST [$esteCampo];
+                                            $atributos ['seleccionado']='checked';
+                                        } else {
+                                            $atributos ['valor'] = 'TRUE';
+                                        }
+                                        
+                                        $atributos ['deshabilitado'] = false;
+                                        $tab ++;
+                                        //Aplica atributos globales al control
+                                        $atributos = array_merge($atributos, $atributosGlobales);
+                                        echo $this->miFormulario->campoCuadroSeleccion($atributos);
+                                        unset($atributos);
+                                        //---------Fin Campo de Seleccion Clausula Presupuestal-------------------------------
+                   
 					// --------------- FIN CONTROL : Cuadro de Texto --------------------------------------------------
 					
 					$atributos ["id"] = "numero_dias"; // No cambiar este nombre

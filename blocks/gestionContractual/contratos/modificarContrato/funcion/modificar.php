@@ -58,8 +58,7 @@ class RegistradorContrato {
 
             $SQLs[0] = $this->miSql->getCadenaSql('actualizar_contratista', $arreglo_contratista);
 
-            //$contratista = $esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso", $arreglo_contratista, 'actualizar_contratista');
-
+           
             if ($_REQUEST ['id_inf_bancaria'] != '') {
 
                 $arreglo_info_bancaria = array(
@@ -71,8 +70,7 @@ class RegistradorContrato {
 
                 $SQLs[1]  = $this->miSql->getCadenaSql('actualizar_informacion_bancaria', $arreglo_info_bancaria);
 
-                //$inf_bancaria = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda", $arreglo_info_bancaria, 'actualizar_informacion_bancaria');
-            } else {
+                } else {
 
                 $arreglo_info_bancaria = array(
                     "tipo_cuenta" => $_REQUEST ['tipo_cuenta'],
@@ -83,8 +81,7 @@ class RegistradorContrato {
                 );
 
                 $SQLs[1]  = $this->miSql->getCadenaSql('registrar_informacion_bancaria', $arreglo_info_bancaria);
-                //$inf_bancaria = $esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso", $arreglo_info_bancaria, 'registrar_informacion_bancaria');
-            }
+               }
 
             $id_contratista = $_REQUEST ['id_contratista'];
         } else {
@@ -111,8 +108,6 @@ class RegistradorContrato {
 
             $SQLs[0]  = $this->miSql->getCadenaSql('registrar_contratista', $arreglo_contratista);
 
-            //$contratista = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda", $arreglo_contratista, 'registrar_contratista');
-
             $arreglo_info_bancaria = array(
                 "tipo_cuenta" => $_REQUEST ['tipo_cuenta'],
                 "numero_cuenta" => $_REQUEST ['numero_cuenta'],
@@ -123,7 +118,6 @@ class RegistradorContrato {
 
             $SQLs[1]  = $this->miSql->getCadenaSql('registrar_informacion_bancaria', $arreglo_info_bancaria);
 
-            //$inf_bancaria = $esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso", $arreglo_info_bancaria, 'registrar_informacion_bancaria');
             $cadenaIdContratista = $this->miSql->getCadenaSql('obtener_id_contratista');
             $id_contratista=$esteRecursoDB->ejecutarAcceso($cadenaIdContratista, "busqueda");
             $id_contratista = $id_contratista[0][0]+1;
@@ -137,10 +131,8 @@ class RegistradorContrato {
         );
 
 
-        $cadenaSql = $this->miSql->getCadenaSql('Actualizar_Supervisor', $arreglo_Supervisor);
-        $supervisor = $esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso", $arreglo_Supervisor, 'Actualizar_Supervisor');
-
-
+        $SQLs[2] = $this->miSql->getCadenaSql('Actualizar_Supervisor', $arreglo_Supervisor);
+       
         $arreglo_SolicitudNecesidad = array(
             "objeto_contrato" => $_REQUEST ['objeto_contrato'],
             "valor_contrato" => $_REQUEST ['valor_contrato'],
@@ -149,10 +141,8 @@ class RegistradorContrato {
         );
 
 
-        $cadenaSql = $this->miSql->getCadenaSql('Actualizar_Solicitud_necesidad', $arreglo_SolicitudNecesidad);
-        $supervisor = $esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso", $arreglo_SolicitudNecesidad, 'Actualizar_Solicitud_necesidad');
-
-
+        $SQLs[3] = $this->miSql->getCadenaSql('Actualizar_Solicitud_necesidad', $arreglo_SolicitudNecesidad);
+      
         if ($_REQUEST ['tipo_compromiso'] != '46') {
             $numero_convenio = -1;
             $vigencia_convenio = -1;
@@ -237,10 +227,9 @@ class RegistradorContrato {
             "orden_contrato" => $_REQUEST ['id_orden_contrato']
         );
 
-        $SQLs[2] = $this->miSql->getCadenaSql('Actualizar_Contrato', $arreglo_contrato);
+        $SQLs[4] = $this->miSql->getCadenaSql('Actualizar_Contrato', $arreglo_contrato);
         $trans_Editar_contrato = $esteRecursoDB->transaccion($SQLs);
-        //$contrato = $esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso", $arreglo_contrato, 'Actualizar_Contrato');
-
+        
         if ($trans_Editar_contrato != false) {
             $cadenaVerificarTemp = $this->miSql->getCadenaSql('obtenerInfoTemporal',  $_REQUEST["atributosContratoTempHidden"]);
             $infoTemp = $esteRecursoDB->ejecutarAcceso($cadenaVerificarTemp, "busqueda");

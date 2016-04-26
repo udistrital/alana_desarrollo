@@ -290,48 +290,8 @@ class Pgsql extends ConectorDb {
                         }
                         $valor = true;
                         break;
-                    case 'INICIO_TRANSS' :
-
-                        if ($parametros ['bloqueGrupo'] != 'development') {
-                            $log = array(
-                                'accion' => $evento,
-                                'id_registro' => $parametros ['usuario'],
-                                'tipo_registro' => $parametros ['opcion'],
-                                'nombre_registro' => $registroAccion,
-                                'descripcion' => $parametros ['pagina'] . " - " . $parametros ['opcion']
-                            );
-                            $miInstancia->log_usuario($log);
-                        }
-                        $valor = true;
-                        break;
-                    case 'FIN_TRANSS' :
-
-                        if ($parametros ['bloqueGrupo'] != 'development') {
-                            $log = array(
-                                'accion' => $evento,
-                                'id_registro' => $parametros ['usuario'],
-                                'tipo_registro' => $parametros ['opcion'],
-                                'nombre_registro' => $registroAccion,
-                                'descripcion' => $parametros ['pagina'] . " - " . $parametros ['opcion']
-                            );
-                            $miInstancia->log_usuario($log);
-                        }
-                        $valor = true;
-                        break;
-                    case 'CANCELAR_TRANSS' :
-
-                        if ($parametros ['bloqueGrupo'] != 'development') {
-                            $log = array(
-                                'accion' => $evento,
-                                'id_registro' => $parametros ['usuario'],
-                                'tipo_registro' => $parametros ['opcion'],
-                                'nombre_registro' => $registroAccion,
-                                'descripcion' => $parametros ['pagina'] . " - " . $parametros ['opcion']
-                            );
-                            $miInstancia->log_usuario($log);
-                        }
-                        $valor = true;
-                        break;
+                   
+                       
                     case 'ELIMINACION' :
 
                         if (empty($parametros) != true) {
@@ -537,15 +497,14 @@ class Pgsql extends ConectorDb {
      */
     function transaccion($clausulas) {
         $acceso = true;
-
         pg_query($this->enlace, 'BEGIN');
         $this->instrucciones = count($clausulas);
         for ($contador = 0; $contador < $this->instrucciones; $contador ++) {
             $acceso &= $this->ejecutar_acceso_db($clausulas [$contador]);
         }
-
         if ($acceso) {
             $resultado = pg_query($this->enlace, 'COMMIT');
+            
         } else {
             pg_query($this->enlace , 'ROLLBACK');
             $resultado = false;

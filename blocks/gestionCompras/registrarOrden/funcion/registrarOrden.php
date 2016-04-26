@@ -29,6 +29,7 @@ class RegistradorOrden {
 
     function procesarFormulario() {
 
+        $SQLs = [];
         $fechaActual = date('Y-m-d');
 
         $conexion = "inventarios";
@@ -46,45 +47,71 @@ class RegistradorOrden {
             exit();
         }
 
-        $inicio_transaccion = $this->miSql->getCadenaSql('inicio_transaccion');
-        $fin_transaccion = $this->miSql->getCadenaSql('fin_transaccion');
-        $cancelar_transaccion = $this->miSql->getCadenaSql('cancelar_transaccion');
+
+        $cadenaIdSupervisor = $this->miSql->getCadenaSql('obtenerIdSupervisor');
+        $id_supervisor = $esteRecursoDB->ejecutarAcceso($cadenaIdSupervisor, "busqueda");
+        if (is_null($id_supervisor [0] [0])) {
+
+            $id_supervisor = 1;
+        } else {
+
+            $id_supervisor = $id_supervisor [0] [0] + 1;
+        }
 
         $datosSupervisor = array(
             $_REQUEST ['nombre_supervisor'],
             $_REQUEST ['cargo_supervisor'],
             $_REQUEST ['dependencia_supervisor'],
-            $_REQUEST ['sede_super']
+            $_REQUEST ['sede_super'],
+            $id_supervisor
         );
 
-        $esteRecursoDB->ejecutarAcceso($inicio_transaccion, "acceso", "", 'inicio_transaccion');
         // Registro Supervisor
-        $cadenaSql = $this->miSql->getCadenaSql('insertarSupervisor', $datosSupervisor);
-        $id_supervisor = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda", $datosSupervisor, 'insertarSupervisor');
+        $SQLs[0] = $this->miSql->getCadenaSql('insertarSupervisor', $datosSupervisor);
+   
+        $cadenaIdProveedor = $this->miSql->getCadenaSql('obtenerIdProveedor');
+        $id_Proveedor = $esteRecursoDB->ejecutarAcceso($cadenaIdProveedor, "busqueda");
+        if (is_null($id_Proveedor [0] [0])) {
 
+            $id_Proveedor = 1;
+        } else {
+
+            $id_Proveedor = $id_Proveedor [0] [0] + 1;
+        }
+
+        
         $datosProveedor = array(
             $_REQUEST ['nombre_razon_proveedor'],
             $_REQUEST ['identifcacion_proveedor'],
             $_REQUEST ['direccion_proveedor'],
-            $_REQUEST ['telefono_proveedor']
+            $_REQUEST ['telefono_proveedor'],
+            $id_Proveedor
         );
 
         // Registro Proveedor
-        $cadenaSql = $this->miSql->getCadenaSql('insertarProveedor', $datosProveedor);
+        $SQLs[1] = $this->miSql->getCadenaSql('insertarProveedor', $datosProveedor);
 
-        $id_Proveedor = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda", $datosProveedor, 'insertarProveedor');
+        $cadenaIdContratista = $this->miSql->getCadenaSql('obtenerIdContratista');
+        $id_Contratista = $esteRecursoDB->ejecutarAcceso($cadenaIdContratista, "busqueda");
+        if (is_null($id_Contratista [0] [0])) {
 
+            $id_Contratista = 1;
+        } else {
+
+            $id_Contratista = $id_Contratista [0] [0] + 1;
+        }
+        
         $datosContratista = array(
             $_REQUEST ['nombre_contratista'],
             $_REQUEST ['identifcacion_contratista'],
-            $_REQUEST ['cargo_contratista']
+            $_REQUEST ['cargo_contratista'],
+            $id_Contratista
         );
 
         // Registro Contratista
-        $cadenaSql = $this->miSql->getCadenaSql('insertarContratista', $datosContratista);
+        $SQLs[2] = $this->miSql->getCadenaSql('insertarContratista', $datosContratista);
 
-        $id_Contratista = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda", $datosContratista, 'insertarContratista');
-
+       
         if (strpos($_REQUEST ['unidad_ejecutora'], 'IDEXUD') === false) {
             $_REQUEST ['unidad_ejecutora'] = 1;
         } else {
@@ -133,19 +160,24 @@ class RegistradorOrden {
 
                 break;
         }
-        
+
         //Validacion campos nulos de fecha de inicio y finalizacion
         if (isset($_REQUEST ['fecha_inicio_pago']) && $_REQUEST ['fecha_inicio_pago'] != "") {
-            $fecha_inicio_pago = "'".$_REQUEST ['fecha_inicio_pago']."'";
+            $fecha_inicio_pago = "'" . $_REQUEST ['fecha_inicio_pago'] . "'";
         } else {
             $fecha_inicio_pago = 'NULL';
         }
         if (isset($_REQUEST ['fecha_final_pago']) && $_REQUEST ['fecha_final_pago'] != "") {
-            $fecha_final_pago = "'".$_REQUEST ['fecha_final_pago']."'";
+            $fecha_final_pago = "'" . $_REQUEST ['fecha_final_pago'] . "'";
         } else {
             $fecha_final_pago = 'NULL';
         }
-        
+        if (isset($_POST ['clausula_presupuesto']) && $_POST ['clausula_presupuesto'] != "") {
+            $clausula_presupuesto = $_POST ['clausula_presupuesto'];
+        } else {
+            $clausula_presupuesto = 'FALSE';
+        }
+
         $datosOrden = array(
             "tipo_orden" => $_REQUEST ['tipo_orden'],
             "vigencia" => date('Y'),
@@ -163,39 +195,32 @@ class RegistradorOrden {
             "fecha_inicio_pago" => $fecha_inicio_pago,
             "fecha_final_pago" => $fecha_final_pago,
             "forma_pago" => $_REQUEST ['forma_pago'],
-            "id_contratista" => $id_Contratista [0] [0],
-            "id_supervisor" => $id_supervisor [0] [0],
+            "id_contratista" => $id_Contratista,
+            "id_supervisor" => $id_supervisor,
             "id_ordenador_encargado" => $_REQUEST ['id_ordenador'],
             "tipo_ordenador" => $_REQUEST ['tipo_ordenador'],
-            "id_proveedor" => $id_Proveedor [0] [0],
+            "id_proveedor" => $id_Proveedor,
             "unidad_ejecutora" => $_REQUEST['unidad_ejecutora'],
+            "clausula_presupuesto" => $clausula_presupuesto,
         );
 
-        $cadenaSql = $this->miSql->getCadenaSql('insertarOrden', $datosOrden);
+        $SQLs[3] = $this->miSql->getCadenaSql('insertarOrden', $datosOrden);
         $consecutivos_orden = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda", $datosOrden, 'insertarOrden');
-
-        $consecutivo_orden = $consecutivos_orden [0];
-
-        if ($consecutivo_orden && $consecutivos_orden != false && $id_Contratista != false && $id_Proveedor != false && $id_supervisor != false) {
-
-            for ($i = 0; $i <= 1; $i ++) {
-
-                if (!is_null($consecutivo_orden [$i])) {
-                    $consecutivo = $consecutivo_orden [$i];
-                }
-            }
-
+        $trans_Registro_Orden = $esteRecursoDB->transaccion($SQLs);
+        if ($trans_Registro_Orden != false) {
+            if($consecutivo_compra!='NULL'){
+                $consecutivo=$consecutivo_compra;
+            }else{
+                $consecutivo=$consecutivo_servicio;
+            }            
             $datos = "NÚMERO DE " . $nombre . " # " . $consecutivo . "<br> Y VIGENCIA " . date('Y');
             $this->miConfigurador->setVariableConfiguracion("cache", true);
-            $esteRecursoDB->ejecutarAcceso($fin_transaccion, "acceso", "", 'fin_transaccion');
-
             redireccion::redireccionar('inserto', array(
                 $datos,
-                $consecutivo_orden [2]
+                $consecutivo
             ));
             exit();
         } else {
-            $esteRecursoDB->ejecutarAcceso($cancelar_transaccion, "acceso", "", 'cancelar_transaccion');+
             redireccion::redireccionar('noInserto', $datos);
             exit();
         }

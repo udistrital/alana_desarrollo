@@ -32,6 +32,7 @@ class RegistradorContrato {
         $conexion = "contractual";
         $esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexion);
         $SQLs=[];
+     
         if (isset($_REQUEST ['id_contratista']) == true && $_REQUEST ['id_contratista'] != '') {
 
             $arreglo_contratista = array(
@@ -57,8 +58,6 @@ class RegistradorContrato {
 
             $SQLs[0] = $this->miSql->getCadenaSql('actualizar_contratista', $arreglo_contratista);
 
-            //$contratista = $esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso", $arreglo_contratista, 'actualizar_contratista');
-
             if ($_REQUEST ['id_inf_bancaria'] != '') {
 
                 $arreglo_info_bancaria = array(
@@ -68,9 +67,9 @@ class RegistradorContrato {
                     "id_info_bancaria" => $_REQUEST ['id_inf_bancaria']
                 );
 
-               $SQLs[1] = $this->miSql->getCadenaSql('actualizar_informacion_bancaria', $arreglo_info_bancaria);
-
-                //$inf_bancaria = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda", $arreglo_info_bancaria, 'actualizar_informacion_bancaria');
+            $SQLs[1] = $this->miSql->getCadenaSql('actualizar_informacion_bancaria', $arreglo_info_bancaria);
+           
+            
             } else {
 
                 $arreglo_info_bancaria = array(
@@ -82,7 +81,7 @@ class RegistradorContrato {
                 );
 
                 $SQLs[1] = $this->miSql->getCadenaSql('registrar_informacion_bancaria', $arreglo_info_bancaria);
-                //$inf_bancaria = $esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso", $arreglo_info_bancaria, 'registrar_informacion_bancaria');
+      
             }
 
             $id_contratista = $_REQUEST ['id_contratista'];
@@ -109,9 +108,7 @@ class RegistradorContrato {
             );
 
             $SQLs[0] = $this->miSql->getCadenaSql('registrar_contratista', $arreglo_contratista);
-
-            //$contratista = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda", $arreglo_contratista, 'registrar_contratista');
-
+      
             $arreglo_info_bancaria = array(
                 "tipo_cuenta" => $_REQUEST ['tipo_cuenta'],
                 "numero_cuenta" => $_REQUEST ['numero_cuenta'],
@@ -121,8 +118,9 @@ class RegistradorContrato {
             );
 
             $SQLs[1] = $this->miSql->getCadenaSql('registrar_informacion_bancaria', $arreglo_info_bancaria);
-
-            //$inf_bancaria = $esteRecursoDB->ejecutarAcceso($cadenaSql, "acceso", $arreglo_info_bancaria, 'registrar_informacion_bancaria');
+           
+            
+            
             $cadenaIdContratista = $this->miSql->getCadenaSql('obtener_id_contratista');
             $id_contratista=$esteRecursoDB->ejecutarAcceso($cadenaIdContratista, "busqueda");
             $id_contratista = $id_contratista[0][0]+1;
@@ -216,7 +214,7 @@ class RegistradorContrato {
 
     
         $SQLs[2] = $this->miSql->getCadenaSql('registrar_contrato', $arreglo_contrato);
-      
+       
         $trans_Registro_contrato = $esteRecursoDB->transaccion($SQLs);
         if ($trans_Registro_contrato != false) {
             $cadenaVerificarTemp = $this->miSql->getCadenaSql('obtenerInfoTemporal', str_replace(";", "", $_REQUEST["atributosContratoTempHidden"]));

@@ -858,7 +858,7 @@ class registrarForm {
                     $atributos ['marco'] = true;
                     $atributos ['estiloMarco'] = '';
                     $atributos ["etiquetaObligatorio"] = false;
-                    $atributos ['columnas'] = 3;
+                    $atributos ['columnas'] = 4;
                     $atributos ['dobleLinea'] = 0;
                     $atributos ['tabIndex'] = $tab;
                     $atributos ['etiqueta'] = $this->lenguaje->getCadena($esteCampo);
@@ -891,7 +891,7 @@ class registrarForm {
                     $atributos ['marco'] = true;
                     $atributos ['estiloMarco'] = '';
                     $atributos ["etiquetaObligatorio"] = false;
-                    $atributos ['columnas'] = 3;
+                    $atributos ['columnas'] = 4;
                     $atributos ['dobleLinea'] = 0;
                     $atributos ['tabIndex'] = $tab;
                     $atributos ['etiqueta'] = $this->lenguaje->getCadena($esteCampo);
@@ -924,7 +924,7 @@ class registrarForm {
                     $atributos ['marco'] = true;
                     $atributos ['estiloMarco'] = '';
                     $atributos ["etiquetaObligatorio"] = false;
-                    $atributos ['columnas'] = 3;
+                    $atributos ['columnas'] = 4;
                     $atributos ['dobleLinea'] = 0;
                     $atributos ['tabIndex'] = $tab;
                     $atributos ['etiqueta'] = $this->lenguaje->getCadena($esteCampo);
@@ -946,6 +946,34 @@ class registrarForm {
                     $atributos = array_merge($atributos, $atributosGlobales);
                     echo $this->miFormulario->campoCuadroTexto($atributos);
                     unset($atributos);
+                    
+                    //---------Campo de Seleccion Clausula Presupuestal-------------------------------
+                    $esteCampo = 'clausula_presupuesto';
+                    $atributos ['id'] = $esteCampo;
+                    $atributos ['nombre'] = $esteCampo;
+                    $atributos ['estilo'] = 'campoCuadroSeleccionCorta';
+                    $atributos ['marco'] = true;
+                    $atributos ['estiloMarco'] = true;
+                    $atributos ["etiquetaObligatorio"] = true;
+                    $atributos ['columnas'] = 4;
+                    $atributos ['dobleLinea'] = 1;
+                    $atributos ['tabIndex'] = $tab;
+                    $atributos ['etiqueta'] = $this->lenguaje->getCadena($esteCampo);
+                    $atributos ['validar'] = '';
+
+                    if (isset($_REQUEST [$esteCampo])) {
+                        $atributos ['valor'] = $_REQUEST [$esteCampo];
+                    } else {
+                        $atributos ['valor'] = 'TRUE';
+                    }
+                    
+                    $atributos ['deshabilitado'] = false;
+                    $tab ++;
+                    //Aplica atributos globales al control
+                    $atributos = array_merge($atributos, $atributosGlobales);
+                    echo $this->miFormulario->campoCuadroSeleccion($atributos);
+                    unset($atributos);
+                     //---------Fin Campo de Seleccion Clausula Presupuestal-------------------------------
                     // --------------- FIN CONTROL : Cuadro de Texto --------------------------------------------------
 
                     $atributos ["id"] = "numero_dias"; // No cambiar este nombre
@@ -984,7 +1012,7 @@ class registrarForm {
                         $atributos ['valor'] = '';
                     }
                     $tab ++;
-
+              
                     // Aplica atributos globales al control
                     $atributos = array_merge($atributos, $atributosGlobales);
                     echo $this->miFormulario->campoTextArea($atributos);

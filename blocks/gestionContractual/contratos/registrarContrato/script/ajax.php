@@ -104,6 +104,9 @@ $urlDatosPaso = $url . $cadena2;
             if (document.getElementById("<?php echo $this->campoSeguro('primer_apellido') ?>").value != "") {
                 InfoPaso0.push(document.getElementById("<?php echo $this->campoSeguro('primer_apellido') ?>").value+";"+document.getElementById("<?php echo $this->campoSeguro('primer_apellido') ?>").getAttribute("id"));
             }
+            if (document.getElementById("<?php echo $this->campoSeguro('nombre_Razon_Social') ?>").value != "") {
+                InfoPaso0.push(document.getElementById("<?php echo $this->campoSeguro('nombre_Razon_Social') ?>").value+";"+document.getElementById("<?php echo $this->campoSeguro('nombre_Razon_Social') ?>").getAttribute("id"));
+            }
             if (document.getElementById("<?php echo $this->campoSeguro('segundo_apellido') ?>").value != "") {
                 InfoPaso0.push(document.getElementById("<?php echo $this->campoSeguro('segundo_apellido') ?>").value+";"+document.getElementById("<?php echo $this->campoSeguro('segundo_apellido') ?>").getAttribute("id"));
             }
@@ -291,7 +294,7 @@ $urlDatosPaso = $url . $cadena2;
         });
     }
     ;
-    
+  
    
 
 

@@ -176,6 +176,9 @@ function NumeroSolicitud(elem, request, response){
             if (document.getElementById("<?php echo $this->campoSeguro('primer_nombre') ?>").value != "") {
                 InfoPaso0.push(document.getElementById("<?php echo $this->campoSeguro('primer_nombre') ?>").value+";"+document.getElementById("<?php echo $this->campoSeguro('primer_nombre') ?>").getAttribute("id"));
             }
+            if (document.getElementById("<?php echo $this->campoSeguro('nombre_Razon_Social') ?>").value != "") {
+                InfoPaso0.push(document.getElementById("<?php echo $this->campoSeguro('nombre_Razon_Social') ?>").value+";"+document.getElementById("<?php echo $this->campoSeguro('nombre_Razon_Social') ?>").getAttribute("id"));
+            }
             if (document.getElementById("<?php echo $this->campoSeguro('segundo_nombre') ?>").value != "") {
                 InfoPaso0.push(document.getElementById("<?php echo $this->campoSeguro('segundo_nombre') ?>").value+";"+document.getElementById("<?php echo $this->campoSeguro('segundo_nombre') ?>").getAttribute("id"));
             }

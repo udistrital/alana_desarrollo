@@ -43,6 +43,9 @@ $this->idioma ["primer_apellidoTitulo"] = "Ingrese Primer Apellido: ";
 $this->idioma ["segundo_apellido"] = "Segundo Apellido: ";
 $this->idioma ["segundo_apellidoTitulo"] = "Ingrese Segundo Apellido: ";
 
+$this->idioma ["nombre_Razon_Social"] = "Nombre o Razon Social:  ";
+$this->idioma ["nombre_Razon_SocialTitulo"] = "Ingrese Nombre o Razon Social: ";
+
 $this->idioma ["genero"] = "Genero : ";
 $this->idioma ["generoTitulo"] = "Seleccione Genero: ";
 

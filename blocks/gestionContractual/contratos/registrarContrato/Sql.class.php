@@ -443,6 +443,7 @@ class Sql extends \Sql {
                 $cadenaSql .= " tipo_naturaleza='" . $variable ['tipo_persona'] . "', ";
                 $cadenaSql .= " tipo_documento='" . $variable ['tipo_identificacion'] . "', ";
                 $cadenaSql .= " segundo_apellido='" . $variable ['segundo_apellido'] . "',";
+                $cadenaSql .= " razon_social='" . $variable ['razon_social'] . "',";
                 $cadenaSql .= " nacionalidad='" . $variable ['nacionalidad'] . "', ";
                 $cadenaSql .= " perfil='" . $variable ['perfil'] . "', ";
                 $cadenaSql .= " profesion='" . $variable ['profesion'] . "',";
@@ -474,7 +475,7 @@ class Sql extends \Sql {
                 $cadenaSql = " INSERT INTO contratista( primer_nombre, segundo_nombre, ";
                 $cadenaSql .= " primer_apellido,segundo_apellido, direccion, telefono, digito_verificacion, correo, ";
                 $cadenaSql .= " identificacion, genero, tipo_naturaleza, tipo_documento,";
-                $cadenaSql .= " fecha_registro, nacionalidad, perfil, profesion, ";
+                $cadenaSql .= " fecha_registro, nacionalidad, perfil, profesion,razon_social, ";
                 $cadenaSql .= " especialidad)";
                 $cadenaSql .= " VALUES ('" . $variable ['primer_nombre'] . "',";
                 $cadenaSql .= " '" . $variable ['segundo_nombre'] . "',";
@@ -492,6 +493,7 @@ class Sql extends \Sql {
                 $cadenaSql .= " '" . $variable ['nacionalidad'] . "', ";
                 $cadenaSql .= " '" . $variable ['perfil'] . "',";
                 $cadenaSql .= " '" . $variable ['profesion'] . "',";
+                $cadenaSql .= " '" . $variable ['razon_social'] . "',";
                 $cadenaSql .= " '" . $variable ['especialidad'] . "') RETURNING id_contratista ;";
 
                 break;

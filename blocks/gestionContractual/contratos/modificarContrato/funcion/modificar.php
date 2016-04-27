@@ -34,12 +34,24 @@ class RegistradorContrato {
         $esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexion);
 
         if (isset($_REQUEST ['id_contratista']) == true && $_REQUEST ['id_contratista'] != '') {
-
+            
+            
+            if (isset($_REQUEST ['tipo_persona']) && $_REQUEST ['tipo_persona'] == 1) {
+                $naturaleza = $_REQUEST ['tipo_persona'];
+                $_REQUEST ['nombre_Razon_Social'] = "";
+            } else {
+                $naturaleza = 2;
+                $_REQUEST ['primer_nombre'] = "";
+                $_REQUEST ['segundo_nombre'] = "";
+                $_REQUEST ['primer_apellido'] = "";
+                $_REQUEST ['segundo_apellido'] = "";
+            }
+            
             $arreglo_contratista = array(
                 "tipo_identificacion" => $_REQUEST ['tipo_identificacion'],
                 "numero_identificacion" => $_REQUEST ['numero_identificacion'],
                 "digito_verificacion" => $_REQUEST ['digito_verificacion'],
-                "tipo_persona" => $_REQUEST ['tipo_persona'],
+                "tipo_persona" => $naturaleza,
                 "primer_nombre" => $_REQUEST ['primer_nombre'],
                 "segundo_nombre" => $_REQUEST ['segundo_nombre'],
                 "primer_apellido" => $_REQUEST ['primer_apellido'],
@@ -52,6 +64,7 @@ class RegistradorContrato {
                 "perfil" => $_REQUEST ['perfil'],
                 "profesion" => $_REQUEST ['profesion'],
                 "especialidad" => $_REQUEST ['especialidad'],
+                "razon_social" => $_REQUEST ['nombre_Razon_Social'],
                 "id_contratista" => $_REQUEST ['id_contratista'],
                 "fecha_registro" => date('Y-m-d')
             );
@@ -85,6 +98,17 @@ class RegistradorContrato {
 
             $id_contratista = $_REQUEST ['id_contratista'];
         } else {
+            
+             if (isset($_REQUEST ['tipo_persona']) && $_REQUEST ['tipo_persona'] == 1) {
+                $naturaleza = $_REQUEST ['tipo_persona'];
+                $_REQUEST ['nombre_Razon_Social'] = "";
+            } else {
+                $naturaleza = 2;
+                $_REQUEST ['primer_nombre'] = "";
+                $_REQUEST ['segundo_nombre'] = "";
+                $_REQUEST ['primer_apellido'] = "";
+                $_REQUEST ['segundo_apellido'] = "";
+            }
 
             $arreglo_contratista = array(
                 "tipo_identificacion" => $_REQUEST ['tipo_identificacion'],
@@ -103,6 +127,7 @@ class RegistradorContrato {
                 "perfil" => $_REQUEST ['perfil'],
                 "profesion" => $_REQUEST ['profesion'],
                 "especialidad" => $_REQUEST ['especialidad'],
+                "razon_social" => $_REQUEST ['nombre_Razon_Social'],
                 "fecha_registro" => date('Y-m-d')
             );
 

@@ -122,6 +122,8 @@ class registrarForm {
 			$cadenaSql = $this->miSql->getCadenaSql ( 'consultarContrato', $arreglo );
 			
 			$contratos = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda" );
+                      
+                       
 			
 		}
 		
@@ -144,7 +146,9 @@ class registrarForm {
 		$atributos ["leyenda"] = "Consultar Contratos";
 		echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
 		
-		if ($contratos) {
+		
+                
+                if ($contratos) {
 			
 			echo "<table id='tabla'>";
 			
@@ -170,14 +174,19 @@ class registrarForm {
 				$variable .= "&tiempo=" . $_REQUEST['tiempo'];
 				$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
 				
-				
+                                if($valor['razon_social']==""){
+                                    $nombre = $valor['nombre'];
+                                }
+                                else{
+                                    $nombre = $valor['razon_social'];
+                                }
 				
 				
 				$mostrarHtml = "<tr>
                     <td><center>" . $valor ['vigencia'] . "</center></td>
                     <td><center>" . $valor ['numero_contrato'] . "</center></td>
                    	<td><center>" . $valor ['identificacion'] . "</center></td>
-                    <td><center>" . $valor ['nombre'] . "</center></td>
+                    <td><center>" . $nombre . "</center></td>
                     <td><center>
                     	<a href='" . $variable . "'>
                             <img src='" . $rutaBloque . "/css/images/modificar.png' width='15px'>

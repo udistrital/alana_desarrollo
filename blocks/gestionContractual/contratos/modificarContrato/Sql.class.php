@@ -437,6 +437,7 @@ class Sql extends \Sql {
                 $cadenaSql .= " nacionalidad='" . $variable ['nacionalidad'] . "', ";
                 $cadenaSql .= " perfil='" . $variable ['perfil'] . "', ";
                 $cadenaSql .= " profesion='" . $variable ['profesion'] . "',";
+                $cadenaSql .= " razon_social='" . $variable ['razon_social'] . "',";
                 $cadenaSql .= " especialidad='" . $variable ['especialidad'] . "'";
                 $cadenaSql .= " WHERE id_contratista='" . $variable ['id_contratista'] . "';";
                 break;
@@ -464,7 +465,7 @@ class Sql extends \Sql {
                 $cadenaSql = " INSERT INTO contratista( primer_nombre, segundo_nombre, ";
                 $cadenaSql .= " primer_apellido,segundo_apellido, direccion, telefono, digito_verificacion, correo, ";
                 $cadenaSql .= " identificacion, genero, tipo_naturaleza, tipo_documento,";
-                $cadenaSql .= " fecha_registro, nacionalidad, perfil, profesion, ";
+                $cadenaSql .= " fecha_registro, nacionalidad, perfil, profesion,razon_social, ";
                 $cadenaSql .= " especialidad)";
                 $cadenaSql .= " VALUES ('" . $variable ['primer_nombre'] . "',";
                 $cadenaSql .= " '" . $variable ['segundo_nombre'] . "',";
@@ -482,6 +483,7 @@ class Sql extends \Sql {
                 $cadenaSql .= " '" . $variable ['nacionalidad'] . "', ";
                 $cadenaSql .= " '" . $variable ['perfil'] . "',";
                 $cadenaSql .= " '" . $variable ['profesion'] . "',";
+                $cadenaSql .= " '" . $variable ['razon_social'] . "',";
                 $cadenaSql .= " '" . $variable ['especialidad'] . "') RETURNING id_contratista ;";
 
                 break;
@@ -575,6 +577,7 @@ class Sql extends \Sql {
                 $cadenaSql .= " sn.id_sol_necesidad ,";
                 $cadenaSql .= " cn.numero_contrato, ";
                 $cadenaSql .= " con.identificacion,";
+                $cadenaSql .= " con.razon_social,";
                 $cadenaSql .= " con.primer_nombre||' '||con.segundo_nombre||' '||con.primer_apellido||' '||con.segundo_apellido nombre ";
                 $cadenaSql .= " FROM contrato cn ";
                 $cadenaSql .= " LEFT JOIN contratista con ON con.id_contratista= cn.contratista";

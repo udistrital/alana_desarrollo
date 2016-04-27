@@ -147,6 +147,40 @@ $_REQUEST ['tiempo'] = time ();
 				}
 		
 		 });
+                 
+                 $("#<?php echo $this->campoSeguro('tipo_persona')?>").change(function() {
+    	
+                               
+    	
+				if($("#<?php echo $this->campoSeguro('tipo_persona')?>").val()!=''){
+		
+						if($("#<?php echo $this->campoSeguro('tipo_persona')?>").val()!= 1){
+                                                        
+                                                      
+							$("#divisionPersonaJuridica").css('display','block');
+							$("#divisionPersonaNatural").css('display','none');
+                                                        $("#<?php echo $this->campoSeguro('primer_nombre')?>").val("");
+                                                        $("#<?php echo $this->campoSeguro('segundo_nombre')?>").val("");
+                                                        $("#<?php echo $this->campoSeguro('primer_apellido')?>").val("");
+                                                        $("#<?php echo $this->campoSeguro('segundo_apellido')?>").val("");
+                                                      							
+		                    }else{
+		                    
+                                                       $("#divisionPersonaJuridica").css('display','none');
+                                                       $("#divisionPersonaNatural").css('display','block');
+                                                       $("#<?php echo $this->campoSeguro('nombre_Razon_Social')?>").val("");
+		                    }
+		
+				}else{
+				
+				$("#divisionPersonaJuridica").css('display','none');
+                                $("#divisionPersonaNatural").css('display','block');
+				
+				
+				
+				}
+		
+		 });
 		 
 		 
 		 

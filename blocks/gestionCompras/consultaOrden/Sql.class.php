@@ -97,6 +97,12 @@ class Sql extends \Sql {
 			case "cancelarTransaccion" :
 				$cadenaSql = "ROLLBACK";
 				break;
+                        
+                            case "obtenerInfoUsuario" :
+				$cadenaSql = "SELECT u.dependencia_especifica ||' - '|| u.dependencia as nombre ";
+				$cadenaSql .= "FROM frame_work.argo_usuario u  ";
+				$cadenaSql .= "WHERE u.id_usuario='" . $variable . "' ";
+				break;    
 			
 			case "eliminarTemp" :
 				
@@ -561,11 +567,12 @@ class Sql extends \Sql {
 				}
 				
 				$cadenaSql .= " duracion_pago='" . $variable [7] . "', ";
-				$cadenaSql .= " fecha_inicio_pago='" . $variable [8] . "', ";
-				$cadenaSql .= " fecha_final_pago='" . $variable [9] . "', ";
+				$cadenaSql .= " fecha_inicio_pago=" . $variable [8] . ", ";
+				$cadenaSql .= " fecha_final_pago=" . $variable [9] . ", ";
 				$cadenaSql .= " forma_pago='" . $variable [10] . "', ";
 				$cadenaSql .= " id_ordenador_encargado='" . $variable [11] . "', ";
-				$cadenaSql .= " tipo_ordenador='" . $variable [12] . "'  ";
+				$cadenaSql .= " tipo_ordenador='" . $variable [12] . "',  ";
+				$cadenaSql .= " clausula_presupuesto='" . $variable [15] . "'  ";
 				$cadenaSql .= "  WHERE id_orden='" . $variable [13] . "';";
 				
 				break;

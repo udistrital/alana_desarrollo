@@ -502,7 +502,7 @@ class RegistradorOrden {
 												(is_null ( $datos [$i] ['Observaciones'] ) == true) ? null : trim ( $datos [$i] ['Observaciones'], "'" ) 
 										);
 									}
-									 
+									
 									$cadenaSql = $this->miSql->getCadenaSql ( 'ingresar_elemento_tipo_2', $arreglo );
 									
 									$elemento_id = $esteRecursoDB->ejecutarAcceso ( $cadenaSql, "busqueda", $arreglo, 'ingresar_elemento_tipo_2' );

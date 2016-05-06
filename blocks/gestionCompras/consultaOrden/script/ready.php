@@ -28,6 +28,8 @@
 
 $('#<?php echo $this->campoSeguro('dependencia_solicitante')?>').width(350);
 $("#<?php echo $this->campoSeguro('dependencia_solicitante')?>").select2();                 
+$('#<?php echo $this->campoSeguro('sede')?>').width(350);
+$("#<?php echo $this->campoSeguro('sede')?>").select2();                 
 
 $('#<?php echo $this->campoSeguro('sede_super')?>').width(300);
 $("#<?php echo $this->campoSeguro('sede_super')?>").select2();
@@ -52,7 +54,7 @@ $("#<?php echo $this->campoSeguro('rubro')?>").select2({
               	 });                             
                              
                              
-$("#<?php echo $this->campoSeguro('unidad_ejecutora')?>").select2();                             
+                            
                              
                              
                              
@@ -298,6 +300,7 @@ $("#<?php echo $this->campoSeguro('unidad_ejecutora')?>").select2();
 	   
 	   $('#<?php echo $this->campoSeguro('selec_dependencia_Sol')?>').attr('disabled','');
 	   $("#<?php echo $this->campoSeguro('sede_consultar')?>").select2();
+	  
 	   
 	   
 	    	

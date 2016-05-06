@@ -69,8 +69,7 @@ class registrarForm {
 		$atributos ['tipoEtiqueta'] = 'inicio';
 		$atributos ["leyenda"] = "Consultar y Cargar Elementos Orden";
 		echo $this->miFormulario->marcoAgrupacion ( 'inicio', $atributos );
-
-		
+              		
 		// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
 		$esteCampo = 'tipo_orden';
 		$atributos ['columnas'] = 2;
@@ -95,6 +94,8 @@ class registrarForm {
 		
 		$atributos ['cadena_sql'] = $this->miSql->getCadenaSql ( "tipo_orden" );
 		$matrizItems = $esteRecursoDB->ejecutarAcceso ( $atributos ['cadena_sql'], "busqueda" );
+                
+               
 		$atributos ['matrizItems'] = $matrizItems;
 		
 		// Utilizar lo siguiente cuando no se pase un arreglo:
@@ -142,7 +143,9 @@ class registrarForm {
 		
 		$matrizItems = $arreglo;
 		$atributos ['matrizItems'] = $matrizItems;
-		// Utilizar lo siguiente cuando no se pase un arreglo:
+                
+                
+               // Utilizar lo siguiente cuando no se pase un arreglo:
 		// $atributos['baseDatos']='ponerAquiElNombreDeLaConexión';
 		// $atributos ['cadena_sql']='ponerLaCadenaSqlAEjecutar';
 		$tab ++;

@@ -95,6 +95,10 @@ $('#<?php echo $this->campoSeguro('subsistema')?>').width(210);
 $("#<?php echo $this->campoSeguro('subsistema')?>").select2(); 
 $('#<?php echo $this->campoSeguro('perfil')?>').width(210);
 $("#<?php echo $this->campoSeguro('perfil')?>").select2(); 
+$('#<?php echo $this->campoSeguro('dependencia')?>').width(210);
+$("#<?php echo $this->campoSeguro('dependencia')?>").select2(); 
+$('#<?php echo $this->campoSeguro('sede')?>').width(210);
+$("#<?php echo $this->campoSeguro('sede')?>").select2(); 
 
 <?php 
 //}

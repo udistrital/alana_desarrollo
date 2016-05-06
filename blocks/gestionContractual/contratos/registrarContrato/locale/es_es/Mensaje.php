@@ -43,6 +43,9 @@ $this->idioma ["primer_apellidoTitulo"] = "Ingrese Primer Apellido: ";
 $this->idioma ["segundo_apellido"] = "Segundo Apellido: ";
 $this->idioma ["segundo_apellidoTitulo"] = "Ingrese Segundo Apellido: ";
 
+$this->idioma ["nombre_Razon_Social"] = "Nombre o Razon Social:  ";
+$this->idioma ["nombre_Razon_SocialTitulo"] = "Ingrese Nombre o Razon Social: ";
+
 $this->idioma ["genero"] = "Genero : ";
 $this->idioma ["generoTitulo"] = "Seleccione Genero: ";
 
@@ -124,11 +127,11 @@ $this->idioma ["plazo_ejecucionTitulo"] = "Ingrese Plazo de Ejecución de Númer
 $this->idioma ["unidad_ejecucion_tiempo"] = "Unidad de Ejecución:";
 $this->idioma ["unidad_ejecucion_tiempoTitulo"] = "Seleccione Unidad de Ejecución Temporal";
 
-$this->idioma ["fecha_inicio_poliza"] = "Fecha Inicial Poliza: ";
-$this->idioma ["fecha_inicio_polizaTitulo"] = "Seleccione Fecha Inicial Poliza";
+$this->idioma ["fecha_inicio_poliza"] = "Fecha Inicial: ";
+$this->idioma ["fecha_inicio_polizaTitulo"] = "Seleccione Fecha Inicial";
 
-$this->idioma ["fecha_final_poliza"] = "Fecha Final Poliza: ";
-$this->idioma ["fecha_final_polizaTitulo"] = "Seleccione Fecha Final Poliza";
+$this->idioma ["fecha_final_poliza"] = "Fecha Final: ";
+$this->idioma ["fecha_final_polizaTitulo"] = "Seleccione Fecha Final";
 
 
 $this->idioma ["dependencia"] = "Dependencia: ";
@@ -153,7 +156,7 @@ $this->idioma ["regimen_contrataciónTitulo"] = "Seleccione Régimen de Contrata
 $this->idioma ["tipo_moneda"] = "Tipo de Moneda: ";
 $this->idioma ["tipo_monedaTitulo"] = "Seleccione Tipo de Moneda";
 
-$this->idioma ["valor_contrato"] = "Valor de Contrato: ";
+$this->idioma ["valor_contrato"] = "Valor de Contrato:<br>En Pesos";
 $this->idioma ["valor_contratoTitulo"] = "Ingrese Valor de Contrato";
 
 $this->idioma ["ordenador_gasto"] = "Ordenador Gasto: ";

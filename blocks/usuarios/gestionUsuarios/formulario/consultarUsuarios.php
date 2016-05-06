@@ -139,6 +139,7 @@ class consultarForm {
                                     <th>Tipo</th>
                                     <th>Nombres</th>
                                     <th>Apellidos</th>                    
+                                    <th>Sede(Dependencia)</th>                    
                                     <th>Correo</th>
                                     <th>Teléfono</th>
                                     <th>Usuario</th>
@@ -210,6 +211,7 @@ class consultarForm {
                                         <td align='left'>".$resultadoUsuarios[$key]['tipo_nombre']."</td>
                                         <td align='left' width='8%'>".$resultadoUsuarios[$key]['nombre']."</td>
                                         <td align='left' width='8%'>".$resultadoUsuarios[$key]['apellido']."</td>
+                                        <td align='left' width='8%'><p>".$resultadoUsuarios[$key]['dependencia']."</p><p>".$resultadoUsuarios[$key]['dependencia_especifica']."</p></td>
                                         <td align='left'>".$resultadoUsuarios[$key]['correo']."</td>
                                         <td align='left'>".$resultadoUsuarios[$key]['telefono']."</td>
                                         <td align='left'>".$resultadoUsuarios[$key]['id_usuario']."</td>

@@ -12,7 +12,7 @@ $this->idioma ["unidad_ejecutoraTitulo"] ="Seleccione Unidad Ejecutoria ";
 // -- Modificar Elementos
 
 
-
+$this->idioma ["clausula_presupuesto"] = "Sujeto a disponibilidad presupuestal(Hasta Agotar Presupuesto): ";
 $this->idioma ["referencia"] = "Referencia : ";
 $this->idioma ["referenciaTitulo"] = "Ingrese Referencia";
 

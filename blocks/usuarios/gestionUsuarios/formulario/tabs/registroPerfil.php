@@ -130,7 +130,8 @@ class registrarForm {
 			unset ( $atributos );
 			{
                                 // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-                                $esteCampo = 'id_usuario';
+                             echo "aquitoy";    
+                            $esteCampo = 'id_usuario';
                                 $atributos ['id'] = $esteCampo;
                                 $atributos ['nombre'] = $esteCampo;
                                 $atributos ['tipo'] = 'text';

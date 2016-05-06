@@ -23,10 +23,10 @@ class FormProcessor {
 		$this->miSql = $sql;
 		$this->miSesion = \Sesion::singleton ();
 		// Objeto de la clase Loger
-		$this->miLogger = \logger::singleton();
+		$this->miLogger = \logger::singleton ();
 	}
 	function procesarFormulario() {
-	
+		
 		/**
 		 *
 		 * @todo lógica de procesamiento
@@ -47,14 +47,13 @@ class FormProcessor {
 		$variable ['usuario'] = $_REQUEST ["usuario"];
 		$variable ['clave'] = $this->miConfigurador->fabricaConexiones->crypto->codificarClave ( $_REQUEST ["clave"] );
 		
-		
 		// Verificar que el tiempo registrado en los controles no sea superior al tiempo actual + el tiempo de expiración
 		if ($_REQUEST ['tiempo'] <= time () + $this->miConfigurador->getVariableConfiguracion ( 'expiracion' )) {
 			// Verificar que el usuario esté registrado en el sistema
 			$cadena_sql = $this->miSql->getCadenaSql ( "buscarUsuario", $variable );
 			
 			$registro = $esteRecursoDB->ejecutarAcceso ( $cadena_sql, "busqueda" );
-		
+			
 			if ($registro) {
 				if ($registro [0] ['clave'] == $variable ["clave"]) {
 					// 1. Crear una sesión de trabajo
@@ -88,10 +87,8 @@ class FormProcessor {
 						);
 						// var_dump($log);
 						$_COOKIE ["aplicativo"] = $estaSesion;
-						$this->miLogger->log_usuario ( $log );	
+						$this->miLogger->log_usuario ( $log );
 						// Si estado dif Activo redirecciona a pagina decambio contraseña
-						
-						
 						
 						if ($registro [0] ['estado'] == 2) {
 							Redireccionador::redireccionar ( 'claves', $registro );
@@ -134,8 +131,6 @@ class FormProcessor {
 					$_SERVER ['HTTP_USER_AGENT'] 
 			);
 		}
-		
-		
 		
 		$argumento = json_encode ( $arregloLogin );
 		$arreglo = array (

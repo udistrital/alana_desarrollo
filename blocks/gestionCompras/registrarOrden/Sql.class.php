@@ -364,19 +364,20 @@ class Sql extends \Sql {
 			
 			case "insertarSupervisor" :
 				$cadenaSql = " INSERT INTO supervisor_servicios(";
-				$cadenaSql .= " nombre,cargo, dependencia,sede) ";
+				$cadenaSql .= " nombre,cargo, dependencia,sede,id_supervisor) ";
 				$cadenaSql .= " VALUES (";
 				$cadenaSql .= "'" . $variable [0] . "',";
 				$cadenaSql .= "'" . $variable [1] . "',";
 				$cadenaSql .= "'" . $variable [2] . "',";
-				$cadenaSql .= "'" . $variable [3] . "') ";
-				$cadenaSql .= "RETURNING  id_supervisor; ";
+				$cadenaSql .= "'" . $variable [3] . "', ";
+				$cadenaSql .= $variable [4].");";
 				break;
 			
 			case "insertarProveedor" :
 				$cadenaSql = " INSERT INTO proveedor_adquisiones(";
-				$cadenaSql .= " razon_social, identificacion,direccion, telefono,fecha_registro) ";
+				$cadenaSql .= " id_proveedor_adq ,razon_social, identificacion,direccion, telefono,fecha_registro) ";
 				$cadenaSql .= " VALUES (";
+				$cadenaSql .=  $variable [4] . ",";
 				$cadenaSql .= "'" . $variable [0] . "',";
 				$cadenaSql .= "'" . $variable [1] . "',";
 				$cadenaSql .= "'" . $variable [2] . "',";
@@ -389,8 +390,9 @@ class Sql extends \Sql {
 			
 			case "insertarContratista" :
 				$cadenaSql = " INSERT INTO contratistas_adquisiones(";
-				$cadenaSql .= " nombres, identificacion,cargo,fecha_registro) ";
+				$cadenaSql .= " id_contratista_adq,nombres, identificacion,cargo,fecha_registro) ";
 				$cadenaSql .= " VALUES (";
+				$cadenaSql .=  $variable [3] . ",";
 				$cadenaSql .= "'" . $variable [0] . "',";
 				$cadenaSql .= "'" . $variable [1] . "',";
 				$cadenaSql .= "'" . $variable [2] . "',";
@@ -430,7 +432,7 @@ class Sql extends \Sql {
 				$cadenaSql .= "tipo_orden, vigencia, consecutivo_servicio, consecutivo_compras, 
 								            fecha_registro, dependencia_solicitante, sede_solicitante, 
 								            objeto_contrato, poliza1, poliza2, poliza3, poliza4, duracion_pago, 
-								            fecha_inicio_pago, fecha_final_pago, forma_pago,id_contratista,id_supervisor, id_ordenador_encargado, tipo_ordenador,id_proveedor,unidad_ejecutora)";
+								            fecha_inicio_pago, fecha_final_pago, forma_pago,id_contratista,id_supervisor, id_ordenador_encargado, tipo_ordenador,id_proveedor,clausula_presupuesto,unidad_ejecutora)";
 				$cadenaSql .= " VALUES (";
 				$cadenaSql .= "'" . $variable ['tipo_orden'] . "',";
 				$cadenaSql .= "'" . $variable ['vigencia'] . "',";
@@ -468,14 +470,15 @@ class Sql extends \Sql {
 				}
 				
 				$cadenaSql .= "'" . $variable ['duracion_pago'] . "',";
-				$cadenaSql .= "'" . $variable ['fecha_inicio_pago'] . "',";
-				$cadenaSql .= "'" . $variable ['fecha_final_pago'] . "',";
+				$cadenaSql .= $variable ['fecha_inicio_pago'] . ",";
+				$cadenaSql .= $variable ['fecha_final_pago'] . ",";
 				$cadenaSql .= "'" . $variable ['forma_pago'] . "',";
 				$cadenaSql .= "'" . $variable ['id_contratista'] . "',";
 				$cadenaSql .= "'" . $variable ['id_supervisor'] . "',";
 				$cadenaSql .= "'" . $variable ['id_ordenador_encargado'] . "',";
 				$cadenaSql .= "'" . $variable ['tipo_ordenador'] . "',";
 				$cadenaSql .= "'" . $variable ['id_proveedor'] . "',";
+				$cadenaSql .= "'" . $variable ['clausula_presupuesto'] . "',";
 				$cadenaSql .= "'" . $variable ['unidad_ejecutora'] . "') ";
 				$cadenaSql .= "RETURNING  consecutivo_compras,consecutivo_servicio,id_orden  ; ";
 				
@@ -544,6 +547,12 @@ class Sql extends \Sql {
 				$cadenaSql .= "WHERE CON_VIGENCIA ='" . $variable [1] . "' ";
 				$cadenaSql .= "AND  CON_IDENTIFICADOR ='" . $variable [0] . "' ";
 				break;
+                            
+			case "obtenerInfoUsuario" :
+				$cadenaSql = "SELECT u.dependencia_especifica ||' - '|| u.dependencia as nombre ";
+				$cadenaSql .= "FROM frame_work.argo_usuario u  ";
+				$cadenaSql .= "WHERE u.id_usuario='" . $variable . "' ";
+				break;
 			
 			case "consultarCosntraistaServicios" :
 				$cadenaSql = " SELECT nombre_razon_social, identificacion, direccion,telefono, cargo ";
@@ -611,6 +620,36 @@ class Sql extends \Sql {
 				$cadenaSql .= "FROM arka_parametros.arka_disponibilidadpresupuestal; ";
 				
 				break;
+                            
+                        case "cargos_existentes" :
+				$cadenaSql  = " SELECT ";
+				$cadenaSql .= " distinct \"FUN_CARGO\" ";
+				$cadenaSql .= " FROM arka_parametros.arka_funcionarios; ";
+							
+				break;    
+                        
+                        case "obtenerIdSupervisor" :
+				
+				$cadenaSql = " 	SELECT max(id_supervisor)  ";
+				$cadenaSql .= " FROM supervisor_servicios; ";
+				
+				
+				break;
+                        case "obtenerIdProveedor" :
+				
+				$cadenaSql = " 	SELECT max(id_proveedor_adq)  ";
+				$cadenaSql .= " FROM proveedor_adquisiones; ";
+				
+				
+				break;
+                        case "obtenerIdContratista" :
+				
+				$cadenaSql = " 	SELECT max(id_contratista_adq)  ";
+				$cadenaSql .= " FROM contratistas_adquisiones; ";
+				
+				
+				break;
+			
 		}
 		return $cadenaSql;
 	}

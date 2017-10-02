@@ -29,7 +29,12 @@
         
               
               
-              
+         $("#ventanaEmergenteContratista" ).dialog({
+            height: 700,
+            width: 700,
+            title: "Datos Convenio",
+            autoOpen: false,
+         });     
               
                               
         $( "#<?php echo $this->campoSeguro('cantidad')?>" ).keyup(function() {
@@ -40,7 +45,7 @@
             $("#<?php echo $this->campoSeguro('total_iva_con')?>").val('');
             
             
-            resetIva();
+            //resetIva();
             
             
           });  
@@ -51,7 +56,7 @@
         	$("#<?php echo $this->campoSeguro('subtotal_sin_iva')?>").val('');
             $("#<?php echo $this->campoSeguro('total_iva')?>").val('');
             $("#<?php echo $this->campoSeguro('total_iva_con')?>").val('');
-            resetIva(); 
+            //resetIva(); 
             cantidad=Number($("#<?php echo $this->campoSeguro('cantidad')?>").val());
             valor=Number($("#<?php echo $this->campoSeguro('valor')?>").val());
             
@@ -73,17 +78,28 @@
 	
               
 
-  $('#<?php echo $this->campoSeguro('sedeConsulta')?>').width(290);              	 
- $("#<?php echo $this->campoSeguro('sedeConsulta')?>").select2({
-             	 placeholder: "Ingrese Mínimo 3 Caracteres de Búsqueda",
-              	 minimumInputLength: 3,
-              	 });  
+ $('#<?php echo $this->campoSeguro('sedeConsulta')?>').width(290);              	 
+ $("#<?php echo $this->campoSeguro('sedeConsulta')?>").select2();  
  
- $("#<?php echo $this->campoSeguro('dependenciaConsulta')?>").select2({
-             	 placeholder: "Ingrese Mínimo 3 Caracteres de Búsqueda",
-              	 minimumInputLength: 3,
-              	 });              	            
-              	 			
+ $('#<?php echo $this->campoSeguro('convenio_solicitante')?>').width(290);              	 
+ $("#<?php echo $this->campoSeguro('convenio_solicitante')?>").select2();  
+
+ $('#<?php echo $this->campoSeguro('clase_contrato')?>').width(290);              	 
+ $("#<?php echo $this->campoSeguro('clase_contrato')?>").select2();  
+ 
+ $("#<?php echo $this->campoSeguro('dependenciaConsulta')?>").select2();              	            
+              	
+ 
+ $('#<?php echo $this->campoSeguro('sede')?>').width(300);
+$("#<?php echo $this->campoSeguro('sede')?>").select2();
+			
+$('#<?php echo $this->campoSeguro('dependencia_solicitante')?>').width(200);
+$("#<?php echo $this->campoSeguro('dependencia_solicitante')?>").select2();
+			
+
+
+ $('#<?php echo $this->campoSeguro('funcionario')?>').width(300);
+$("#<?php echo $this->campoSeguro('funcionario')?>").select2();
 			
 $("#<?php echo $this->campoSeguro('clase')?>").select2();
 $("#<?php echo $this->campoSeguro('tipo_poliza')?>").select2();
@@ -105,12 +121,63 @@ $("#<?php echo $this->campoSeguro('tipo_poliza')?>").select2();
  $("#<?php echo $this->campoSeguro('numero_entrada')?>").select2();
  
  
- 
+ $('#<?php echo $this->campoSeguro('fecha_inicio_consulta') ?>').datepicker({
+dateFormat: 'yy-mm-dd',
+maxDate: 0,
+changeYear: true,
+changeMonth: true,
+monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+dayNames: ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'],
+dayNamesShort: ['Dom','Lun','Mar','Mie','Jue','Vie','Sab'],
+dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sa'],
+onSelect: function(dateText, inst) {
+var lockDate = new Date($('#<?php echo $this->campoSeguro('fecha_inicio_consulta') ?>').datepicker('getDate'));
+$('input#<?php echo $this->campoSeguro('fecha_final_consulta') ?>').datepicker('option', 'minDate', lockDate);
+},
+onClose: function() { 
+if ($('input#<?php echo $this->campoSeguro('fecha_inicio_consulta') ?>').val()!='')
+{
+$('#<?php echo $this->campoSeguro('fecha_final_consulta') ?>').attr("class", "cuadroTexto ui-widget ui-widget-content ui-corner-all   validate[required]");
+}else {
+$('#<?php echo $this->campoSeguro('fecha_final_consulta') ?>').attr("class", "cuadroTexto ui-widget ui-widget-content ui-corner-all ");
+}
+}
+
+
+});
+$('#<?php echo $this->campoSeguro('fecha_final_consulta') ?>').datepicker({
+dateFormat: 'yy-mm-dd',
+maxDate: 0,
+changeYear: true,
+changeMonth: true,
+monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+dayNames: ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'],
+dayNamesShort: ['Dom','Lun','Mar','Mie','Jue','Vie','Sab'],
+dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sa'],
+onSelect: function(dateText, inst) {
+var lockDate = new Date($('#<?php echo $this->campoSeguro('fecha_final_consulta') ?>').datepicker('getDate'));
+$('input#<?php echo $this->campoSeguro('fecha_inicio_consulta') ?>').datepicker('option', 'maxDate', lockDate);
+},
+onClose: function() { 
+if ($('input#<?php echo $this->campoSeguro('fecha_final_consulta') ?>').val()!='')
+{
+$('#<?php echo $this->campoSeguro('fecha_inicio_consulta') ?>').attr("class", "cuadroTexto ui-widget ui-widget-content ui-corner-all   validate[required]");
+}else {
+$('#<?php echo $this->campoSeguro('fecha_inicio_consulta') ?>').attr("class", "cuadroTexto ui-widget ui-widget-content ui-corner-all ");
+}
+}
+
+});
  
  
  
  
  $("#<?php echo $this->campoSeguro('tipo_registro')?>").select2();
+
  $("#<?php echo $this->campoSeguro('numero_acta') ?>").select2();
  $("#<?php echo $this->campoSeguro('iva')?>").select2();
  $("#<?php echo $this->campoSeguro('bodega')?>").select2();
@@ -154,6 +221,8 @@ $("#<?php echo $this->campoSeguro('tipo_poliza')?>").select2();
         
 		  
      $( "#<?php echo $this->campoSeguro('tipo_poliza')?>" ).change(function() {
+     
+    
         
             switch($("#<?php echo $this->campoSeguro('tipo_poliza')?>").val())
             {
@@ -314,6 +383,20 @@ $("#<?php echo $this->campoSeguro('tipo_poliza')?>").select2();
                                      
                 break;
                 
+                case '7':
+                
+                 cantidad=Number($("#<?php echo $this->campoSeguro('cantidad')?>").val());
+            	 valor=Number($("#<?php echo $this->campoSeguro('valor')?>").val());
+       			 iva = Math.round(((cantidad * valor)* 0.19)*100)/100;
+       			 precio = Math.round((cantidad*valor)*100)/100;
+       			 total=Math.round((precio+iva)*100)/100;
+       			 
+       			 
+                 $("#<?php echo $this->campoSeguro('total_iva')?>").val(iva);
+                 $("#<?php echo $this->campoSeguro('total_iva_con')?>").val(total);
+                                     
+                break;
+                
 
                 default:
                 $("#<?php echo $this->campoSeguro('total_iva')?>").val('');
@@ -380,10 +463,7 @@ $("#<?php echo $this->campoSeguro('tipo_poliza')?>").select2();
 			
 	   });
 	   
-	          $('#tablaTitulos').dataTable( {
-                "sPaginationType": "full_numbers"
-                 } );
-	   
+	    
           
 
 

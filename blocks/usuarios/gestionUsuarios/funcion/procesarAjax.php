@@ -7,6 +7,8 @@ $esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexio
 
 $conexionArka = "inventarios";
 $recursoArka = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexionArka);
+$conexionArgo = "contractual";
+$recursoArgo = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexionArgo);
 
 if ($_REQUEST ['funcion'] == 'consultarPerfil') {
 
@@ -16,6 +18,7 @@ if ($_REQUEST ['funcion'] == 'consultarPerfil') {
         //datos perfiles
         $cadena_sql = $this->sql->getCadenaSql("consultarPerfilUsuario", $parametro);
         $resultadoPerfil = $esteRecursoDB->ejecutarAcceso($cadena_sql, "busqueda");
+              
         if ($resultadoPerfil) {
             $tam = count($resultadoPerfil);
             $rolUs = '';
@@ -29,13 +32,23 @@ if ($_REQUEST ['funcion'] == 'consultarPerfil') {
 
     $cadenaSql = $this->sql->getCadenaSql('consultaPerfiles', $parametro);
     $resultado = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
+   
+   
     $resultado = json_encode($resultado);
     echo $resultado;
 }
 if ($_REQUEST ['funcion'] == 'consultaDependenciaEspecifica') {
     $parametro = $_REQUEST['valor'];
-    $cadenaSql = $this->sql->getCadenaSql('dependencias',$parametro);
+    $cadenaSql = $this->sql->getCadenaSql('dependencias', $parametro);
     $resultado = $recursoArka->ejecutarAcceso($cadenaSql, "busqueda");
+    $resultado = json_encode($resultado);
+    echo $resultado;
+}
+
+if ($_REQUEST ['funcion'] == 'consultarDependencia') {
+
+    $cadenaSql = $this->sql->getCadenaSql('dependenciasConsultadas', $_REQUEST ['valor']);
+    $resultado = $recursoArgo->ejecutarAcceso($cadenaSql, "busqueda");
     $resultado = json_encode($resultado);
     echo $resultado;
 }

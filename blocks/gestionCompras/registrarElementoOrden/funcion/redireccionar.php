@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace gestionCompras\registrarElementoOrden\funcion;
 
@@ -38,6 +38,8 @@ class redireccion {
 				$variable .= "&mensaje_titulo=" . $valor [0];
 				$variable .= "&id_orden=" . $valor [1];
 				$variable .= "&fecha_orden=" . $valor [2];
+				$variable .= "&numero_contrato=" . $valor [5];
+				$variable .= "&vigencia=" . $valor [6];
 				if ($valor [3] == '\'true\'') {
 					$variable .= "&registroOrden=true";
 				} else {
@@ -111,6 +113,8 @@ class redireccion {
 				$variable .= "&mensaje=error";
 				$variable .= "&mensaje_titulo=" . $valor [0];
 				$variable .= "&id_orden=" . $valor [1];
+                                $variable .= "&numero_contrato=" . $valor [5];
+				$variable .= "&vigencia=" . $valor [6];
 
 				if ($valor [3] == '') {
 					$variable .= "&registroOrden=true";

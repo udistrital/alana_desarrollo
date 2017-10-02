@@ -86,7 +86,7 @@ a:hover {
 .container > header nav a {
     display: block;
     float: left;
-    position: relative;
+    position: initial;
     width: 2.5em;
     height: 2.5em;
     background: #fff;
@@ -100,7 +100,7 @@ a:hover {
 .container > header nav a:after {
     content: attr(data-info);
     color: #47a3da;
-    position: absolute;
+    position: initial;
     width: 600%;
     top: 120%;
     text-align: right;
@@ -120,7 +120,7 @@ a:hover {
 .icon-drop:before, 
 .icon-arrow-left:before {
     font-family: 'fontawesome';
-    position: absolute;
+    position: initial;
     top: 0;
     width: 100%;
     height: 100%;
@@ -146,4 +146,8 @@ a:hover {
 .icon-arrow-left:before {
     content: "\f060";
 }
+
+div#marcoDatos {
+    display: none;
+} 
 

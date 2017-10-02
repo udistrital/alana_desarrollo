@@ -10,7 +10,14 @@ $estilo[$indice++]="demo_page.css";
 $estilo[$indice++]="demo_table.css";
 $estilo[$indice++]="jquery.dataTables.css";
 $estilo[$indice++]="jquery.dataTables_themeroller.css";
+$estilo[$indice++]="jquery-ui.css";
 
+// Bootstrap
+$estilo[$indice++] = "bootstrap-theme.css";
+$estilo[$indice++] = "bootstrap-theme.min.css";
+$estilo[$indice++] = "jquery.dataTables.css";
+$estilo[$indice++] = "bootstrap.css";
+$estilo[$indice++] = "bootstrap.min.css";
 
 $estilo[$indice++]="estiloBloque.css";
 

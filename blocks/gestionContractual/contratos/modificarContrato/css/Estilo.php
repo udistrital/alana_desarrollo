@@ -6,6 +6,8 @@ $estilo[$indice++]="select2.css";
 $estilo[$indice++]="select2.min.css";
 $estilo[$indice++]="jquery.steps.css";
 $estilo[$indice++]="jquery.auto-complete.css";
+$estilo[$indice++]="modal.css";
+$estilo[$indice++]="estiloFechasPolizas.css";
 
 /*
  * Estilo Personalizado del Bloque actual
@@ -14,7 +16,12 @@ $estilo[$indice++]="jquery.auto-complete.css";
 $estilo[$indice++]="estiloBloque.css";
 
 
-
+// Bootstrap
+$estilo[$indice++] = "bootstrap-theme.css";
+$estilo[$indice++] = "bootstrap-theme.min.css";
+$estilo[$indice++] = "jquery.dataTables.css";
+$estilo[$indice++] = "bootstrap.css";
+$estilo[$indice++] = "bootstrap.min.css";
 
 
 

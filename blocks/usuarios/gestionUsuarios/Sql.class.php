@@ -142,7 +142,7 @@ class Sql extends \Sql {
                 $cadenaSql .= " WHERE  idtipo != 1";
                 break;
 
-            case "subsistema":
+            case "subsistema2":
                 $tam = count($variable);
                 $aux = 1;
                 $cadenaSql = "SELECT  id_subsistema, etiketa ";
@@ -166,6 +166,18 @@ class Sql extends \Sql {
 
                 break;
 
+		case "subsistema":
+                $tam = count($variable);
+                $aux = 1;
+                $cadenaSql = "SELECT  id_subsistema, etiketa ";
+                $cadenaSql .= "FROM " . $prefijo . "subsistema ";
+
+                $cadenaSql .= "WHERE id_pagina=1";
+                $cadenaSql .= " ORDER BY  etiketa ";
+              
+                
+                break;
+
             case "consultaPerfiles":
                 $cadenaSql = " SELECT DISTINCT rol.\"rol_id\", ";
                 $cadenaSql .= " rol.\"rol_alias\" ";
@@ -184,13 +196,14 @@ class Sql extends \Sql {
 
             case "insertarUsuario":
 
-                $cadenaSql = "INSERT INTO " . $prefijo . "usuario(id_usuario, nombre, apellido,dependencia,dependencia_especifica, correo, telefono, imagen, clave, tipo, estilo, idioma, estado, fecha_registro, identificacion,tipo_identificacion) ";
+                $cadenaSql = "INSERT INTO " . $prefijo . "usuario(id_usuario, nombre, apellido,dependencia,dependencia_especifica,unidad_ejecutora, correo, telefono, imagen, clave, tipo, estilo, idioma, estado, fecha_registro, identificacion,tipo_identificacion) ";
                 $cadenaSql .= " VALUES ( ";
                 $cadenaSql .= " '" . $variable['id_usuario'] . "', ";
                 $cadenaSql .= " '" . $variable['nombres'] . "', ";
                 $cadenaSql .= " '" . $variable['apellidos'] . "', ";
                 $cadenaSql .= " '" . $variable['dependencia'] . "', ";
                 $cadenaSql .= " '" . $variable['dependencia_especifica'] . "', ";
+                $cadenaSql .= " " . $variable['unidad_ejecutora'] . ", ";
                 $cadenaSql .= " '" . $variable['correo'] . "', ";
                 $cadenaSql .= " '" . $variable['telefono'] . "', ";
                 $cadenaSql .= " 'N/A', ";
@@ -286,12 +299,27 @@ class Sql extends \Sql {
                 break;
 
             case "sede" :
-
-                $cadenaSql = "SELECT DISTINCT  \"ESF_COD_SEDE\", \"ESF_SEDE\" as nombre ";
-                $cadenaSql .= " FROM arka_parametros.arka_sedes ";
+                $cadenaSql = "SELECT DISTINCT  \"ESF_ID_SEDE\", \"ESF_SEDE\" ";
+                $cadenaSql .= " FROM \"sedes_SIC\" ";
                 $cadenaSql .= " WHERE   \"ESF_ESTADO\"='A' ";
                 $cadenaSql .= " AND    \"ESF_COD_SEDE\" >  0 ;";
                 break;
+
+
+            case "unidad_ejecutora" :
+                $cadenaSql = "SELECT id, nombre from kronos.unidad_ejecutora ;";
+                break;
+
+            case "dependenciasConsultadas" :
+                $cadenaSql = "SELECT DISTINCT  \"ESF_CODIGO_DEP\" , \"ESF_DEP_ENCARGADA\" ";
+                $cadenaSql .= " FROM \"dependencia_SIC\" ad ";
+                $cadenaSql .= " JOIN  \"espaciosfisicos_SIC\" ef ON  ef.\"ESF_ID_ESPACIO\"=ad.\"ESF_ID_ESPACIO\" ";
+                $cadenaSql .= " JOIN  \"sedes_SIC\" sa ON sa.\"ESF_COD_SEDE\"=ef.\"ESF_COD_SEDE\" ";
+                $cadenaSql .= " WHERE sa.\"ESF_ID_SEDE\"='" . $variable . "' ";
+                $cadenaSql .= " AND  ad.\"ESF_ESTADO\"='A'";
+
+                break;
+
             case "dependencias" :
                 $cadenaSql = " SELECT DISTINCT \"ESF_DEP_ENCARGADA\" as nombre  ";
                 $cadenaSql .= " FROM arka.arka_parametros.arka_dependencia d, "

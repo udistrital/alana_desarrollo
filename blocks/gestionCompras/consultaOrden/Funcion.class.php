@@ -55,18 +55,31 @@ class Funcion {
 	function modificarOrden() {
 		include_once ($this->ruta . "funcion/modificarOrden.php");
 	}
+	function aprobarContrato() {
+		include_once ($this->ruta . "funcion/aprobarContrato.php");
+	}
 	function modificarElementos() {
 		include_once ($this->ruta . "funcion/procesarModificarElementos.php");
+	}
+	function modificarServicio() {
+		include_once ($this->ruta . "funcion/modificarServicio.php");
+	}
+	function eliminarServicio() {
+		include_once ($this->ruta . "funcion/eliminarServicio.php");
 	}
 	function eliminarElementoOrden() {
 		include_once ($this->ruta . "funcion/procesareliminarElemento.php");
 	}
 	function documentoPdf() {
-		include_once ($this->ruta . "funcion/documentoPdf.php");
+		include_once ($this->ruta . "funcion/documentoPdfUnificado.php");
+	}
+	function documentoPdfIdexud() {
+		include_once ($this->ruta . "funcion/documentoIdexudPdf.php");
 	}
 	function action() {
-		
-		// Evitar qu44444444rrrre se ingrese codigo HTML y PHP en los campos de texto
+            
+                           
+            	// Evitar qu44444444rrrre se ingrese codigo HTML y PHP en los campos de texto
 		// Campos que se quieren excluir de la limpieza de código. Formato: nombreCampo1|nombreCampo2|nombreCampo3
 		$excluir = "";
 		$_REQUEST = $this->miInspectorHTML->limpiarPHPHTML ( $_REQUEST );
@@ -80,8 +93,9 @@ class Funcion {
 		if (isset ( $_REQUEST ['procesarAjax'] )) {
 			$this->procesarAjax ();
 		} elseif (isset ( $_REQUEST ["opcion"] )) {
-			
-			switch ($_REQUEST ['opcion']) {
+                    
+                 
+                  switch ($_REQUEST ['opcion']) {
 				
 				case 'modificarOrden' :
 					$this->modificarOrden ();
@@ -90,24 +104,32 @@ class Funcion {
 				case 'procesarModificarElementos' :
 					$this->modificarElementos ();
 					break;
+				case 'modificarServicio' :
+					$this->modificarServicio ();
+					break;
+				
+                                case 'aprobarContratoFuncion' :
+                                        
+                                      	$this->aprobarContrato ();
+					break;
 				
 				case 'eliminarElementoOrden' :
 					$this->eliminarElementoOrden ();
+					break;
+				case 'eliminarServicio' :
+					$this->eliminarServicio ();
 					break;
 				
 				case 'generarDocumento' :
 					$this->documentoPdf ();
 					break;
+				
+                                case 'generarDocumentoIdexud' :
+					$this->documentoPdfIdexud ();
+					break;
 			}
 			
-			// if (isset ( $_REQUEST ["redireccionar"])&&$_REQUEST ['redireccionar'] == 'regresar') {
-			// redireccion::redireccionar($_REQUEST['opcion']);
-			// }
 			
-			// if ($_REQUEST ['opcion'] == 'modificarOrden') {
-			
-			// $this->modificarOrden ();
-			// }
 		}
 	}
 	function __construct() {

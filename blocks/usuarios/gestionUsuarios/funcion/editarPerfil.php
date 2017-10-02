@@ -44,6 +44,8 @@ class RegistradorPerfil {
 
         $this->cadena_sql = $this->miSql->getCadenaSql("editarPerfilUsuario", $arregloDatos);
         $resultadoPerfil = $esteRecursoDB->ejecutarAcceso($this->cadena_sql, "acceso");
+        
+        
         if($resultadoPerfil)
             {    
                 $parametro['id_usuario']=$arregloDatos['id_usuario'];

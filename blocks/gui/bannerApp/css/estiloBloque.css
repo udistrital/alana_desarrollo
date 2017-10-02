@@ -1,8 +1,8 @@
 .bannerAplicativo {
 	clear: both;
-	position: fixed;
-	width: 94%;
-	height: 140px;
+	position: initial;
+	width: 100%;
+        height: 160px;
 	z-index: 1;
 	
 }

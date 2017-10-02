@@ -56,7 +56,7 @@ class registrarForm {
                         {$app[$aux]=$roles[$key]['cod_app'];
                          $aux++;
                         }
-                    elseif($roles[$key]['cod_rol']==0 && $roles[$key]['cod_app']==1)
+                    elseif($roles[$key]['rol']=='Administrador Usuarios' && $roles[$key]['cod_app']==8)
                         {$app='';
                          $app[0]=$roles[$key]['cod_app'];
                          break;

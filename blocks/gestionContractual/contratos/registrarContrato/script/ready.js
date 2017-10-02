@@ -7,55 +7,15 @@ $('#tablaDisponibilidades').dataTable({
     "bLengthChange": false,
 });
 
-$('#tablaRegistros').dataTable({
-    paging: false,
-    "bLengthChange": false,
-});
-
-$("#ventanaA").steps({
-    headerTag: "h3",
-    bodyTag: "section",
-    enableAllSteps: true,
-    enablePagination: true,
-    transitionEffect: "slideLeft",
-    onStepChanging: function (event, currentIndex, newIndex) {
-        $resultado = $resultado = $("#registrarContrato").validationEngine("validate");
-        almacenarInfoTemporal(currentIndex, newIndex);
-        if ($resultado) {
-
-            return true;
-        }
-        return false;
-
-    },
-    onFinished: function (event, currentIndex) {
-
-        $("#registrarContrato").submit();
-
-    },
-    labels: {
-        cancel: "Cancelar",
-        current: "Paso Siguiente :",
-        pagination: "Paginación",
-        finish: "Guardar Información",
-        next: "Siquiente",
-        previous: "Atras",
-        loading: "Cargando ..."
-    }
-
-});
-
 $("#registrarContrato").validationEngine({
     promptPosition: "bottomRight",
     scroll: false,
     autoHidePrompt: true,
     autoHideDelay: 1000
 });
-
 $(function () {
     $("#registrarContrato").submit(function () {
         $resultado = $("#registrarContrato").validationEngine("validate");
-
         if ($resultado) {
 
             return true;
@@ -63,3 +23,64 @@ $(function () {
         return false;
     });
 });
+
+
+$("#tablaTitulos").dataTable().fnDestroy();
+
+$(document).ready(function () {
+    $('#tablaTitulos').DataTable({
+        dom: 'T<"clear">lfrtip',
+        tableTools: {
+            "sRowSelect": "os",
+            "aButtons": ["select_all", "select_none"]
+        },
+        "language": {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sSearch": "Buscar:",
+            "sLoadingRecords": "Cargando...",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Ãšltimo",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            }
+        },
+        "columnDefs": [
+            {
+                "targets": [0, 1],
+                "visible": false,
+                "searchable": false
+            }
+        ],
+        processing: true,
+        searching: true,
+        info: true,
+        "scrollY": "400px",
+        "scrollCollapse": false,
+        "bLengthChange": false,
+        "bPaginate": false,
+        "aoColumns": [
+            {sWidth: "1%", sClass: "center"},
+            {sWidth: "1%", sClass: "center"},
+            {sWidth: "10%", sClass: "center"},
+            {sWidth: "12%", sClass: "center"},
+            {sWidth: "21%", sClass: "center"},
+            {sWidth: "20%", sClass: "center"},
+            {sWidth: "15%", sClass: "center"},
+            {sWidth: "10%", sClass: "center"},
+            {sWidth: "5%", sClass: "center"},
+            {sWidth: "5%", sClass: "center"}
+
+        ]
+
+
+    });
+})
+
+

@@ -1,0 +1,20 @@
+
+.container-date {
+
+    overflow:auto;
+}
+.date-poliza {
+
+    margin:auto;
+    text-align:center;
+   
+    width: 100px;
+}
+.date-text {
+    font-family: "Times New Roman", Times, serif;
+    text-align:center;
+
+}
+.table-poliza {
+  width: 80%;
+}

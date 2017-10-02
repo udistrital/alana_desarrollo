@@ -26,6 +26,7 @@
             });
         });
  
+        $( ".widget input[type=submit], .widget a, .widget button" ).button();
 <?php /*?>
                $('#<?php echo $this->campoSeguro('fecha_final')?>').datepicker({
 		dateFormat: 'yy-mm-dd',
@@ -99,6 +100,8 @@ $('#<?php echo $this->campoSeguro('dependencia')?>').width(210);
 $("#<?php echo $this->campoSeguro('dependencia')?>").select2(); 
 $('#<?php echo $this->campoSeguro('sede')?>').width(210);
 $("#<?php echo $this->campoSeguro('sede')?>").select2(); 
+$('#<?php echo $this->campoSeguro('unidad_ejecutora')?>').width(210);
+$("#<?php echo $this->campoSeguro('unidad_ejecutora')?>").select2(); 
 
 <?php 
 //}

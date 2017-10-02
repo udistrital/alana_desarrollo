@@ -35,10 +35,14 @@ class registrarForm {
 		$_REQUEST ['tiempo'] = time ();
 		
 		$atributosGlobales ['campoSeguro'] = 'true';
+
+		$conexionAgora = "agora";
+                $esteRecursoDBAgora = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexionAgora);
+
+
 		
 		// -------------------------------------------------------------------------------------------------
-		$conexion = "inventarios";
-		$esteRecursoDB = $this->miConfigurador->fabricaConexiones->getRecursoDB ( $conexion );
+		
 		
 		// Limpia Items Tabla temporal
 		
@@ -79,19 +83,7 @@ class registrarForm {
 			$variable .= "&usuario=" . $_REQUEST ['usuario'];
 			$variable = $this->miConfigurador->fabricaConexiones->crypto->codificar_url ( $variable, $directorio );
 			
-			// // ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
-			// $esteCampo = 'botonRegresar';
-			// $atributos ['id'] = $esteCampo;
-			// $atributos ['enlace'] = $variable;
-			// $atributos ['tabIndex'] = 1;
-			// $atributos ['estilo'] = 'textoSubtitulo';
-			// $atributos ['enlaceTexto'] = $this->lenguaje->getCadena ( $esteCampo );
-			// $atributos ['ancho'] = '10%';
-			// $atributos ['alto'] = '10%';
-			// $atributos ['redirLugar'] = true;
-			// echo $this->miFormulario->enlace ( $atributos );
-			
-			// unset ( $atributos );
+		
 			
 			$esteCampo = "marcoDatosBasicos";
 			$atributos ['id'] = $esteCampo;
@@ -106,20 +98,35 @@ class registrarForm {
 					case "Inserto" :
 						
 						$atributos ['tipo'] = 'success';
-						$atributos ['mensaje'] = "Se Registro con Exito.<br>Contrato N# " . $_REQUEST ['numero_contrato'] . " y  Vigencia " . $_REQUEST ['vigencia'] . " .";
-						
+						$atributos ['mensaje'] = "<h3>SE registro EXITOSAMENTE EL CONTRATO:</h3><br> <h4>CONSECUTIVO DE ELABORACIÓN: " . $_REQUEST ['numero_contrato'] . " <br>  VIGENCIA " . $_REQUEST ['vigencia'] . "</h4> ";
 						break;
 					
 					case "noInserto" :
 						$atributos ['tipo'] = 'error';
-						$atributos ['mensaje'] = "Error al Registrar Contrato.<br>Verifique los Datos.";
+						$atributos ['mensaje'] = "<h3>Error al Registrar Contrato.<br>Verifique los Datos.</h3>";
 						break;
+					case "noInsertoContratoExiste" :
+                                                $sqlTipoPersona = $this->miSql->getCadenaSql('buscar_info_proveedor_contrato', $_REQUEST['contratista']);
+                                                $infoTipoPersona = $esteRecursoDBAgora->ejecutarAcceso($sqlTipoPersona, "busqueda");
+                                      
+						$atributos ['tipo'] = 'error';
+						$atributos ['mensaje'] = "<h3>Error al Registrar Contrato.<br>El contratista ".$infoTipoPersona[0][0]."<br> Ya posee un contrato vigente con la unidad ejecutora 										1<br> hasta la siguente fecha: ".$_REQUEST['fecha_fin'].".</h3>";
+						break;   
+					case "noInsertoContratoDuplicado" :
+                                                $sqlTipoPersona = $this->miSql->getCadenaSql('buscar_info_proveedor_contrato', $_REQUEST['contratista']);
+                                                $infoTipoPersona = $esteRecursoDBAgora->ejecutarAcceso($sqlTipoPersona, "busqueda");
+                                      
+						$atributos ['tipo'] = 'warning';
+						$atributos ['mensaje'] = "<h4>Error al Registrar Contrato.<br><br><br>El contrato ya ha sido registrado anteriormente con los mismos datos<br><br> Contrato con 						vigencia: ".$_REQUEST['vigencia']."<br>Contratista: ".$infoTipoPersona[0][0]."<br><br>Para mayor informacion del registro por favor consultar el modulo de 							Actualizacion de contrato mediante los respectivos filtros de busqueda e ingresar en actualizacion de contrato con el fin de visualizar todos los datos 						registrados para el contrato en mencion.</h4>";
+						break;  
+					
 				}
 				
 				// ---------------- CONTROL: Cuadro de Texto --------------------------------------------------------
 				$esteCampo = 'mensajeRegistro';
 				$atributos ['id'] = $esteCampo;
 				$atributos ['estilo'] = 'textoCentrar';
+                                $atributos ['mensaje'] = strtoupper($atributos ['mensaje']);
 				
 				$tab ++;
 				
@@ -130,29 +137,7 @@ class registrarForm {
 			}
 			
 			// ------------------Division para los botones-------------------------
-			$atributos ["id"] = "botones";
-			$atributos ["estilo"] = "marcoBotones";
-			echo $this->miFormulario->division ( "inicio", $atributos );
 			
-			// -----------------CONTROL: Botón ----------------------------------------------------------------
-			$esteCampo = 'botonContinuar';
-			$atributos ["id"] = $esteCampo;
-			$atributos ["tabIndex"] = $tab;
-			$atributos ["tipo"] = 'boton';
-			// submit: no se coloca si se desea un tipo button genérico
-			$atributos ['submit'] = true;
-			$atributos ["estiloMarco"] = '';
-			$atributos ["estiloBoton"] = 'jqueryui';
-			// verificar: true para verificar el formulario antes de pasarlo al servidor.
-			$atributos ["verificar"] = '';
-			$atributos ["tipoSubmit"] = 'jquery'; // Dejar vacio para un submit normal, en este caso se ejecuta la función submit declarada en ready.js
-			$atributos ["valor"] = $this->lenguaje->getCadena ( $esteCampo );
-			$atributos ['nombreFormulario'] = $esteBloque ['nombre'];
-			$tab ++;
-			
-			// Aplica atributos globales al control
-			$atributos = array_merge ( $atributos, $atributosGlobales );
-			echo $this->miFormulario->campoBoton ( $atributos );
 			// -----------------FIN CONTROL: Botón -----------------------------------------------------------
 			
 			echo $this->miFormulario->marcoAgrupacion ( 'fin' );
@@ -195,10 +180,10 @@ class registrarForm {
 		// Paso 1: crear el listado de variables
 		
 		$valorCodificado = "actionBloque=" . $esteBloque ["nombre"];
-		$valorCodificado .= "&pagina=" . $this->miConfigurador->getVariableConfiguracion ( 'pagina' );
-		$valorCodificado .= "&bloque=" . $esteBloque ['nombre'];
-		$valorCodificado .= "&bloqueGrupo=" . $esteBloque ["grupo"];
-		$valorCodificado .= "&opcion=paginaPrincipal";
+		$valorCodificado .= "&pagina=modificarContrato";
+		$valorCodificado .= "&bloque=contratos";
+		$valorCodificado .= "&bloqueGrupo=gestionContractual";
+		$valorCodificado .= "&opcion=";
 		$valorCodificado .= "&usuario=".$_REQUEST['usuario'];
 		/**
 		 * SARA permite que los nombres de los campos sean dinámicos.

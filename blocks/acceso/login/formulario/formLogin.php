@@ -287,6 +287,7 @@ class Formulario {
 }
 
 $miFormulario = new Formulario($this->lenguaje, $this->miFormulario);
-$miFormulario->formulario();
 $miFormulario->mensaje();
+$miFormulario->formulario();
+
 ?>

@@ -1,7 +1,38 @@
 
 <?php
 
+/*
+ * Filtro Consulta Contrato
+ * 	
+ * 
+ * */
 
+$this->idioma ["unidad_ejecutora"] = "Unidad Ejecutora: ";
+$this->idioma ["unidad_ejecutoraTitulo"] = "Selecciones Unidad Ejecutora";
+
+$this->idioma ["unidad_ejecutora_consulta"] = "Unidad Ejecutora: ";
+$this->idioma ["unidad_ejecutora_consultaTitulo"] = "Selecciones Unidad Ejecutora";
+
+
+
+$this->idioma ["vigencia_contrato"] = "Numero de Elaboración- Vigencia: ";
+$this->idioma ["vigencia_contratoTitulo"] = "Ingrese el numero de elaboracion  y/o la Vigencia";
+
+
+
+$this->idioma ["contratista"] = "Contratista: ";
+$this->idioma ["contratistaTitulo"] = "Selecciones Contratistas(Identificación - Nombre)";
+
+
+
+$this->idioma ["fecha_inicio_consulta"] = "Fecha Inicial:<br>Registro Contrato  ";
+$this->idioma ["fecha_inicio_consultaTitulo"] = "Seleccione Fecha Inicial";
+
+$this->idioma ["fecha_final_consulta"] = "Fecha Final:<br>Registro Contrato ";
+$this->idioma ["fecha_final_consultaTitulo"] = "Seleccione Fecha Final";
+
+$this->idioma ["clase_contrato"] = "Tipo de Contrato: ";
+$this->idioma ["clase_contratoTitulo"] = "Seleccione el Tipo de Contrato";
 
 $this->idioma ["referencia"] = "Referencia : ";
 $this->idioma ["referenciaTitulo"] = "Ingrese Referencia";
@@ -25,11 +56,21 @@ $this->idioma ["dependenciaConsultaTitulo"] = "Ingrese Nombre Dependencia";
 $this->idioma ["sedeConsulta"] = "Sede : ";
 $this->idioma ["sedeConsultaTitulo"] = "Seleccione Sede";
 
+$this->idioma ["sede"] = "Sede : ";
+$this->idioma ["sedeTitulo"] = "Seleccione Sede";
 
-$this->idioma ["numero_orden"] = "Vigencia y/o Número Orden : ";
-$this->idioma ["numero_ordenTitulo"] = "Seleccion Tipo Orden" ;
+$this->idioma ["funcionario"] = "Funcionario a Cargo  : ";
+$this->idioma ["funcionarioTitulo"] = "Seleccione el Funcionario a Cargo ";
 
 
+$this->idioma ["numero_orden"] = "Vigencia y/o Consecutivo de Elaboración :";
+$this->idioma ["numero_ordenTitulo"] = "Seleccione Vigencia y/o Consecutivo de Elaboración";
+
+$this->idioma ["sede_idexud"] = "Sede : ";
+$this->idioma ["sede_idexud"] = "Sede: Idexud";
+
+$this->idioma ["convenio_solicitante"] = "Convenio : ";
+$this->idioma ["sedeTitulo"] = "Seleccione el convenio";
 
 $this->idioma ["tipo_orden"] = "Tipo Orden : ";
 $this->idioma ["tipo_ordenTitulo"] = "Seleccion Tipo Orden" ;

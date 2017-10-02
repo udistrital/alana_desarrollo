@@ -457,7 +457,12 @@ class RegistradorOrden {
 
         $cadenaSql = $this->miSql->getCadenaSql('ObtenerInfosupervisor', $contrato ['supervisor']);
         $supervisor = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
-        $supervisor = strtoupper($supervisor [0]['cargo']);
+         if($supervisor [0]['cargo'] != ''){
+            $supervisor = strtoupper($supervisor[0]['nombre']) . " identificado(a) con cédula de ciudadanía  No. " .strtoupper($supervisor[0]['documento']) ." con el cargo de ".strtoupper($supervisor [0]['cargo']);
+        }
+        else{
+            $supervisor = strtoupper($supervisor[0]['nombre']) . " identificado(a) con cédula de ciudadanía  No. " .strtoupper($supervisor[0]['documento']) ;
+        }
 
 
         $datos_disponibilidad = array(0 => $_REQUEST ['numero_contrato'], 1 => $_REQUEST['vigencia']);

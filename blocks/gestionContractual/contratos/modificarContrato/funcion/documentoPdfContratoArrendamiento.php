@@ -411,6 +411,10 @@ class RegistradorOrden {
         $cadenaSql = $this->miSql->getCadenaSql('consultaParametro', $contrato ['unidad_ejecucion']);
         $plazo = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
         $plazo = $plazo[0][0];
+
+        $cadenaSql = $this->miSql->getCadenaSql('consultaParametro', $contrato ['modalidad_seleccion']);
+        $modalidad_seleccion = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
+        $modalidad_seleccion = $modalidad_seleccion[0][0];
         
         $meses=0;
         $dias=0;
@@ -860,7 +864,8 @@ class RegistradorOrden {
             'P[TABLAAMPAROS]'=>$tablaDeAmparos,
             'P[ELABORO_NOMBRE]' => strtoupper($usuario[0]['nombre']),
             'P[ELABORO_APELLIDO]' => strtoupper($usuario[0]['apellido']),
-            'P[FORMA_PAGO]' => $forma_pago
+            'P[FORMA_PAGO]' => $forma_pago,
+            'P[MODALIDAD_SELECCION]' => $modalidad_seleccion
         );
 
         foreach ($parametros as $clave => $valor) {

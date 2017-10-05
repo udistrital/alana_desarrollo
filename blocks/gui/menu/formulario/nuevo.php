@@ -101,7 +101,7 @@ $enlaceFinSesion ['enlace'] = "action=login";
 $enlaceFinSesion ['enlace'] .= "&pagina=index";
 $enlaceFinSesion ['enlace'] .= "&bloque=login";
 $enlaceFinSesion ['enlace'] .= "&bloqueGrupo=acceso";
-$enlaceFinSesion ['enlace'] .= "&opcion=finSesion";
+$enlaceFinSesion ['enlace'] .= "&opcion=logout";
 $enlaceFinSesion ['enlace'] .= "&campoSeguro=" . $_REQUEST ['tiempo'];
 $enlaceFinSesion ['enlace'] .= "&sesion=" . $miSesion->getSesionId();
 $enlaceFinSesion ['enlace'] .= "&usuario=" . $id_usuario;

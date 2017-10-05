@@ -48,6 +48,7 @@ class SesionSql {
 
             case "borrarSesionesExpiradas" :
                 $this->cadena_sql [$indice] = $sqlDelete . $this->prefijoTablas . "valor_sesion  WHERE  expiracion<" . time();
+               
                 break;
 
             case "borrarSesion" :
@@ -110,6 +111,33 @@ class SesionSql {
                 $this->cadena_sql [$indice].= " AND perfil.estado=1 ";
 
                 break;
+            case "verificarEnlaceUsuario" :
+               // $this->cadena_sql [$indice] = "SELECT rol.id_rol FROM " . $this->prefijoTablas . "menu_rol_enlace AS rol LEFT JOIN " . $this->prefijoTablas . "menu_enlace AS enl ON enl.id_enlace=rol.id_enlace WHERE enl.enlace='" . $parametro . "' ";
+            	$this->cadena_sql [$indice] = "SELECT rol_id FROM " . $this->prefijoTablas . 
+            	"enlace e, " . $this->prefijoTablas . 
+            	"servicio s where pagina_enlace='" . 
+            	$parametro . "' and e.id_enlace=s.id_enlace";
+            
+            	break;
+            
+            case "verificarPerfilUsuario" :
+            	// $this->cadena_sql [$indice] = "SELECT rol.id_rol FROM " . $this->prefijoTablas . "menu_rol_enlace AS rol LEFT JOIN " . $this->prefijoTablas . "menu_enlace AS enl ON enl.id_enlace=rol.id_enlace WHERE enl.enlace='" . $parametro . "' ";
+            	$this->cadena_sql [$indice] = " SELECT";
+            	$this->cadena_sql [$indice] .= " rol_id";
+            	$this->cadena_sql [$indice] .= " FROM frame_work.argo_usuario_subsistema";
+            	$this->cadena_sql [$indice] .= " WHERE id_usuario='" . $parametro['id_usuario'] ."'";
+            	$this->cadena_sql [$indice] .= " AND fecha_caduca > '" .date('Y-m-d')."'";
+            	$this->cadena_sql [$indice] .= " AND estado='1'";//activo
+            	$this->cadena_sql [$indice] .= ";" ;
+           
+            	break;
+            
+            case "obtenerDocumentoPorUid" :
+            	$this->cadena_sql [$indice] = " SELECT";
+            	$this->cadena_sql [$indice] .= " id_usuario";
+            	$this->cadena_sql [$indice] .= " FROM frame_work.argo_usuario";
+            	$this->cadena_sql [$indice] .= " WHERE uid='" . $parametro . "'";//activo
+            	$this->cadena_sql [$indice] .= ";" ;
 
             default :
         }

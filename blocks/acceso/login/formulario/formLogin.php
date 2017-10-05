@@ -92,68 +92,68 @@ class Formulario {
                 $atributos = array_merge($atributos, $atributosGlobales);
                 echo $this->miFormulario->formulario($atributos);
 
-                $atributos ["id"] = "botones";
-                $atributos ["estilo"] = "marcoBotones";
-                echo $this->miFormulario->division("inicio", $atributos);
-                unset($atributos);
-
-                $esteCampo = 'usuario';
-                $atributos ['id'] = $esteCampo;
-                $atributos ['nombre'] = $esteCampo;
-                $atributos ['tipo'] = 'text';
-                $atributos ['estilo'] = 'login jqueryui';
-                $atributos ['marco'] = false;
-                $atributos ['columnas'] = 1;
-                $atributos ['dobleLinea'] = false;
-                $atributos ['tabIndex'] = $tab;
-                $atributos ['textoFondo'] = $this->lenguaje->getCadena($esteCampo);
-                $atributos ['validar'] = 'required';
-
-                if (isset($_REQUEST [$esteCampo])) {
-                    $atributos ['valor'] = $_REQUEST [$esteCampo];
-                } else {
-                    $atributos ['valor'] = '';
-                }
-                $atributos ['titulo'] = $this->lenguaje->getCadena($esteCampo . 'Titulo');
-                $atributos ['deshabilitado'] = false;
-                $atributos ['tamanno'] = 20;
-                $atributos ['maximoTamanno'] = '25';
-                $tab ++;
-
-                // Aplica atributos globales al control
-                $atributos = array_merge($atributos, $atributosGlobales);
-                echo $this->miFormulario->campoCuadroTexto($atributos);
-                unset($atributos);
-
-                $esteCampo = 'clave';
-                $atributos ['id'] = $esteCampo;
-                $atributos ['nombre'] = $esteCampo;
-                $atributos ['tipo'] = 'password';
-                $atributos ['estilo'] = 'login jqueryui';
-                $atributos ['marco'] = false;
-                $atributos ['columnas'] = 1;
-                $atributos ['dobleLinea'] = false;
-                $atributos ['tabIndex'] = $tab;
-                $atributos ['textoFondo'] = $this->lenguaje->getCadena($esteCampo);
-                $atributos ['validar'] = 'required';
-
-                if (isset($_REQUEST [$esteCampo])) {
-                    $atributos ['valor'] = $_REQUEST [$esteCampo];
-                } else {
-                    $atributos ['valor'] = '';
-                }
-                $atributos ['titulo'] = $this->lenguaje->getCadena($esteCampo . 'Titulo');
-                $atributos ['deshabilitado'] = false;
-                $atributos ['tamanno'] = 20;
-                $atributos ['maximoTamanno'] = '25';
-                $tab ++;
-
-                // Aplica atributos globales al control
-                $atributos = array_merge($atributos, $atributosGlobales);
-                echo $this->miFormulario->campoCuadroTexto($atributos);
-                unset($atributos);
-
-                echo $this->miFormulario->division("fin");
+//                $atributos ["id"] = "botones";
+//                $atributos ["estilo"] = "marcoBotones";
+//                echo $this->miFormulario->division("inicio", $atributos);
+//                unset($atributos);
+//
+////                $esteCampo = 'usuario';
+////                $atributos ['id'] = $esteCampo;
+////                $atributos ['nombre'] = $esteCampo;
+////                $atributos ['tipo'] = 'text';
+////                $atributos ['estilo'] = 'login jqueryui';
+////                $atributos ['marco'] = false;
+////                $atributos ['columnas'] = 1;
+////                $atributos ['dobleLinea'] = false;
+////                $atributos ['tabIndex'] = $tab;
+////                $atributos ['textoFondo'] = $this->lenguaje->getCadena($esteCampo);
+////                $atributos ['validar'] = 'required';
+////
+////                if (isset($_REQUEST [$esteCampo])) {
+////                    $atributos ['valor'] = $_REQUEST [$esteCampo];
+////                } else {
+////                    $atributos ['valor'] = '';
+////                }
+////                $atributos ['titulo'] = $this->lenguaje->getCadena($esteCampo . 'Titulo');
+////                $atributos ['deshabilitado'] = false;
+////                $atributos ['tamanno'] = 20;
+////                $atributos ['maximoTamanno'] = '25';
+////                $tab ++;
+////
+////                // Aplica atributos globales al control
+////                $atributos = array_merge($atributos, $atributosGlobales);
+////                echo $this->miFormulario->campoCuadroTexto($atributos);
+////                unset($atributos);
+////
+////                $esteCampo = 'clave';
+////                $atributos ['id'] = $esteCampo;
+////                $atributos ['nombre'] = $esteCampo;
+////                $atributos ['tipo'] = 'password';
+////                $atributos ['estilo'] = 'login jqueryui';
+////                $atributos ['marco'] = false;
+////                $atributos ['columnas'] = 1;
+////                $atributos ['dobleLinea'] = false;
+////                $atributos ['tabIndex'] = $tab;
+////                $atributos ['textoFondo'] = $this->lenguaje->getCadena($esteCampo);
+////                $atributos ['validar'] = 'required';
+////
+////                if (isset($_REQUEST [$esteCampo])) {
+////                    $atributos ['valor'] = $_REQUEST [$esteCampo];
+////                } else {
+////                    $atributos ['valor'] = '';
+////                }
+////                $atributos ['titulo'] = $this->lenguaje->getCadena($esteCampo . 'Titulo');
+////                $atributos ['deshabilitado'] = false;
+////                $atributos ['tamanno'] = 20;
+////                $atributos ['maximoTamanno'] = '25';
+////                $tab ++;
+////
+////                // Aplica atributos globales al control
+////                $atributos = array_merge($atributos, $atributosGlobales);
+////                echo $this->miFormulario->campoCuadroTexto($atributos);
+////                unset($atributos);
+//
+//                echo $this->miFormulario->division("fin");
 
                 $atributos ["id"] = "botones";
                 $atributos ["estilo"] = "marcoBotones";
@@ -190,7 +190,7 @@ class Formulario {
                 $valorCodificado .= "&pagina=" . $this->miConfigurador->getVariableConfiguracion('pagina');
                 $valorCodificado .= "&bloque=" . $esteBloque ['nombre'];
                 $valorCodificado .= "&bloqueGrupo=" . $esteBloque ["grupo"];
-                $valorCodificado .= "&opcion=validarLogin";
+                $valorCodificado .= "&opcion=login";
                 /**
                  * SARA permite que los nombres de los campos sean dinámicos.
                  * Para ello utiliza la hora en que es creado el formulario para
@@ -287,7 +287,6 @@ class Formulario {
 }
 
 $miFormulario = new Formulario($this->lenguaje, $this->miFormulario);
-$miFormulario->mensaje();
 $miFormulario->formulario();
-
+$miFormulario->mensaje();
 ?>

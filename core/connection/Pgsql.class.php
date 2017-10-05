@@ -133,7 +133,7 @@ class Pgsql extends ConectorDb {
      * @access public
      */
     function conectar_db() {
-        $this->enlace = pg_connect("host=" . $this->servidor . " port=" . $this->puerto . " dbname=" . $this->db . " user=" . $this->usuario . " password=" . $this->clave);
+	$this->enlace = pg_connect("host=" . $this->servidor . " port=" . $this->puerto . " dbname=" . $this->db . " user=" . $this->usuario . " password=" . $this->clave);
 
         if ($this->enlace) {
             // linea de codificacion de caracteres.
@@ -199,10 +199,10 @@ class Pgsql extends ConectorDb {
 
                     $registro = str_replace("'", " ", $datos);
                 }
-
-                if (!isset($parametros ['opcion']) == true && isset($parametros ['funcion']) == true) {
-                    $parametros ['opcion'] = $parametros ['funcion'];
-                }
+//
+//                if (!isset($parametros ['opcion']) == true ) {
+//                    $parametros ['opcion'] = $parametros ['funcion'];
+//                }
 
                 $registroAccion = $nombreAccion . "(" . $registro . ")";
 
@@ -210,7 +210,7 @@ class Pgsql extends ConectorDb {
                     case 'REGISTRO' :
 
 
-                        if ($parametros ['bloqueGrupo'] != 'development') {
+                        if (isset($parametros ['bloqueGrupo']) && $parametros ['bloqueGrupo'] != 'development') {
                             $log = array(
                                 'accion' => $evento,
                                 'id_registro' => $parametros ['usuario'],
@@ -227,7 +227,7 @@ class Pgsql extends ConectorDb {
                     case 'REGISTRO' :
 
 
-                        if ($parametros ['bloqueGrupo'] != 'development') {
+                        if (isset($parametros ['bloqueGrupo']) && $parametros ['bloqueGrupo'] != 'development') {
                             $log = array(
                                 'accion' => $evento,
                                 'id_registro' => $parametros ['usuario'],
@@ -244,7 +244,7 @@ class Pgsql extends ConectorDb {
                     case 'REGISTRO' :
 
 
-                        if ($parametros ['bloqueGrupo'] != 'development') {
+                        if (isset($parametros ['bloqueGrupo']) && $parametros ['bloqueGrupo'] != 'development') {
                             $log = array(
                                 'accion' => $evento,
                                 'id_registro' => $parametros ['usuario'],
@@ -261,7 +261,7 @@ class Pgsql extends ConectorDb {
                     case 'REGISTRO' :
 
 
-                        if ($parametros ['bloqueGrupo'] != 'development') {
+                        if (isset($parametros ['bloqueGrupo']) && $parametros ['bloqueGrupo'] != 'development') {
                             $log = array(
                                 'accion' => $evento,
                                 'id_registro' => $parametros ['usuario'],
@@ -278,7 +278,7 @@ class Pgsql extends ConectorDb {
 
                     case 'ACTUALIZACION' :
 
-                        if ($parametros ['bloqueGrupo'] != 'development') {
+                        if ( isset($parametros ['bloqueGrupo']) && $parametros ['bloqueGrupo'] != 'development') {
                             $log = array(
                                 'accion' => $evento,
                                 'id_registro' => $parametros ['usuario'],
@@ -295,26 +295,42 @@ class Pgsql extends ConectorDb {
                     case 'ELIMINACION' :
 
                         if (empty($parametros) != true) {
-
+                            
+                          
                             if (isset($parametros ['pagina']) && $parametros ['pagina'] != 'index') {
+                                    if (isset($parametros ['pagina']) && $parametros ['pagina'] == 'indexAlana') {
+                                     
+                                            $parametros ['usuario']='';
+                                        $log = array(
+                                        'accion' => $evento,
+                                        'id_registro' => $parametros ['usuario'],
+                                        'tipo_registro' => 'ingresoAuntenticacionUnica',
+                                        'nombre_registro' => $registroAccion,
+                                        'descripcion' => $parametros ['pagina'] . " - " . 'ingresoAuntenticacionUnica'
+                                         );
+                                         $miInstancia->log_usuario($log);
+                                    }
+                                    else{
+                                         if (isset($parametros ['development']) && $parametros ['development'] != 'true') {
 
-                                if (isset($parametros ['development']) && $parametros ['development'] != 'true') {
-
-                                    $log = array(
+                                          $log = array(
                                         'accion' => $evento,
                                         'id_registro' => $parametros ['usuario'],
                                         'tipo_registro' => $parametros ['opcion'],
                                         'nombre_registro' => $registroAccion,
                                         'descripcion' => $parametros ['pagina'] . " - " . $parametros ['opcion']
-                                    );
+                                          );
 
-                                    $miInstancia->log_usuario($log);
-                                }
+                                                   $miInstancia->log_usuario($log);
+                                               }
+                                    }
+                               
                             }
                         }
 
                         $valor = true;
                         break;
+                    
                 }
             }
         }
@@ -503,6 +519,7 @@ class Pgsql extends ConectorDb {
             $acceso &= $this->ejecutar_acceso_db($clausulas [$contador]);
         }
         if ($acceso) {
+        	
             $resultado = pg_query($this->enlace, 'COMMIT');
             
         } else {

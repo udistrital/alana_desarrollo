@@ -21,7 +21,7 @@ class logger extends loggerBase {
         $this->miConfigurador = \Configurador::singleton ();
         $this->setPrefijoTablas($this->miConfigurador->getVariableConfiguracion ("prefijo"));
         $this->setConexion($this->miConfigurador->fabricaConexiones->getRecursoDB("estructura"));
-  
+        $this->sesionUsuario = \Sesion::singleton ();
     }
 
     public static function singleton() {
@@ -43,8 +43,8 @@ class logger extends loggerBase {
      */
     function log_usuario($log) {
        
-        $miSesion = Sesion::singleton();
-        $log['id_usuario']=trim($miSesion->idUsuario());
+//        $miSesion = Sesion::singleton();
+//        $log['id_usuario']=trim($miSesion->idUsuario());
         $log['fecha_log']=date("F j, Y, g:i:s a");         
         $log['host']=$this->obtenerIP(); 
         $cadenaSql = $this->miSql->getCadenaSql("registroLogUsuario", $log);

@@ -12,7 +12,9 @@ class SesionSSO
     public $sesionUsuario;
     public $sesionUsuarioId;
     public $logger;
-    public $CLAIMUSERNAME = 'http://wso2.org/claims/username';
+    public $SUBJECTPARAMETER = 'saml:sp:NameID';
+    public $SUBJECTPARAMETERVALUE = 'Value';
+    //public $CLAIMUSERNAME = 'http://wso2.org/claims/username';//no usado
     public $CLAIMROLE = 'http://wso2.org/claims/role';
 
     /**
@@ -30,6 +32,7 @@ class SesionSSO
         $this->SPSSO = $this->configurador->getVariableConfiguracion('SPSSO'); // Fuente de autenticación definida en el authsources del SP
         require_once($this->configurador->getVariableConfiguracion('direccionSSOAutoloader'));
         $this->authnRequest = new SimpleSAML_Auth_Simple($this->SPSSO); // Se pasa como parametro la fuente de autenticación
+        //var_dump(get_class_methods($this->authnRequest));
         $this->logger = new logger();
     }
     public static function singleton()
@@ -123,10 +126,10 @@ class SesionSSO
 
         $this->authnRequest->requireAuth($login_params);
         $atributos = $this->authnRequest->getAttributes();
-        if (!isset($atributos [$this->CLAIMUSERNAME])) {//si no existe el claim
+        $uid = $this->getSesionUsuarioId();
+        if (!$uid) { //si no existe el usuario
             return false;
         }
-        $uid = $atributos [$this->CLAIMUSERNAME] [0];
         $cadenaSql = $this->sesionUsuario->miSql->getCadenaSql('obtenerDocumentoPorUid', $uid);
         $result = $this->sesionUsuario->miConexion->ejecutarAcceso($cadenaSql, 'busqueda');
 
@@ -238,7 +241,7 @@ class SesionSSO
     // Fin del método terminar_sesion
     public function verificarRolesPagina($atributosSSO, $pagina)
     {
-        $uid = $atributosSSO [$this->CLAIMUSERNAME] [0];
+        $uid = $this->getSesionUsuarioId();
         $cadenaSql = $this->sesionUsuario->miSql->getCadenaSql('obtenerDocumentoPorUid', $uid);
         $result = $this->sesionUsuario->miConexion->ejecutarAcceso($cadenaSql, 'busqueda');
 
@@ -248,7 +251,7 @@ class SesionSSO
 
         $id_usuario = $result[0]['id_usuario'];
         $datos_proveedor = array(
-                'perfiles' => $atributosSSO [$this->CLAIMROLE],
+                'perfiles' => $this->getPerfilesUsuario(),
                 'uid' => $uid,
                 'id_usuario' => $id_usuario,
                 'pagina' => $pagina
@@ -272,5 +275,22 @@ class SesionSSO
         // 			}
         // 		}
         return false;
+    }
+    
+    function getArregloDatosAutenticacion() {
+    	return $this->authnRequest->getAuthDataArray();
+    }
+    
+    function getSesionUsuarioId(){
+    	//$atributosSSO = $this->getParametrosSesionAbierta();
+    	//$idUsuario = $atributosSSO [$this->CLAIMUSERNAME] [0];
+    	$arreglo = $this->getArregloDatosAutenticacion();  	
+    	$idUsuario =  $arreglo[$this->SUBJECTPARAMETER][$this->SUBJECTPARAMETERVALUE];
+    	return $idUsuario;
+    }
+    
+    function getPerfilesUsuario() {
+    	$atributosSSO = $this->getParametrosSesionAbierta();
+    	return $atributosSSO [$this->CLAIMROLE];
     }
 }

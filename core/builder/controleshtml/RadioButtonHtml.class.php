@@ -41,7 +41,6 @@ class RadioButtonHtml extends HtmlBase{
         } else {
     
             $this->miOpcion .= "<input type='radio' ";
-            $this->miOpcion .= self::HTMLNAME . "'" . $id . "' ";
             $this->miOpcion .= "id='" . $id . "' ";
             $this->miOpcion .= self::HTMLNAME . "'" . $nombre . "' ";
     

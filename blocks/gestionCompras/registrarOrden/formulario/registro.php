@@ -135,7 +135,7 @@ class registrarForm {
                                                                                         Suficiencia
                                                                                 </th>
                                                                                 <th class="text-center">
-                                                                                        Vigencia
+                                                                                        Descripción
                                                                                 </th>
                                                                         </tr>
                                                                 </thead>
@@ -156,7 +156,7 @@ class registrarForm {
                                                                                         <input type="text" id="porcentajeamparo0" name="porcentajeamparo0" placeholder="Porcentaje(%)-> 10%" maxlength="3" class="form-control validate[required] custom[number]"/>
                                                                                         </td>
                                                                                         <td>
-                                                                                        <input type="text" id="valoramparo0" name="valoramparo0" placeholder="Vigencia" maxlength="50" class="form-control validate[required] "/>
+                                                                                        <input type="text" id="valoramparo0" name="valoramparo0" placeholder="Descripción" maxlength="500" class="form-control validate[required] "/>
                                                                                         </td>
                                                                                 </tr>
                                         </tbody>

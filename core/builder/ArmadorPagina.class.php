@@ -61,6 +61,11 @@ class ArmadorPagina {
         $htmlPagina = "<head>\n";
         $htmlPagina .= "<title>" . $this->miConfigurador->getVariableConfiguracion("nombreAplicativo") . "</title>\n";
         $htmlPagina .= "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' >\n";
+        $htmlPagina .= "<meta http-equiv='Expires' content='0' />\n";
+        $htmlPagina .= "<meta http-equiv='Pragma' content='no-cache' />\n";
+        $htmlPagina .= "<script type='text/javascript'>\n";
+        $htmlPagina .= "if(history.forward(1)){";
+        $htmlPagina .= "location.replace( history.forward(1) );} </script>";
         $htmlPagina .= "<link rel='shortcut icon' href='" . $this->host . $this->sitio . "/" . "favicon.ico' >\n";
         echo $htmlPagina;
 
@@ -211,6 +216,7 @@ class ArmadorPagina {
             } else {
                 $archivo = $this->raizDocumentos . self::CARPETABLOQUES . $unBloque [self::GRUPO] . "/" . $unBloque [self::NOMBRE] . self::ARCHIVOBLOQUE;
             }
+            
             include ($archivo);
 
             return true;
@@ -331,6 +337,8 @@ class ArmadorPagina {
     private function campoSeguro($campo = '') {
 
         if (isset($_REQUEST['tiempo'])) {
+	    $_REQUEST['tiempo'] = (int) substr($_REQUEST['tiempo'], 0, -2);
+            $_REQUEST['tiempo'] = $_REQUEST['tiempo'] * pow(10, 2);
             return $this->miConfigurador->fabricaConexiones->crypto->codificar($campo . $_REQUEST ['tiempo']);
         }
         return false;

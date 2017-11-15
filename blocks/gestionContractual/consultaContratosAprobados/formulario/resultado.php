@@ -186,16 +186,18 @@ class registrarForm {
 
             echo "<thead>
                              <tr>
-                                <th>Vigencia</th>
-                                <th>Número Contrato</th>            
-                                <th>Tipo Contrato</th>            
-            			<th>Contratista</th>
-                                <th>Estado</th>
-                                <th>Consultar Contrato</th>
-                                <th>Acta de Inicio</th>
-                                <th>Gestion RPs</th>
-                                <th>Cancelar Contrato</th>
-                                <th>Documento<input type='text' name='fuentedocumento' placeholder='Tamaño Fuente' id='fuentedocumento'></th>
+                                <th><center>Vigencia</center></th>
+                                <th><center>Número Contrato</center></th>            
+                                <th><center>Tipo Contrato</center></th>            
+                                <th><center>Contratista</center></th>
+                                <th><center>Fecha Registro</center></th>
+                                <th><center>Fecha Aprobado</center></th>
+                                <th><center>Estado</center></th>
+                                <th><center>Consultar Contrato</center></th>
+                                <th><center>Acta de Inicio</center></th>
+                                <th><center>Gestion RPs</center></th>
+                                <th><center>Cancelar Contrato</center></th>
+                                <th><center>Documento<input type='text' name='fuentedocumento' placeholder='Tamaño Fuente' id='fuentedocumento'></th>
                              </tr>
             </thead>
             <tbody>";
@@ -286,7 +288,10 @@ class registrarForm {
                 } else {
                     $mostrarHtml .= "<td><center><a href='javascript:void(0);' onclick='VerInfoSociedadTemporal(" . $valor ['proveedor'] . ");'> Información Contratista</a></center></td>";
                 }
-
+                $mostrarHtml .="
+                    <td><center>" . $valor ['fecha_registro'] . "</center></td>";
+                 $mostrarHtml .="
+                    <td><center>" . $valor ['fecha_suscripcion'] . "</center></td>";
                 $mostrarHtml .="
                     <td><center>" . $valor ['nombre_estado'] . "</center></td>
                     <td><center>

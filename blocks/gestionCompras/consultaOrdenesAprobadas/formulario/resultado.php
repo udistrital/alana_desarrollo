@@ -166,19 +166,20 @@ class registrarForm {
             echo "<table id='tablaTitulos'>";
             echo "<thead>
                              <tr>
-                                <th>Tipo Orden</th>
-                                <th>Número Contrato</th>
-                                <th>Vigencia</th>            
-            			<th>Identificación<br>Nombre Contratista</th>
-                                <th>Sede - Dependencia</th>
-                                <th>Fecha de Registro</th>
-                                <th>Estado</th>   
-                                <th>Consultar Orden</th>
-                                <th>Documento Orden<input type='text' name='fuentedocumento' placeholder='Tamaño Fuente' id='fuentedocumento'></th>
-                                <th>Acta de Inicio</th>
-                                <th>Gestión RPs</th>
-                                <th>Cancelar Contrato</th>
-				
+                                <th><center>Tipo Orden</center></th>
+                                <th><center>Número Contrato</center></th>
+                                <th><center>Vigencia</center></th>            
+                                <th><center>Identificación<br>Nombre Contratista</center></th>
+                                <th><center>Sede - Dependencia</center></th>
+                                <th><center>Fecha de Registro</center></th>
+                                <th><center>Fecha de Aprobación</center></th>
+                                <th><center>Estado</center></th>   
+                                <th><center>Consultar Orden</center></th>
+                                <th><center>Documento Orden<input type='text' name='fuentedocumento' placeholder='Tamaño Fuente' id='fuentedocumento'></center></th>
+                                <th><center>Acta de Inicio</center></th>
+                                <th><center>Gestión RPs</center></th>
+                                <th><center>Cancelar Contrato</center></th>
+                
                              </tr>
                           </thead>
                           <tbody>";
@@ -283,6 +284,7 @@ class registrarForm {
                 $mostrarHtml .="<td><center>" . $Orden [$i] ['sededependencia'] . "</center></td>";
 
                 $mostrarHtml .= "<td><center>" . $Orden [$i] ['fecha_registro'] . "</center></td>
+                                <td><center>" . $Orden [$i] ['fecha_suscripcion'] . "</center></td>
                                 <td><center>" . $Orden [$i] ['nombre_estado'] . "</center></td>
                                 <td><center>
                                     <a href='" . $variableConsulta . "'>

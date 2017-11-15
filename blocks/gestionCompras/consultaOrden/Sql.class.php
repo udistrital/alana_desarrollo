@@ -31,7 +31,24 @@ class Sql extends \Sql {
 
         switch ($tipo) {
 
+            case "consultaDigitoVerificacion" :
 
+                $cadenaSql = " SELECT digito_verificacion ";
+                $cadenaSql .=  "FROM agora.informacion_persona_juridica ";
+                $cadenaSql .=  "WHERE num_nit_empresa=".$variable;   
+                break;
+             
+            
+            case "consultaRepresentanteLegal" :
+
+                $cadenaSql = " SELECT num_documento_persona documento, primer_nombre || ' ' || segundo_nombre || ' ' || primer_apellido || ' ' || segundo_apellido nombre, pe.valor_parametro tipo_documento, c.nombre ciudad , pn.cargo ";
+                $cadenaSql .=  "FROM agora.informacion_proveedor ip  ";
+                $cadenaSql .=  "JOIN agora.proveedor_representante_legal as rl ON rl.id_proveedor=ip.id_proveedor  ";
+                $cadenaSql .=  "JOIN agora.informacion_persona_natural as pn ON pn.num_documento_persona=rl.id_representante  ";
+                $cadenaSql .=  "JOIN agora.parametro_estandar as pe ON pe.id_parametro=pn.tipo_documento  ";
+                $cadenaSql .=  "JOIN core.ciudad as c ON c.id_ciudad=pn.id_ciudad_expedicion_documento  ";
+                $cadenaSql .=  "WHERE ip.id_proveedor =".$variable;   
+                break;
 
             //------------------ Consulta Contratos ------------------------
             case 'buscar_contrato' :

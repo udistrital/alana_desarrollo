@@ -180,11 +180,11 @@ class Sql extends \Sql {
             case "consultarOrdenGeneral" :
 
                 $cadenaSql = "SELECT DISTINCT o.id_orden, p.descripcion, o.numero_contrato, "
-                        . "o.vigencia, o.fecha_registro, cg.contratista  as proveedor,o.tipo_orden,"
+                        . "o.vigencia, cs.fecha_registro, cg.contratista  as proveedor,o.tipo_orden,"
                         . "cg.clase_contratista,cg.convenio,tpc.tipo_contrato,"
                         . " se.\"ESF_SEDE\" ||'-'|| dep.\"ESF_DEP_ENCARGADA\" as SedeDependencia, "
                         . " ec.nombre_estado, "
-                        . "ce.fecha_registro as fecha_registro_estado,cg.unidad_ejecutora, cs.numero_contrato_suscrito ";
+                        . "ce.fecha_registro as fecha_registro_estado,cg.unidad_ejecutora, cs.numero_contrato_suscrito , cs.fecha_suscripcion ";
                 $cadenaSql .= "FROM orden o, parametros p, contrato_general cg, \"sedes_SIC\" se, \"dependencia_SIC\" dep, ";
                 $cadenaSql .= "contrato_estado ce, estado_contrato ec, contrato_suscrito cs, tipo_contrato tpc  ";
                 $cadenaSql .= "WHERE o.tipo_orden = p.id_parametro AND tpc.id = cg.tipo_contrato ";

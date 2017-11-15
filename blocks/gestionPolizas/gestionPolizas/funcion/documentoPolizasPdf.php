@@ -748,7 +748,7 @@ class RegistradorOrden {
                         <td style='width:100%;text-align:left;height: 20px'>________________________________________ </td>	
                     </tr>
                      <tr>
-                        <td style='width:100%;text-align:left;'>CARLOS ARTURO QUINTANA ASTRO</td>	
+                        <td style='width:100%;text-align:left;'>JORGE ARTURO LEMUS MONTAÑEZ</td>	
                     </tr>
                      <tr>
                         <td style='width:100%;text-align:left;'>Jefe Oficina Asesora Jurídica</td>	

@@ -252,7 +252,7 @@ class registrarForm {
                                                                                         Suficiencia
                                                                                 </th>
                                                                                 <th class="text-center">
-                                                                                        Vigencia
+                                                                                        Descripción
                                                                                 </th>
                                                                         </tr>
                                                                 </thead>
@@ -288,7 +288,7 @@ class registrarForm {
                                                                                                     <input type="text" id="porcentajeamparo'.$contadorArrend.'" name="porcentajeamparo'.$contadorArrend.'" placeholder="Porcentaje(%)-> 10%" maxlength="3" value="'.$arrendamientoGeneral[$contadorArrend]['suficiencia'].'" class="form-control  custom[number]" disabled/>
                                                                                                     </td>
                                                                                                     <td>
-                                                                                                    <input type="text" id="valoramparo'.$contadorArrend.'" name="valoramparo'.$contadorArrend.'" placeholder="Vigencia" maxlength="50" value="'.$arrendamientoGeneral[$contadorArrend]['vigencia'].'" class="form-control " disabled/>
+                                                                                                    <input type="text" id="valoramparo'.$contadorArrend.'" name="valoramparo'.$contadorArrend.'" placeholder="Descripción" maxlength="500" value="'.$arrendamientoGeneral[$contadorArrend]['vigencia'].'" class="form-control " disabled/>
                                                                                                     </td>';
                                                                                                   $tablaAmparosDinamica .= '</tr>';  
                                                                                                   $contadorArrend++;

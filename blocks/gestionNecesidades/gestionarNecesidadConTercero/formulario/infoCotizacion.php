@@ -306,73 +306,7 @@ if (!isset($GLOBALS["autorizado"])) {
 /*			
 //ERROR Correo se ENVIA a SPAM*******-----------------------------------------------------------------------------------------------------
 //INICIO ENVIO DE CORREO AL USUARIO
-    $rutaClases=$this->miConfigurador->getVariableConfiguracion("raizDocumento")."/classes";
-
-    include_once($rutaClases."/mail/class.phpmailer.php");
-    include_once($rutaClases."/mail/class.smtp.php");
-	
-	$mail = new PHPMailer(); 
-
-
-	//configuracion de cuenta de envio
-	$mail->Host     = "200.69.103.49";
-	$mail->Mailer   = "smtp";
-	$mail->SMTPAuth = true;
-	$mail->Username = "condor@udistrital.edu.co";
-	$mail->Password = "CondorOAS2012";
-	$mail->Timeout  = 1200;
-	$mail->Charset  = "utf-8";
-	$mail->IsHTML(true);
-
-        $mail->From='agora@udistrital.edu.co';
-        $mail->FromName='UNIVERSIDAD DISTRITAL FRANCISCO JOSÉ DE CALDAS';
-        $mail->Subject="Solicitud de Cotización";
-        $contenido= "<p>Señor proveedor, la Universidad Distrital Francisco José de Caldas se encuentra interesada en poder contar con sus servicios para la adquisición de: </p>";
-        $contenido.= "<b>Objeto Solicitud de Necesidad : </b>" . $solicitudNecesidad [0]['OBJETO'] . "<br>";
-        $contenido.= "<br>";
-        $contenido.= "<b>Justificación Solicitud de Necesidad : </b>" . $solicitudNecesidad [0]['JUSTIFICACION'] . "<br>";
-        $contenido.= "<br>";
-        $contenido.= "<b>Actividad econ&oacute;mica : </b>" . $objetoEspecifico[0]['codigociiu'] . ' - ' . $objetoEspecifico[0]['actividad'] . "<br>";
-        $contenido.= "<br>";
-        $contenido.= "<b>Dependencia Solicitante : </b>" . $solicitudNecesidad [0]['DEPENDENCIA']. "<br>";
-        $contenido.= "<br>";
-        $contenido.= "<b>Responsable : </b>" . $solicitudNecesidad [0]['ORDENADOR_GASTO'];
-        $contenido.= "<br>";
-        $contenido.= "<p>Por lo tanto, lo invitamos a presentar su cotización con una fecha máxima no superior a tres (3) días hábiles a partir del recibo del presente comunicado, para lo cual 
-        		         puede ingresar al Banco de Proveedores.</p>";
-        $contenido.= "<br>";
-        $contenido.= "<p>Agradeciendo su gentil atención.</p>";
-        $contenido.= "<br>";
-        $contenido.= "<br>";
-        $contenido.= "Cordialmente :<br>";
-		$contenido.= "<b>" . $solicitudNecesidad [0]['ORDENADOR_GASTO'] . " - " . $solicitudNecesidad [0]['CARGO_ORDENADOR_GASTO'] . "</b>";
-		$contenido.= "<br>";
-		$contenido.= "<br>";
-		$contenido.= "<br>";
-		$contenido.= "<br>";
-		$contenido.= "<p>Este mensaje ha sido generado automáticamente, favor no responder..</p>";
-		
-        $mail->Body=$contenido;
-
-		//foreach ($resultadoProveedor as $dato):
-			//$to_mail=$dato ['correo'];
-		    $to_mail="jdavid.6700@gmail.com";//PRUEBAS**********************************************************************************
-			$mail->AddAddress($to_mail);
-			//$mail->Send();
-			
-			if(!$mail->Send()) {
-				echo "Error al enviar el mensaje a ". $to_mail .": " . $mail->ErrorInfo;
-			}else{
-				echo "Enviado!!! ". $to_mail .": " . $mail->ErrorInfo;
-			}
-			
-		//endforeach; 
-		
-			var_dump($mail);
-			
-        $mail->ClearAllRecipients();
-        $mail->ClearAttachments();
-//FIN ENVIO DE CORREO AL USUARIO     
+   
 */
 
         $valorCodificado = "pagina=".$miPaginaActual;

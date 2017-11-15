@@ -319,9 +319,9 @@ class RegistradorOrden {
             }
 
 
-            $arrayAmparos = explode(",", $_REQUEST['tablAmparos_hidden']);
-            $arraySuficiencia = explode(",", $_REQUEST['tablaSuficiencia_hidden']);
-            $arrayVigencia = explode(",", $_REQUEST['tablaVigencia_hidden']);
+            $arrayAmparos = explode("~", $_REQUEST['tablAmparos_hidden']);
+            $arraySuficiencia = explode("~", $_REQUEST['tablaSuficiencia_hidden']);
+            $arrayVigencia = explode("~", $_REQUEST['tablaVigencia_hidden']);
 
 
             $count = 0;
@@ -336,7 +336,6 @@ class RegistradorOrden {
                     'suficiencia' => $arraySuficiencia [$count],
                     'vigencia_amparo' => $arrayVigencia [$count],
                 );
-
 
 
                 $SqContratoArrendamientoGeneral['sql'] = $this->miSql->getCadenaSql('insertarContratoPolizaGeneral', $arreglo_contratoGeneral);

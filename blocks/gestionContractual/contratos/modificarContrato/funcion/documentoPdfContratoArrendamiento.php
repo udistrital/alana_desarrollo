@@ -765,11 +765,11 @@ class RegistradorOrden {
         $arrendamientoGeneral = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
         
         
-     $tablaDeAmparos=' <table align="center" style="width:100% ; border: 1  ;"> 
+     $tablaDeAmparos=' <table align="center" style="width:100% ;border: 1px solid black;"> 
             <tr>            
-              <td style="text-align:center;">AMPARO</td> 
-              <td style="text-align:center;">SUFICIENCIA</td> 
-              <td style="text-align:center;">VIGENCIA</td> 
+              <td style="text-align:center;font-weight:bold;border: 1px solid black;">AMPARO</td> 
+              <td style="text-align:center;font-weight:bold;border: 1px solid black;">SUFICIENCIA</td> 
+              <td style="text-align:center;font-weight:bold;border: 1px solid black;">DESCRIPCION</td> 
            </tr> 
           ';
    

@@ -304,6 +304,9 @@ class RegistradorOrden {
         $conexionFrameWork = "estructura";
         $DBFrameWork = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexionFrameWork);
 
+        $conexionCore = "core";
+        $DBCore = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexionCore);
+
         $conexionAgora = "agora";
         $esteRecursoDBAgora = $this->miConfigurador->fabricaConexiones->getRecursoDB($conexionAgora);
 
@@ -414,11 +417,41 @@ class RegistradorOrden {
             $cadenaSql = $this->miSql->getCadenaSql('consultaTipoDocumento', $contratista ['num_documento']);
             $tipoDocumento = $esteRecursoDBAgora->ejecutarAcceso($cadenaSql, "busqueda");
 
+            $InfoContratistaBasica = strtoupper($contratista['nom_proveedor']) ." (". $tipoDocumento[0][0] . "  " . $contratista['num_documento'] . ") ";
+
+
             $InfoContratista = strtoupper($contratista['nom_proveedor']) . "</b> persona natural mayor de edad, identificado(a)
                          con " . strtolower($tipoDocumento[0][0]) . " <b>N°. " . $contratista['num_documento'] . "</b> de " . $tipoDocumento[0][1] . " ";
         } elseif ($contratista['tipopersona'] == 'JURIDICA') {
-            $InfoContratista = strtoupper($contratista['nom_proveedor']) . "</b> persona juridica, identificada
-                         con nit  <b>N°. " . $contratista['num_documento'] . "</b>  ";
+            $cadenaSql = $this->miSql->getCadenaSql('consultaRepresentanteLegal', $contrato ['contratista']);
+            $representanteLegal = $esteRecursoDBAgora->ejecutarAcceso($cadenaSql, "busqueda");
+            
+                        
+            $cadenaSql = $this->miSql->getCadenaSql('consultaDigitoVerificacion', $contratista['num_documento']);
+            $digitoVerificacion = $esteRecursoDBAgora->ejecutarAcceso($cadenaSql, "busqueda");
+            
+            
+            
+           if($representanteLegal[0]['cargo'] === 'REPRESENTANTE LEGAL' || $representanteLegal[0]['cargo'] === ' '){
+                   $InfoContratista =  $representanteLegal[0]['nombre']. ", mayor de edad y vecino de esta ciudad, identificado con ". $representanteLegal[0]['tipo_documento'] . " No. ". $representanteLegal[0]['documento'] .
+                                " expedida en ".$representanteLegal[0]['ciudad'].
+                                ", quien actúa en nombre y representación legal de ".strtoupper($contratista['nom_proveedor']) . 
+                                " con NIT " . $contratista['num_documento']."-".$digitoVerificacion[0][0];
+                        
+                $InfoContratistaBasica = strtoupper($contratista['nom_proveedor']) ." ( NIT " . $contratista['num_documento'] . "-".$digitoVerificacion[0][0].") ";
+             
+            }
+            else {
+                 $InfoContratista =  $representanteLegal[0]['nombre']. ", mayor de edad y vecino de esta ciudad, identificado con ". 
+                                $representanteLegal[0]['tipo_documento'] . " No. ". $representanteLegal[0]['documento'] .
+                                " expedida en ".$representanteLegal[0]['ciudad'].
+                                ", quien actúa en nombre y representación legal "." en calidad de ". $representanteLegal[0]['cargo'] ." de ".strtoupper($contratista['nom_proveedor']) . 
+                                " con NIT " . $contratista['num_documento'] . "-".$digitoVerificacion[0][0] ;
+            
+                 $InfoContratistaBasica = strtoupper($contratista['nom_proveedor']) ." ( NIT " . $contratista['num_documento'] ."-".$digitoVerificacion[0][0]. ") ";
+          
+                
+            }
         } else {
             $InfoContratista = strtoupper($contratista['nom_proveedor']) . "</b>, " . $contratista['tipopersona'] . " identificado(a)
                          con nit  <b>N°. " . $contratista['num_documento'] . "</b>  ";
@@ -457,6 +490,8 @@ class RegistradorOrden {
 
         $cadenaSql = $this->miSql->getCadenaSql('ObtenerInfosupervisor', $contrato ['supervisor']);
         $supervisor = $esteRecursoDB->ejecutarAcceso($cadenaSql, "busqueda");
+       
+
          if($supervisor [0]['cargo'] != ''){
             $supervisor = strtoupper($supervisor[0]['nombre']) . " identificado(a) con cédula de ciudadanía  No. " .strtoupper($supervisor[0]['documento']) ." con el cargo de ".strtoupper($supervisor [0]['cargo']);
         }
@@ -719,12 +754,12 @@ class RegistradorOrden {
 		</table>
 		<table class='mainelementos' style='width:100%;'>
 		<tr>
-		<td style='width:10%;text-align=center;'><p>Item</p></td>
-		<td style='width:20%;text-align=center;'><p>Descripcion</p></td>
-		<td style='width:15%;text-align=center;'><p>Nombre</p></td>
+		<td style='width:5%;text-align=center;'><p>Item</p></td>
+		<td style='width:30%;text-align=center;'><p>Descripcion</p></td>
+		<td style='width:30%;text-align=center;'><p>Nombre</p></td>
 		<td style='width:10%;text-align=center;'><p>Codigo DIAN</p></td>
-		<td style='width:25%;text-align=center;'><p>Servicio</p></td>
-		<td style='width:20%;text-align=center;'><p>Valor($)</p></td>
+		<td style='width:8%;text-align=center;'><p>Servicio</p></td>
+		<td style='width:17%;text-align=center;'><p>Valor($)</p></td>
 		</tr>
 		</table>
 		<table class='mainelementos' style='width:100%;'>";
@@ -736,12 +771,12 @@ class RegistradorOrden {
 
             foreach ($ServiciosOrden as $valor => $it) {
                 $elementosyservicios .= "<tr>";
-                $elementosyservicios .= "<td style='width:10%;text-align=center;'><p>" . $c . "</p></td>";
-                $elementosyservicios .= "<td style='width:20%;text-align=center;'><p>" . $it ['descripcion'] . "</p></td>";
-                $elementosyservicios .= "<td style='width:15%;text-align=justify;'><p>" . $it ['nombre'] . "</p></td>";
+                $elementosyservicios .= "<td style='width:5%;text-align=center;'><p>" . $c . "</p></td>";
+                $elementosyservicios .= "<td style='width:30%;text-align=center;'><p>" . $it ['descripcion'] . "</p></td>";
+                $elementosyservicios .= "<td style='width:30%;text-align=justify;'><p>" . $it ['nombre'] . "</p></td>";
                 $elementosyservicios .= "<td style='width:10%;text-align=center;'><p>$ " . $it ['codigo_ciiu'] . "</p></td>";
-                $elementosyservicios .= "<td style='width:25%;text-align=center;'><p>" . $it ['codigo_ciiu'] . "</p></td>";
-                $elementosyservicios .= "<td style='width:20%;text-align=center;'><p>$ " . number_format($it ['valor_servicio'], 2, ",", ".") . "</p></td>";
+                $elementosyservicios .= "<td style='width:8%;text-align=center;'><p>" . $it ['codigo_ciiu'] . "</p></td>";
+                $elementosyservicios .= "<td style='width:17%;text-align=center;'><p>$ " . number_format($it ['valor_servicio'], 2, ",", ".") . "</p></td>";
                 $elementosyservicios .= "</tr>";
 
                 $sumatoriaTotalServicios = $sumatoriaTotalServicios + $it ['valor_servicio'];
@@ -857,11 +892,11 @@ class RegistradorOrden {
         
        
 
-        $tablaDeAmparos=' <table align="center" style="width:100% ; border: 1  ;"> 
+        $tablaDeAmparos=' <table align="center" style="width:100% ;border: 1px solid black;"> 
             <tr>            
-              <td style="text-align:center;">AMPARO</td> 
-              <td style="text-align:center;">SUFICIENCIA</td> 
-              <td style="text-align:center;">VIGENCIA</td> 
+              <td style="text-align:center;font-weight:bold;border: 1px solid black;">AMPARO</td> 
+              <td style="text-align:center;font-weight:bold;border: 1px solid black;">SUFICIENCIA</td> 
+              <td style="text-align:center;font-weight:bold;border: 1px solid black;">DESCRIPCION</td> 
            </tr> 
           ';
    

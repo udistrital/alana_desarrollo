@@ -45,7 +45,7 @@ class logger extends loggerBase {
        
         $miSesion = Sesion::singleton();
         $log['id_usuario']=trim($miSesion->idUsuario());
-        $log['fecha_log']=date("F j, Y, g:i:s a");         
+        $log['fecha_log']=date('Y-m-d H:i:s');         
         $log['host']=$this->obtenerIP(); 
         $cadenaSql = $this->miSql->getCadenaSql("registroLogUsuario", $log);
         $resultado = $this->miConexion->ejecutarAcceso($cadenaSql, self::ACCEDER ,'','registroLogUsuario');

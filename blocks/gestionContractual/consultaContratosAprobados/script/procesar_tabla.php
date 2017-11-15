@@ -33,16 +33,18 @@
                     "bLengthChange": false,
                     "bPaginate": false,
                     "aoColumns": [
-                        {sWidth: "12%"},
-                        {sWidth: "12%"},
-                        {sWidth: "12%"},
-                        {sWidth: "12%"},
-                        {sWidth: "12%"},
-                        {sWidth: "12%"},
-                        {sWidth: "12%"},
-                       {sWidth: "8%"},
-                       {sWidth: "8%"},
-                       {sWidth: "8%"}
+                         {sWidth: "8%"}, 
+                        {sWidth: "8%"}, 
+                        {sWidth: "16%"}, 
+                        {sWidth: "14%"},
+                        {sWidth: "8%"},
+                        {sWidth: "8%"},
+                        {sWidth: "8%"},
+                        {sWidth: "8%"},
+                        {sWidth: "8%"},
+                       {sWidth: "8%"}, 
+                       {sWidth: "7%"}, 
+                       {sWidth: "7%"}  
                     ]
 
                 });

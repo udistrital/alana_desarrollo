@@ -444,9 +444,9 @@ $urlFinalUE1 = $url . $cadenaACodificarUE1;
 
 
 
-                camposA = camposA + $('#amparo' + index).val() + ',',
-                        camposS = camposS + $('#porcentajeamparo' + index).val() + ',',
-                        camposV = camposV + $('#valoramparo' + index).val() + ',';
+                camposA = camposA + $('#amparo' + index).val() + '~',
+                        camposS = camposS + $('#porcentajeamparo' + index).val() + '~',
+                        camposV = camposV + $('#valoramparo' + index).val() + '~';
 
 
             });
@@ -566,7 +566,7 @@ $urlFinalUE1 = $url . $cadenaACodificarUE1;
             $('#tab_amparos tr:last').after('<tr id="addr' + (i + 1) + '">' +
                     lista +
                     '<td>' + "<input id='porcentajeamparo" + (i + 1) + "' name='porcentajeamparo" + (i + 1) + "' type='text' placeholder='Porcentaje(%)-> 10%' maxlength='3' class='form-control   custom[number]'>" + '</td>' +
-                    '<td>' + "<input id='valoramparo" + (i + 1) + "'  name='valoramparo" + (i + 1) + "' type='text' placeholder='Vigencia'  maxlength='50' class='form-control input-md '>" + '</td>' +
+                    '<td>' + "<input id='valoramparo" + (i + 1) + "'  name='valoramparo" + (i + 1) + "' type='text' placeholder='Descripción'  maxlength='500' class='form-control input-md '>" + '</td>' +
                     '</tr>');
 
             var data = jQuery.parseJSON($("#amparosOculto").val());

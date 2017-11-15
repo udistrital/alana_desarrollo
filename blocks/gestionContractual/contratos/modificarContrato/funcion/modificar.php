@@ -439,9 +439,9 @@ class RegistradorContrato {
         }
 
 
-        $arrayAmparos = explode(",", $_REQUEST['tablAmparos_hidden']);
-        $arraySuficiencia = explode(",", $_REQUEST['tablaSuficiencia_hidden']);
-        $arrayVigencia = explode(",", $_REQUEST['tablaVigencia_hidden']);
+        $arrayAmparos = explode("~", $_REQUEST['tablAmparos_hidden']);
+        $arraySuficiencia = explode("~", $_REQUEST['tablaSuficiencia_hidden']);
+        $arrayVigencia = explode("~", $_REQUEST['tablaVigencia_hidden']);
 
 
         $count = 0;

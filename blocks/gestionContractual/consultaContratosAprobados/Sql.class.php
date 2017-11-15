@@ -264,7 +264,7 @@ class Sql extends \Sql {
                 $cadenaSql = "SELECT DISTINCT cg.clase_contratista,p.descripcion, cg.numero_contrato, "
                         . " cg.vigencia, cg.fecha_registro, cg.contratista as proveedor,cg.tipologia_contrato, "
                         . " ec.nombre_estado, tpc.tipo_contrato,"
-                        . " ce.fecha_registro as fecha_registro_estado, cg.convenio, cs.numero_contrato_suscrito  ";
+                        . " ce.fecha_registro as fecha_registro_estado, cg.convenio, cs.numero_contrato_suscrito  , cs.fecha_suscripcion  ";
                 $cadenaSql .= "FROM parametros p, contrato_general cg, tipo_contrato tpc , ";
                 $cadenaSql .= "contrato_estado ce, estado_contrato ec, contrato_suscrito cs  ";
                 $cadenaSql .= "WHERE cg.tipologia_contrato = p.id_parametro AND  cg.tipo_contrato = tpc.id ";

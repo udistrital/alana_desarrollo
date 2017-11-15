@@ -228,8 +228,7 @@ if (!isset($GLOBALS["autorizado"])) {
 			$mail->Host     = "200.69.103.49";
 			$mail->Mailer   = "smtp";
 			$mail->SMTPAuth = true;
-			$mail->Username = "condor@udistrital.edu.co";
-			$mail->Password = "CondorOAS2012";
+
 			$mail->Timeout  = 1200;
 			$mail->Charset  = "utf-8";
 			$mail->IsHTML(true);
